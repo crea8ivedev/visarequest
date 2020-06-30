@@ -81,22 +81,22 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Models\User::class,
         ],
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class,
+            'model' => App\Models\Admin::class,
         ],
 
         'processors' => [
             'driver' => 'eloquent',
-            'model' => App\Processor::class,
+            'model' => App\Models\Processor::class,
         ],
 
         'agents' => [
             'driver' => 'eloquent',
-            'model' => App\Agent::class,
+            'model' => App\Models\Agent::class,
         ]
 
         // 'users' => [

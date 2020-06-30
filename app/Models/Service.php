@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,16 +12,16 @@ class Service extends Model
 
     public function country()
     {	
-    	return $this->belongsTo('App\Country', 'country_id');
+    	return $this->belongsTo('App\Models\Country', 'country_id');
     }
 
     public function staff()
     {	
-    	return $this->belongsTo('App\User', 'staff_id');
+    	return $this->belongsTo('App\Models\User', 'staff_id');
     }
 
     public function agent()
     {	
-    	return $this->belongsTo('App\User', 'agent_id');
+    	return $this->belongsTo('App\Models\User', 'agent_id');
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\Country;
+use App\Models\Country;
 use Yajra\DataTables\DataTables;
 use Validator; 
 

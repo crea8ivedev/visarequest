@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Backend\Service;
-use App\Models\Backend\Country;
-use App\Models\Backend\User;
+use App\Models\Service;
+use App\Models\Country;
+use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Validator; 
 
