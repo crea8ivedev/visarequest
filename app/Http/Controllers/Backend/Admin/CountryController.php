@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Country;
+use App\Models\Backend\Country;
 use Yajra\DataTables\DataTables;
 use Validator; 
 

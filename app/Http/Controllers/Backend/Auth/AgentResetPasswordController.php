@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Password;
 use Auth;
 
-class ProcessorResetPasswordController extends Controller
+class AgentResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class ProcessorResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/processor';
+    protected $redirectTo = '/agent';
 
     /**
      * Create a new controller instance.
@@ -37,22 +37,22 @@ class ProcessorResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:processor');
+        $this->middleware('guest:agent');
     }
 
     protected function guard()
     {
-      return Auth::guard('processor');
+      return Auth::guard('agent');
     }
 
     protected function broker()
     {
-      return Password::broker('processors');
+      return Password::broker('agents');
     }
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('backend.auth.passwords.reset-processor')->with(
+        return view('backend.auth.passwords.reset-agent')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

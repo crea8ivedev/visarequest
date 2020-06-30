@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\Backend\User;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 
-class AgentController extends Controller
+class ProcessorController extends Controller
 {
     /**
      * Show the application country.
@@ -18,14 +18,14 @@ class AgentController extends Controller
      */
     public function index(Request $request)
     {
-        $page_title = 'Agent';
+        $page_title = 'Processor';
         $page_description = '';
         $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
 
         //dd($page_breadcrumbs);
         if($request->ajax())
         {
-            $data = User::where('role', '3')->latest()->get();
+            $data = User::where('role', '2')->latest()->get();
             return DataTables::of($data)
                     ->addColumn('action', function($data){
                         $button = '<a href="javascript:;"  name="edit" id="'.$data->id.'" class="btn btn-success btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
@@ -41,7 +41,7 @@ class AgentController extends Controller
                     ->make(true);
         }
 
-        return view('backend.admin.agent.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.processor.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     /**
@@ -72,7 +72,7 @@ class AgentController extends Controller
             'last_name'        =>  $request->last_name,
             'name'             =>   $request->first_name.' '.$request->last_name,
             'email'            =>  $request->email,
-            'role'             =>  3,
+            'role'             =>  2,
             'password'         =>  Hash::make($request->password)
         );
 
@@ -143,4 +143,5 @@ class AgentController extends Controller
         $data = User::findOrFail($id);
         $data->delete();
     }
+
 }

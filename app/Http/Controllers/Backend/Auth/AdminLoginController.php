@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Auth;
 use Session;
+use Carbon\Carbon;
 
-class AgentLoginController extends Controller
+class AdminLoginController extends Controller
 {
     public function __construct()
     {
-      $this->middleware('guest:agent', ['except' => ['logout']]);
+      $this->middleware('guest:admin', ['except' => ['logout']]);
     }
 
-     public function showLoginForm()
+    public function showLoginForm()
     {
-      return view('backend.auth.agent-login');
+      return view('backend.auth.admin-login');
     }
+
 
     public function login(Request $request)
     {
@@ -28,12 +30,12 @@ class AgentLoginController extends Controller
       ]);
 
       // Attempt to log the user in
-      if (Auth::guard('agent')->attempt(['email' => $request->email, 'role' => '3', 'password' => $request->password], $request->remember)) {
+      if (Auth::guard('admin')->attempt(['email' => $request->email, 'role' => '1', 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
         Session::flash('message', 'You are successfully login!');
         Session::flash('alert-class', 'alert-success');
-        //dd('ok');
-        return redirect()->intended(route('agent.dashboard'));
+        
+        return redirect()->intended(route('admin.dashboard'));
       }
 
       Session::flash('message', 'These credentials do not match our records.!');
@@ -45,9 +47,9 @@ class AgentLoginController extends Controller
 
     public function logout()
     {
-        Auth::guard('agent')->logout();
+        Auth::guard('admin')->logout();
         Session::flash('message', 'You are successfully logout.!');
         Session::flash('alert-class', 'alert-success');
-        return redirect('/agent/login');
+        return redirect('/admin/login');
     }
 }

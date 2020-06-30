@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Agent;
+namespace App\Http\Controllers\Backend\Agent;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\Backend\User;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;

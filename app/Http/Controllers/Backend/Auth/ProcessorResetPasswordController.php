@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 use Password;
 use Auth;
 
-class AdminResetPasswordController extends Controller
+class ProcessorResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class AdminResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/processor';
 
     /**
      * Create a new controller instance.
@@ -37,22 +37,22 @@ class AdminResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin');
+        $this->middleware('guest:processor');
     }
 
     protected function guard()
     {
-      return Auth::guard('admin');
+      return Auth::guard('processor');
     }
 
     protected function broker()
     {
-      return Password::broker('admins');
+      return Password::broker('processors');
     }
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('backend.auth.passwords.reset-admin')->with(
+        return view('backend.auth.passwords.reset-processor')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

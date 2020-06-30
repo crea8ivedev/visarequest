@@ -6,10 +6,6 @@
 
     {{-- Dashboard 1 --}}
 
-    <!--begin::Content-->
-	
-	<!--end::Content-->
-
 @endsection
 
 {{-- Scripts Section --}}

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 use Password;
 use Auth;
 
-class AgentResetPasswordController extends Controller
+class AdminResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ class AgentResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/agent';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -37,22 +37,22 @@ class AgentResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:agent');
+        $this->middleware('guest:admin');
     }
 
     protected function guard()
     {
-      return Auth::guard('agent');
+      return Auth::guard('admin');
     }
 
     protected function broker()
     {
-      return Password::broker('agents');
+      return Password::broker('admins');
     }
 
     public function showResetForm(Request $request, $token = null)
     {
-        return view('backend.auth.passwords.reset-agent')->with(
+        return view('backend.auth.passwords.reset-admin')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

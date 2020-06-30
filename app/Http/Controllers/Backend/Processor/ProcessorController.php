@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Backend\Processor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\User;
+use App\Models\Backend\User;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Auth;
 
-class AdminController extends Controller
+class ProcessorController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -19,7 +19,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:processor');
     }
 
     /**
@@ -32,7 +32,7 @@ class AdminController extends Controller
         $page_title = 'Dashboard';
         $page_description = 'Some description for the page';
 
-        return view('backend.admin.dashboard', compact('page_title', 'page_description'));
+        return view('backend.processor.dashboard', compact('page_title', 'page_description'));
     }
 
     /**
@@ -43,9 +43,9 @@ class AdminController extends Controller
     public function profile()
     {
         $page_title = 'Profile';
-        $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = array (['page' => 'processor', 'title' => 'Dashboard']);
         $user = User::find(auth()->user()->id);
-        return view('backend.admin.profile.list', compact('page_title','user', 'page_breadcrumbs' ));
+        return view('backend.processor.profile.list', compact('page_title','user', 'page_breadcrumbs' ));
     }
 
     /**
@@ -93,7 +93,7 @@ class AdminController extends Controller
             } catch (Exception $ex) {
                  Session::flash('message', 'Something went wrong, please try again.');
                  Session::flash('alert-class', 'alert-danger');
-                return redirect()->intended(route('admin.profile'));
+                return redirect()->intended(route('processor.profile'));
                 
             }
         }
@@ -101,9 +101,9 @@ class AdminController extends Controller
 
     public function showChangePasswordForm(){
         $page_title = 'Change Password';
-        $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = array (['page' => 'processor', 'title' => 'Dashboard']);
         $user = User::find(auth()->user()->id);
-        return view('backend.admin.profile.change-password',compact('page_title','user', 'page_breadcrumbs' ));
+        return view('backend.processor.profile.change-password',compact('page_title','user', 'page_breadcrumbs' ));
     }
 
     public function changePassword(Request $request) {

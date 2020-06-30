@@ -22,7 +22,7 @@ Auth::routes();
 
 
 //Processor
-Route::prefix('processor')->namespace('Auth')->group(function() {
+Route::prefix('processor')->namespace('Backend\Auth')->group(function() {
     Route::get('/login', 'ProcessorLoginController@showLoginForm')->name('processor.login');
     Route::post('/login', 'ProcessorLoginController@login')->name('processor.login.submit');
     Route::post('/logout', 'ProcessorLoginController@logout')->name('processor.logout');
@@ -35,7 +35,7 @@ Route::prefix('processor')->namespace('Auth')->group(function() {
 });
 
 //Agent
-Route::prefix('agent')->namespace('Auth')->group(function() {
+Route::prefix('agent')->namespace('Backend\Auth')->group(function() {
     Route::get('/login', 'AgentLoginController@showLoginForm')->name('agent.login');
     Route::post('/login', 'AgentLoginController@login')->name('agent.login.submit');
     Route::post('/logout', 'AgentLoginController@logout')->name('agent.logout');
@@ -49,7 +49,7 @@ Route::prefix('agent')->namespace('Auth')->group(function() {
 
 
 //Admin
-Route::prefix('admin')->namespace('Auth')->group(function() {
+Route::prefix('admin')->namespace('Backend\Auth')->group(function() {
     Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
     Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
@@ -66,7 +66,7 @@ Route::prefix('admin')->namespace('Auth')->group(function() {
 
 
 //Auth Admin
-Route::group(['namespace' => 'Admin', 'middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
     Route::post('/profile/update', "AdminController@update")->name("admin.profile.post");
@@ -113,7 +113,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth:admin'], 'prefix' =
 });
 
 //Auth Processor
-Route::group(['namespace' => 'Processor', 'middleware' => ['auth:processor'], 'prefix' => 'processor'], function () {
+Route::group(['namespace' => 'Backend\Processor', 'middleware' => ['auth:processor'], 'prefix' => 'processor'], function () {
     Route::get('/', 'ProcessorController@index')->name('processor.dashboard');
     Route::get('/profile', 'ProcessorController@profile')->name('processor.profile');
     Route::post('/profile/update', "ProcessorController@update")->name("processor.profile.post");
@@ -124,7 +124,7 @@ Route::group(['namespace' => 'Processor', 'middleware' => ['auth:processor'], 'p
 });
 
 //Auth Agent
-Route::group(['namespace' => 'Agent', 'middleware' => ['auth:agent'], 'prefix' => 'agent'], function () {
+Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'prefix' => 'agent'], function () {
     Route::get('/', 'AgentController@index')->name('agent.dashboard');
     Route::get('/profile', 'AgentController@profile')->name('agent.profile');
     Route::post('/profile/update', "AgentController@update")->name("agent.profile.post");

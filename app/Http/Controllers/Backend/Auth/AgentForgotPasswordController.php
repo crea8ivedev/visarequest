@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Backend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Password;
 
-
-class ProcessorForgotPasswordController extends Controller
+class AgentForgotPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -30,16 +29,16 @@ class ProcessorForgotPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:processor');
+        $this->middleware('guest:agent');
     }
 
     protected function broker()
     {
-      return Password::broker('processors');
+      return Password::broker('agents');
     }
 
     public function showLinkRequestForm()
     {
-        return view('backend.auth.passwords.email-processor');
+        return view('backend.auth.passwords.email-agent');
     }
 }
