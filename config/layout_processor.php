@@ -258,7 +258,7 @@ return [
 
     // Demo Assets
     'resources' => [
-        'favicon' => 'media/img/logo/favicon.ico',
+        'favicon' => 'images/favicon.ico',
         'fonts' => [
             'google' => [
                 'families' => [

@@ -21,8 +21,6 @@
 					<a href="{{ route('agent.login') }}" class="text-center mb-10">
 						<img src="{{ asset('/images/logo.png') }}" class="max-h-70px" alt="" />
 					</a>
-					<h3 class="font-weight-bolder text-center display5 pb-lg-0 pb-40">Discover Amazing Visa
-						<br />with great build tools</h3>
 				</div>
 			</div>
 			<div class="login-content flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 ml-auto mr-auto">
