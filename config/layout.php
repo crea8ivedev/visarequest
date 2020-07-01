@@ -276,6 +276,55 @@ return [
             'plugins/custom/prismjs/prismjs.bundle.js',
             'js/scripts.bundle.js',
         ],
+        'datatable_css' => [
+            'plugins/custom/datatables/datatables.bundle.css',
+        ],
+        'datatable_js' => [
+            'plugins/custom/datatables/datatables.bundle.js',
+        ],
+        'validate_js' => [
+            'vendor/jsvalidation/js/jsvalidation.js',
+        ],
+        'sweetalert' => [
+            'js/pages/features/miscellaneous/sweetalert2.js',
+        ],
+        'charts' => [
+            'js/pages/features/charts/apexcharts.js',
+        ],
+        'image_js' => [
+            'js/pages/crud/file-upload/image-input.js',
+        ],
+        'datetimepicker_css' => [
+            'plugins/custom/datetimepicker/datetimepicker.min.css',
+        ],
+        'datetimepicker_js' => [
+             'js/pages/crud/forms/widgets/bootstrap-datetimepicker.min.js',
+        ],
+        'select2_js' => [
+            'plugins/custom/select2/select2.min.js',
+        ],
+
+        'ckeditor_js' => [
+            'https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js',
+            //'js/pages/crud/forms/editors/ckeditor.js',
+        ],
+
+        'profile_js' => [
+            'js/pages/custom/profile/profile.js',
+        ],
+
+        'uppy_css' => [
+            'plugins/custom/uppy/uppy.bundle.css',
+        ],
+
+        'uppy_js' => [
+            'js/pages/crud/file-upload/uppy.js',
+            'plugins/custom/uppy/uppy.bundle.js',
+        ],
+
+        'widgets_js' => [
+            'js/pages/widgets.js',
+        ],
     ],
 
 ];

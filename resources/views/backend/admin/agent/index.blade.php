@@ -3,22 +3,20 @@
 
 {{-- Styles Section --}}
 @section('styles')
-
-    <link href="{{ asset('plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
-
-    <style type="text/css">
-        .hide {
-            display: none;
-        }
-    </style>
+    
+    {{-- datatable css--}}
+    @foreach(config('layout.resources.datatable_css') as $style)
+        <link href="{{  asset($style) }}" rel="stylesheet" type="text/css"/>
+    @endforeach
 
 @endsection
 
 {{-- Content --}}
 @section('content')
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="card card-custom">
+
       <div id="showResponseArea" class="showResponseArea alert hide">
           <span>
               <strong id="alertType">Success !! </strong>Your request <span id="requestId"> // Request id goes here</span> 
@@ -29,6 +27,14 @@
           <div class="card-title">
             <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
             <h3 class="card-label">Agent List</h3>
+          </div>
+          <div class="card-toolbar">
+            <!--begin::Button-->
+            <a href="{{route('admin.agent.add')}}" class="btn btn-primary font-weight-bolder">
+              <i class="la la-plus"></i>
+             Add Agent
+            </a>
+           <!--end::Button-->
           </div>
         </div>
         <div class="card-body">
@@ -47,88 +53,7 @@
         </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <!--begin::Card-->
-    <div class="card card-custom card-collapse"   data-card="true" id="kt_card_4">
-        <div class="card-header">
-          <div class="card-title">
-              <h3 class="card-label">Agent</h3>
-          </div>
-          <div class="card-toolbar">
-            <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1 add_new" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Add New" data-original-title="Toggle Card">
-              <i class="ki ki-arrow-down icon-nm"></i>
-            </a>
-          </div>
-        </div>
-        
-        <div class="card-body" id="card-collapse"  style="display: none;">
-          <!--begin::Form-->
-          <form class="form" method="post" id="sample_form">
-            @csrf
-             
-              <div class="form-group">
-                <label>First Name</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Last Name</label>
-                <div class="input-group">
-                  <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Email</label>
-                <div class="input-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" />
-                </div>
-              </div>
-              <div class="form-group password_hide_show">
-                <label>Password</label>
-                <div class="input-group">
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
-                </div>
-              </div>
 
-              <div class="form-group password_hide_show" >
-                <label>Password</label>
-                <div class="input-group">
-                  <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
-                </div>
-              </div>
-
-
-            <div class="card-footer">
-              <input type="hidden" name="action" id="action" value="Add" />
-              <input type="hidden" name="hidden_id" id="hidden_id" />
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button type="reset" class="btn btn-secondary cancel">Cancel</button>
-            </div>
-          </form>
-          <!--end::Form-->
-        </div>
-    </div>
-    <!--end::Card-->
-  </div>
-</div>
-
-<div id="confirmModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-titles">Confirmation</h2>
-            </div>
-            <div class="modal-body">
-                <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
-            </div>
-            <div class="modal-footer">
-             <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-            </div>
-        </div>
-    </div>
 </div>
 
 @endsection
@@ -136,9 +61,12 @@
 {{-- Scripts Section --}}
 @section('scripts')
     {{-- vendors --}}
-    <script src="{{ asset('js/pages/features/cards/tools.js') }}"></script>
-    <script src="{{ asset('plugins/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('plugins/custom/dist/jquery.validate.js') }}" type="text/javascript"></script>
+
+    {{-- Datatable js--}}
+    @foreach(config('layout.resources.datatable_js') as $script)
+        <script src="{{ asset($script) }}" type="text/javascript"></script>
+    @endforeach
+
     <script>
     $(document).ready(function() {
 

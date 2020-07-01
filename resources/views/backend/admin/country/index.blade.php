@@ -5,6 +5,10 @@
 @section('styles')
 
     <link href="{{ asset('plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+    {{-- datatable css--}}
+    @foreach(config('layout.resources.datatable_css') as $style)
+        <link href="{{  asset($style) }}" rel="stylesheet" type="text/css"/>
+    @endforeach
 
     <style type="text/css">
         .hide {
@@ -151,9 +155,17 @@
 {{-- Scripts Section --}}
 @section('scripts')
     {{-- vendors --}}
-    <script src="{{ asset('js/pages/features/cards/tools.js') }}"></script>
-    <script src="{{ asset('plugins/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('plugins/custom/dist/jquery.validate.js') }}" type="text/javascript"></script>
+    
+    {{-- Datatable js--}}
+    @foreach(config('layout.resources.datatable_js') as $script)
+        <script src="{{ asset($script) }}" type="text/javascript"></script>
+    @endforeach
+
+    {{-- validate js--}}
+    @foreach(config('layout.resources.validate_js') as $script)
+        <script src="{{ asset($script) }}" type="text/javascript"></script>
+    @endforeach
+    
     <script>
     $(document).ready(function() {
     var table =  $('#country_table').DataTable({

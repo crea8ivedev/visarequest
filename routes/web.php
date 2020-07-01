@@ -87,6 +87,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     Route::group(["prefix" => "agent"], function() {
         Route::get('/', "AgentController@index")->name("admin.agent");
         Route::get('/{id}/edit', "AgentController@edit")->name("admin.agent.edit");
+        route::get('/add', "AgentController@create")->name("admin.agent.add");
         Route::post('/store', "AgentController@store")->name("admin.agent.store");
         Route::post('/update', "AgentController@update")->name("admin.agent.update");
         Route::get('/destroy/{id}', 'AgentController@destroy')->name("admin.agent.destroy");

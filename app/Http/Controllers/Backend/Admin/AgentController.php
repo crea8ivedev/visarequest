@@ -44,6 +44,16 @@ class AgentController extends Controller
         return view('backend.admin.agent.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
+    public function create(Request $request)
+    {   
+        $page_title = 'Agent';
+        $page_description = '';
+        $page_breadcrumbs  = array (['page' => 'admin/agent', 'title' => 'Agent List']);
+
+        return view('backend.admin.agent.form', compact('page_title', 'page_description', 'page_breadcrumbs'));
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
