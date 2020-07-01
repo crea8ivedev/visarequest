@@ -15,10 +15,9 @@ return [
         //Users
         [
             'title' => 'Users',
-            'icon' => 'public/media/svg/icons/Communication/Group.svg',
+            'icon' => 'images/icons/Add-user.svg',
             'bullet' => 'dot',
             'root' => true,
-            
             'submenu' => [
                 [
                     'title' => 'Agent',

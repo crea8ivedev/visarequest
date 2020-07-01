@@ -1,8 +1,9 @@
 .login.login-1 .login-aside {
-  background: #F2C98A;
+  background: #373D49;
+  align-items: center;
 }
 .login.login-1 .login-aside h3 {
-  color: #986923;
+  color: #373D49;
   font-size: 30px;
 }
 .login.login-1 .login-signin,
