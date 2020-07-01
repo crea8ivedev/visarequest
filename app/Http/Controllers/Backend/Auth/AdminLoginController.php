@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\LoginRequest;
 use Auth;
 use Session;
 use Carbon\Carbon;
@@ -21,20 +22,13 @@ class AdminLoginController extends Controller
     }
 
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-      // Validate the form data
-      $this->validate($request, [
-        'email'   => 'required|email',
-        'password' => 'required|min:6'
-      ]);
-
       // Attempt to log the user in
       if (Auth::guard('admin')->attempt(['email' => $request->email, 'role' => '1', 'password' => $request->password], $request->remember)) {
         // if successful, then redirect to their intended location
         Session::flash('message', 'You are successfully login!');
         Session::flash('alert-class', 'alert-success');
-        
         return redirect()->intended(route('admin.dashboard'));
       }
 
@@ -48,7 +42,7 @@ class AdminLoginController extends Controller
     public function logout()
     {
         Auth::guard('admin')->logout();
-        Session::flash('message', 'You are successfully logout.!');
+        Session::flash('message', 'You have been successfully logged out!');
         Session::flash('alert-class', 'alert-success');
         return redirect('/admin/login');
     }

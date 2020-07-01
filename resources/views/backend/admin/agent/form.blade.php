@@ -1,14 +1,5 @@
-{{-- Extends layout --}}
 @extends('backend.layout.default')
-
-{{-- Styles Section --}}
-@section('styles')
-    
-@endsection
-
-{{-- Content --}}
 @section('content')
-
 <div class="col-md-12">
     <!--begin::Card-->
     <div class="card card-custom card-collapse"   data-card="true" id="kt_card_4">
@@ -71,15 +62,9 @@
 </div>
 
 @endsection
-
-{{-- Scripts Section --}}
 @section('scripts')
-
-<!-- Laravel Javascript Validation -->
   @foreach(config('layout.resources.validate_js') as $script)
       <script src="{{ asset($script) }}" type="text/javascript"></script>
   @endforeach
-
 {!! JsValidator::formRequest('App\Http\Requests\Backend\AgentRequest') !!}
-
 @endsection
