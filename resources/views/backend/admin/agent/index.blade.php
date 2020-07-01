@@ -15,14 +15,24 @@
 @section('content')
 <div class="row">
   <div class="col-md-12">
+      {{-- alert show--}}
+      @if(session()->has('message'))
+        <div class="alert alert-custom alert-outline-success fade show mb-5" role="alert">
+          <div class="alert-icon">
+            <i class="flaticon2-check-mark"></i>
+          </div>
+          <div class="alert-text">{{ session()->get('message') }}</div>
+          <div class="alert-close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">
+                <i class="ki ki-close"></i>
+              </span>
+            </button>
+          </div>
+        </div>
+      @endif
+      
     <div class="card card-custom">
-
-      <div id="showResponseArea" class="showResponseArea alert hide">
-          <span>
-              <strong id="alertType">Success !! </strong>Your request <span id="requestId"> // Request id goes here</span> 
-          </span>
-      </div>
-
         <div class="card-header">
           <div class="card-title">
             <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
