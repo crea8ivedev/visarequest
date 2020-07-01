@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Backend\AgentRequest;
 use App\Models\User;
 use DataTables;
 use Validator;
@@ -60,23 +61,8 @@ class AgentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $rules = array(
-            'first_name'        =>  'required',
-            'last_name'         =>  'required',
-            'email'             =>  'required|email|unique:users',
-            'password'          =>  'required', 
-            'confirm_password'  =>  'required|same:password',
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
+    public function store(AgentRequest $request)
+    {   
         $form_data = array(
             'first_name'       =>  $request->first_name,
             'last_name'        =>  $request->last_name,
@@ -86,10 +72,11 @@ class AgentController extends Controller
             'password'         =>  Hash::make($request->password)
         );
 
-        User::create($form_data);
+       $success =  User::create($form_data);
 
-        return response()->json(['success' => 'Data Added successfully.']);
-
+       if($success) {
+        return redirect('/admin/agent')->with('message', 'Agent Added successfully!');
+       }
     }
 
     /**
