@@ -29,6 +29,10 @@
 
         {{-- Includable CSS --}}
         @yield('styles')
+        @foreach(config('layout.resources.toastr_css') as $style)
+            <link href="{{ asset($style) }}" rel="stylesheet" type="text/css"/>
+        @endforeach
+         {{-- <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> --}}
     </head>
 
     <body {{ Metronic::printAttrs('body') }} {{ Metronic::printClasses('body') }}>
@@ -46,13 +50,29 @@
             var KTAppSettings = {!! json_encode(config('layout.js'), JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES) !!};
         </script>
 
+
         {{-- Global Theme JS Bundle (used by all pages)  --}}
         @foreach(config('layout.resources.js') as $script)
             <script src="{{ asset($script) }}" type="text/javascript"></script>
         @endforeach
+    
+       
+            
+           
+        
+        
 
         {{-- Includable JS --}}
         @yield('scripts')
+
+        <script type="text/javascript">
+           
+        </script>
+        @foreach(config('layout.resources.toastr_js') as $script)
+            <script src="{{ asset($script) }}" type="text/javascript"></script>
+        @endforeach
+        {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
+        '{!! Toastr::message() !!}';
 
     </body>
 </html>

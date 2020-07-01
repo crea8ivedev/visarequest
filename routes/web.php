@@ -80,17 +80,18 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/{id}/edit', "ProcessorController@edit")->name("admin.processor.edit");
         Route::post('/store', "ProcessorController@store")->name("admin.processor.store");
         Route::post('/update', "ProcessorController@update")->name("admin.processor.update");
-        Route::get('/destroy/{id}', 'ProcessorController@destroy')->name("admin.processor.destroy");
+        Route::post('/destroy/{id}', 'ProcessorController@destroy')->name("admin.processor.destroy");
     });
 
     /* routes for processor view */
     Route::group(["prefix" => "agent"], function() {
         Route::get('/', "AgentController@index")->name("admin.agent");
+        Route::post('/', "AgentController@index")->name("admin.agent");
         Route::get('/{id}/edit', "AgentController@edit")->name("admin.agent.edit");
         route::get('/add', "AgentController@create")->name("admin.agent.add");
         Route::post('/store', "AgentController@store")->name("admin.agent.store");
         Route::post('/update', "AgentController@update")->name("admin.agent.update");
-        Route::get('/destroy/{id}', 'AgentController@destroy')->name("admin.agent.destroy");
+        Route::post('/destroy/{id}', 'AgentController@destroy')->name("admin.agent.destroy");
     });
 
     /* routes for country view */
@@ -99,7 +100,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/{id}/edit', "CountryController@edit")->name("admin.country.edit");
         Route::post('/store', "CountryController@store")->name("admin.country.store");
         Route::post('/update', "CountryController@update")->name("admin.country.update");
-        Route::get('/destroy/{id}', 'CountryController@destroy')->name("admin.country.destroy");
+        Route::post('/destroy/{id}', 'CountryController@destroy')->name("admin.country.destroy");
     });
 
     /* routes for service view */
@@ -108,7 +109,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/{id}/edit', "ServiceController@edit")->name("admin.service.edit");
         Route::post('/store', "ServiceController@store")->name("admin.service.store");
         Route::post('/update', "ServiceController@update")->name("admin.service.update");
-        Route::get('/destroy/{id}', 'ServiceController@destroy')->name("admin.service.destroy");
+        Route::post('/destroy/{id}', 'ServiceController@destroy')->name("admin.service.destroy");
     });
 
 });

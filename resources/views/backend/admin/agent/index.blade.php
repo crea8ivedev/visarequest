@@ -31,7 +31,7 @@
           </div>
         </div>
       @endif
-      
+
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
@@ -48,11 +48,37 @@
           </div>
         </div>
         <div class="card-body">
+          <div class="mb-7">
+            <div class="row align-items-center">
+              <div class="col-lg-9 col-xl-8">
+                <div class="row align-items-center">
+                  <div class="col-md-6 my-2 my-md-0">
+                    <div class="input-icon">
+                      <input type="text" class="form-control search" placeholder="Search by first name, last name, email..." id="kt_datatable_search_query">
+                      <span><i class="flaticon2-search-1 text-muted"></i></span>
+                    </div>
+                  </div>
+                  {{-- <div class="col-md-4 my-2 my-md-0">
+                    <div class="d-flex align-items-center">
+                      <label class="mr-5 mb-2 my-md-0 d-none ">Visa Name:</label>
+                        <select name="visa_filter" id="visa_filter" id="kt_datatable_search_status" class="form-control visa_filter">
+                              <option value="">Select Visa</option>
+                               @foreach($visa_list as $visa)
+                                <option value="{{ $visa->id }}">{{ $visa->visa_type }}</option>
+                               @endforeach
+                        </select>
+                    </div>
+                  </div> --}}
+                </div>
+              </div>
+            </div>
+          </div>
             <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <table class="table table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="agent_table">
+            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="agent_table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
                         <th>Last Login</th>
                         <th>Action</th>
@@ -66,228 +92,20 @@
 
 </div>
 
+
 @endsection
 
 {{-- Scripts Section --}}
 @section('scripts')
-    {{-- vendors --}}
 
-    {{-- Datatable js--}}
     @foreach(config('layout.resources.datatable_js') as $script)
         <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
 
-    <script>
-    $(document).ready(function() {
+    @foreach(config('layout.resources.sweetalert') as $script)
+        <script src="{{ asset($script) }}" type="text/javascript"></script>
+    @endforeach
 
-      $('#agent_table').DataTable({
-          processing: false,
-          serverSide: true,
-          responsive : true,
-          // DOM Layout settings
-          dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
-            ajax: {
-             url: "{{ route('admin.agent') }}",
-            },
-            columns: [
-             {
-              data: 'name',
-              name: 'name'
-             },
-             {
-              data: 'email',
-              name: 'email'
-             },
-             {
-              data: 'last_login_at',
-              name: 'last_login_at'
-             },
-             {
-              data: 'action',
-              name: 'action',
-              orderable: false
-             }
-          ]
-      });
-
-
-      // validate signup form on keyup and submit
-      var validator =  $("#sample_form").validate({
-        rules: {
-          first_name: "required",
-          last_name: "required",
-          email: {
-            required: true,
-            email: true
-          },
-          password: {
-            required: true,
-            minlength: 5
-          },
-          confirm_password: {
-            required: true,
-            minlength: 6,
-            equalTo: "#password"
-          },
-        },
-        messages: {
-          first_name: "Please enter first name",
-          last_name: "Please enter last name",
-          email: "Please enter a valid email address",
-          password: {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 6 characters long"
-          },
-          confirm_password: {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 6 characters long",
-            equalTo: "Please enter the same password as above"
-          },
-        },
-        highlight: function(element) {
-          $(element).closest('.form-group').find(".form-control:first").addClass('is-invalid');
-        },
-        unhighlight: function(element) {
-          $(element).closest('.form-group').find(".form-control:first").removeClass('is-invalid');
-          $(element).closest('.form-group').find(".form-control:first").addClass('is-valid');
-        },
-        errorElement: 'span',
-        errorClass: 'invalid-feedback',
-        submitHandler: function(form) {
-        }
-         
-      });
-
-      $(".cancel").click(function() {
-        validator.resetForm();
-        $('#action').val('Add');
-        $('#card-collapse').toggle();
-    });
-
-      $('#sample_form').on('submit', function(event) {
-        event.preventDefault();
-        var $form = $(this);
-        var action_url = '';
-
-        if($('#action').val() == 'Add')
-        {
-         action_url = "{{ route('admin.agent.store') }}";
-        }
-
-        if($('#action').val() == 'Edit')
-        {
-         action_url = "{{ route('admin.agent.update') }}";
-        }
-
-        $.ajaxSetup({
-          headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        if(! $form.valid()) return false;
-        $.ajax({
-           url: action_url,
-           method:"POST",
-           data:$(this).serialize(),
-           dataType:"json",
-           success:function(data)
-           {
-            var html = '';
-            if(data.errors)
-            {
-                $(".showResponseArea").removeClass("hide");
-                $(".showResponseArea").removeClass("alert-success");
-                $(".showResponseArea").addClass("alert-danger");
-                $("#alertType").text("Error !!");
-                $("#requestId").text(data.errors);
-            }
-            if(data.success)
-            {
-                $('#sample_form')[0].reset();
-                $('#agent_table').DataTable().ajax.reload();
-                $('#formModal').modal('hide');
-                $(".showResponseArea").removeClass("hide");
-                $(".showResponseArea").removeClass("alert-danger");
-                $(".showResponseArea").addClass("alert-success");
-                $("#alertType").text("Success !!");
-                $("#requestId").text(data.success);
-                $('#card-collapse').hide();
-            }
-           }
-        });
-          setTimeout(function() { $("#showResponseArea").addClass('hide'); }, 10000);
-      });
-
-      $(document).on('click', '.add_new', function() {
-        $('#card-collapse').toggle();
-        $('.password_hide_show').show();
-        $('#sample_form')
-        .find("input,textarea,select")
-           .val('')
-           .removeClass('is-invalid')
-           .end()
-        .find("input[type=checkbox], input[type=radio]")
-           .prop("checked", "")
-           .end()
-          .find('.invalid-feedback').hide();
-        $('#action').val('Add');
-      });
-
-      $(document).on('click', '.edit', function() {
-        $('#card-collapse').show();
-        $('.password_hide_show').hide();
-        var id = $(this).attr('id');
-        var url = '{{ route("admin.agent.edit", ":id") }}';
-        url = url.replace(':id', id);
-        $.ajax({
-           url :url,
-           dataType:"json",
-           success:function(data)
-           {
-            $('#first_name').val(data.result.first_name);
-            $('#last_name').val(data.result.last_name);
-            $('#email').val(data.result.email);
-            $('#hidden_id').val(id);
-            $('#action').val('Edit');
-           }
-        })
-     });
-
-     var agent_id;
-
-     $(document).on('click', '.delete', function(){
-      agent_id = $(this).attr('id');
-      $('#confirmModal').modal('show');
-     });
-
-     $('#ok_button').click(function(){
-        var url = '{{ route("admin.agent.destroy", ":id") }}';
-        url = url.replace(':id', agent_id);
-        $.ajax({
-         url: url,
-         beforeSend:function(){
-          $('#ok_button').text('Deleting...');
-         },
-         success:function(data)
-         {
-          setTimeout(function(){
-          $('#confirmModal').modal('hide');
-          $('#agent_table').DataTable().ajax.reload();
-           //alert('Data Deleted');
-          $(".showResponseArea").removeClass("hide");
-          $(".showResponseArea").removeClass("alert-danger");
-          $(".showResponseArea").addClass("alert-success");
-          $("#alertType").text("Success !!");
-          $("#requestId").text('Successfully Data Deleted');
-          }, 2000);
-         }
-        })
-      setTimeout(function() { $("#showResponseArea").addClass('hide'); }, 5000);
-     });
-
-
-    });
-
+    <script src="{{ asset('js/pages/agent.js') }}" type="text/javascript"></script>
      
-</script>
 @endsection

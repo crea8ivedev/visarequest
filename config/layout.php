@@ -325,6 +325,16 @@ return [
         'widgets_js' => [
             'js/pages/widgets.js',
         ],
+
+        'toastr_js' => [
+            'js/toastr.min.js',
+        ],
+
+        'toastr_css' => [
+            'css/toastr.min.css',
+        ],
+        
+
     ],
 
 ];

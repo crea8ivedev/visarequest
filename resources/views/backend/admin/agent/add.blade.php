@@ -24,15 +24,13 @@
           <form class="form" method="post" id="sample_form" action="{{ route('admin.agent.store')  }}">
             @csrf
              
-              <div class="form-group {{ $errors->has('first_name') ? ' has-error' : '' }}">
+              <div class="form-group {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
                 <label>First Name</label>
                 <div class="input-group">
                   <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"  value="" />
                 </div>
                 @if ($errors->has('first_name'))
-                    <span class="help-block">
-                        <strong style="color: red">{{ $errors->first('first_name') }}</strong>
-                    </span>
+                <span id="first_name-error" class="invalid-feedback">{{ $errors->first('first_name') }}</span>
                 @endif
               </div>
               <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
@@ -86,7 +84,7 @@
               <input type="hidden" name="action" id="action" value="Add" />
               <input type="hidden" name="hidden_id" id="hidden_id" />
               <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <button type="reset" class="btn btn-secondary cancel">Cancel</button>
+              <a href="{{ route('admin.agent')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
             </div>
           </form>
           <!--end::Form-->
@@ -105,9 +103,6 @@
       <script src="{{ asset($script) }}" type="text/javascript"></script>
   @endforeach
 
-<script type="text/javascript">
-  
-</script>
-{{-- {!! JsValidator::formRequest('App\Http\Requests\Backend\AgentRequest') !!} --}}
+{!! JsValidator::formRequest('App\Http\Requests\Backend\AgentRequest') !!}
 
 @endsection

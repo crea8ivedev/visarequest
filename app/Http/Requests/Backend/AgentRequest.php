@@ -23,13 +23,26 @@ class AgentRequest extends FormRequest
      */
     public function rules()
     {   
-        return [
-            'first_name'        =>  'required',
-            'last_name'         =>  'required',
-            'email'             =>  'required|email|unique:users,email',
-            'password'          =>  'required', 
-            'confirm_password'  =>  'required|same:password',
-        ];
+        if ($this->request->has('hidden_id')) {
+            $request = $this->request->all();
+           return [
+                'first_name'        =>  'required',
+                'last_name'         =>  'required',
+                'email'             =>  'required|email|unique:users,email,'.$request['hidden_id'],
+            ];
+
+        } else {
+
+           return [
+                'first_name'        =>  'required',
+                'last_name'         =>  'required',
+                'email'             =>  'required|email|unique:users,email',
+                'password'          =>  'required', 
+                'confirm_password'  =>  'required|same:password',
+            ];
+        }
+
+        
     }
 
     public function messages()

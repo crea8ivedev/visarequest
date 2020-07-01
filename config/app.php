@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Brian2694\Toastr\ToastrServiceProvider::class,
 
     ],
 
@@ -235,7 +236,8 @@ return [
         'Metronic' => App\Classes\Theme\Metronic::class,
         'Menu' => App\Classes\Theme\Menu::class,
         'Form' => Collective\Html\FormFacade::class,
-  '      Html' => Collective\Html\HtmlFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
 
     ],
 
