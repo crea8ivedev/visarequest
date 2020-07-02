@@ -1,3 +1,19 @@
 .brand-logo a img{
     width: 100%;
 }
+.hide {
+    display: none;
+}
+.select2-container {
+  width: 100% !important;
+}
+.select2 {
+  display: block;
+}
+
+.form-control.is-valid {
+  background-image: none;
+}
+.form-control.is-invalid {  
+  background-image: none;
+}

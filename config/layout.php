@@ -301,13 +301,10 @@ return [
         'datetimepicker_js' => [
              'js/pages/crud/forms/widgets/bootstrap-datetimepicker.min.js',
         ],
-        'select2_js' => [
-            'plugins/custom/select2/select2.min.js',
-        ],
+        'select2_js' => ['js/select2.min.js'],
 
         'ckeditor_js' => [
             'https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js',
-            //'js/pages/crud/forms/editors/ckeditor.js',
         ],
 
         'profile_js' => [

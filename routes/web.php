@@ -106,9 +106,11 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     /* routes for service view */
     Route::group(["prefix" => "service"], function() {
         Route::get('/', "ServiceController@index")->name("admin.service");
-        Route::get('/{id}/edit', "ServiceController@edit")->name("admin.service.edit");
+        Route::post('/', "ServiceController@index")->name("admin.service");
+        route::get('/add', "ServiceController@create")->name("admin.service.add");
+        Route::get('/edit/{id}', "ServiceController@edit")->name("admin.service.edit");
         Route::post('/store', "ServiceController@store")->name("admin.service.store");
-        Route::post('/update', "ServiceController@update")->name("admin.service.update");
+        Route::post('/update/{id}', "ServiceController@update")->name("admin.service.update");
         Route::post('/destroy/{id}', 'ServiceController@destroy')->name("admin.service.destroy");
     });
 
