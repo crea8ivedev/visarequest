@@ -77,6 +77,8 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     /* routes for processor view */
      Route::group(["prefix" => "processor"], function() {
         Route::get('/', "ProcessorController@index")->name("admin.processor");
+        Route::post('/', "ProcessorController@index")->name("admin.processor"); 
+        route::get('/add', "ProcessorController@create")->name("admin.processor.add");
         Route::get('/{id}/edit', "ProcessorController@edit")->name("admin.processor.edit");
         Route::post('/store', "ProcessorController@store")->name("admin.processor.store");
         Route::post('/update', "ProcessorController@update")->name("admin.processor.update");

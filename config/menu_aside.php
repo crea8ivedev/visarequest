@@ -20,7 +20,7 @@ return [
             'root' => true,
             'submenu' => [
                 [
-                    'title' => 'Admins',
+                    'title' => 'Admin',
                     'page' => 'admin/admin'
                 ],
                 [
