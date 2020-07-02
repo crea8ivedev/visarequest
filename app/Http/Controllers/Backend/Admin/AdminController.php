@@ -35,6 +35,7 @@ class AdminController extends Controller
         return view('backend.admin.dashboard', compact('page_title', 'page_description'));
     }
 
+
     /**
      * Show the application profile.
      *

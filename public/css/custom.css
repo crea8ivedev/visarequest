@@ -1,3 +1,7 @@
 .brand-logo a img{
     width: 100%;
 }
+
+.hide {
+	display: none;
+}

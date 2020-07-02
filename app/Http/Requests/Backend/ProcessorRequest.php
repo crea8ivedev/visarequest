@@ -29,6 +29,9 @@ class ProcessorRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email,'.$request['hidden_id'],
+                //'password'          =>  'nullable|min:6', 
+                //'confirm_password'  =>  'sometimes|same:password',
+
             ];
 
         } else {
@@ -37,7 +40,7 @@ class ProcessorRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email',
-                'password'          =>  'required', 
+                'password'          =>  'required|min:6', 
                 'confirm_password'  =>  'required|same:password',
             ];
         }

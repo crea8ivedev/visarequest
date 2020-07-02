@@ -23,12 +23,16 @@ class AgentRequest extends FormRequest
      */
     public function rules()
     {   
-        if ($this->request->has('hidden_id')) {
+        $segmentId = request()->segment(4); //returns 'posts'
+
+        if ($segmentId) {
             $request = $this->request->all();
            return [
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
-                'email'             =>  'required|email|unique:users,email,'.$request['hidden_id'],
+                'email'             =>  'required|email|unique:users,email,'.$segmentId,
+                'password'          =>  'nullable|min:6',
+                'confirm_password'  =>  'required_with:password|same:password',
             ];
 
         } else {

@@ -1,4 +1,9 @@
 @extends('backend.layout.default')
+{{-- Styles Section --}}
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
+
+@endsection
 @section('content')
 <div class="col-md-12">
     <!--begin::Card-->
@@ -46,7 +51,7 @@
                     </span>
                 @endif
               </div>
-              <div class="form-group password_hide_show {{ $errors->has('password') ? ' has-error' : '' }}">
+              <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                 <label>Password</label>
                 <div class="input-group">
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
@@ -58,8 +63,8 @@
                 @endif
               </div>
 
-              <div class="form-group password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}" >
-                <label>Confirm Password</label>
+              <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}" >
+                <label>Confirm Password</label> 
                 <div class="input-group">
                   <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
                 </div>
@@ -92,6 +97,8 @@
 
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ProcessorRequest') !!}
 
-
+ @foreach(config('layout.resources.common_js') as $script)
+      <script src="{{ asset($script) }}" type="text/javascript"></script>
+ @endforeach
 
 @endsection

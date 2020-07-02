@@ -56,7 +56,8 @@ $(document).ready(function() {
        $('.search').on('keyup', function() {
             table.draw();
         });
-   
+
+      
        $(document).on('click', '.delete', function() {
          var id = $(this).attr('id');
          swal.fire({

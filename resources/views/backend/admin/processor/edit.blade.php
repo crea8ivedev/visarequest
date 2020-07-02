@@ -3,7 +3,8 @@
 
 {{-- Styles Section --}}
 @section('styles')
-    
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
+
 @endsection
 
 {{-- Content --}}
@@ -21,7 +22,7 @@
         
         <div class="card-body" id="card-collapse"  >
           <!--begin::Form-->
-          <form class="form" method="post" id="sample_form" action="{{ route('admin.processor.update')  }}">
+          <form class="form" method="post" id="sample_form" action="{{ url('admin/processor/update/'.$data->id) }}">
             @csrf
              
               <div class="form-group {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
@@ -55,6 +56,29 @@
                     </span>
                 @endif
               </div>
+              <div class="form-group  {{ $errors->has('password') ? ' has-error' : '' }}">
+                <label>Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                </div>
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+              </div>
+
+              <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}" >
+                <label>Confirm Password</label>
+                <div class="input-group">
+                  <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
+                </div>
+                 @if ($errors->has('confirm_password'))
+                    <span class="help-block">
+                        <strong style="color: red">{{ $errors->first('confirm_password') }}</strong>
+                    </span>
+                @endif
+              </div>
 
             <div class="card-footer">
               <input type="hidden" name="action" id="action" value="Add" />
@@ -81,5 +105,11 @@
 
 
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ProcessorRequest') !!}
+
+ @foreach(config('layout.resources.common_js') as $script)
+      <script src="{{ asset($script) }}" type="text/javascript"></script>
+  @endforeach
+
+
 
 @endsection

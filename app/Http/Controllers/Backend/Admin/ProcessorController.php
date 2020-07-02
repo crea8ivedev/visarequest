@@ -39,17 +39,13 @@ class ProcessorController extends Controller
                        $query->orWhere('last_name', 'LIKE', '%' . $search . '%');
                        $query->orWhere('email', 'LIKE', '%' . $search . '%');
                     });
-                   
-                    // $users->orWhere('first_name', 'LIKE', '%' . $request->search . '%')
-                    //      ->orWhere('last_name', 'LIKE', '%' . $request->search . '%')
-                    //      ->orWhere('email', 'LIKE', '%' . $request->search . '%');
                 }
 
                 $data = $users->latest()->get();
                 
                 return DataTables::of($data)
                         ->addColumn('action', function($data){
-                            $button = '<a href="/admin/processor/'.$data->id.'/edit"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
+                            $button = '<a href="/admin/processor/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
                             ';
                             $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i>';
                             return $button;
@@ -116,7 +112,7 @@ class ProcessorController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Processor';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Agent List']);
+        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor List']);
 
         return view('backend.admin.processor.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }
@@ -137,6 +133,10 @@ class ProcessorController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
+
+        if ($request->password != '') {
+            $user->password   = Hash::make($request->password);
+        }
 
        if($user->save()) {
         Toastr::success('Processor updated successfully!','', Config::get('constants.toster'));
