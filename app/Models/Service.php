@@ -17,7 +17,7 @@ class Service extends Model
 
     public function staff()
     {	
-    	return $this->belongsTo('App\Models\User', 'staff_id');
+    	return $this->belongsTo('App\Models\User', 'processor_id');
     }
 
     public function agent()

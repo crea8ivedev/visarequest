@@ -308,7 +308,10 @@ return [
         ],
 
         'profile_js' => [
-            'js/pages/custom/profile/profile.js',
+            'js/pages/custom/profile/jquery.repeater.js',
+        ],
+        'repeater_js' => [
+            'js/jquery.repeater.min.js',
         ],
 
         'uppy_css' => [

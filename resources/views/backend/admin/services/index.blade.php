@@ -48,7 +48,7 @@
               <div class="row align-items-center">
                 <div class="col-md-6 my-2 my-md-0">
                   <div class="input-icon">
-                    <input type="text" class="form-control search" placeholder="Search by first name, last name, email..." id="kt_datatable_search_query">
+                    <input type="text" class="form-control search" placeholder="Search by service name" id="kt_datatable_search_query">
                     <span><i class="flaticon2-search-1 text-muted"></i></span>
                   </div>
                 </div>
@@ -72,6 +72,12 @@
         <thead>
           <tr>
             <th>Service Name</th>
+            <th>Country</th>
+            <th>Processor</th>
+            <th>Agent</th>
+            <th>Discount price</th>
+            <th>Normal price</th>
+            <th>Commission</th>
             <th>Action</th>
           </tr>
         </thead>
