@@ -31,6 +31,7 @@ class AgentRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email,'.$segmentId,
+                'phone'             =>  'required',
                 'password'          =>  'nullable|min:6',
                 'confirm_password'  =>  'required_with:password|same:password',
             ];
@@ -41,6 +42,7 @@ class AgentRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email',
+                'phone'             =>  'required',
                 'password'          =>  'required', 
                 'confirm_password'  =>  'required|same:password',
             ];

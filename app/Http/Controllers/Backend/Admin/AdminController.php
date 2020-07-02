@@ -9,6 +9,10 @@ use Validator;
 use Illuminate\Support\Facades\Hash;
 use Session;
 use Auth;
+use Toastr;
+use Config;
+use App\Http\Requests\Backend\AdminRequest;
+use DataTables;
 
 class AdminController extends Controller
 {
@@ -27,12 +31,166 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard()
     {
         $page_title = 'Dashboard';
         $page_description = 'Some description for the page';
 
         return view('backend.admin.dashboard', compact('page_title', 'page_description'));
+    }
+
+     /**
+     * Show the application country.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {   
+            $page_title        = 'Admin';
+            $page_description  = '';
+            $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+
+            if($request->ajax())
+            {
+                $users = User::where('role',Config::get('constants.roles.ADMIN'));
+
+                // Search for a services based on their name.
+                if ($request->has('search') && ! is_null($request->get('search'))) {
+                    $search = $request->get('search');
+                    $users->where(function($query) use ($search) {
+                       $query->orWhere('first_name', 'LIKE', '%' . $search . '%');
+                       $query->orWhere('last_name', 'LIKE', '%' . $search . '%');
+                       $query->orWhere('email', 'LIKE', '%' . $search . '%');
+                    });
+                }
+
+                $data = $users->latest()->get();
+                return DataTables::of($data)
+                    ->addColumn('action', function($data) {
+                        $button = '<a href="/admin/admin/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
+                        ';
+                        $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
+
+                        $button .= '<input data-switch="true" id="'.$data->id.'" type="checkbox" checked="checked"  />';
+                        return $button;
+                    })
+                    ->editColumn('last_login_at', function($data) {
+                       $date = $data->last_login_at;
+                       if ($date != null) {
+                         return date('d-M-Y h:i A', strtotime($date));
+                       } else {
+                        return '-';
+                        
+                       }
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+
+            return view('backend.admin.admin.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
+    }
+
+    public function create(Request $request)
+    {   
+        $page_title         = 'Admin';
+        $page_description   = '';
+        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Admin List']);
+
+        return view('backend.admin.admin.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
+
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(AdminRequest $request)
+    {   
+        $user             = new User;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->phone      = $request->phone;
+        $user->status     = $request->status;
+        $user->role       = Config::get('constants.roles.ADMIN');
+        $user->password   = Hash::make($request->password);
+
+       if($user->save()) {
+        
+        Toastr::success('Admin add successfully!','', Config::get('constants.toster'));
+        return redirect('/admin/admin');
+
+       } else {
+        Toastr::success('Admin dose not add!','', Config::get('constants.toster'));
+        return redirect('/admin/admin/add');
+       }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data               = User::findOrFail($id);
+        $page_title         = 'Admin';
+        $page_description   = '';
+        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Admin List']);
+
+        return view('backend.admin.admin.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function update(AdminRequest $request)
+    {
+       
+        $user             = User::findOrFail($request->hidden_id);
+        $user->id         = $request->hidden_id;
+        $user->first_name = $request->first_name;
+        $user->last_name  = $request->last_name;
+        $user->email      = $request->email;
+        $user->phone      = $request->phone;
+        $user->status     = $request->status;
+
+        if ($request->password != '') {
+            $user->password   = Hash::make($request->password);
+        }
+
+       if($user->save()) {
+            Toastr::success('Admin updated successfully!','', Config::get('constants.toster'));
+            return redirect('/admin/admin');
+       } else {
+            Toastr::error('Admin  dose not update!','', Config::get('constants.toster'));
+            return redirect('/admin/admin/edit');
+       }
+    
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+      $user = User::findOrFail($id);
+
+       if($user->delete()) {
+         return response()->json(['success' => 'Admin delete successfully!']);
+       } else {
+         return response()->json(['success' => 'Admin dose not delete!']);
+       }
     }
 
 
@@ -54,7 +212,7 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request) {
+    public function updateProfile(Request $request) {
         $data = $request->all();
         $validator = Validator::make($data, [
                     'first_name'    => 'required',

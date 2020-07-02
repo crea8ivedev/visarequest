@@ -47,7 +47,7 @@ class ProcessorController extends Controller
                         ->addColumn('action', function($data){
                             $button = '<a href="/admin/processor/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
                             ';
-                            $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i>';
+                            $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
                             return $button;
                         })
                         ->editColumn('last_login_at', function($data) {
@@ -88,6 +88,8 @@ class ProcessorController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
+        $user->phone      = $request->phone;
+        $user->status     = $request->status;
         $user->role       = Config::get('constants.roles.PROCESSOR');
         $user->password   = Hash::make($request->password);
 
@@ -133,6 +135,8 @@ class ProcessorController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
+        $user->phone      = $request->phone;
+        $user->status     = $request->status;
 
         if ($request->password != '') {
             $user->password   = Hash::make($request->password);

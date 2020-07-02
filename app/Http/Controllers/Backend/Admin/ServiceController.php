@@ -53,7 +53,7 @@ class ServiceController extends Controller
         $page_title         = 'Service';
         $page_description   = '';
         $page_breadcrumbs   = array(['page' => 'admin/agent', 'title' => 'Service List']);
-        $country_list          = Country::latest()->get();
+        $country_list        = Country::latest()->get();
         $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
         $agent_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
         return view('backend.admin.services.add', compact('page_title', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
