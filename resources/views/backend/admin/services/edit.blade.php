@@ -95,6 +95,21 @@
             @endif
           </div>
         </div>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label>Status:</label>
+            <div class="radio">
+                <label class="radio" id="active">
+                    <input type="radio" name="status" id="active"  class="form-control status" value="1" {{ $data->status == 1  ? 'checked' : '' }} /> Active
+                    <span></span>
+                </label>
+                <label class="radio" id="deactive">
+                    <input type="radio" name="status" id="deactive"  class="form-control status" value="0"  {{ $data->status == 0  ? 'checked' : '' }} /> Deactive
+                    <span></span>
+                </label>
+            </div>
+         </div>
+        </div>
       </div>
       <div class="card-footer">
         <div class="row">

@@ -29,7 +29,7 @@
           <form class="form" method="post" id="sample_form" action="{{ url('admin/agent/update/'.$data->id) }}">
             @csrf
              
-               <div class="form-group row {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
+              <div class="form-group row {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
                 <div class="col-lg-6">
                   <label>First Name</label>
                   <div class="input-group">

@@ -36,7 +36,7 @@ class ServiceController extends Controller
             $data = $service->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/service/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
+                    $button = '<a href="/admin/service/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a> ';
                     $button .= '<a href="javascript:;" name="delete" id="' . $data->id . '" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i>';
                     return $button;
                 })
@@ -78,6 +78,7 @@ class ServiceController extends Controller
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
+        $service->status     = $request->status;
         if ($service->save()) {
             Toastr::success('Service added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');
@@ -123,6 +124,7 @@ class ServiceController extends Controller
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
+        $service->status     = $request->status;
         if ($service->save()) {
             Toastr::success('Service updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');
