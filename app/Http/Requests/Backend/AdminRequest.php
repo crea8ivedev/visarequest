@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProcessorRequest extends FormRequest
+class AdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,7 +34,6 @@ class ProcessorRequest extends FormRequest
                 'phone'             =>  'required',
                 'password'          =>  'nullable|min:6',
                 'confirm_password'  =>  'required_with:password|same:password',
-
             ];
 
         } else {
@@ -44,10 +43,11 @@ class ProcessorRequest extends FormRequest
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email',
                 'phone'             =>  'required',
-                'password'          =>  'required|min:6', 
+                'password'          =>  'required', 
                 'confirm_password'  =>  'required|same:password',
             ];
         }
+
     }
 
     public function messages()

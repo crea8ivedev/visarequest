@@ -340,6 +340,9 @@ return [
             'css/toastr.min.css',
         ],
         
+        'switch_js' => [
+            'js/bootstrap-switch.js',
+        ],
 
     ],
 

@@ -67,9 +67,9 @@ Route::prefix('admin')->namespace('Backend\Auth')->group(function() {
 
 //Auth Admin
 Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
-    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+    Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
-    Route::post('/profile/update', "AdminController@update")->name("admin.profile.post");
+    Route::post('/profile/update', "AdminController@updateProfile")->name("admin.profile.post");
 
     Route::get('/profile/changePassword','AdminController@showChangePasswordForm')->name("admin.change_password");
     Route::post('/changePassword','AdminController@changePassword')->name('admin.changePassword');
@@ -79,7 +79,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/', "AdminController@index")->name("admin.admin");
         Route::post('/', "AdminController@index")->name("admin.admin"); 
         route::get('/add', "AdminController@create")->name("admin.admin.add");
-        Route::get('/{id}/edit', "AdminController@edit")->name("admin.admin.edit");
+        Route::get('/edit/{id}', "AdminController@edit")->name("admin.admin.edit");
         Route::post('/store', "AdminController@store")->name("admin.admin.store");
         Route::post('/update/{id}', "AdminController@update")->name("admin.admin.update");
         Route::post('/destroy/{id}', 'AdminController@destroy')->name("admin.admin.destroy");

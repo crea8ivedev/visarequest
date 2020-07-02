@@ -42,23 +42,25 @@ class AgentController extends Controller
                 $data = $users->latest()->get();
                 
                 return DataTables::of($data)
-                        ->addColumn('action', function($data) {
-                            $button = '<a href="/admin/agent/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
-                            ';
-                            $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i>';
-                            return $button;
-                        })
-                        ->editColumn('last_login_at', function($data) {
-                           $date = $data->last_login_at;
-                           if ($date != null) {
-                             return date('d-M-Y h:i A', strtotime($date));
-                           } else {
-                            return '-';
-                            
-                           }
-                        })
-                        ->rawColumns(['action'])
-                        ->make(true);
+                    ->addColumn('action', function($data) {
+                        $button = '<a href="/admin/agent/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
+                        ';
+                        $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
+
+                        $button .= '<input data-switch="true" id="'.$data->id.'" type="checkbox" checked="checked"  />';
+                        return $button;
+                    })
+                    ->editColumn('last_login_at', function($data) {
+                       $date = $data->last_login_at;
+                       if ($date != null) {
+                         return date('d-M-Y h:i A', strtotime($date));
+                       } else {
+                        return '-';
+                        
+                       }
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
             }
 
             return view('backend.admin.agent.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
@@ -86,6 +88,8 @@ class AgentController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
+        $user->phone      = $request->phone;
+        $user->status     = $request->status;
         $user->role       = Config::get('constants.roles.AGENT');
         $user->password   = Hash::make($request->password);
 
@@ -131,6 +135,8 @@ class AgentController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->email      = $request->email;
+        $user->phone      = $request->phone;
+        $user->status     = $request->status;
 
         if ($request->password != '') {
             $user->password   = Hash::make($request->password);

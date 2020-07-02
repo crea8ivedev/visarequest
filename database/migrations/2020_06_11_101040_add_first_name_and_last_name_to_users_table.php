@@ -14,7 +14,7 @@ class AddFirstNameAndLastNameToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->string('first_name')->nullable()->after('name');
+             $table->string('first_name')->nullable()->after('id');
              $table->string('last_name')->nullable()->after('first_name');
              $table->timestamp('last_login_at')->nullable()->after('remember_token');
              $table->string('last_login_ip')->nullable()->after('last_login_at');
