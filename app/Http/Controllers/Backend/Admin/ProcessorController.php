@@ -62,7 +62,6 @@ class ProcessorController extends Controller
                             return '-';
                             
                            }
-                           
                         })
                         ->rawColumns(['action'])
                         ->make(true);
