@@ -59,7 +59,7 @@
             <div class="card-footer">
               <input type="hidden" name="action" id="action" value="Add" />
               <input type="hidden" name="hidden_id" id="hidden_id" value="{{ $data->id ?? ''}}" />
-              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <button type="submit" class="btn btn-primary mr-2">Update</button>
               <a href="{{ route('admin.agent')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
             </div>
           </form>
