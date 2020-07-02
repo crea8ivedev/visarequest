@@ -20,12 +20,16 @@ return [
             'root' => true,
             'submenu' => [
                 [
-                    'title' => 'Agent',
-                    'page' => 'admin/agent'
+                    'title' => 'Admin',
+                    'page' => 'admin/admin'
                 ],
                 [
-                    'title' => 'Processor',
+                    'title' => 'Processors',
                     'page' => 'admin/processor'
+                ],
+                [
+                    'title' => 'Agents',
+                    'page' => 'admin/agent'
                 ],
             ]
         ],

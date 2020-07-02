@@ -74,12 +74,25 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     Route::get('/profile/changePassword','AdminController@showChangePasswordForm')->name("admin.change_password");
     Route::post('/changePassword','AdminController@changePassword')->name('admin.changePassword');
 
+    /* routes for admin view */
+     Route::group(["prefix" => "admin"], function() {
+        Route::get('/', "AdminController@index")->name("admin.admin");
+        Route::post('/', "AdminController@index")->name("admin.admin"); 
+        route::get('/add', "AdminController@create")->name("admin.admin.add");
+        Route::get('/{id}/edit', "AdminController@edit")->name("admin.admin.edit");
+        Route::post('/store', "AdminController@store")->name("admin.admin.store");
+        Route::post('/update/{id}', "AdminController@update")->name("admin.admin.update");
+        Route::post('/destroy/{id}', 'AdminController@destroy')->name("admin.admin.destroy");
+    });
+
     /* routes for processor view */
      Route::group(["prefix" => "processor"], function() {
         Route::get('/', "ProcessorController@index")->name("admin.processor");
-        Route::get('/{id}/edit', "ProcessorController@edit")->name("admin.processor.edit");
+        Route::post('/', "ProcessorController@index")->name("admin.processor"); 
+        route::get('/add', "ProcessorController@create")->name("admin.processor.add");
+        Route::get('/edit/{id}', "ProcessorController@edit")->name("admin.processor.edit");
         Route::post('/store', "ProcessorController@store")->name("admin.processor.store");
-        Route::post('/update', "ProcessorController@update")->name("admin.processor.update");
+        Route::post('/update/{id}', "ProcessorController@update")->name("admin.processor.update");
         Route::post('/destroy/{id}', 'ProcessorController@destroy')->name("admin.processor.destroy");
     });
 
@@ -87,10 +100,10 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     Route::group(["prefix" => "agent"], function() {
         Route::get('/', "AgentController@index")->name("admin.agent");
         Route::post('/', "AgentController@index")->name("admin.agent");
-        Route::get('/{id}/edit', "AgentController@edit")->name("admin.agent.edit");
+        Route::get('/edit/{id}', "AgentController@edit")->name("admin.agent.edit");
         route::get('/add', "AgentController@create")->name("admin.agent.add");
         Route::post('/store', "AgentController@store")->name("admin.agent.store");
-        Route::post('/update', "AgentController@update")->name("admin.agent.update");
+        Route::post('/update/{id}', "AgentController@update")->name("admin.agent.update");
         Route::post('/destroy/{id}', 'AgentController@destroy')->name("admin.agent.destroy");
     });
 

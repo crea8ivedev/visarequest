@@ -3,11 +3,7 @@
 
 {{-- Styles Section --}}
 @section('styles')
-    
-    {{-- custom css--}}
-    @foreach(config('layout.resources.custom_css') as $style)
-        <link href="{{  asset($style) }}" rel="stylesheet" type="text/css"/>
-    @endforeach
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
 
 @endsection
 
@@ -19,14 +15,14 @@
     <div class="card card-custom card-collapse"   data-card="true" id="kt_card_4">
         <div class="card-header">
           <div class="card-title">
-              <h3 class="card-label">Edit Agent</h3>
+              <h3 class="card-label">Edit Processor</h3>
           </div>
           
         </div>
         
         <div class="card-body" id="card-collapse"  >
           <!--begin::Form-->
-          <form class="form" method="post" id="sample_form" action="{{ url('admin/agent/update/'.$data->id) }}">
+          <form class="form" method="post" id="sample_form" action="{{ url('admin/processor/update/'.$data->id) }}">
             @csrf
              
               <div class="form-group {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
@@ -72,7 +68,7 @@
                 @endif
               </div>
 
-              <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}"  >
+              <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}" >
                 <label>Confirm Password</label>
                 <div class="input-group">
                   <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
@@ -88,7 +84,7 @@
               <input type="hidden" name="action" id="action" value="Add" />
               <input type="hidden" name="hidden_id" id="hidden_id" value="{{ $data->id ?? ''}}" />
               <button type="submit" class="btn btn-primary mr-2">Update</button>
-              <a href="{{ route('admin.agent')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
+              <a href="{{ route('admin.processor')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
             </div>
           </form>
           <!--end::Form-->
@@ -108,10 +104,12 @@
   @endforeach
 
 
-{!! JsValidator::formRequest('App\Http\Requests\Backend\AgentRequest') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Backend\ProcessorRequest') !!}
 
  @foreach(config('layout.resources.common_js') as $script)
       <script src="{{ asset($script) }}" type="text/javascript"></script>
   @endforeach
+
+
 
 @endsection

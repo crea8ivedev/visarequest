@@ -4,7 +4,7 @@ namespace App\Http\Requests\Backend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AgentRequest extends FormRequest
+class ProcessorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,16 @@ class AgentRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {   
-        $segmentId = request()->segment(4); //returns 'posts'
-
-        if ($segmentId) {
+    {
+        if ($this->request->has('hidden_id')) {
             $request = $this->request->all();
            return [
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
-                'email'             =>  'required|email|unique:users,email,'.$segmentId,
-                'password'          =>  'nullable|min:6',
-                'confirm_password'  =>  'required_with:password|same:password',
+                'email'             =>  'required|email|unique:users,email,'.$request['hidden_id'],
+                //'password'          =>  'nullable|min:6', 
+                //'confirm_password'  =>  'sometimes|same:password',
+
             ];
 
         } else {
@@ -41,12 +40,10 @@ class AgentRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email',
-                'password'          =>  'required', 
+                'password'          =>  'required|min:6', 
                 'confirm_password'  =>  'required|same:password',
             ];
         }
-
-        
     }
 
     public function messages()

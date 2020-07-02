@@ -328,6 +328,14 @@ return [
             'js/toastr.min.js',
         ],
 
+        'common_js' => [
+            'js/pages/common.js',
+        ],
+
+        'custom_css' => [
+            'css/custom.css',
+        ],
+
         'toastr_css' => [
             'css/toastr.min.css',
         ],

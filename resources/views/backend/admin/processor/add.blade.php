@@ -1,38 +1,29 @@
-{{-- Extends layout --}}
 @extends('backend.layout.default')
-
 {{-- Styles Section --}}
 @section('styles')
-    
-    {{-- custom css--}}
-    @foreach(config('layout.resources.custom_css') as $style)
-        <link href="{{  asset($style) }}" rel="stylesheet" type="text/css"/>
-    @endforeach
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
 
 @endsection
-
-{{-- Content --}}
 @section('content')
-
 <div class="col-md-12">
     <!--begin::Card-->
     <div class="card card-custom card-collapse"   data-card="true" id="kt_card_4">
         <div class="card-header">
           <div class="card-title">
-              <h3 class="card-label">Edit Agent</h3>
+              <h3 class="card-label">Add Processor</h3>
           </div>
           
         </div>
         
         <div class="card-body" id="card-collapse"  >
           <!--begin::Form-->
-          <form class="form" method="post" id="sample_form" action="{{ url('admin/agent/update/'.$data->id) }}">
+          <form class="form" method="post" id="sample_form" action="{{ route('admin.processor.store')  }}">
             @csrf
              
               <div class="form-group {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
                 <label>First Name</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"  value="{{ $data->first_name ?? ''}}" />
+                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"  value="" />
                 </div>
                 @if ($errors->has('first_name'))
                 <span id="first_name-error" class="invalid-feedback">{{ $errors->first('first_name') }}</span>
@@ -41,7 +32,7 @@
               <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
                 <label>Last Name</label>
                 <div class="input-group">
-                  <input type="text" class="form-control" id="last_name" name="last_name"  placeholder="Last name" value="{{ $data->last_name ?? ''}}" />
+                  <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" />
                 </div>
                 @if ($errors->has('last_name'))
                     <span class="help-block">
@@ -52,7 +43,7 @@
               <div class="form-group  {{ $errors->has('email') ? ' has-error' : '' }}">
                 <label>Email</label>
                 <div class="input-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ $data->email ?? ''}}" />
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" />
                 </div>
                 @if ($errors->has('email'))
                     <span class="help-block">
@@ -60,7 +51,7 @@
                     </span>
                 @endif
               </div>
-              <div class="form-group  {{ $errors->has('password') ? ' has-error' : '' }}">
+              <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                 <label>Password</label>
                 <div class="input-group">
                   <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
@@ -72,8 +63,8 @@
                 @endif
               </div>
 
-              <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}"  >
-                <label>Confirm Password</label>
+              <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}" >
+                <label>Confirm Password</label> 
                 <div class="input-group">
                   <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
                 </div>
@@ -84,11 +75,12 @@
                 @endif
               </div>
 
+
             <div class="card-footer">
               <input type="hidden" name="action" id="action" value="Add" />
-              <input type="hidden" name="hidden_id" id="hidden_id" value="{{ $data->id ?? ''}}" />
-              <button type="submit" class="btn btn-primary mr-2">Update</button>
-              <a href="{{ route('admin.agent')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
+              <input type="hidden" name="hidden_id" id="hidden_id" />
+              <button type="submit" class="btn btn-primary mr-2">Add</button>
+              <a href="{{ route('admin.processor')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
             </div>
           </form>
           <!--end::Form-->
@@ -98,20 +90,15 @@
 </div>
 
 @endsection
-
-{{-- Scripts Section --}}
 @section('scripts')
-
-<!-- Laravel Javascript Validation -->
   @foreach(config('layout.resources.validate_js') as $script)
       <script src="{{ asset($script) }}" type="text/javascript"></script>
   @endforeach
 
-
-{!! JsValidator::formRequest('App\Http\Requests\Backend\AgentRequest') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Backend\ProcessorRequest') !!}
 
  @foreach(config('layout.resources.common_js') as $script)
       <script src="{{ asset($script) }}" type="text/javascript"></script>
-  @endforeach
+ @endforeach
 
 @endsection
