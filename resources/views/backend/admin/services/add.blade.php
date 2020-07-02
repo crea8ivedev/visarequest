@@ -37,7 +37,7 @@
             <select class="form-control" id="processor_id" name="processor_id">
               <option value="">Select Processor</option>
               @foreach($staff_list as $staff)
-              <option value="{{ $staff->id }}">{{ $staff->name }}</option>
+              <option value="{{ $staff->id }}">{{ $staff->FullName }}</option>
               @endforeach
             </select>
             @if ($errors->has('processor_id'))
@@ -53,7 +53,7 @@
             <select class="form-control" id="agent_id" name="agent_id">
               <option value="">Select Agent</option>
               @foreach($agent_list as $agent)
-              <option value="{{ $agent->id }}">{{ $agent->name }}</option>
+              <option value="{{ $agent->id }}">{{ $agent->FullName }}</option>
               @endforeach
             </select>
             @if ($errors->has('agent_id'))
@@ -88,7 +88,7 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-12">
-            <label>Discount Price</label>
+            <label>Description</label>
             <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
             @if ($errors->has('discount_price'))
             <span class="invalid-feedback">{{ $errors->first('discount_price') }}</span>

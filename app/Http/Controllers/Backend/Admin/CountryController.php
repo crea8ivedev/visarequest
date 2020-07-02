@@ -4,60 +4,49 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\Backend\CountryRequest;
 use App\Models\Country;
-use Yajra\DataTables\DataTables;
-use Validator; 
+use DataTables;
+use Validator;
+use Illuminate\Support\Facades\Hash;
+use Toastr;
+use Config;
 
 class CountryController extends Controller
 {
-    /**
-     * Show the application country.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        $page_title = 'Country';
-        $page_description = '';
-        $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
-
-        //dd($page_breadcrumbs);
-        if($request->ajax())
-        {	
-        	$country = Country::query();
-        	 // Search for a country based on their need_visa.
-		    if ($request->has('need_visa') && ! is_null($request->get('need_visa'))) {
-		        $country->where('need_visa',$request->need_visa);
-		    }
-			// Search for a country based on their name.
-		    if ($request->has('search') && ! is_null($request->get('search'))) {
-		        $country->where('name', 'LIKE', '%' . $request->search . '%');
-		    }
-
-		    $data =  $country->latest()->get();
-		    
+        $page_title        = 'Country';
+        $page_description  = '';
+        $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
+        if ($request->ajax()) {
+            $service = Country::query();
+            if ($request->has('search') && !is_null($request->get('search'))) {
+                $search = $request->get('search');
+                $service->where('name', 'LIKE', '%' . $request->search . '%');
+            }
+            $data = $service->latest()->get();
             return DataTables::of($data)
-            		->addIndexColumn()
-                    ->addColumn('action', function($data) {
-                        $button = '<a href="javascript:;"  name="edit" id="'.$data->id.'" class="btn btn-success btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
-                        ';
-                        $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i>';
-                        return $button;
-                    })
-                    ->addColumn('need_visa', function($data){
-                    	if ($data->need_visa == '1')
-                        	$button = '<span class="label label-lg label-light-success label-inline">Yes</span>';
-                        else
-                        	$button = '<span class="label label-lg label-light-danger label-inline">No</span>';
-                        
-                        return $button;
-                    })
-                    ->rawColumns(['action', 'need_visa'])
-                    ->make(true);
-                    
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="/admin/country/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
+                    $button .= '<a href="javascript:;" name="delete" id="' . $data->id . '" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i><a/>';
+                    return $button;
+                })
+                ->editColumn('need_visa', function ($data) {
+                    return ($data->need_visa) ? 'Yes' : 'No';
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
-
         return view('backend.admin.country.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
+    }
+
+    public function create(Request $request)
+    {
+        $page_title         = 'Service';
+        $page_description   = '';
+        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Country List']);
+        return view('backend.admin.country.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     /**
@@ -66,31 +55,19 @@ class CountryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CountryRequest $request)
     {
-        $rules = array(
-            'name'        	    =>  'required|unique:countries',
-            'description'       =>  'required',
-            'need_visa'         =>  'required',
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
+        $country             = new Country;
+        $country->name = $request->name;
+        $country->description = $request->description;
+        $country->need_visa  = $request->need_visa;
+        if ($country->save()) {
+            Toastr::success('Country added successfully!', '', Config::get('constants.toster'));
+            return redirect('/admin/country');
+        } else {
+            Toastr::error('Country  dose not added successfully!', '', Config::get('constants.toster'));
+            return redirect('/admin/country/add');
         }
-
-        $form_data = array(
-            'name'       	   =>  $request->name,
-            'description'      =>  $request->description,
-            'need_visa'        =>  $request->need_visa,
-        );
-
-        Country::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
-
     }
 
     /**
@@ -101,11 +78,12 @@ class CountryController extends Controller
      */
     public function edit($id)
     {
-        if(request()->ajax())
-        {
-            $data = Country::findOrFail($id);
-            return response()->json(['result' => $data]);
-        }
+        $data               = Country::findOrFail($id);
+        $page_title         = 'Service';
+        $page_description   = '';
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Service List']);
+        $country_list          = Country::latest()->get();
+        return view('backend.admin.country.edit', compact('data', 'page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     /**
@@ -115,31 +93,19 @@ class CountryController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(CountryRequest $request, $id)
     {
-        $rules = array(
-            'name'              =>  'required|unique:countries,name,'.$request->hidden_id,
-            'description'       =>  'required',
-            'need_visa'         =>  'required',
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
+        $country             = Country::findOrFail($id);
+        $country->name = $request->name;
+        $country->description = $request->description;
+        $country->need_visa  = $request->need_visa;
+        if ($country->save()) {
+            Toastr::success('Country updated successfully!', '', Config::get('constants.toster'));
+            return redirect('/admin/country');
+        } else {
+            Toastr::error('Country  dose not update successfully!', '', Config::get('constants.toster'));
+            return redirect('/admin/country');
         }
-
-        $form_data = array(
-            'name'       	   =>  $request->name,
-            'description'      =>  $request->description,
-            'need_visa'        =>  $request->need_visa,
-        );
-
-        Country::whereId($request->hidden_id)->update($form_data);
-
-        return response()->json(['success' => 'Data is successfully updated']);
-
     }
 
     /**
@@ -150,7 +116,11 @@ class CountryController extends Controller
      */
     public function destroy($id)
     {
-        $data = Country::findOrFail($id);
-        $data->delete();
+        $country = Country::findOrFail($id);
+        if ($country->delete()) {
+            return response()->json(['success' => 'Country delete successfully.']);
+        } else {
+            return response()->json(['success' => 'Country dose not delete successfully.']);
+        }
     }
 }

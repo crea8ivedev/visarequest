@@ -22,7 +22,7 @@ Auth::routes();
 
 
 //Processor
-Route::prefix('processor')->namespace('Backend\Auth')->group(function() {
+Route::prefix('processor')->namespace('Backend\Auth')->group(function () {
     Route::get('/login', 'ProcessorLoginController@showLoginForm')->name('processor.login');
     Route::post('/login', 'ProcessorLoginController@login')->name('processor.login.submit');
     Route::post('/logout', 'ProcessorLoginController@logout')->name('processor.logout');
@@ -35,7 +35,7 @@ Route::prefix('processor')->namespace('Backend\Auth')->group(function() {
 });
 
 //Agent
-Route::prefix('agent')->namespace('Backend\Auth')->group(function() {
+Route::prefix('agent')->namespace('Backend\Auth')->group(function () {
     Route::get('/login', 'AgentLoginController@showLoginForm')->name('agent.login');
     Route::post('/login', 'AgentLoginController@login')->name('agent.login.submit');
     Route::post('/logout', 'AgentLoginController@logout')->name('agent.logout');
@@ -49,7 +49,7 @@ Route::prefix('agent')->namespace('Backend\Auth')->group(function() {
 
 
 //Admin
-Route::prefix('admin')->namespace('Backend\Auth')->group(function() {
+Route::prefix('admin')->namespace('Backend\Auth')->group(function () {
     Route::get('/login', 'AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'AdminLoginController@login')->name('admin.login.submit');
     Route::post('/logout', 'AdminLoginController@logout')->name('admin.logout');
@@ -59,9 +59,6 @@ Route::prefix('admin')->namespace('Backend\Auth')->group(function() {
     Route::get('/password/reset', 'AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/reset', 'AdminResetPasswordController@reset');
     Route::get('/password/reset/{token}', 'AdminResetPasswordController@showResetForm')->name('admin.password.reset');
-
-    
-
 });
 
 
@@ -71,13 +68,13 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
     Route::post('/profile/update', "AdminController@update")->name("admin.profile.post");
 
-    Route::get('/profile/changePassword','AdminController@showChangePasswordForm')->name("admin.change_password");
-    Route::post('/changePassword','AdminController@changePassword')->name('admin.changePassword');
+    Route::get('/profile/changePassword', 'AdminController@showChangePasswordForm')->name("admin.change_password");
+    Route::post('/changePassword', 'AdminController@changePassword')->name('admin.changePassword');
 
     /* routes for admin view */
-     Route::group(["prefix" => "admin"], function() {
+    Route::group(["prefix" => "admin"], function () {
         Route::get('/', "AdminController@index")->name("admin.admin");
-        Route::post('/', "AdminController@index")->name("admin.admin"); 
+        Route::post('/', "AdminController@index")->name("admin.admin");
         route::get('/add', "AdminController@create")->name("admin.admin.add");
         Route::get('/{id}/edit', "AdminController@edit")->name("admin.admin.edit");
         Route::post('/store', "AdminController@store")->name("admin.admin.store");
@@ -86,9 +83,9 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     });
 
     /* routes for processor view */
-     Route::group(["prefix" => "processor"], function() {
+    Route::group(["prefix" => "processor"], function () {
         Route::get('/', "ProcessorController@index")->name("admin.processor");
-        Route::post('/', "ProcessorController@index")->name("admin.processor"); 
+        Route::post('/', "ProcessorController@index")->name("admin.processor");
         route::get('/add', "ProcessorController@create")->name("admin.processor.add");
         Route::get('/edit/{id}', "ProcessorController@edit")->name("admin.processor.edit");
         Route::post('/store', "ProcessorController@store")->name("admin.processor.store");
@@ -97,7 +94,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     });
 
     /* routes for processor view */
-    Route::group(["prefix" => "agent"], function() {
+    Route::group(["prefix" => "agent"], function () {
         Route::get('/', "AgentController@index")->name("admin.agent");
         Route::post('/', "AgentController@index")->name("admin.agent");
         Route::get('/edit/{id}', "AgentController@edit")->name("admin.agent.edit");
@@ -108,16 +105,18 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     });
 
     /* routes for country view */
-    Route::group(["prefix" => "country"], function() {
+    Route::group(["prefix" => "country"], function () {
         Route::get('/', "CountryController@index")->name("admin.country");
-        Route::get('/{id}/edit', "CountryController@edit")->name("admin.country.edit");
+        Route::post('/', "CountryController@index")->name("admin.country");
+        Route::get('/edit/{id}', "CountryController@edit")->name("admin.country.edit");
+        route::get('/add', "CountryController@create")->name("admin.country.add");
         Route::post('/store', "CountryController@store")->name("admin.country.store");
-        Route::post('/update', "CountryController@update")->name("admin.country.update");
+        Route::post('/update/{id}', "CountryController@update")->name("admin.country.update");
         Route::post('/destroy/{id}', 'CountryController@destroy')->name("admin.country.destroy");
     });
 
     /* routes for service view */
-    Route::group(["prefix" => "service"], function() {
+    Route::group(["prefix" => "service"], function () {
         Route::get('/', "ServiceController@index")->name("admin.service");
         Route::post('/', "ServiceController@index")->name("admin.service");
         route::get('/add', "ServiceController@create")->name("admin.service.add");
@@ -125,8 +124,9 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/store', "ServiceController@store")->name("admin.service.store");
         Route::post('/update/{id}', "ServiceController@update")->name("admin.service.update");
         Route::post('/destroy/{id}', 'ServiceController@destroy')->name("admin.service.destroy");
+        Route::get('/element/{id}', "ServiceController@createElement")->name("admin.service.element");
+        Route::post('/element', "ServiceController@storeElement")->name("admin.service.element.store");
     });
-
 });
 
 //Auth Processor
@@ -135,9 +135,8 @@ Route::group(['namespace' => 'Backend\Processor', 'middleware' => ['auth:process
     Route::get('/profile', 'ProcessorController@profile')->name('processor.profile');
     Route::post('/profile/update', "ProcessorController@update")->name("processor.profile.post");
 
-    Route::get('/profile/changePassword','ProcessorController@showChangePasswordForm')->name("processor.change_password");
-    Route::post('/changePassword','ProcessorController@changePassword')->name('processor.changePassword');
-
+    Route::get('/profile/changePassword', 'ProcessorController@showChangePasswordForm')->name("processor.change_password");
+    Route::post('/changePassword', 'ProcessorController@changePassword')->name('processor.changePassword');
 });
 
 //Auth Agent
@@ -146,7 +145,6 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
     Route::get('/profile', 'AgentController@profile')->name('agent.profile');
     Route::post('/profile/update', "AgentController@update")->name("agent.profile.post");
 
-    Route::get('/profile/changePassword','AgentController@showChangePasswordForm')->name("agent.change_password");
-    Route::post('/changePassword','AgentController@changePassword')->name('agent.changePassword');
-
+    Route::get('/profile/changePassword', 'AgentController@showChangePasswordForm')->name("agent.change_password");
+    Route::post('/changePassword', 'AgentController@changePassword')->name('agent.changePassword');
 });

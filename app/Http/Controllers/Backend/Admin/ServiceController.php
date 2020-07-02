@@ -16,11 +16,7 @@ use Config;
 
 class ServiceController extends Controller
 {
-    /**
-     * Show the application country.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index(Request $request)
     {
         $page_title        = 'Service';
@@ -33,16 +29,18 @@ class ServiceController extends Controller
                 $service->where('name', 'LIKE', '%' . $request->search . '%');
                 // ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
             }
-            $data = $service->latest()->get();
+            $data = $service->with(['country', 'staff', 'agent'])->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/service/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
-                    $button .= '<a href="javascript:;" name="delete" id="' . $data->id . '" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i>';
+                    $button .= '<a href="javascript:;" name="delete" id="' . $data->id . '" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i><a/>';
+                    // $button .= '<a href="/admin/service/element/' . $data->id . '"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Add Element"><i class="la la-plus"></i></a>';
                     return $button;
                 })
-                ->editColumn('last_login_at', function ($data) {
-                    $date = $data->last_login_at;
-                    return date('M-d-Y h:i A', strtotime($date));
+               ->editColumn('agentName', function ($data) {
+                    return isset($data->agent->FullName) ? $data->agent->FullName : '';
+                })->editColumn('staffName', function ($data) {
+                    return isset($data->staff->FullName) ? $data->staff->FullName : '';
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -103,6 +101,18 @@ class ServiceController extends Controller
         $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
         $agent_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
         return view('backend.admin.services.edit', compact('data', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs'));
+    }
+
+    public function createElement()
+    {
+
+        $page_title         = 'Service';
+        $page_description   = '';
+        $page_breadcrumbs   = array(['page' => 'admin/agent', 'title' => 'Service List']);
+        $country_list          = Country::latest()->get();
+        $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
+        $agent_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
+        return view('backend.admin.services.element', compact('page_title', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
     }
 
     /**

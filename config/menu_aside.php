@@ -7,7 +7,7 @@ return [
         [
             'title' => 'Dashboard',
             'root' => true,
-            'icon' => 'public/media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'icon' => 'images/icons/dashboard.svg', 
             'page' => 'admin',
             'new-tab' => false,
         ],
@@ -36,18 +36,18 @@ return [
 
         //Country
         [
-            'title' => 'Country',
+            'title' => 'Countries',
             'root'  => true,
-            'icon'  => 'public/media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'icon'  => 'images/icons/country.svg', // or can be 'flaticon-home' or any flaticon-*
             'page'  => 'admin/country',
             'new-tab' => false,
         ],
 
         //Service
         [
-            'title' => 'Service',
+            'title' => 'Services',
             'root'  => true,
-            'icon'  => 'public/media/svg/icons/Design/Layers.svg', // or can be 'flaticon-home' or any flaticon-*
+            'icon'  => 'images/icons/service.svg', // or can be 'flaticon-home' or any flaticon-*
             'page'  => 'admin/service',
             'new-tab' => false,
         ],
