@@ -7,11 +7,7 @@ return [
         [
             'title' => 'Dashboard',
             'root' => true,
-<<<<<<< HEAD
-            'icon' => 'images/icons/dashboard.svg',
-=======
             'icon' => 'public/images/icons/dashboard.svg', 
->>>>>>> 9606cc3610dd533a890e47bb5c0713c8e31a26cf
             'page' => 'admin',
             'new-tab' => false,
         ],
