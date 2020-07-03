@@ -36,13 +36,13 @@
         <div class="card-header">
           <div class="card-title">
             <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
-            <h3 class="card-label">Countries</h3>
+            <h3 class="card-label">Categories</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
-            <a href="{{route('admin.country.add')}}" class="btn btn-primary font-weight-bolder">
+            <a href="{{route('admin.category.service.add')}}" class="btn btn-primary font-weight-bolder">
               <i class="la la-plus"></i>
-             Add Country
+             Add Category
             </a>
            <!--end::Button-->
           </div>
@@ -54,7 +54,7 @@
                 <div class="row align-items-center">
                   <div class="col-md-6 my-2 my-md-0">
                     <div class="input-icon">
-                      <input type="text" class="form-control search" placeholder="Search by country name" id="kt_datatable_search_query">
+                      <input type="text" class="form-control search" placeholder="Search by category name" id="kt_datatable_search_query">
                       <span><i class="flaticon2-search-1 text-muted"></i></span>
                     </div>
                   </div>
@@ -66,8 +66,7 @@
             <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="agent_table">
                 <thead>
                     <tr>
-                        <th>Country Name</th>
-                        <th>Need Visa</th>
+                        <th>Category Name</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -93,6 +92,6 @@
         <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
 
-    <script src="{{ asset('js/pages/country.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/service-category.js') }}" type="text/javascript"></script>
      
 @endsection

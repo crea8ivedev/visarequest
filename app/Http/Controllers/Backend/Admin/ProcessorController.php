@@ -70,7 +70,7 @@ class ProcessorController extends Controller
     {   
         $page_title         = 'Processor';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor List']);
+        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor']);
 
         return view('backend.admin.processor.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -114,7 +114,7 @@ class ProcessorController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Processor';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor List']);
+        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor']);
 
         return view('backend.admin.processor.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

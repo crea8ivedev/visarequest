@@ -7,7 +7,7 @@ return [
         [
             'title' => 'Dashboard',
             'root' => true,
-            'icon' => 'images/icons/dashboard.svg', 
+            'icon' => 'images/icons/dashboard.svg',
             'page' => 'admin',
             'new-tab' => false,
         ],
@@ -43,17 +43,22 @@ return [
             'new-tab' => false,
         ],
 
-        //Service
         [
             'title' => 'Services',
-            'root'  => true,
-            'icon'  => 'images/icons/service.svg', // or can be 'flaticon-home' or any flaticon-*
-            'page'  => 'admin/service',
-            'new-tab' => false,
+            'icon' => 'images/icons/service.svg',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'Category',
+                    'page'  => 'admin/service-category',
+                ],
+                [
+                    'title' => 'Service',
+                    'page'  => 'admin/service',
+                    ]
+            ]
         ],
-        
-        
-
     ],
 
 ];

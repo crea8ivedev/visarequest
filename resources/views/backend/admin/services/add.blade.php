@@ -11,11 +11,23 @@
       @csrf
       <div class="card-body">
         <div class="form-group row">
-          <div class="col-lg-12">
+          <div class="col-lg-6">
             <label>Service Name</label>
             <input class="form-control" id="name" name="name" placeholder="Service Name">
             @if ($errors->has('name'))
             <span class="invalid-feedback">{{ $errors->first('name') }}</span>
+            @endif
+          </div>
+          <div class="col-lg-6">
+            <label>Category</label>
+            <select class="form-control" id="category_id" name="category_id">
+              <option value="">Select Category</option>
+              @foreach($category_list as $category)
+              <option value="{{ $category->id }}">{{ $category->name }}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('category_id'))
+            <span class="invalid-feedback">{{ $errors->first('category_id') }}</span>
             @endif
           </div>
         </div>
@@ -99,16 +111,16 @@
           <div class="col-lg-6">
             <label>Status:</label>
             <div class="radio">
-                <label class="radio" id="active">
-                    <input type="radio" name="status" id="active"  class="form-control status" value="1" checked="" /> Active
-                    <span></span>
-                </label>
-                <label class="radio" id="deactive">
-                    <input type="radio" name="status" id="deactive"  class="form-control status" value="0" /> Deactive
-                    <span></span>
-                </label>
+              <label class="radio" id="active">
+                <input type="radio" name="status" id="active" class="form-control status" value="1" checked="" /> Active
+                <span></span>
+              </label>
+              <label class="radio" id="deactive">
+                <input type="radio" name="status" id="deactive" class="form-control status" value="0" /> Deactive
+                <span></span>
+              </label>
             </div>
-         </div>
+          </div>
         </div>
       </div>
       <div class="card-footer">

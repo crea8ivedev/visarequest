@@ -115,6 +115,17 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'CountryController@destroy')->name("admin.country.destroy");
     });
 
+    /* routes for Service Category view */
+    Route::group(["prefix" => "service-category"], function () {
+        Route::get('/', "ServiceCategoryController@index")->name("admin.category.service");
+        Route::post('/', "ServiceCategoryController@index")->name("admin.category.service");
+        Route::get('/edit/{id}', "ServiceCategoryController@edit")->name("admin.category.service.edit");
+        route::get('/add', "ServiceCategoryController@create")->name("admin.category.service.add");
+        Route::post('/store', "ServiceCategoryController@store")->name("admin.category.service.store");
+        Route::post('/update/{id}', "ServiceCategoryController@update")->name("admin.category.service.update");
+        Route::post('/destroy/{id}', 'ServiceCategoryController@destroy')->name("admin.category.service.destroy");
+    });
+
     /* routes for service view */
     Route::group(["prefix" => "service"], function () {
         Route::get('/', "ServiceController@index")->name("admin.service");

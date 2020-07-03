@@ -36,7 +36,7 @@
         <div class="card-header">
           <div class="card-title">
             <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
-            <h3 class="card-label">Admin List</h3>
+            <h3 class="card-label">Admins</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
