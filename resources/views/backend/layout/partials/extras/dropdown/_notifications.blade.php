@@ -1,5 +1,5 @@
 {{-- Header --}}
-@if (config('xtras.notifications.dropdown.style') == 'light')
+@if (config('extras.notifications.dropdown.style') == 'light')
     <div class="d-flex flex-column pt-12 bg-dark-o-5 rounded-top">
         {{-- Title --}}
         <h4 class="d-flex flex-center">
@@ -21,7 +21,7 @@
         </ul>
     </div>
 @else
-    <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url('{{ asset('media/misc/bg-1.jpg') }}')">
+    <div class="d-flex flex-column pt-12 bgi-size-cover bgi-no-repeat rounded-top" style="background-image: url('{{ asset('public/media/bg-1.jpg') }}')">
         {{-- Title --}}
         <h4 class="d-flex flex-center rounded-top">
             <span class="text-white">User Notifications</span>

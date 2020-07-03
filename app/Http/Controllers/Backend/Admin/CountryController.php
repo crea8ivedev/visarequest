@@ -16,7 +16,7 @@ class CountryController extends Controller
 {
     public function index(Request $request)
     {
-        $page_title        = 'Country';
+        $page_title        = 'Countries';
         $page_description  = '';
         $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
         if ($request->ajax()) {
@@ -28,7 +28,7 @@ class CountryController extends Controller
             $data = $service->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/country/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
+                    $button = '<a href="/admin/country/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a> ';
                     $button .= '<a href="javascript:;" name="delete" id="' . $data->id . '" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i><a/>';
                     return $button;
                 })
@@ -43,7 +43,7 @@ class CountryController extends Controller
 
     public function create(Request $request)
     {
-        $page_title         = 'Service';
+        $page_title         = 'Countries';
         $page_description   = '';
         $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Country']);
         return view('backend.admin.country.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
@@ -79,7 +79,7 @@ class CountryController extends Controller
     public function edit($id)
     {
         $data               = Country::findOrFail($id);
-        $page_title         = 'Service';
+        $page_title         = 'Countries';
         $page_description   = '';
         $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Service']);
         $country_list          = Country::latest()->get();

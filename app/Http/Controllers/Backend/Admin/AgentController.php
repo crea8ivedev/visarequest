@@ -21,7 +21,7 @@ class AgentController extends Controller
      */
     public function index(Request $request)
     {   
-            $page_title        = 'Agent';
+            $page_title        = 'Agents';
             $page_description  = '';
             $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
 

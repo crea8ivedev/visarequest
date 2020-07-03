@@ -80,6 +80,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Last Login</th>
                         <th>Action</th>
                     </tr>
@@ -97,9 +98,7 @@
 
 {{-- Scripts Section --}}
 @section('scripts')
-    @foreach(config('layout.resources.switch_js') as $script)
-        <script src="{{ asset($script) }}" type="text/javascript"></script>
-    @endforeach
+   
 
     @foreach(config('layout.resources.datatable_js') as $script)
         <script src="{{ asset($script) }}" type="text/javascript"></script>

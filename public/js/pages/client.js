@@ -1,7 +1,7 @@
  $(document).ready(function() {
 
  $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-  var table =  $('#agent_table').DataTable({
+  var table =  $('#client_table').DataTable({
         processing: true,
         serverSide: true,
         responsive : true,
@@ -10,7 +10,7 @@
         dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
           ajax: {
           type:'post',
-           url: "agent",
+           url: "client",
            headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
            },
@@ -70,7 +70,7 @@
           confirmButtonText: "Yes, delete it!"
       }).then(function(result) {
          if (result.value) {
-          var url = 'agent/destroy/'+ id;
+          var url = 'client/destroy/'+ id;
           $.ajax({
               headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -85,7 +85,7 @@
                         "Your file has been deleted.",
                         "success"
                     )
-                   $('#agent_table').DataTable().ajax.reload();
+                   $('#client_table').DataTable().ajax.reload();
                 } else {
                   swal.fire(
                     "Cancelled",

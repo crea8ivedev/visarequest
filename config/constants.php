@@ -4,6 +4,7 @@
 	        'ADMIN' => 1,
 	        'PROCESSOR' => 2,
 	        'AGENT' => 3,
+	        'CLIENT' => 4,
 	    ],
 	    'toster' => [
 	     "closeButton"=> false,

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Backend\ProcessorRequest;
+use App\Http\Requests\Backend\ClientRequest;
 use App\Models\User;
 use DataTables;
 use Validator;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Toastr;
 use Config;
 
-class ProcessorController extends Controller
+class ClientController extends Controller
 {
     /**
      * Show the application country.
@@ -21,15 +21,13 @@ class ProcessorController extends Controller
      */
     public function index(Request $request)
     {   
-            $page_title        = 'Processors';
+            $page_title        = 'Clients';
             $page_description  = '';
-            $page_breadcrumbs  = array (['page' => 'processor', 'title' => 'Dashboard']);
+            $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
 
-            //dd($page_breadcrumbs);
             if($request->ajax())
             {
-
-                $users = User::where('role',Config::get('constants.roles.PROCESSOR'));
+                $users = User::where('role',Config::get('constants.roles.CLIENT'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -44,35 +42,37 @@ class ProcessorController extends Controller
                 $data = $users->latest()->get();
                 
                 return DataTables::of($data)
-                        ->addColumn('action', function($data){
-                            $button = '<a href="/admin/processor/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
-                            ';
-                            $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
-                            return $button;
-                        })
-                        ->editColumn('last_login_at', function($data) {
-                            $date = $data->last_login_at;
-                           if ($date != null) {
-                             return date('d-M-Y h:i A', strtotime($date));
-                           } else {
-                            return '-';
-                            
-                           }
-                        })
-                        ->rawColumns(['action'])
-                        ->make(true);
+                    ->addColumn('action', function($data) {
+                        $button = '<a href="/admin/client/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
+                        ';
+                        $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
+
+                        $button .= '<input data-switch="true" id="'.$data->id.'" type="checkbox" checked="checked"  />';
+                        return $button;
+                    })
+                    ->editColumn('last_login_at', function($data) {
+                       $date = $data->last_login_at;
+                       if ($date != null) {
+                         return date('d-M-Y h:i A', strtotime($date));
+                       } else {
+                        return '-';
+                        
+                       }
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
             }
 
-            return view('backend.admin.processor.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
+            return view('backend.admin.client.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     public function create(Request $request)
     {   
-        $page_title         = 'Processor';
+        $page_title         = 'Client';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor']);
+        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Client']);
 
-        return view('backend.admin.processor.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.client.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
     }
 
@@ -82,7 +82,7 @@ class ProcessorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProcessorRequest $request)
+    public function store(ClientRequest $request)
     {   
         $user             = new User;
         $user->first_name = $request->first_name;
@@ -90,16 +90,17 @@ class ProcessorController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.PROCESSOR');
+        $user->role       = Config::get('constants.roles.CLIENT');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {
-       
-        Toastr::success('Processor add successfully!','', Config::get('constants.toster'));
-        return redirect('/admin/processor');
+        
+        Toastr::success('Client add successfully!','', Config::get('constants.toster'));
+        return redirect('/admin/client');
 
        } else {
-        
+        Toastr::success('Client dose not add!','', Config::get('constants.toster'));
+        return redirect('/admin/client/add');
        }
     }
 
@@ -112,13 +113,12 @@ class ProcessorController extends Controller
     public function edit($id)
     {
         $data               = User::findOrFail($id);
-        $page_title         = 'Processor';
+        $page_title         = 'Client';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor']);
+        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Client']);
 
-        return view('backend.admin.processor.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.client.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -127,7 +127,7 @@ class ProcessorController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(ProcessorRequest $request)
+    public function update(ClientRequest $request)
     {
        
         $user             = User::findOrFail($request->hidden_id);
@@ -143,15 +143,14 @@ class ProcessorController extends Controller
         }
 
        if($user->save()) {
-        Toastr::success('Processor updated successfully!','', Config::get('constants.toster'));
-        return redirect('/admin/processor');
+            Toastr::success('Client updated successfully!','', Config::get('constants.toster'));
+            return redirect('/admin/client');
        } else {
-        Toastr::error('Processor dose not update!','', Config::get('constants.toster'));
-        return redirect('/admin/processor');
+            Toastr::error('Client  dose not update!','', Config::get('constants.toster'));
+            return redirect('/admin/client/edit');
        }
-        
+    
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -163,10 +162,9 @@ class ProcessorController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Processor delete successfully!']);
+         return response()->json(['success' => 'Client delete successfully!']);
        } else {
-         return response()->json(['success' => 'Processor dose not delete!']);
+         return response()->json(['success' => 'Client dose not delete!']);
        }
     }
-
 }

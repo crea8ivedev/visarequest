@@ -10,6 +10,54 @@ return [
             'page' => '/admin',
             'new-tab' => false,
         ],
+
+        //Users
+        [
+            'title' => 'Users',
+            'root' => true,
+            'submenu' => [
+                'type' => 'classic',
+                'alignment' => 'left',
+                'items' => [
+                    [
+                        'title' => 'Admin',
+                        'icon' => 'public/images/icons/Add-user.svg',
+                        'page' => 'admin/admin'
+                    ],
+                    [
+                        'title' => 'Processors', 
+                        'icon' => 'public/images/icons/Add-user.svg',
+                        'page' => 'admin/processor'
+                    ],
+                    [
+                        'title' => 'Agents',
+                        'icon' => 'public/images/icons/Add-user.svg',
+                        'page' => 'admin/agent'
+                    ],
+                     [
+                        'title' => 'Clients',
+                        'icon' => 'public/images/icons/Add-user.svg',
+                        'page' => 'admin/client'
+                    ],
+                ]
+            ]
+        ],
+
+        //Country
+        [
+            'title' => 'Countries',
+            'root'  => true,
+            'page'  => 'admin/country',
+            'new-tab' => false,
+        ],
+
+        //Service
+        [
+            'title' => 'Services',
+            'root'  => true,
+            'page'  => 'admin/service',
+            'new-tab' => false,
+        ],
         // [
         //     'title' => 'Features',
         //     'root' => true,

@@ -1,5 +1,5 @@
 @php
-	$direction = config('layout_processor.extras.user.offcanvas.direction', 'right');
+	$direction = config('layout_processor.extras.user.offcanvas.direction', 'left');
 @endphp
  {{-- User Panel --}}
 <div id="kt_quick_user" class="offcanvas offcanvas-{{ $direction }} p-10">
@@ -72,7 +72,7 @@
 		            </div>
 		            <div class="navi-text">
 		                <div class="font-weight-bold">
-		                    My Profile
+		                    My Profile 
 		                </div>
 		                <div class="text-muted">
 		                    Account settings and more

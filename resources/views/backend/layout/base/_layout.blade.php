@@ -16,6 +16,7 @@
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
 
                 @include('backend.layout.base._header')
+                
 
                 <div class="content {{ Metronic::printClasses('content', false) }} d-flex flex-column flex-column-fluid" id="kt_content">
 
