@@ -21,7 +21,7 @@ class ProcessorController extends Controller
      */
     public function index(Request $request)
     {   
-            $page_title        = 'Processor';
+            $page_title        = 'Processors';
             $page_description  = '';
             $page_breadcrumbs  = array (['page' => 'processor', 'title' => 'Dashboard']);
 

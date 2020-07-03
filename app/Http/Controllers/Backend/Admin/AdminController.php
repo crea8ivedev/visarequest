@@ -13,6 +13,7 @@ use Toastr;
 use Config;
 use App\Http\Requests\Backend\AdminRequest;
 use DataTables;
+use App\Services\StatisticsService;
 
 class AdminController extends Controller
 {
@@ -25,20 +26,6 @@ class AdminController extends Controller
     {
         $this->middleware('auth:admin');
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function dashboard()
-    {
-        $page_title = 'Dashboard';
-        $page_description = 'Some description for the page';
-
-        return view('backend.admin.dashboard', compact('page_title', 'page_description'));
-    }
-
      /**
      * Show the application country.
      *

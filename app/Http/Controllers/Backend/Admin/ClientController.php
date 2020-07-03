@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Backend\AgentRequest;
+use App\Http\Requests\Backend\ClientRequest;
 use App\Models\User;
 use DataTables;
 use Validator;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Toastr;
 use Config;
 
-class AgentController extends Controller
+class ClientController extends Controller
 {
     /**
      * Show the application country.
@@ -21,13 +21,13 @@ class AgentController extends Controller
      */
     public function index(Request $request)
     {   
-            $page_title        = 'Agents';
+            $page_title        = 'Clients';
             $page_description  = '';
             $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
 
             if($request->ajax())
             {
-                $users = User::where('role',Config::get('constants.roles.AGENT'));
+                $users = User::where('role',Config::get('constants.roles.CLIENT'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -43,7 +43,7 @@ class AgentController extends Controller
                 
                 return DataTables::of($data)
                     ->addColumn('action', function($data) {
-                        $button = '<a href="/admin/agent/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
+                        $button = '<a href="/admin/client/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
                         ';
                         $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
 
@@ -63,16 +63,16 @@ class AgentController extends Controller
                     ->make(true);
             }
 
-            return view('backend.admin.agent.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
+            return view('backend.admin.client.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     public function create(Request $request)
     {   
-        $page_title         = 'Agent';
+        $page_title         = 'Client';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agent List']);
+        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Client']);
 
-        return view('backend.admin.agent.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.client.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
     }
 
@@ -82,7 +82,7 @@ class AgentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AgentRequest $request)
+    public function store(ClientRequest $request)
     {   
         $user             = new User;
         $user->first_name = $request->first_name;
@@ -90,17 +90,17 @@ class AgentController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.AGENT');
+        $user->role       = Config::get('constants.roles.CLIENT');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {
         
-        Toastr::success('Agent add successfully!','', Config::get('constants.toster'));
-        return redirect('/admin/agent');
+        Toastr::success('Client add successfully!','', Config::get('constants.toster'));
+        return redirect('/admin/client');
 
        } else {
-        Toastr::success('Agent dose not add!','', Config::get('constants.toster'));
-        return redirect('/admin/agent/add');
+        Toastr::success('Client dose not add!','', Config::get('constants.toster'));
+        return redirect('/admin/client/add');
        }
     }
 
@@ -113,11 +113,11 @@ class AgentController extends Controller
     public function edit($id)
     {
         $data               = User::findOrFail($id);
-        $page_title         = 'Agent';
+        $page_title         = 'Client';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agent List']);
+        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Client']);
 
-        return view('backend.admin.agent.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.client.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     /**
@@ -127,7 +127,7 @@ class AgentController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(AgentRequest $request)
+    public function update(ClientRequest $request)
     {
        
         $user             = User::findOrFail($request->hidden_id);
@@ -143,11 +143,11 @@ class AgentController extends Controller
         }
 
        if($user->save()) {
-            Toastr::success('Agent updated successfully!','', Config::get('constants.toster'));
-            return redirect('/admin/agent');
+            Toastr::success('Client updated successfully!','', Config::get('constants.toster'));
+            return redirect('/admin/client');
        } else {
-            Toastr::error('Agent  dose not update!','', Config::get('constants.toster'));
-            return redirect('/admin/agent/edit');
+            Toastr::error('Client  dose not update!','', Config::get('constants.toster'));
+            return redirect('/admin/client/edit');
        }
     
     }
@@ -162,9 +162,9 @@ class AgentController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Agent delete successfully!']);
+         return response()->json(['success' => 'Client delete successfully!']);
        } else {
-         return response()->json(['success' => 'Agent dose not delete!']);
+         return response()->json(['success' => 'Client dose not delete!']);
        }
     }
 }

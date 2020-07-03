@@ -14,6 +14,18 @@
                                 <span class="menu-text">Dashboard</span>
                             </a>
                         </li>
+
+                        <li class="menu-item " aria-haspopup="true">
+                            <a href="{{ url('processor/clients')}}" class="menu-link">
+                                <span class="menu-text">Clients</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item " aria-haspopup="true">
+                            <a href="{{ url('processor/services') }}" class="menu-link">
+                                <span class="menu-text">Services</span>
+                            </a>
+                        </li>
                     </ul>
                     
                     

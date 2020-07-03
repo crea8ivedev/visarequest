@@ -36,6 +36,10 @@ $(document).ready(function() {
                name: 'email'
               },
               {
+                data: 'phone',
+                name: 'phone'
+               },
+              {
                data: 'last_login_at',
                name: 'last_login_at'
               },

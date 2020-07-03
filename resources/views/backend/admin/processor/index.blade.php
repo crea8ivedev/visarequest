@@ -36,7 +36,7 @@
         <div class="card-header">
           <div class="card-title">
             <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
-            <h3 class="card-label">Processor List</h3>
+            <h3 class="card-label">Processors</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
@@ -69,6 +69,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
                         <th>Last Login</th>
                         <th>Action</th>
                     </tr>

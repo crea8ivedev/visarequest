@@ -7,7 +7,7 @@ return [
         [
             'title' => 'Dashboard',
             'root' => true,
-            'icon' => 'images/icons/dashboard.svg', 
+            'icon' => 'public/images/icons/dashboard.svg', 
             'page' => 'admin',
             'new-tab' => false,
         ],
@@ -15,7 +15,7 @@ return [
         //Users
         [
             'title' => 'Users',
-            'icon' => 'images/icons/Add-user.svg',
+            'icon' => 'public/images/icons/Add-user.svg',
             'bullet' => 'dot',
             'root' => true,
             'submenu' => [
@@ -31,6 +31,10 @@ return [
                     'title' => 'Agents',
                     'page' => 'admin/agent'
                 ],
+                [
+                    'title' => 'Clients',
+                    'page' => 'admin/client'
+                ],
             ]
         ],
 
@@ -38,7 +42,7 @@ return [
         [
             'title' => 'Countries',
             'root'  => true,
-            'icon'  => 'images/icons/country.svg', // or can be 'flaticon-home' or any flaticon-*
+            'icon'  => 'public/images/icons/country.svg', // or can be 'flaticon-home' or any flaticon-*
             'page'  => 'admin/country',
             'new-tab' => false,
         ],
@@ -47,7 +51,7 @@ return [
         [
             'title' => 'Services',
             'root'  => true,
-            'icon'  => 'images/icons/service.svg', // or can be 'flaticon-home' or any flaticon-*
+            'icon'  => 'public/images/icons/service.svg', // or can be 'flaticon-home' or any flaticon-*
             'page'  => 'admin/service',
             'new-tab' => false,
         ],

@@ -191,7 +191,7 @@ return [
                 'style' => 'dark' // light|dark
             ],
             'offcanvas' => [
-                'direction' => 'right'
+                'direction' => 'left'
             ]
         ],
 
@@ -215,7 +215,7 @@ return [
                 'style' => 'dark' // light|dark
             ],
             'offcanvas' => [
-                'direction' => 'right'
+                'direction' => 'left'
             ]
         ],
 
@@ -236,7 +236,7 @@ return [
         'quick-panel' => [
             'display' => true,
             'offcanvas' => [
-                'direction' => 'right'
+                'direction' => 'left'
             ]
         ],
 

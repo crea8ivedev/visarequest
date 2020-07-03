@@ -64,7 +64,8 @@ Route::prefix('admin')->namespace('Backend\Auth')->group(function () {
 
 //Auth Admin
 Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'prefix' => 'admin'], function () {
-    Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
+    Route::get('/', 'DashboardController@index')->name('admin.dashboard');
+    Route::post('/statistic', "DashboardController@statistic")->name("admin.statistic");
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
     Route::post('/profile/update', "AdminController@updateProfile")->name("admin.profile.post");
 
@@ -80,6 +81,17 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/store', "AdminController@store")->name("admin.admin.store");
         Route::post('/update/{id}', "AdminController@update")->name("admin.admin.update");
         Route::post('/destroy/{id}', 'AdminController@destroy')->name("admin.admin.destroy");
+    });
+
+    /* routes for admin view */
+    Route::group(["prefix" => "client"], function () {
+        Route::get('/', "ClientController@index")->name("admin.client");
+        Route::post('/', "ClientController@index")->name("admin.client");
+        route::get('/add', "ClientController@create")->name("admin.client.add");
+        Route::get('/edit/{id}', "ClientController@edit")->name("admin.client.edit");
+        Route::post('/store', "ClientController@store")->name("admin.client.store");
+        Route::post('/update/{id}', "ClientController@update")->name("admin.client.update");
+        Route::post('/destroy/{id}', 'ClientController@destroy')->name("admin.client.destroy");
     });
 
     /* routes for processor view */

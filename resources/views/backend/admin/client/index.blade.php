@@ -36,13 +36,13 @@
         <div class="card-header">
           <div class="card-title">
             <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
-            <h3 class="card-label">Admin</h3>
+            <h3 class="card-label">Clients</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
-            <a href="{{route('admin.admin.add')}}" class="btn btn-primary font-weight-bolder">
+            <a href="{{route('admin.client.add')}}" class="btn btn-primary font-weight-bolder">
               <i class="la la-plus"></i>
-             Add Admin
+             Add Client
             </a>
            <!--end::Button-->
           </div>
@@ -74,7 +74,7 @@
             </div>
           </div>
             <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="admin_table">
+            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="client_table">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -99,6 +99,7 @@
 {{-- Scripts Section --}}
 @section('scripts')
    
+
     @foreach(config('layout.resources.datatable_js') as $script)
         <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
@@ -108,6 +109,6 @@
     @endforeach
 
 
-    <script src="{{ asset('js/pages/admin.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/client.js') }}" type="text/javascript"></script>
      
 @endsection

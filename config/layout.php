@@ -103,7 +103,7 @@ return [
 
             'mobile' => [
                 'submenu' => [
-                    'theme' => 'dark',
+                    'theme' => 'light',
                     'accordion' => true
                 ],
             ],
@@ -136,14 +136,14 @@ return [
     // Brand
     'brand' => [
         'self' => [
-            'theme' => 'dark' // light, dark
+            'theme' => 'light' // light, dark
         ]
     ],
 
     // Aside
     'aside' => [
         'self' => [
-            'theme' => 'dark', // light, dark
+            'theme' => 'light', // light, dark
             'display' => true,
             'fixed' => true,
             'minimize' => [
@@ -188,10 +188,10 @@ return [
             'display' => true,
             'layout' => 'dropdown', // offcanvas, dropdown
             'dropdown' => [
-                'style' => 'dark' // light|dark
+                'style' => 'light' // light|dark
             ],
             'offcanvas' => [
-                'direction' => 'right'
+                'direction' => 'left'
             ]
         ],
 

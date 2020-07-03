@@ -1,5 +1,5 @@
 @php
-	$direction = config('layout..layout..layout.extras.notifications.offcanvas.direction', 'right');
+	$direction = config('layout_processor.extras.user.offcanvas.direction', 'left');
 @endphp
  {{-- Notifications Panel --}}
 <div id="kt_quick_notifications" class="offcanvas offcanvas-{{ $direction }} p-10">
