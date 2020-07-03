@@ -52,11 +52,27 @@ return [
         ],
 
         //Service
+    
         [
             'title' => 'Services',
-            'root'  => true,
-            'page'  => 'admin/service',
-            'new-tab' => false,
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                'type' => 'classic',
+                'alignment' => 'left',
+                  'items' => [
+                    [
+                        'title' => 'Category',  
+                        'icon'  => 'images/icons/service.svg',
+                        'page'  => 'admin/service-category',
+                    ],
+                    [
+                        'title' => 'Service',
+                        'icon'  => 'images/icons/service.svg',
+                        'page'  => 'admin/service',
+                    ]
+                ]
+            ]
         ],
         // [
         //     'title' => 'Features',
