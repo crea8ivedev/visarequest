@@ -65,10 +65,10 @@ return [
             ]
         ],
         //
-        [
-            'title' => 'Finance',
-            'page' => 'admin/finace'
-        ],
+        // [
+        //     'title' => 'Finance',
+        //     'page' => 'admin/finace'
+        // ],
     ],
 
 ];
