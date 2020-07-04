@@ -31,9 +31,9 @@ class ServiceRequest extends FormRequest
                 'agent_id'             =>  'required',
                 'name'          =>  'required|unique:services,name,' . $id,
                 'description'  =>  'required',
-                'normal_price'  =>  'required',
-                'discount_price'  =>  'required',
-                'commission'  =>  'required',
+                'normal_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
+                'discount_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
+                'commission'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
             ];
         } else {
             return [
@@ -42,9 +42,9 @@ class ServiceRequest extends FormRequest
                 'agent_id'             =>  'required',
                 'name'          =>  'required|unique:services,name',
                 'description'  =>  'required',
-                'normal_price'  =>  'required',
-                'discount_price'  =>  'required',
-                'commission'  =>  'required',
+                'normal_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
+                'discount_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
+                'commission'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
             ];
         }
     }
@@ -60,6 +60,9 @@ class ServiceRequest extends FormRequest
             'normal_price.required' => 'Please enter normal price.',
             'discount_price.required' => 'Please enter discount price.',
             'commission.required' => 'Please enter commission.',
+            'normal_price.regex' => 'Please enter valid normal price.',
+            'discount_price.regex' => 'Please enter valid discount price.',
+            'commission.regex' => 'Please enter valid commission.',
         ];
     }
 }

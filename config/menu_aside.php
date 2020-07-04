@@ -50,7 +50,7 @@ return [
         //Services
         [
             'title' => 'Services',
-            'icon' => 'images/icons/service.svg',
+            'icon' => 'public/images/icons/service.svg',
             'bullet' => 'dot',
             'root' => true,
             'submenu' => [
