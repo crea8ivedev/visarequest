@@ -7,4 +7,5 @@
             @yield('content')
         </div>
     </div>
+    
 @endif
