@@ -190,9 +190,9 @@ class ServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         if ($service->delete()) {
-            return response()->json(['success' => 'Service delete successfully.']);
+            return response()->json(['success' => 'Service deleted successfully.']);
         } else {
-            return response()->json(['success' => 'Service dose not delete successfully.']);
+            return response()->json(['success' => 'Service dose not deleted successfully.']);
         }
     }
 }

@@ -14,6 +14,7 @@ return [
         //Users
         [
             'title' => 'Users',
+            'bullet' => 'dot',
             'root' => true,
             'submenu' => [
                 'type' => 'classic',
@@ -71,6 +72,32 @@ return [
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/service',
                     ]
+                ]
+            ]
+        ],
+
+        //Finance
+        [
+            'title' => 'Finance',
+            'root'  => true,
+            'page'  => 'admin/finance',
+            'new-tab' => false,
+        ],
+
+        //Update
+        [
+            'title' => 'Update',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                'type' => 'classic',
+                'alignment' => 'left',
+                  'items' => [
+                    [
+                        'title' => 'Team Members',  
+                        'icon'  => 'images/icons/service.svg',
+                        'page'  => 'admin/team-member',
+                    ],
                 ]
             ]
         ],

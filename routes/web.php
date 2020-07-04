@@ -98,6 +98,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/', "ProcessorController@index")->name("admin.processor");
         route::get('/add', "ProcessorController@create")->name("admin.processor.add");
         Route::get('/edit/{id}', "ProcessorController@edit")->name("admin.processor.edit");
+        Route::get('/view-jobs/{id}', "ProcessorController@viewJobs")->name("admin.processor.view-jobs");
         Route::post('/store', "ProcessorController@store")->name("admin.processor.store");
         Route::post('/update/{id}', "ProcessorController@update")->name("admin.processor.update");
         Route::post('/destroy/{id}', 'ProcessorController@destroy')->name("admin.processor.destroy");
@@ -148,6 +149,24 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/element/{id}', "ServiceController@createElement")->name("admin.service.element");
         Route::post('/element', "ServiceController@storeElement")->name("admin.service.element.store");
     });
+
+    /* routes for finance view */
+    Route::group(["prefix" => "finance"], function () {
+        Route::get('/', "FinanceController@index")->name("admin.finance");
+        Route::post('/', "FinanceController@index")->name("admin.finance");
+    });
+
+    /* routes for team member view */
+    Route::group(["prefix" => "team-member"], function () {
+        Route::get('/', "TeamMemberController@index")->name("admin.team-member");
+        Route::post('/', "TeamMemberController@index")->name("admin.team-member");
+        Route::get('/edit/{id}', "TeamMemberController@edit")->name("admin.team-member.edit");
+        route::get('/add', "TeamMemberController@create")->name("admin.team-member.add");
+        Route::post('/store', "TeamMemberController@store")->name("admin.team-member.store");
+        Route::post('/update/{id}', "TeamMemberController@update")->name("admin.team-member.update");
+        Route::post('/destroy/{id}', 'TeamMemberController@destroy')->name("admin.team-member.destroy");
+    });
+
 });
 
 //Auth Processor

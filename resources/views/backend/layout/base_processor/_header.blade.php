@@ -16,7 +16,7 @@
                         </li>
 
                         <li class="menu-item {{ (request()->is('processor/client')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
-                            <a href="{{ url('processor/clients')}}" class="menu-link">
+                            <a href="{{ url('processor/client')}}" class="menu-link">
                                 <span class="menu-text">Clients</span>
                             </a>
                         </li>

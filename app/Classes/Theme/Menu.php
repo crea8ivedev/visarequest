@@ -66,8 +66,10 @@ class Menu
             if (isset($item['submenu']) && self::isActiveVerMenuItem($item, request()->path())) {
                 $item_class .= ' menu-item-open menu-item-here'; // m-menu__item--active
             } elseif (self::isActiveVerMenuItem($item, request()->path())) {
+                
                 $item_class .= ' menu-item-active';
-            }
+            } 
+           
 
             echo '<li class="menu-item ' . $item_class . '" aria-haspopup="true" ' . $item_attr . '>';
             if (isset($item['parent'])) {
@@ -438,13 +440,16 @@ class Menu
         }
 
         self::checkRecursion($rec);
+        //dd($page);
 
         if (isset($item['page']) && $item['page'] == $page) {
             return true;
         }
-
+        
         if (is_array($item)) {
             foreach ($item as $each) {
+                $page = substr($page, 0, strrpos( $page, '/'));
+                //dd($page);
                 if (self::isActiveVerMenuItem($each, $page, $rec++)) {
                     return true;
                 }
@@ -456,7 +461,8 @@ class Menu
 
     // Check for active Horizontal Menu item
     public static function isActiveHorMenuItem($item, $page, $rec = 0)
-    {
+    {   
+        
         if (@$item['redirect'] === true) {
             return false;
         }
@@ -466,7 +472,7 @@ class Menu
         if (isset($item['page']) && $item['page'] == $page) {
             return true;
         }
-
+        //dd($page);
         if (is_array($item)) {
             foreach ($item as $each) {
                 if (self::isActiveHorMenuItem($each, $page, $rec++)) {

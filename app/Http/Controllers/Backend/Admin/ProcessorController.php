@@ -48,7 +48,7 @@ class ProcessorController extends Controller
                             ';
                             $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a> ';
 
-                            $button .= '<a href="#" target="_blank"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Add Input"><i class="la la-plus"></i></a> ';
+                            $button .= '<a href="/admin/processor/view-jobs/'.$data->id.'" target="_blank"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="View open jobs"><i class="fas fa-eye"></i></a> ';
                             return $button;
                         })
                         ->editColumn('last_login_at', function($data) {
@@ -96,7 +96,7 @@ class ProcessorController extends Controller
 
        if($user->save()) {
        
-        Toastr::success('Processor add successfully!','', Config::get('constants.toster'));
+        Toastr::success('Processor added successfully!','', Config::get('constants.toster'));
         return redirect('/admin/processor');
 
        } else {
@@ -118,6 +118,22 @@ class ProcessorController extends Controller
         $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor']);
 
         return view('backend.admin.processor.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function viewJobs($id)
+    {
+        $data               = User::findOrFail($id);
+        $page_title         = 'Processor view jobs';
+        $page_description   = '';
+        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processor']);
+
+        return view('backend.admin.processor.view_jobs', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }
 
 
@@ -164,7 +180,7 @@ class ProcessorController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Processor delete successfully!']);
+         return response()->json(['success' => 'Processor deleted successfully!']);
        } else {
          return response()->json(['success' => 'Processor dose not delete!']);
        }

@@ -95,11 +95,11 @@ class AgentController extends Controller
 
        if($user->save()) {
         
-        Toastr::success('Agent add successfully!','', Config::get('constants.toster'));
+        Toastr::success('Agent added successfully!','', Config::get('constants.toster'));
         return redirect('/admin/agent');
 
        } else {
-        Toastr::success('Agent dose not add!','', Config::get('constants.toster'));
+        Toastr::success('Agent dose not added!','', Config::get('constants.toster'));
         return redirect('/admin/agent/add');
        }
     }
@@ -146,7 +146,7 @@ class AgentController extends Controller
             Toastr::success('Agent updated successfully!','', Config::get('constants.toster'));
             return redirect('/admin/agent');
        } else {
-            Toastr::error('Agent  dose not update!','', Config::get('constants.toster'));
+            Toastr::error('Agent  dose not updated!','', Config::get('constants.toster'));
             return redirect('/admin/agent/edit');
        }
     
@@ -162,7 +162,7 @@ class AgentController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Agent delete successfully!']);
+         return response()->json(['success' => 'Agent deleted successfully!']);
        } else {
          return response()->json(['success' => 'Agent dose not delete!']);
        }

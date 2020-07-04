@@ -95,11 +95,11 @@ class ClientController extends Controller
 
        if($user->save()) {
         
-        Toastr::success('Client add successfully!','', Config::get('constants.toster'));
+        Toastr::success('Client added successfully!','', Config::get('constants.toster'));
         return redirect('/admin/client');
 
        } else {
-        Toastr::success('Client dose not add!','', Config::get('constants.toster'));
+        Toastr::success('Client dose not added!','', Config::get('constants.toster'));
         return redirect('/admin/client/add');
        }
     }
@@ -146,7 +146,7 @@ class ClientController extends Controller
             Toastr::success('Client updated successfully!','', Config::get('constants.toster'));
             return redirect('/admin/client');
        } else {
-            Toastr::error('Client  dose not update!','', Config::get('constants.toster'));
+            Toastr::error('Client  dose not updated!','', Config::get('constants.toster'));
             return redirect('/admin/client/edit');
        }
     
@@ -162,7 +162,7 @@ class ClientController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Client delete successfully!']);
+         return response()->json(['success' => 'Client deleted successfully!']);
        } else {
          return response()->json(['success' => 'Client dose not delete!']);
        }
