@@ -46,7 +46,8 @@ return [
             'page'  => 'admin/country',
             'new-tab' => false,
         ],
-
+        
+        //Services
         [
             'title' => 'Services',
             'icon' => 'images/icons/service.svg',
@@ -62,6 +63,11 @@ return [
                     'page'  => 'admin/service',
                     ]
             ]
+        ],
+        //
+        [
+            'title' => 'Finance',
+            'page' => 'admin/finace'
         ],
     ],
 

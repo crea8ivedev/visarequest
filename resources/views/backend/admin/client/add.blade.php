@@ -62,7 +62,7 @@
                  <div class="col-lg-6">
                     <label>Phone Number<code>*</code></label>
                     <div class="input-group">
-                      <input type="email" class="form-control" name="phone" id="phone" placeholder="Phone number" />
+                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number" />
                     </div>
                     @if ($errors->has('phone'))
                         <span class="help-block">

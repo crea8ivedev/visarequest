@@ -31,7 +31,7 @@ class ProcessorRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email,'.$segmentId,
-                'phone'             =>  'required',
+                'phone'             =>  'required|numeric',
                 'password'          =>  'nullable|min:6',
                 'confirm_password'  =>  'required_with:password|same:password',
 
@@ -43,7 +43,7 @@ class ProcessorRequest extends FormRequest
                 'first_name'        =>  'required',
                 'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email',
-                'phone'             =>  'required',
+                'phone'             =>  'required|numeric',
                 'password'          =>  'required|min:6', 
                 'confirm_password'  =>  'required|same:password',
             ];
@@ -56,6 +56,8 @@ class ProcessorRequest extends FormRequest
             'first_name.required'       => 'Please enter first name',
             'last_name.required'        => 'Please enter last name',
             'email.required'            => 'Please enter email',
+            'phone.required'            => 'Please enter phone number',
+            'phone.numeric'             => 'Please enter valid phone number',
             'password.required'         => 'Please enter password',
             'confirm_password.required' => 'Please enter confirm password',
         ];

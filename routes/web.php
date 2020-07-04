@@ -19,8 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-
 //Processor
 Route::prefix('processor')->namespace('Backend\Auth')->group(function () {
     Route::get('/login', 'ProcessorLoginController@showLoginForm')->name('processor.login');
@@ -160,6 +158,18 @@ Route::group(['namespace' => 'Backend\Processor', 'middleware' => ['auth:process
 
     Route::get('/profile/changePassword', 'ProcessorController@showChangePasswordForm')->name("processor.change_password");
     Route::post('/changePassword', 'ProcessorController@changePassword')->name('processor.changePassword');
+
+    
+    /* routes for admin view */
+    Route::group(["prefix" => "client"], function () {
+        Route::get('/', "ClientController@index")->name("processor.client");
+        Route::post('/', "ClientController@index")->name("processor.client");
+        route::get('/add', "ClientController@create")->name("processor.client.add");
+        Route::get('/edit/{id}', "ClientController@edit")->name("processor.client.edit");
+        Route::post('/store', "ClientController@store")->name("processor.client.store");
+        Route::post('/update/{id}', "ClientController@update")->name("processor.client.update");
+        Route::post('/destroy/{id}', 'ClientController@destroy')->name("processor.client.destroy");
+    });
 });
 
 //Auth Agent

@@ -26,7 +26,7 @@ class AdminLoginController extends Controller
   public function login(LoginRequest $request){
     // Attempt to log the user in
 
-    if (Auth::guard('admin')->attempt(['email' => $request->email, 'role' => Config::get('constants.roles.ADMIN'), 'password' => $request->password], $request->remember)) {
+    if (Auth::guard('admin')->attempt(['email' => $request->email, 'role' => Config::get('constants.roles.ADMIN')  , 'password' => $request->password], $request->remember)) {
 
       $user = Auth::guard('admin')->user();
 

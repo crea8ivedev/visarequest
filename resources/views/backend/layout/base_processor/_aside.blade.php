@@ -28,7 +28,7 @@
             </li>
            
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Clients">
-                <a href="{{ url('processor/user') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/user')) ? 'active' : '' }}"  role="tab">
+                <a href="{{ url('processor/client') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/client')) ? 'active' : '' }}"  role="tab">
                     <span class="svg-icon svg-icon-xxl">
                          {{ Metronic::getSVG('public/images/icons/Group.svg') }}
                     </span>

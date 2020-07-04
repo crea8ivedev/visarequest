@@ -1,4 +1,4 @@
-@extends('backend.layout.default')
+@extends('backend.layout.processor')
 {{-- Styles Section --}}
 @section('styles')
     <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
@@ -10,14 +10,14 @@
     <div class="card card-custom card-collapse"   data-card="true" id="kt_card_4">
         <div class="card-header">
           <div class="card-title">
-              <h3 class="card-label">Add Agent</h3>
+              <h3 class="card-label">Add Client</h3>
           </div>
           
         </div>
         
         <div class="card-body" id="card-collapse"  >
           <!--begin::Form-->
-          <form class="form" method="post" id="sample_form" action="{{ route('admin.agent.store')  }}">
+          <form class="form" method="post" id="sample_form" action="{{ route('processor.client.store')  }}">
             @csrf
               
 
@@ -121,7 +121,7 @@
               <input type="hidden" name="action" id="action" value="Add" />
               <input type="hidden" name="hidden_id" id="hidden_id" />
               <button type="submit" class="btn btn-primary mr-2">Add</button>
-              <a href="{{ route('admin.agent')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
+              <a href="{{ route('processor.client')  }}"  type="button" class="btn btn-secondary cancel">Cancel</a>
             </div>
           </form>
           <!--end::Form-->
@@ -136,7 +136,7 @@
       <script src="{{ asset($script) }}" type="text/javascript"></script>
   @endforeach
 
-{!! JsValidator::formRequest('App\Http\Requests\Backend\AgentRequest') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Backend\ClientRequest') !!}
 
  @foreach(config('layout.resources.common_js') as $script)
       <script src="{{ asset($script) }}" type="text/javascript"></script>

@@ -1,10 +1,11 @@
 <?php 
 	return [
 	    'roles' => [
-	        'ADMIN' => 1,
-	        'PROCESSOR' => 2,
-	        'AGENT' => 3,
-	        'CLIENT' => 4,
+	        'SUPERADMIN' => 1,
+	        'ADMIN' 	 => 2,
+	        'PROCESSOR'  => 3,
+	        'AGENT' 	 => 4,
+	        'CLIENT' 	 => 5,
 	    ],
 	    'toster' => [
 	     "closeButton"=> false,

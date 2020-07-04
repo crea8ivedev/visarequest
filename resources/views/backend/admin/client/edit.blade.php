@@ -59,7 +59,7 @@
                  <div class="col-lg-6">
                     <label>Email<code>*</code></label>
                     <div class="input-group">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ $data->email ?? ''}}" />
+                      <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{ $data->email ?? ''}}" />
                     </div>
                     @if ($errors->has('email'))
                         <span class="help-block">

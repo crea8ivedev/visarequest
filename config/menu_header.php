@@ -7,7 +7,7 @@ return [
         [
             'title' => 'Dashboard',
             'root' => true,
-            'page' => '/admin',
+            'page' => 'admin',
             'new-tab' => false,
         ],
 

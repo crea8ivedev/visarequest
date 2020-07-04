@@ -9,19 +9,19 @@
                 <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
                     <!--begin::Nav-->
                     <ul class="menu-nav">
-                        <li class="menu-item menu-item-active" aria-haspopup="true">
+                        <li class="menu-item {{ (request()->is('processor')) ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('processor.dashboard') }}" class="menu-link">
                                 <span class="menu-text">Dashboard</span>
                             </a>
                         </li>
 
-                        <li class="menu-item " aria-haspopup="true">
+                        <li class="menu-item {{ (request()->is('processor/client')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ url('processor/clients')}}" class="menu-link">
                                 <span class="menu-text">Clients</span>
                             </a>
                         </li>
 
-                        <li class="menu-item " aria-haspopup="true">
+                        <li class="menu-item {{ (request()->is('processor/services')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ url('processor/services') }}" class="menu-link">
                                 <span class="menu-text">Services</span>
                             </a>
