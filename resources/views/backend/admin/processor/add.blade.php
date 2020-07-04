@@ -1,7 +1,7 @@
 @extends('backend.layout.default')
 {{-- Styles Section --}}
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
+   
 
 @endsection
 @section('content')
