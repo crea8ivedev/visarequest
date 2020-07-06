@@ -15,17 +15,32 @@
                             </a>
                         </li>
 
-                        <li class="menu-item {{ (request()->is('processor/client')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
+                        <li class="menu-item {{ (request()->is('processor/client*')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ url('processor/client')}}" class="menu-link">
                                 <span class="menu-text">Clients</span>
                             </a>
                         </li>
 
-                        <li class="menu-item {{ (request()->is('processor/services')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
-                            <a href="{{ url('processor/services') }}" class="menu-link">
+                        <li class="menu-item {{ (request()->is('processor/service')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ url('processor/service') }}" class="menu-link">
                                 <span class="menu-text">Services</span>
                             </a>
                         </li>
+
+                        <li class="menu-item {{ (request()->is('processor/completed-service')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ url('processor/completed-service') }}" class="menu-link">
+                                <span class="menu-text">Completed</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ (request()->is('processor/finance')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ url('processor/finance') }}" class="menu-link">
+                                <span class="menu-text">Finance</span>
+                            </a>
+                        </li>
+
+                        
+
                     </ul>
                     
                     

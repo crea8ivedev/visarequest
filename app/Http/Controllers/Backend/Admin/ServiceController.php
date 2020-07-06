@@ -23,7 +23,7 @@ class ServiceController extends Controller
 
     public function index(Request $request)
     {
-        $page_title        = 'Service';
+        $page_title        = 'Services';
         $page_description  = '';
         $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
         if ($request->ajax()) {
@@ -59,7 +59,7 @@ class ServiceController extends Controller
         $page_breadcrumbs   = array(['page' => 'admin/agent', 'title' => 'Service']);
         $country_list        = Country::latest()->get();
         $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
+        $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
         $category_list = ServiceCategory::get();
         return view('backend.admin.services.add', compact('page_title', 'category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
     }
@@ -107,7 +107,7 @@ class ServiceController extends Controller
         $country_list          = Country::latest()->get();
         $category_list = ServiceCategory::get();
         $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
+        $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
         return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs'));
     }
 

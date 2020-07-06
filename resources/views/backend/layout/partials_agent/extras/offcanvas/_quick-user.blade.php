@@ -29,7 +29,7 @@
             </div>
             <div class="d-flex flex-column">
                 <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-					{{ Auth::user()->name }}
+					{{ Auth::user()->first_name ." ".Auth::user()->last_name }}
 				</a>
                 <div class="text-muted mt-1">
 					Visa Request Agent

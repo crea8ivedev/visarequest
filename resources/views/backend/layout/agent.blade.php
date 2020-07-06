@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Head-->
     <head><base href="">
         <meta charset="utf-8" />
-        <title>Visa Request | Agent </title>
+        <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>
         <meta name="description" content="Updates and statistics" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -141,10 +141,15 @@ License: You must have a valid license purchased only from themeforest(the above
         
         <!--end::Page Vendors-->
         <!--begin::Page Scripts(used by this page)-->
-        <script src="{{asset('js/pages/widgets.js') }}"></script>
+       
         <!--end::Page Scripts-->
         {{-- Includable JS --}}
         @yield('scripts')
+        @foreach(config('layout.resources.toastr_js') as $script)
+            <script src="{{ asset($script) }}" type="text/javascript"></script>
+        @endforeach
+        {{-- <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script> --}}
+        '{!! Toastr::message() !!}';
     </body>
     <!--end::Body-->
 </html>

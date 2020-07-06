@@ -15,9 +15,21 @@
                             </a>
                         </li>
                         
-                        <li class="menu-item {{ (request()->is('agent/services')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
-                            <a href="{{ url('agent/services') }}" class="menu-link">
+                        <li class="menu-item {{ (request()->is('agent/service')) ? ' menu-item-active' : '' }}" aria-haspopup="">
+                            <a href="{{ url('agent/service') }}" class="menu-link">
                                 <span class="menu-text">Services</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ (request()->is('agent/completed-service')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ url('agent/completed-service') }}" class="menu-link">
+                                <span class="menu-text">Completed</span>
+                            </a>
+                        </li>
+
+                        <li class="menu-item {{ (request()->is('agent/finance')) ? ' menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ url('agent/finance') }}" class="menu-link">
+                                <span class="menu-text">Finance</span>
                             </a>
                         </li>
                     </ul>
