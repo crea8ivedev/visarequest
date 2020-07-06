@@ -68,15 +68,13 @@
       </div>
     </div>
     <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-      <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="agent_table">
+      <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="service_assign_table">
         <thead>
           <tr>
             <th>Service Name</th>
+            <th>User Name</th>
             <th>Country</th>
-            <th>Processor</th>
-            <th>Agent</th>
-            <th>Discount price</th>
-            <th>Normal price</th>
+            <th>Staff Name</th>
             <th>Commission</th>
             <th>Action</th>
           </tr>
