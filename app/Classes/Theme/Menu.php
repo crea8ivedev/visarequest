@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Classes\Theme;
 
 use App\Classes\Theme\Metronic;
@@ -18,7 +19,9 @@ class Menu
     public static function renderVerMenu($item, $parent = null, $rec = 0, $singleItem = false)
     {
         self::checkRecursion($rec);
-        if (!$item) { return 'menu misconfiguration'; }
+        if (!$item) {
+            return 'menu misconfiguration';
+        }
 
         if (isset($item['separator'])) {
             echo '<li class="menu-separator"><span></span></li>';
@@ -199,7 +202,9 @@ class Menu
     public static function renderHorMenu($item, $parent = null, $rec = 0)
     {
         self::checkRecursion($rec);
-        if (!$item) { return 'menu misconfiguration'; }
+        if (!$item) {
+            return 'menu misconfiguration';
+        }
 
         // render separator
         if (isset($item['separator'])) {
@@ -290,7 +295,7 @@ class Menu
                         $target = 'target="_blank"';
                     }
 
-                    echo '<a '.$target.' href="'.$url.'" class="menu-link '.(isset($item['submenu']) ? 'menu-toggle' : '').'">';
+                    echo '<a ' . $target . ' href="' . $url . '" class="menu-link ' . (isset($item['submenu']) ? 'menu-toggle' : '') . '">';
                 } else {
                     echo '<h3 class="menu-heading menu-toggle">';
                 }
@@ -402,7 +407,7 @@ class Menu
                                 $item_class .= ' menu-item-open menu-item-here'; // m-menu__item--active
                             }
 
-                            echo '<li class="menu-item '.$item_class.'">';
+                            echo '<li class="menu-item ' . $item_class . '">';
                             if (isset($column['heading'])) {
                                 self::renderHorMenu($column['heading'], null, $rec++);
                             }
@@ -433,6 +438,10 @@ class Menu
     // Check for active Vertical Menu item
     public static function isActiveVerMenuItem($item, $page, $rec = 0)
     {
+        $count = count(explode("/", $page));
+        if ($count > 2) {
+            $page = substr($page, 0, strpos($page, '/', strpos($page, '/') + 1));
+        }
         if (@$item['redirect'] === true) {
             return false;
         }
@@ -457,6 +466,10 @@ class Menu
     // Check for active Horizontal Menu item
     public static function isActiveHorMenuItem($item, $page, $rec = 0)
     {
+        $count = count(explode("/", $page));
+        if ($count > 2) {
+            $page = substr($page, 0, strpos($page, '/', strpos($page, '/') + 1));
+        }
         if (@$item['redirect'] === true) {
             return false;
         }
@@ -494,9 +507,7 @@ class Menu
         if (Metronic::isSVG($icon)) {
             echo Metronic::getSVG($icon, 'menu-icon');
         } else {
-            echo '<i class="menu-icon '.$icon.'"></i>';
+            echo '<i class="menu-icon ' . $icon . '"></i>';
         }
-
     }
-
 }

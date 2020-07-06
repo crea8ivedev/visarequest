@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
+//FRONT ROUTE
+Route::namespace('Frontend')->group(function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/service', 'ServiceController@index')->name('service');
+    Route::get('/get-service/{id}', 'ServiceController@index')->name('service-list');
+});
+//END FRONT ROUTE
+
 
 //Processor
 Route::prefix('processor')->namespace('Backend\Auth')->group(function () {
@@ -159,7 +164,7 @@ Route::group(['namespace' => 'Backend\Processor', 'middleware' => ['auth:process
     Route::get('/profile/changePassword', 'ProcessorController@showChangePasswordForm')->name("processor.change_password");
     Route::post('/changePassword', 'ProcessorController@changePassword')->name('processor.changePassword');
 
-    
+
     /* routes for admin view */
     Route::group(["prefix" => "client"], function () {
         Route::get('/', "ClientController@index")->name("processor.client");
@@ -181,3 +186,7 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
     Route::get('/profile/changePassword', 'AgentController@showChangePasswordForm')->name("agent.change_password");
     Route::post('/changePassword', 'AgentController@changePassword')->name('agent.changePassword');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
