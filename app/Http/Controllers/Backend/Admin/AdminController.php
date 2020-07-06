@@ -106,11 +106,11 @@ class AdminController extends Controller
 
        if($user->save()) {
         
-        Toastr::success('Admin add successfully!','', Config::get('constants.toster'));
+        Toastr::success('Admin added successfully!','', Config::get('constants.toster'));
         return redirect('/admin/admin');
 
        } else {
-        Toastr::success('Admin dose not add!','', Config::get('constants.toster'));
+        Toastr::success('Admin dose not added!','', Config::get('constants.toster'));
         return redirect('/admin/admin/add');
        }
     }
@@ -157,7 +157,7 @@ class AdminController extends Controller
             Toastr::success('Admin updated successfully!','', Config::get('constants.toster'));
             return redirect('/admin/admin');
        } else {
-            Toastr::error('Admin  dose not update!','', Config::get('constants.toster'));
+            Toastr::error('Admin  dose not updated!','', Config::get('constants.toster'));
             return redirect('/admin/admin/edit');
        }
     
@@ -174,9 +174,9 @@ class AdminController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Admin delete successfully!']);
+         return response()->json(['success' => 'Admin deleted successfully!']);
        } else {
-         return response()->json(['success' => 'Admin dose not delete!']);
+         return response()->json(['success' => 'Admin dose not deleted!']);
        }
     }
 

@@ -267,15 +267,14 @@ return [
             ]
         ],
         'css' => [
-            'plugins/global/plugins.bundle.css',
+            'plugins/global/agent/plugins.bundle.css',
             'plugins/custom/prismjs/prismjs.bundle.css',
-            'css/style.css',
-            'css/custom.css'
+            'css/agent/style.bundle.css',
         ],
         'js' => [
-            'plugins/global/plugins.bundle.js',
+            'plugins/global/agent/plugins.bundle.js',
             'plugins/custom/prismjs/prismjs.bundle.js',
-            'js/scripts.bundle.js',
+            'js/agent/scripts.bundle.js',
         ],
     ],
 

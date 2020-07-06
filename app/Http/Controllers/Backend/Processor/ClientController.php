@@ -95,7 +95,7 @@ class ClientController extends Controller
 
        if($user->save()) {
         
-        Toastr::success('Client add successfully!','', Config::get('constants.toster'));
+        Toastr::success('Client added successfully!','', Config::get('constants.toster'));
         return redirect('/processor/client');
 
        } else {
@@ -162,7 +162,7 @@ class ClientController extends Controller
       $user = User::findOrFail($id);
 
        if($user->delete()) {
-         return response()->json(['success' => 'Client delete successfully!']);
+         return response()->json(['success' => 'Client deleted successfully!']);
        } else {
          return response()->json(['success' => 'Client dose not delete!']);
        }

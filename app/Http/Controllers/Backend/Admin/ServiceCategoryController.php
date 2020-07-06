@@ -111,9 +111,9 @@ class ServiceCategoryController extends Controller
     {
         $serviceCategory = ServiceCategory::findOrFail($id);
         if ($serviceCategory->delete()) {
-            return response()->json(['success' => 'Category delete successfully.']);
+            return response()->json(['success' => 'Category deleted successfully.']);
         } else {
-            return response()->json(['success' => 'Category dose not delete successfully.']);
+            return response()->json(['success' => 'Category dose not deleted successfully.']);
         }
     }
 }

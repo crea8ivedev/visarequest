@@ -64,11 +64,40 @@ return [
                     ]
             ]
         ],
-        //
+
+        //Finance
+        [
+            'title' => 'Finance',
+            'root'  => true,
+            'icon'  => 'public/images/icons/Dollar.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page'  => 'admin/finance',
+            'new-tab' => false,
+        ],
+
+        //Reports
         // [
-        //     'title' => 'Finance',
-        //     'page' => 'admin/finace'
+        //     'title' => 'Reports',
+        //     'root'  => true,
+        //     'icon'  => 'public/images/icons/File.svg', // or can be 'flaticon-home' or any flaticon-*
+        //     'page'  => 'admin/reports',
+        //     'new-tab' => false,
         // ],
+
+        //Update
+        [
+            'title' => 'Update',
+            'icon' => 'public/images/icons/Update.svg',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'Team Members',
+                    'page'  => 'admin/team-member',
+                    
+                ],
+            ]
+        ],
+        
     ],
 
 ];

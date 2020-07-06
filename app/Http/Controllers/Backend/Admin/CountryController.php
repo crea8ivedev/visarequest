@@ -103,7 +103,7 @@ class CountryController extends Controller
             Toastr::success('Country updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/country');
         } else {
-            Toastr::error('Country  dose not update successfully!', '', Config::get('constants.toster'));
+            Toastr::error('Country  dose not updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/country');
         }
     }
@@ -118,9 +118,9 @@ class CountryController extends Controller
     {
         $country = Country::findOrFail($id);
         if ($country->delete()) {
-            return response()->json(['success' => 'Country delete successfully.']);
+            return response()->json(['success' => 'Country deleted successfully.']);
         } else {
-            return response()->json(['success' => 'Country dose not delete successfully.']);
+            return response()->json(['success' => 'Country dose not deleted successfully.']);
         }
     }
 }

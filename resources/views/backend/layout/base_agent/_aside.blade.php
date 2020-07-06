@@ -1,49 +1,56 @@
-{{-- Aside --}}
-
-@php
-$kt_logo_image = 'logo-light.png';
-@endphp
-
-@if (config('layout_agent.brand.self.theme') === 'light')
-@php $kt_logo_image = 'logo-dark.png' @endphp
-@elseif (config('layout_agent.brand.self.theme') === 'dark')
-@php $kt_logo_image = 'logo-light.png' @endphp
-@endif
-
-<div class="aside aside-left {{ Metronic::printClasses('aside', false) }} d-flex flex-column flex-row-auto" id="kt_aside">
-
-    {{-- Brand --}}
-    <div class="brand flex-column-auto {{ Metronic::printClasses('brand', false) }}" id="kt_brand">
-        <div class="brand-logo">
-            <a href="{{route('agent.dashboard')}}">
-                <img alt="{{ config('app.name') }}" src="{{ asset('/images/logo.png') }}" />
-            </a> </div>
-
-        @if (config('layout_agent.aside.self.minimize.toggle'))
-        <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
-            {{ Metronic::getSVG("public/media/svg/icons/Navigation/Angle-double-left.svg", "svg-icon-xl") }}
-        </button>
-        @endif
-
+<div class="aside aside-left d-flex flex-column" id="kt_aside">
+    <!--begin::Brand-->
+    <div class="aside-brand d-flex flex-column align-items-center flex-column-auto pt-18 pb-10">
+        <!--begin::Logo-->
+            
+        <div class="btn p-0 symbol symbol-60 " href="?page=index" id="kt_quick_user_toggle">
+            <div class="symbol-label">
+                <img alt="Logo" class="h-75 align-self-end" src="{{ asset('public/images/logo.png') }}"/>
+               
+            </div>
+        </div>
+        <!--end::Logo-->
     </div>
 
-    {{-- Aside menu --}}
-    <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
-
-        @if (config('layout_agent.aside.self.display') === false)
-        <div class="header-logo">
-            <a href="{{ url('/') }}">
-                <img alt="{{ config('app.name') }}" src="{{ asset('media/logos/'.$kt_logo_image) }}" />
-            </a>
-        </div>
-        @endif
-
-        <div id="kt_aside_menu" class="aside-menu my-4 {{ Metronic::printClasses('aside_menu', false) }}" data-menu-vertical="1" {{ Metronic::printAttrs('aside_menu') }}>
-
-            <ul class="menu-nav {{ Metronic::printClasses('aside_menu_nav', false) }}">
-                {{ Menu::renderVerMenu(config('menu_aside_agent.items')) }}
-            </ul>
-        </div>
+    <!--end::Brand-->
+    <!--begin::Nav Wrapper-->
+    <div class="aside-nav d-flex flex-column align-items-center flex-column-fluid pb-10">
+        <!--begin::Nav-->
+        <ul class="nav flex-column">
+               
+            <!--begin::Item-->
+            <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Dashboard">
+                <a href="{{ route('agent.dashboard') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('agent')) ? 'active' : '' }}">
+                    <span class="svg-icon svg-icon-xxl">
+                         {{ Metronic::getSVG('public/images/icons/Layout-4-blocks.svg') }}
+                    </span>
+                </a>
+            </li>
+           
+        
+            <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Services">
+                <a href="{{ url('agent/service') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('agent/service')) ? 'active' : '' }}" data-toggle="tab" data-target="#kt_aside_tab_3" role="tab" aria-selected="true">
+                     <span class="svg-icon svg-icon-xxl">
+                         {{ Metronic::getSVG('public/images/icons/service.svg') }}
+                    </span>
+                </a>
+            </li>
+            <!--end::Item-->
+        </ul>
+        <!--end::Nav-->
     </div>
+    <!--end::Nav Wrapper-->
 
+    <!--begin::Footer-->
+    <div class="aside-footer d-flex flex-column align-items-center flex-column-auto py-8">
+        <!--begin::Notifications-->
+        <a href="#" class="btn btn-icon btn-hover-text-primary btn-lg mb-1 position-relative" id="kt_quick_notifications_toggle" data-toggle="tooltip" data-placement="right" data-container="body"  title="Notifications">
+            <span class="svg-icon svg-icon-xxl">
+                 {{ Metronic::getSVG('public/images/icons/Layers.svg') }}
+            </span>
+            <span class="label label-sm label-light-danger label-rounded font-weight-bolder position-absolute top-0 right-0 mt-1 mr-1">3</span>
+        </a>
+        <!--end::Notifications-->
+    </div>
+    <!--end::Footer-->
 </div>
