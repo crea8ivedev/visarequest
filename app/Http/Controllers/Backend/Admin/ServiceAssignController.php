@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ServiceRequest;
 use App\Models\Service;
+use App\Models\ServiceAssign;
 use App\Models\ServiceElement;
 use App\Models\User;
 use App\Models\Country;
@@ -25,24 +26,29 @@ class ServiceAssignController extends Controller
         $page_description  = '';
         $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
         if ($request->ajax()) {
-            $service = Service::query();
+            $service = ServiceAssign::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
                 $search = $request->get('search');
-                $service->where('name', 'LIKE', '%' . $request->search . '%');
-                // ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
+                $service = ServiceAssign::whereHas('service', function($q) use($search)
+                {
+                    $q->where('name', 'LIKE', '%' . $search . '%');
+
+                });
+            
             }
-            $data = $service->with(['country', 'staff', 'agent'])->latest()->get();
+            $data = $service->with(['service','service.country', 'service.staff', 'service.agent', 'user'])->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/service/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a> ';
-                   // $button .= '<a href="javascript:;" name="delete" id="' . $data->id . '" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i><a/> ';
-                    //$button .= '<a href="/admin/service/element/' . $data->id . '"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Add Input"><i class="la la-plus"></i></a> ';
+                    $button = '-';
                     return $button;
+                })
+                ->editColumn('userName', function ($data) {
+                    return isset($data->user->FullName) ? $data->user->FullName : '';
                 })
                 ->editColumn('agentName', function ($data) {
                     return isset($data->agent->FullName) ? $data->agent->FullName : '';
                 })->editColumn('staffName', function ($data) {
-                    return isset($data->staff->FullName) ? $data->staff->FullName : '';
+                    return isset($data->service->staff->FullName) ? $data->service->staff->FullName : '';
                 })
                 ->rawColumns(['action'])
                 ->make(true);

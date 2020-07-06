@@ -221,8 +221,8 @@ Route::group(['namespace' => 'Backend\Processor', 'middleware' => ['auth:process
 
     /* routes for service view */
     Route::group(["prefix" => "completed-service"], function () {
-        Route::get('/', "ServiceController@index")->name("processor.completed-service");
-        Route::post('/', "ServiceController@index")->name("processor.completed-service");
+        Route::get('/', "CompletedServiceController@index")->name("processor.completed-service");
+        Route::post('/', "CompletedServiceController@index")->name("processor.completed-service");
     });
 
     /* routes for finance view */
@@ -250,8 +250,8 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
 
     /* routes for service view */
     Route::group(["prefix" => "completed-service"], function () {
-        Route::get('/', "ServiceController@index")->name("agent.completed-service");
-        Route::post('/', "ServiceController@index")->name("agent.completed-service");
+        Route::get('/', "CompletedServiceController@index")->name("agent.completed-service");
+        Route::post('/', "CompletedServiceController@index")->name("agent.completed-service");
     });
 
     /* routes for finance view */
