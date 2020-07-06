@@ -24,8 +24,8 @@
                 @endif
 
             @endif
-
-            <img alt="{{ config('app.name') }}" src="{{ asset('media/logos/'.$kt_logo_image) }}"/>
+            <img alt="{{ config('app.name') }}" src="{{ asset('/images/logo.png') }}" />
+            <
         </a>
     </div>
     <div class="mobile-toolbar">

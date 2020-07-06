@@ -60379,3 +60379,7 @@ body {
 @media (max-width: 425px) {
   .offcanvas-mobile {
     width: 90% !important; } }
+	
+.header-mobile-fixed .header-mobile img {
+    max-width: 100px;
+}

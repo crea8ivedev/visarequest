@@ -61,7 +61,11 @@ return [
                 [
                     'title' => 'Service',
                     'page'  => 'admin/service',
-                    ]
+                ],
+                [
+                    'title' => 'Service Assign',
+                    'page'  => 'admin/service-assign',
+                ],
             ]
         ],
 

@@ -1,6 +1,6 @@
  <div class="aside aside-left d-flex flex-column" id="kt_aside">
     <!--begin::Brand-->
-    <div class="aside-brand d-flex flex-column align-items-center flex-column-auto pt-18 pb-10">
+    <div class="aside-brand d-flex flex-column align-items-center flex-column-auto pt-5 pb-10">
         <!--begin::Logo-->
             
         <div class="btn p-0 symbol symbol-60 " href="?page=index" id="kt_quick_user_toggle">
@@ -28,7 +28,7 @@
             </li>
            
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="Clients">
-                <a href="{{ url('processor/client') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/client')) ? 'active' : '' }}"  role="tab">
+                <a href="{{ url('processor/client') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/client*')) ? 'active' : '' }}"  role="tab">
                     <span class="svg-icon svg-icon-xxl">
                          {{ Metronic::getSVG('public/images/icons/Group.svg') }}
                     </span>
@@ -36,9 +36,25 @@
             </li>
 
             <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Services">
-                <a href="{{ url('processor/service') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/service')) ? 'active' : '' }}" data-toggle="tab" data-target="#kt_aside_tab_3" role="tab" aria-selected="true">
+                <a href="{{ url('processor/service') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/service')) ? 'active' : '' }}" role="tab" >
                      <span class="svg-icon svg-icon-xxl">
                          {{ Metronic::getSVG('public/images/icons/service.svg') }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Completed Services">
+                <a href="{{ url('processor/completed-service') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/completed-service')) ? 'active' : '' }}" role="tab" >
+                     <span class="svg-icon svg-icon-xxl">
+                         {{ Metronic::getSVG('public/images/icons/Clipboard-check.svg') }}
+                    </span>
+                </a>
+            </li>
+
+            <li class="nav-item mb-2" data-toggle="tooltip" data-placement="right" data-container="body" data-boundary="window" title="" data-original-title="Finance">
+                <a href="{{ url('processor/finance') }}" class="nav-link btn btn-icon btn-hover-text-primary btn-lg {{ (request()->is('processor/finance')) ? 'active' : '' }}" role="tab" >
+                     <span class="svg-icon svg-icon-xxl">
+                         {{ Metronic::getSVG('public/images/icons/Dollar.svg') }}
                     </span>
                 </a>
             </li>

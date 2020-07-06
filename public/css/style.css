@@ -77386,3 +77386,7 @@ body {
     width: 90% !important;
   }
 }
+
+.header-mobile-fixed .header-mobile img {
+    max-width: 100px;
+}

@@ -65,7 +65,7 @@
             <select class="form-control" id="agent_id" name="agent_id">
               <option value="">Select Agent</option>
               @foreach($agent_list as $agent)
-              <option value="{{ $agent->id }}" {{ $agent->id ==$data->agent_id  ? 'selected="selected"' : '' }}>{{ $agent->FullName }}</option>
+              <option value="{{ $agent->id }}" {{ $agent->id ==$data->agent_id  ? 'selected="selected"' : '' }}>{{ $staff->FullName }}</option>
               @endforeach
             </select>
             @if ($errors->has('agent_id'))

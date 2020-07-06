@@ -71,7 +71,12 @@ return [
                         'title' => 'Service',
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/service',
-                    ]
+                    ],
+                    [
+                        'title' => 'Service Assign',
+                        'icon'  => 'images/icons/service.svg',
+                        'page'  => 'admin/service-assign',
+                    ],
                 ]
             ]
         ],

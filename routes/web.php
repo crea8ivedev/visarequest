@@ -155,6 +155,17 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/element', "ServiceController@storeElement")->name("admin.service.element.store");
     });
 
+     /* routes for service view */
+     Route::group(["prefix" => "service-assign"], function () {
+        Route::get('/', "ServiceAssignController@index")->name("admin.service-assign");
+        Route::post('/', "ServiceAssignController@index")->name("admin.service-assign");
+        route::get('/add', "ServiceAssignController@create")->name("admin.service-assign.add");
+        Route::get('/edit/{id}', "ServiceAssignController@edit")->name("admin.service-assign.edit");
+        Route::post('/store', "ServiceAssignController@store")->name("admin.s-assign.store");
+        Route::post('/update/{id}', "ServiceAssignController@update")->name("admin.service-assign.update");
+        Route::post('/destroy/{id}', 'ServiceAssignController@destroy')->name("admin.service-assign.destroy");
+    });
+
     /* routes for finance view */
     Route::group(["prefix" => "finance"], function () {
         Route::get('/', "FinanceController@index")->name("admin.finance");
@@ -194,6 +205,31 @@ Route::group(['namespace' => 'Backend\Processor', 'middleware' => ['auth:process
         Route::post('/update/{id}', "ClientController@update")->name("processor.client.update");
         Route::post('/destroy/{id}', 'ClientController@destroy')->name("processor.client.destroy");
     });
+
+    /* routes for service view */
+    Route::group(["prefix" => "service"], function () {
+        Route::get('/', "ServiceController@index")->name("processor.service");
+        Route::post('/', "ServiceController@index")->name("processor.service");
+        route::get('/add', "ServiceController@create")->name("processor.service.add");
+        Route::get('/edit/{id}', "ServiceController@edit")->name("processor.service.edit");
+        Route::post('/store', "ServiceController@store")->name("processor.service.store");
+        Route::post('/update/{id}', "ServiceController@update")->name("processor.service.update");
+        Route::post('/destroy/{id}', 'ServiceController@destroy')->name("processor.service.destroy");
+        Route::get('/element/{id}', "ServiceController@createElement")->name("processor.service.element");
+        Route::post('/element', "ServiceController@storeElement")->name("processor.service.element.store");
+    });
+
+    /* routes for service view */
+    Route::group(["prefix" => "completed-service"], function () {
+        Route::get('/', "ServiceController@index")->name("processor.completed-service");
+        Route::post('/', "ServiceController@index")->name("processor.completed-service");
+    });
+
+    /* routes for finance view */
+    Route::group(["prefix" => "finance"], function () {
+        Route::get('/', "FinanceController@index")->name("processor.finance");
+        Route::post('/', "FinanceController@index")->name("processor.finance");
+    });
 });
 
 //Auth Agent
@@ -204,6 +240,25 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
 
     Route::get('/profile/changePassword', 'AgentController@showChangePasswordForm')->name("agent.change_password");
     Route::post('/changePassword', 'AgentController@changePassword')->name('agent.changePassword');
+
+    /* routes for service view */
+    Route::group(["prefix" => "service"], function () {
+        Route::get('/', "ServiceController@index")->name("agent.service");
+        Route::post('/', "ServiceController@index")->name("agent.service");
+       
+    });
+
+    /* routes for service view */
+    Route::group(["prefix" => "completed-service"], function () {
+        Route::get('/', "ServiceController@index")->name("agent.completed-service");
+        Route::post('/', "ServiceController@index")->name("agent.completed-service");
+    });
+
+    /* routes for finance view */
+    Route::group(["prefix" => "finance"], function () {
+        Route::get('/', "FinanceController@index")->name("agent.finance");
+        Route::post('/', "FinanceController@index")->name("agent.finance");
+    });
 });
 
 Auth::routes();

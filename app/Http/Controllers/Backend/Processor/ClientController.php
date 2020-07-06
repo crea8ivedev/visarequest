@@ -27,7 +27,7 @@ class ClientController extends Controller
 
             if($request->ajax())
             {
-                $users = User::where('role',Config::get('constants.roles.CLIENT'));
+                $users = User::where('role',Config::get('constants.roles.USER'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -45,9 +45,7 @@ class ClientController extends Controller
                     ->addColumn('action', function($data) {
                         $button = '<a href="/processor/client/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
                         ';
-                        $button .= '<a href="javascript:;" name="delete" id="'.$data->id.'" class="btn btn-danger btn-sm rounded-0 delete btn btn-sm btn-clean btn-icon" title="Delete"><i class="la la-trash"></i></a>';
-
-                        $button .= '<input data-switch="true" id="'.$data->id.'" type="checkbox" checked="checked"  />';
+                        
                         return $button;
                     })
                     ->editColumn('last_login_at', function($data) {
@@ -90,7 +88,7 @@ class ClientController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.CLIENT');
+        $user->role       = Config::get('constants.roles.USER');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {
