@@ -179,7 +179,7 @@
                             </div>
 
                             <!--begin::Header-->
-                            <div class="card-header py-3 center">
+                            <div class="card-header py-3 ml-40">
                                 
                                 <div class="card-toolbar">
                                     <button type="submit" class="btn btn-primary">
@@ -212,7 +212,7 @@
                 $('.alert').fadeOut('fast');
             }, 5000); // <-- time in milliseconds
     </script>
-    <script src="{{ asset('js/pages/custom/profile/profile.js') }}" type="text/javascript"></script>
+    
     
 @endsection
 

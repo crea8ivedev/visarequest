@@ -29,16 +29,16 @@
             </div>
             <div class="d-flex flex-column">
                 <a href="#" class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary">
-					{{ Auth::user()->name }}
+					{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
 				</a>
                 <div class="text-muted mt-1">
-					Visa info
+					Visa Request
                 </div>
                 <div class="navi mt-2">
                     <a href="#" class="navi-item">
                         <span class="navi-link p-0 pb-2">
                             <span class="navi-icon mr-1">
-								{{ Metronic::getSVG("public/media/svg/icons/Communication/Mail-notification.svg", "svg-icon-lg svg-icon-primary") }}
+								{{ Metronic::getSVG("public/images/icons/Mail.svg", "svg-icon-lg svg-icon-primary") }}
 							</span>
                             <span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
                         </span>
@@ -66,7 +66,7 @@
 		        <div class="navi-link">
 		            <div class="symbol symbol-40 bg-light mr-3">
 		                <div class="symbol-label">
-							{{ Metronic::getSVG("public/media/svg/icons/General/Notification2.svg", "svg-icon-md svg-icon-success") }}
+							{{ Metronic::getSVG("public/images/icons/Notification2.svg", "svg-icon-md svg-icon-success") }}
 						</div>
 		            </div>
 		            <div class="navi-text">

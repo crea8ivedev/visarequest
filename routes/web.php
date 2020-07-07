@@ -194,6 +194,17 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/update/{id}', "MessagesController@update")->name("admin.messages.update");
         Route::post('/destroy/{id}', 'MessagesController@destroy')->name("admin.messages.destroy");
     });
+
+    Route::group(["prefix" => "email-template"], function () {
+        Route::get('/', "EmailTemplateController@index")->name("admin.email-template");
+        Route::post('/', "EmailTemplateController@index")->name("admin.email-template");
+        route::get('/add', "EmailTemplateController@create")->name("admin.email-template.add");
+        route::post('/store', "EmailTemplateController@store")->name("admin.email-template.store");
+        Route::get('/edit/{id}', "EmailTemplateController@edit")->name("admin.email-template.edit");
+        Route::post('/update/{id}', "EmailTemplateController@update")->name("admin.email-template.update");
+        Route::post('/destroy/{id}', 'EmailTemplateController@destroy')->name("admin.email-template.destroy");
+    });
+
 });
 
 //Auth Processor

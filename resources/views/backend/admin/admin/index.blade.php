@@ -36,7 +36,7 @@
         <div class="card-header">
           <div class="card-title">
             <span class="card-icon">  {{ Metronic::getSVG("public/images/icons/Add-user.svg", "svg-icon-xm svg-icon-xm svg-icon-primary") }}</span>
-            <h3 class="card-label">Admins</h3>
+            <h3 class="card-label">Admin</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
