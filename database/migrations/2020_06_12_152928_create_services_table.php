@@ -23,6 +23,7 @@ class CreateServicesTable extends Migration
             $table->double('normal_price')->nullable();
             $table->double('discount_price')->nullable();
             $table->double('commission')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

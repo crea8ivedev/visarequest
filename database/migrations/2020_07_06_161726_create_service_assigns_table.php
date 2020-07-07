@@ -18,7 +18,7 @@ class CreateServiceAssignsTable extends Migration
             $table->integer('service_id');
             $table->integer('user_id');
             $table->integer('assign_id');
-            $table->tinyInteger('status')->default(0);
+            $table->string('status')->default('PENDING');
             $table->timestamps();
         });
     }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ServiceRequest;
 use App\Models\Service;
-use App\Models\ServiceElement;
+use App\Models\ServiceInput;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\ServiceCategory;
@@ -139,9 +139,9 @@ class ServiceController extends Controller
                 'updated_at' => date('Y-m-d H:i:s')
             );
         }
-        $serviceElements = ServiceElement::where('service_id', $request->post('serviceId'))->pluck('id');
-        $serviceElement = new ServiceElement;
-        $serviceElement->whereIn('id', $serviceElements)->delete();
+        $serviceInputs = ServiceInput::where('service_id', $request->post('serviceId'))->pluck('id');
+        $serviceElement = new ServiceInput;
+        $serviceElement->whereIn('id', $serviceInputs)->delete();
         if ($serviceElement->insert($saveData)) {
             Toastr::success('Service element update successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');
