@@ -35,7 +35,7 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-            <span class="card-icon"><i class="flaticon2-heart-rate-monitor text-primary"></i></span>
+            <span class="card-icon">  {{ Metronic::getSVG("public/images/icons/Add-user.svg", "svg-icon-xm svg-icon-xm svg-icon-primary") }}</span>
             <h3 class="card-label">Clients</h3>
           </div>
           <div class="card-toolbar">

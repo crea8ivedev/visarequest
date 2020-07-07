@@ -31,7 +31,7 @@
              
               <div class="form-group row {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
                 <div class="col-lg-6">
-                  <label>First Name</label>
+                  <label>First Name<code>*</code>:</label>
                   <div class="input-group">
                     <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"  value="{{ $data->first_name ?? ''}}" />
                   </div>
@@ -42,7 +42,7 @@
 
                 <div class="col-lg-6">
                   <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                    <label>Last Name</label>
+                    <label>Last Name :</label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="last_name" name="last_name"  placeholder="Last name" value="{{ $data->last_name ?? ''}}" />
                     </div>
@@ -57,7 +57,7 @@
 
               <div class="form-group row  {{ $errors->has('email') ? ' has-error' : '' }}">
                  <div class="col-lg-6">
-                    <label>Email<code>*</code></label>
+                    <label>Email<code>*</code>:</label>
                     <div class="input-group">
                       <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{ $data->email ?? ''}}" />
                     </div>
@@ -69,7 +69,7 @@
                  </div>
 
                  <div class="col-lg-6">
-                    <label>Phone Number<code>*</code></label>
+                    <label>Phone Number<code>*</code>:</label>
                     <div class="input-group">
                       <input type="email" class="form-control" name="phone" id="phone" placeholder="Phone number"  value="{{ $data->phone ?? ''}}" />
                     </div>
@@ -83,7 +83,7 @@
 
               <div class="form-group row  {{ $errors->has('password') ? ' has-error' : '' }}">
                 <div class="col-lg-6">
-                  <label>Password</label>
+                  <label>Password :</label>
                   <div class="input-group">
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
                   </div>
@@ -95,7 +95,7 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}"  >
-                    <label>Confirm Password</label>
+                    <label>Confirm Password :</label>
                     <div class="input-group">
                       <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
                     </div>

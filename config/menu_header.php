@@ -106,6 +106,24 @@ return [
                 ]
             ]
         ],
+
+        //Update
+        [
+            'title' => 'Messages',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                'type' => 'classic',
+                'alignment' => 'left',
+                  'items' => [
+                    [
+                        'title' => 'Messages',  
+                        'icon' => 'images/icons/Mail.svg',
+                        'page'  => 'admin/messages',
+                    ],
+                ]
+            ]
+        ],
         // [
         //     'title' => 'Features',
         //     'root' => true,

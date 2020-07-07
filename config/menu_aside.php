@@ -101,6 +101,21 @@ return [
                 ],
             ]
         ],
+
+         //Update
+         [
+            'title' => 'Messages',
+            'icon' => 'public/images/icons/Mail.svg',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'Messages',
+                    'page'  => 'admin/messages',
+                    
+                ],
+            ]
+        ],
         
     ],
 

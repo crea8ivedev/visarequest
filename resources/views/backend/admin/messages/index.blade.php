@@ -35,8 +35,16 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-          <span class="card-icon">{{ Metronic::getSVG("public/images/icons/Dollar.svg", "svg-icon-xm svg-icon-primary") }}</span>
-            <h3 class="card-label">Finance</h3>
+            <span class="card-icon">{{ Metronic::getSVG("public/images/icons/Mail.svg", "svg-icon-xm svg-icon-primary") }}</span>
+            <h3 class="card-label">Messages</h3>
+          </div>
+          <div class="card-toolbar">
+            <!--begin::Button-->
+            <a href="{{route('admin.messages.send')}}" class="btn btn-primary font-weight-bolder">
+              <i class="la la-plus"></i>
+             Send New Message
+            </a>
+           <!--end::Button-->
           </div>
           
         </div>
@@ -47,33 +55,21 @@
                 <div class="row align-items-center">
                   <div class="col-md-6 my-2 my-md-0">
                     <div class="input-icon">
-                      <input type="text" class="form-control search" placeholder="Search by profit.." id="kt_datatable_search_query">
+                      <input type="text" class="form-control search" placeholder="Search by subject, message..." id="kt_datatable_search_query">
                       <span><i class="flaticon2-search-1 text-muted"></i></span>
                     </div>
                   </div>
-                  {{-- <div class="col-md-4 my-2 my-md-0">
-                    <div class="d-flex align-items-center">
-                      <label class="mr-5 mb-2 my-md-0 d-none ">Visa Name:</label>
-                        <select name="visa_filter" id="visa_filter" id="kt_datatable_search_status" class="form-control visa_filter">
-                              <option value="">Select Visa</option>
-                               @foreach($visa_list as $visa)
-                                <option value="{{ $visa->id }}">{{ $visa->visa_type }}</option>
-                               @endforeach
-                        </select>
-                    </div>
-                  </div> --}}
                 </div>
               </div>
             </div>
           </div>
             <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="finance_table">
+            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="messages_table">
                 <thead>
                     <tr>
-                        <th>Total Charge</th>
-                        <th>Profit</th>
-                        <th>Commission</th>
-                        <th>AgentPrice</th>
+                        <th>Subject</th>
+                        <th>Message</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -101,6 +97,6 @@
     @endforeach
 
 
-    <script src="{{ asset('js/pages/finance.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/messages.js') }}" type="text/javascript"></script>
      
 @endsection

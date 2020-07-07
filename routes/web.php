@@ -183,6 +183,17 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'TeamMemberController@destroy')->name("admin.team-member.destroy");
     });
 
+     /* routes for messages view */
+     Route::group(["prefix" => "messages"], function () {
+        Route::get('/', "MessagesController@index")->name("admin.messages");
+        Route::post('/', "MessagesController@index")->name("admin.messages");
+        route::get('/send', "MessagesController@create")->name("admin.messages.send");
+        route::post('/store', "MessagesController@store")->name("admin.messages.store");
+        Route::get('/reply/{id}', "MessagesController@edit")->name("admin.messages.reply");
+        Route::post('/update/{id}', "MessagesController@update")->name("admin.messages.update");
+        Route::post('/destroy/{id}', 'MessagesController@destroy')->name("admin.messages.destroy");
+    });
+
 });
 
 //Auth Processor
