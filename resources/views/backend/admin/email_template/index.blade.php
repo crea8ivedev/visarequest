@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('backend.layout.processor')
+@extends('backend.layout.default')
 
 {{-- Styles Section --}}
 @section('styles')
@@ -35,17 +35,18 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-            <span class="card-icon">  {{ Metronic::getSVG("public/images/icons/Add-user.svg", "svg-icon-xm svg-icon-xm svg-icon-primary") }}</span>
-            <h3 class="card-label">Clients</h3>
+            <span class="card-icon">{{ Metronic::getSVG("public/images/icons/Mail.svg", "svg-icon-xm svg-icon-primary") }}</span>
+            <h3 class="card-label">Email Template</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
-            <a href="{{route('processor.client.add')}}" class="btn btn-primary font-weight-bolder">
+            <a href="{{route('admin.email-template.add')}}" class="btn btn-primary font-weight-bolder">
               <i class="la la-plus"></i>
-             Add Client
+              Add New Email Template
             </a>
            <!--end::Button-->
           </div>
+          
         </div>
         <div class="card-body">
           <div class="mb-7">
@@ -54,34 +55,21 @@
                 <div class="row align-items-center">
                   <div class="col-md-6 my-2 my-md-0">
                     <div class="input-icon">
-                      <input type="text" class="form-control search" placeholder="Search by first name, last name, email..." id="kt_datatable_search_query">
+                      <input type="text" class="form-control search" placeholder="Search by email type, sender email, subject..." id="kt_datatable_search_query">
                       <span><i class="flaticon2-search-1 text-muted"></i></span>
                     </div>
                   </div>
-                  {{-- <div class="col-md-4 my-2 my-md-0">
-                    <div class="d-flex align-items-center">
-                      <label class="mr-5 mb-2 my-md-0 d-none ">Visa Name:</label>
-                        <select name="visa_filter" id="visa_filter" id="kt_datatable_search_status" class="form-control visa_filter">
-                              <option value="">Select Visa</option>
-                               @foreach($visa_list as $visa)
-                                <option value="{{ $visa->id }}">{{ $visa->visa_type }}</option>
-                               @endforeach
-                        </select>
-                    </div>
-                  </div> --}}
                 </div>
               </div>
             </div>
           </div>
             <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="client_table">
+            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="email_template_table">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Last Login</th>
+                        <th>Email Type</th>
+                        <th>Sender Email</th>
+                        <th>Email Subject</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -109,6 +97,6 @@
     @endforeach
 
 
-    <script src="{{ asset('js/pages/processor/client.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/email_template.js') }}" type="text/javascript"></script>
      
 @endsection

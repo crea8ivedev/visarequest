@@ -103,6 +103,12 @@ return [
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/team-member',
                     ],
+
+                    [
+                        'title' => 'Email Template',  
+                        'icon'  => 'images/icons/email.svg',
+                        'page'  => 'admin/email-template',
+                    ],
                 ]
             ]
         ],

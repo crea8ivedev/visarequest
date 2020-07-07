@@ -99,6 +99,11 @@ return [
                     'page'  => 'admin/team-member',
                     
                 ],
+                [
+                    'title' => 'Email Template',
+                    'page'  => 'admin/email-template',
+                    
+                ],
             ]
         ],
 
