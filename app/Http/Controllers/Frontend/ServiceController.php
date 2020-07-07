@@ -13,8 +13,24 @@ class ServiceController extends Controller
 {
     public function index(Request $request)
     {
-        $service_category_list = ServiceCategory::latest()->get();
-        return view('frontend.service.service', compact('service_category_list'));
+        $slug = ($request->slug) ? $request->slug : 'courier';
+        $category = ServiceCategory::where('slug', $slug)->first();
+        if (!$category) {
+            return redirect()->intended(route('home'));
+        }
+        $service_category_list = ServiceCategory::get();
+        $service_list = Service::where('category_id', $category->id)->get();
+        return view('frontend.service.index', compact('service_category_list', 'service_list', 'category'));
+    }
+
+    public function getServiceDetails(Request $request)
+    {
+        $slug = $request->slug;
+        $service = Service::where('slug', $slug)->first();
+        if (!$service) {
+            return redirect()->intended(route('home'));
+        }
+        return view('frontend.service.details', compact('service'));
     }
 
     public function getServices(Request $request, $id)

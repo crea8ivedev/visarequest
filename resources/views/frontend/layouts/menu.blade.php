@@ -8,7 +8,7 @@
                                 <!--site-navigation -->
                                 <div class="site-navigation d-flex flex-row align-items-center">
                                     <div class="site-branding ">
-                                        <a class="home-link" href="index.html" title="VisaRequest" rel="home">
+                                        <a class="home-link" href="{{ route('home') }}" title="VisaRequest" rel="home">
                                             <img id="logo-img" class="img-center" src="images/logo.png" alt="VisaRequest">
                                         </a>
                                     </div>
@@ -21,13 +21,13 @@
                                     <nav class="main-menu menu-mobile m-auto" id="menu">
                                         <ul class="menu">
                                             <li class="mega-menu-item active">
-                                                <a href="#" class="mega-menu-link">Home</a>
+                                                <a href="{{ route('home') }}" class="mega-menu-link">Home</a>
                                             </li>
                                             <li class="mega-menu-item">
                                                 <a href="#" class="mega-menu-link">About Us</a>
                                             </li>
                                             <li class="mega-menu-item">
-                                                <a href="#" class="mega-menu-link">Our Service</a>
+                                                <a href="{{ route('frontend.service') }}" class="mega-menu-link">Our Service</a>
                                             </li>
                                             <li class="mega-menu-item">
                                                 <a href="#" class="mega-menu-link">News</a>

@@ -18,8 +18,9 @@ Auth::routes();
 //FRONT ROUTE
 Route::namespace('Frontend')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/service', 'ServiceController@index')->name('service');
-    Route::get('/get-service/{id}', 'ServiceController@index')->name('service-list');
+    Route::get('/service', 'ServiceController@index')->name('frontend.service');
+    Route::get('/service/{slug}', 'ServiceController@index')->name('frontend.service.category');
+    Route::get('/service-details/{slug}', 'ServiceController@getServiceDetails')->name('frontend.service.details');
 });
 //END FRONT ROUTE
 
@@ -155,8 +156,8 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/element', "ServiceController@storeElement")->name("admin.service.element.store");
     });
 
-     /* routes for service view */
-     Route::group(["prefix" => "service-assign"], function () {
+    /* routes for service view */
+    Route::group(["prefix" => "service-assign"], function () {
         Route::get('/', "ServiceAssignController@index")->name("admin.service-assign");
         Route::post('/', "ServiceAssignController@index")->name("admin.service-assign");
         route::get('/add', "ServiceAssignController@create")->name("admin.service-assign.add");
@@ -183,8 +184,8 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'TeamMemberController@destroy')->name("admin.team-member.destroy");
     });
 
-     /* routes for messages view */
-     Route::group(["prefix" => "messages"], function () {
+    /* routes for messages view */
+    Route::group(["prefix" => "messages"], function () {
         Route::get('/', "MessagesController@index")->name("admin.messages");
         Route::post('/', "MessagesController@index")->name("admin.messages");
         route::get('/send', "MessagesController@create")->name("admin.messages.send");
@@ -193,7 +194,6 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/update/{id}', "MessagesController@update")->name("admin.messages.update");
         Route::post('/destroy/{id}', 'MessagesController@destroy')->name("admin.messages.destroy");
     });
-
 });
 
 //Auth Processor
@@ -256,7 +256,6 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
     Route::group(["prefix" => "service"], function () {
         Route::get('/', "ServiceController@index")->name("agent.service");
         Route::post('/', "ServiceController@index")->name("agent.service");
-       
     });
 
     /* routes for service view */
@@ -271,7 +270,3 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
         Route::post('/', "FinanceController@index")->name("agent.finance");
     });
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
