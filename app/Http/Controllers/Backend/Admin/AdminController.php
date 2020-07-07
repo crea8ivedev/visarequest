@@ -12,6 +12,7 @@ use Auth;
 use Toastr;
 use Config;
 use App\Http\Requests\Backend\AdminRequest;
+use App\Http\Requests\Backend\ProfileRequest;
 use DataTables;
 use App\Services\StatisticsService;
 
@@ -203,9 +204,8 @@ class AdminController extends Controller
         $data = $request->all();
         $validator = Validator::make($data, [
                     'first_name'    => 'required',
-                    'last_name'     => 'required',
                     'phone_number'  => 'required',
-                    'profile_image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                    'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
 
         ]);
 
@@ -219,7 +219,7 @@ class AdminController extends Controller
                 $user = User::find(auth()->user()->id);
                 $user->first_name = $data['first_name'];
                 $user->last_name = $data['last_name'];
-                $user->phone_number = $data['phone_number'];
+                $user->phone = $data['phone_number'];
                 $user->address = $data['address'];
 //                $user->zipcode = $data['zipcode'];
 //                $user->city_id = $data['city_id'];
@@ -232,12 +232,12 @@ class AdminController extends Controller
                     $user->profile_image = $save_name;
                 }
                 $user->save();
-                 Session::flash('message', 'Profile successfully updated.');
-                 Session::flash('alert-class', 'alert-success');
+                Toastr::success('Profile  updated successfully!','', Config::get('constants.toster'));
                  return redirect()->intended(route('admin.profile'));
                
             } catch (Exception $ex) {
                  Session::flash('message', 'Something went wrong, please try again.');
+                 Toastr::success('Something went wrong, please try again!','', Config::get('constants.toster'));
                  Session::flash('alert-class', 'alert-danger');
                 return redirect()->intended(route('admin.profile'));
                 

@@ -1,13 +1,6 @@
 {{-- Extends layout --}}
 @extends('backend.layout.default')
 
-<style type="text/css">
-    .center {
-      
-      margin-left: 30%;
-      
-    }
-</style>
 {{-- Content --}}
 @section('content')
     
@@ -129,6 +122,7 @@
                         <!--begin::Form-->
                         <form method="post" class="form fv-plugins-bootstrap fv-plugins-framework" id="kt_form"  action="{{route('admin.profile.post')}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
+                        <input type="hidden" name="hidden_id" value="{{ Auth::user()->id }}"
                             <!--begin::Body-->
                             <div class="card-body">
                                 <div class="row">
@@ -187,9 +181,9 @@
                                                     <i class="la la-phone"></i>
                                                 </span>
                                             </div>
-                                             <input type="tel" class="form-control form-control-solid form-control-lg" name="phone_number" placeholder="phone" value="{{ $user->phone_number }}">
-                                            @if($errors->has('phone_number'))
-                                                <div style="color: red" class="error">{{ $errors->first('phone_number') }}</div>
+                                             <input type="tel" class="form-control form-control-solid form-control-lg" name="phone" placeholder="Phone" value="{{ $user->phone }}">
+                                            @if($errors->has('phone'))
+                                                <div style="color: red" class="error">{{ $errors->first('phone') }}</div>
                                             @endif
                                         </div>
                                         <span class="form-text text-muted">We'll never share your email with anyone else.</span>
@@ -230,7 +224,7 @@
                                 <!--begin: Wizard Actions-->
                             <div>
                                 <!--begin::Header-->
-                                <div class="card-header py-3 center">
+                                <div class="card-header py-3 ml-40">
                                     <div class="card-toolbar">
                                         <button type="submit" class="btn btn-primary">
                                           Save Changes
@@ -263,6 +257,7 @@
                 $('#alert-message').fadeOut('fast');
             }, 5000); // <-- time in milliseconds
     </script>
-    <script src="{{ asset('js/pages/custom/profile/profile.js') }}" type="text/javascript"></script>
+    
+    {!! JsValidator::formRequest('App\Http\Requests\Backend\ProfileRequest') !!}
 @endsection
 

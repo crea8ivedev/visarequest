@@ -136,9 +136,7 @@
 </div>
 @endsection
 @section('scripts')
-@foreach(config('layout.resources.validate_js') as $script)
-<script src="{{ asset($script) }}" type="text/javascript"></script>
-@endforeach
+
 @foreach(config('layout.resources.select2_js') as $script)
 <script src="{{ asset($script) }}" type="text/javascript"></script>
 @endforeach
