@@ -117,7 +117,7 @@ class MessagesController extends Controller
         $data               = Message::findOrFail($id);
         $page_title         = 'Massage Reply';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agent']);
+        $page_breadcrumbs   = array (['page' => 'admin/messages', 'title' => 'Messages']);
         $user_list          = User::get();
 
         return view('backend.admin.messages.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs', 'user_list'));
