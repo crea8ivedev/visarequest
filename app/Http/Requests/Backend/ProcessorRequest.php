@@ -29,7 +29,6 @@ class ProcessorRequest extends FormRequest
             $request = $this->request->all();
            return [
                 'first_name'        =>  'required',
-                'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email,'.$segmentId,
                 'phone'             =>  'required|numeric',
                 'password'          =>  'nullable|min:6',
@@ -41,7 +40,6 @@ class ProcessorRequest extends FormRequest
 
            return [
                 'first_name'        =>  'required',
-                'last_name'         =>  'required',
                 'email'             =>  'required|email|unique:users,email',
                 'phone'             =>  'required|numeric',
                 'password'          =>  'required|min:6', 

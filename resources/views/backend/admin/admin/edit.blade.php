@@ -31,7 +31,7 @@
              
                <div class="form-group row {{ $errors->has('first_name') ? 'is-invalid' : '' }}">
                 <div class="col-lg-6">
-                  <label>First Name</label>
+                  <label>First Name<code>*</code>:</label>
                   <div class="input-group">
                     <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"  value="{{ $data->first_name ?? ''}}" />
                   </div>
@@ -42,7 +42,7 @@
 
                 <div class="col-lg-6">
                   <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-                    <label>Last Name</label>
+                    <label>Last Name:</label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="last_name" name="last_name"  placeholder="Last name" value="{{ $data->last_name ?? ''}}" />
                     </div>

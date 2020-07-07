@@ -21,7 +21,7 @@
         @csrf
 
         <div class="form-group {{ $errors->has('name') ? 'is-invalid' : '' }}">
-          <label>Country Name</label>
+          <label>Country Name<code>*</code>:</label>
           <div class="input-group">
             <input type="text" class="form-control" name="name" id="name" value="{{ $data->name ?? ''}}" placeholder="Country name" />
           </div>
@@ -30,7 +30,7 @@
           @endif
         </div>
         <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-          <label>Descriptions</label>
+          <label>Descriptions :</label>
           <div class="input-group">
             <textarea class="form-control" id="description" name="description" placeholder="Description">{{ $data->description ?? ''}}</textarea>
           </div>
