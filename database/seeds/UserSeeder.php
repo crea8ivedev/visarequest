@@ -31,23 +31,5 @@ class UserSeeder extends Seeder
             'status' => 1,
             'password' => Hash::make('admin@123'),
         ]);
-
-        DB::table('users')->insert([
-            'first_name' => 'Processor',
-            'last_name' => 'Processor',
-            'email' => 'processor@gmail.com',
-            'role' => 3,
-            'status' => 1,
-            'password' => Hash::make('processor@123'),
-        ]);
-
-        DB::table('users')->insert([
-            'first_name' => 'Agent',
-            'last_name' => 'Agent',
-            'email' => 'agent@gmail.com',
-            'role' => 4,
-            'status' => 1,
-            'password' => Hash::make('agent@123'),
-        ]);
     }
 }

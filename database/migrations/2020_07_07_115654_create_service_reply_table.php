@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateServiceElementsTable extends Migration
+class CreateServiceReplyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateServiceElementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_elements', function (Blueprint $table) {
+        Schema::create('service_reply', function (Blueprint $table) {
             $table->id();
             $table->integer('service_id');
-            $table->string('type');
-            $table->boolean('required');
-            $table->string('label');
-            $table->string('subtype');
+            $table->integer('client_id');
+            $table->integer('reply_by');
             $table->longText('value');
+            $table->string('file');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateServiceElementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_elements');
+        Schema::dropIfExists('service_reply');
     }
 }
