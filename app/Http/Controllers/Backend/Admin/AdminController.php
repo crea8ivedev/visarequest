@@ -36,7 +36,8 @@ class AdminController extends Controller
     {   
             $page_title        = 'Admin';
             $page_description  = '';
-            $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+           // $page_breadcrumbs  = '';
+            $page_breadcrumbs  = '';
 
             if($request->ajax())
             {
@@ -82,7 +83,7 @@ class AdminController extends Controller
     {   
         $page_title         = 'Admin';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Users'], ['page' => 'admin/admin/add', 'title' =>'Add Admin']);
+        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Admin'], ['page' => 'admin/admin/add', 'title' =>'Add']);
 
         return view('backend.admin.admin.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -127,7 +128,7 @@ class AdminController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Admin';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Users'] ,['page' => 'admin/admin/edit/'.$id.'', 'title' =>'Edit Admin']);
+        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Admin'] ,['page' => 'admin/admin/edit/'.$id.'', 'title' =>'Edit']);
 
         return view('backend.admin.admin.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }
@@ -190,7 +191,7 @@ class AdminController extends Controller
     public function profile()
     {
         $page_title = 'Profile';
-        $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = '';
         $user = User::find(auth()->user()->id);
         return view('backend.admin.profile.list', compact('page_title','user', 'page_breadcrumbs' ));
     }
@@ -247,7 +248,7 @@ class AdminController extends Controller
 
     public function showChangePasswordForm(){
         $page_title = 'Change Password';
-        $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = '';
         $user = User::find(auth()->user()->id);
         return view('backend.admin.profile.change-password',compact('page_title','user', 'page_breadcrumbs' ));
     }

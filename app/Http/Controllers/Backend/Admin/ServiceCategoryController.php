@@ -18,7 +18,7 @@ class ServiceCategoryController extends Controller
     {
         $page_title        = 'Categories';
         $page_description  = '';
-        $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = '';
         if ($request->ajax()) {
             $service = ServiceCategory::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
@@ -42,7 +42,7 @@ class ServiceCategoryController extends Controller
     {
         $page_title         = 'Category';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/add', 'title' =>'Add Category']);
+        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/add', 'title' =>'Add']);
         return view('backend.admin.service-category.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
@@ -53,7 +53,7 @@ class ServiceCategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ServiceCategoryRequest $request)
-    {
+    {   
         $serviceCategory             = new ServiceCategory;
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
@@ -78,7 +78,7 @@ class ServiceCategoryController extends Controller
         $data               = ServiceCategory::findOrFail($id);
         $page_title         = 'Category';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/edit/'.$id.'', 'title' =>'Edit Category']);
+        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/edit/'.$id.'', 'title' =>'Edit']);
         return view('backend.admin.service-category.edit', compact('data', 'page_title', 'page_description', 'page_breadcrumbs'));
     }
 

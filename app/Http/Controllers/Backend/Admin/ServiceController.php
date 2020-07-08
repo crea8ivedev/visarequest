@@ -27,7 +27,7 @@ class ServiceController extends Controller
     {
         $page_title        = 'Services';
         $page_description  = '';
-        $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = '';
         if ($request->ajax()) {
             $service = Service::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
@@ -64,7 +64,7 @@ class ServiceController extends Controller
     {
         $page_title         = 'Service';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/add', 'title' =>'Add Service']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/add', 'title' =>'Add']);
         $country_list        = Country::latest()->get();
         $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
         $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
@@ -123,7 +123,7 @@ class ServiceController extends Controller
         $data               = Service::findOrFail($id);
         $page_title         = 'Service';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/edit/'.$id.'', 'title' =>'Edit Service']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/edit/'.$id.'', 'title' =>'Edit']);
         $country_list       = Country::latest()->get();
         $category_list      = ServiceCategory::get();
         $selected_country   = ServiceCountry::where('service_id',$id)->get()->toArray();

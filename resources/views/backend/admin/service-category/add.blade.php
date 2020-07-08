@@ -35,7 +35,7 @@
             <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
           </div>
         </div>
-        <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
+        {{-- <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
           <label>Category icon :</label>
           <div class="input-group">
             <select class="form-control" id="category_id" name="category_id">
@@ -45,7 +45,7 @@
               @endforeach
             </select>
           </div>
-        </div>
+        </div> --}}
         <div class="card-footer">
           <input type="hidden" name="action" id="action" value="Add" />
           <input type="hidden" name="hidden_id" id="hidden_id" />

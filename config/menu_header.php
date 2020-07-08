@@ -63,12 +63,12 @@ return [
                 'alignment' => 'left',
                   'items' => [
                     [
-                        'title' => 'Category',  
+                        'title' => 'Categories',  
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/service-category',
                     ],
                     [
-                        'title' => 'Service',
+                        'title' => 'Services',
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/service',
                     ],
