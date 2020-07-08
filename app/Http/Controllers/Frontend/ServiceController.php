@@ -21,7 +21,10 @@ class ServiceController extends Controller
             return redirect()->intended(route('home'));
         }
         $service_category_list = ServiceCategory::get();
-        $service_list = Service::where('category_id', $category->id)->where('country', $country);
+        $service_list = Service::where('category_id', $category->id)
+            ->whereHas('countrys', function ($q) use ($country) {
+                $q->where('country_id', $country);
+            })->get();
         $country_list = Country::get();
         return view('frontend.service.index', compact('country_list', 'country', 'service_category_list', 'service_list', 'category'));
     }
@@ -39,8 +42,13 @@ class ServiceController extends Controller
     public function getServices(Request $request)
     {
         if ($request->ajax()) {
-            $service_list = Service::where('category_id', $request->category)->where('country', $request->country);
-            $returnHTML = view('frontend.service.ajax-service')->with('service_list', $service_list)->render();
+            $country = session('country');
+            $service_list = Service::where('category_id',  $request->category)
+                ->whereHas('countrys', function ($q) use ($country) {
+                    $q->where('country_id', $country);
+                })->get();
+            $category = ServiceCategory::where('id', $request->category)->first();
+            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list, 'category' => $category])->render();
             return response()->json(array('success' => true, 'html' => $returnHTML));
         }
     }

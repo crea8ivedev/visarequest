@@ -77,6 +77,7 @@
                                         <p>{{ $service->description}}</p>
                                     </div>
                                 </div>
+                                <a href="#" type="button"  style="cursor: pointer" class="btn-login" >{{ __('Login') }}</a>
                                 <a class="cmt-btn btn-inline cmt-btn-size-md cmt-icon-btn-left cmt-btn-color-skincolor" href="services-details.html" title="">Apply</a>
                                 <a class="cmt-btn btn-inline cmt-btn-size-md cmt-icon-btn-left cmt-btn-color-skincolor" href="services-details.html" title="">Contact Agent</a>
                             </div>

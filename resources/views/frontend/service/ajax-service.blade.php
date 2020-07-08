@@ -32,7 +32,7 @@
             </div>
         </a>
         @empty
-        <p>No service found for this category.</p>
+                <p>No service found for {{$category->name}}.</p>
         @endforelse
     </div>
 </div>
