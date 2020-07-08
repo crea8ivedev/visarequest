@@ -91,8 +91,6 @@ class ServiceController extends Controller
         $service->commission      = $request->commission;
         $service->status     = $request->status;
         $service->slug =  Str::slug($request->name, '-');
-
-        if ($service->save()) {
         $service->save();
         $insertedId = $service->id;
         $countrys = $request->country_id;
@@ -195,10 +193,7 @@ class ServiceController extends Controller
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
         $service->status     = $request->status;
-<<<<<<< HEAD
         $service->slug =  Str::slug($request->name, '-');
-=======
-
         ServiceCountry::where('service_id',$id)->delete();
         $countrys = $request->country_id;
         //Multiple insert service country
@@ -209,7 +204,6 @@ class ServiceController extends Controller
             ]);
         }
 
->>>>>>> 0f59c04019c9aa18c2947d0178a183f7442efcce
         if ($service->save()) {
             Toastr::success('Service updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');
