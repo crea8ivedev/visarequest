@@ -203,25 +203,25 @@ class AdminController extends Controller
      */
     public function updateProfile(Request $request) {
         $data = $request->all();
-        $validator = Validator::make($data, [
-                    'first_name'    => 'required',
-                    'phone_number'  => 'required',
-                    'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        // $validator = Validator::make($data, [
+        //             'first_name'    => 'required',
+        //             'phone_number'  => 'required',
+        //             'profile_image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
 
-        ]);
+        // ]);
 
-        if ($validator->fails()) {
-            return back()
-            ->withInput()
-            ->withErrors($validator);
-        } else {
-            try {
+        // if ($validator->fails()) {
+        //     return back()
+        //     ->withInput()
+        //     ->withErrors($validator);
+        // } else {
+            //try {
                 $photos_path = public_path('/images/uploads/profile/');
                 $user = User::find(auth()->user()->id);
                 $user->first_name = $data['first_name'];
                 $user->last_name = $data['last_name'];
-                $user->phone = $data['phone_number'];
-                $user->address = $data['address'];
+                $user->phone = $data['phone'];
+                //$user->address = $data['address'];
 //                $user->zipcode = $data['zipcode'];
 //                $user->city_id = $data['city_id'];
 //                $user->state_id = $data['state_id'];
@@ -233,17 +233,21 @@ class AdminController extends Controller
                     $user->profile_image = $save_name;
                 }
                 $user->save();
+                //dd($user);
+                if($user->save()) {
                 Toastr::success('Profile  updated successfully!','', Config::get('constants.toster'));
-                 return redirect()->intended(route('admin.profile'));
+                return redirect('/admin/profile');
+                }
+                // return redirect()->intended(route('admin.profile'));
                
-            } catch (Exception $ex) {
-                 Session::flash('message', 'Something went wrong, please try again.');
-                 Toastr::success('Something went wrong, please try again!','', Config::get('constants.toster'));
-                 Session::flash('alert-class', 'alert-danger');
-                return redirect()->intended(route('admin.profile'));
+            // } catch (Exception $ex) {
+            //      Session::flash('message', 'Something went wrong, please try again.');
+            //      Toastr::success('Something went wrong, please try again!','', Config::get('constants.toster'));
+            //      Session::flash('alert-class', 'alert-danger');
+            //     return redirect()->intended(route('admin.profile'));
                 
-            }
-        }
+            // }
+        
     }
 
     public function showChangePasswordForm(){

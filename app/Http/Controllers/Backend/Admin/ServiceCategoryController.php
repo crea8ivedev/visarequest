@@ -57,7 +57,7 @@ class ServiceCategoryController extends Controller
         $serviceCategory             = new ServiceCategory;
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
-        $service->slug =  Str::slug($request->name, '-');
+        $serviceCategory->slug =  Str::slug($request->name, '-');
         if ($serviceCategory->save()) {
             Toastr::success('Category added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service-category');
@@ -94,7 +94,7 @@ class ServiceCategoryController extends Controller
         $serviceCategory             = ServiceCategory::findOrFail($id);
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
-        $service->slug =  Str::slug($request->name, '-');
+        $serviceCategory->slug =  Str::slug($request->name, '-');
         if ($serviceCategory->save()) {
             Toastr::success('Category updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service-category');

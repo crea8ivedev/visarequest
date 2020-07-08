@@ -25,12 +25,13 @@ class ProfileRequest extends FormRequest
     {
         $segmentId = request()->segment(4); //returns 'posts'
         $request = $this->request->all();
+       // dd($request);
         if ($segmentId) {
            return [
                 'first_name'        =>  'required',
                 'email'             =>  'required|email|unique:users,email,'.$segmentId,
                 'phone'             =>  'required|numeric',
-                'profile_image'     => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'profile_image'     => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             ];
 
         } else {
@@ -40,7 +41,7 @@ class ProfileRequest extends FormRequest
                 'first_name'        =>  'required',
                 'email'             =>  'required|email|unique:users,email',
                 'phone'             =>  'required|numeric',
-                'profile_image'     => 'required|image|mimes:jpeg,png,jpg|max:2048',
+                'profile_image'     => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             ];
         }
     }
