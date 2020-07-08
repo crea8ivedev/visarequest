@@ -28,10 +28,18 @@
                         <nav class="main-menu menu-mobile m-auto" id="menu">
                             <ul class="menu">
                                 @foreach($service_category_list as $list)
-                                <li class="mega-menu-item">
-                                    <a href="#" class="mega-menu-link {{($list->slug===$category->slug)?'active':''}}">{{$list->name}}</a>
+                                <li data-id="{{$list->id}}" class="mega-menu-item service-category">
+                                    <a href="#" class="mega-menu-link  {{($list->slug===$category->slug)?'active':''}}"> <i class="{{$list->icon}}" aria-hidden="true"></i>{{$list->name}}</a>
                                 </li>
                                 @endforeach
+                                <li>
+                                    <select class="form-control country">
+                                        <option value="1">Select Country</option>
+                                        @foreach($country_list as $list)
+                                        <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }}>{{$list->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -41,10 +49,11 @@
     </div>
 </div>
 <div class="site-main">
-    <section class="cmt-row grid-section clearfix">
+    <section class="cmt-row grid-section clearfix service-list">
         <div class="container">
             <div class="row">
-                @foreach($service_list as $service)
+                @forelse ($service_list as $service)
+
                 <a href="{{route('frontend.service.details',$service->slug)}}">
                     <div class="col-lg-4 col-md-4 col-sm-6">
                         <div class="featured-icon-box icon-align-top-content style4 bor_rad_5">
@@ -74,7 +83,9 @@
                         </div>
                     </div>
                 </a>
-                @endforeach
+                @empty
+                <p>No service found for {{$category->name}}.</p>
+                @endforelse
             </div>
         </div>
     </section>

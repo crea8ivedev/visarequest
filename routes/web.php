@@ -18,9 +18,13 @@ Auth::routes();
 //FRONT ROUTE
 Route::namespace('Frontend')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::post('/set-country', 'HomeController@makeDefaultCountry')->name('country');
+
     Route::get('/service', 'ServiceController@index')->name('frontend.service');
     Route::get('/service/{slug}', 'ServiceController@index')->name('frontend.service.category');
     Route::get('/service-details/{slug}', 'ServiceController@getServiceDetails')->name('frontend.service.details');
+    Route::post('/get-services', 'ServiceController@getServices')->name('get.service');
+
 });
 //END FRONT ROUTE
 
@@ -204,7 +208,6 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/update/{id}', "EmailTemplateController@update")->name("admin.email-template.update");
         Route::post('/destroy/{id}', 'EmailTemplateController@destroy')->name("admin.email-template.destroy");
     });
-
 });
 
 //Auth Processor

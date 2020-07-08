@@ -57,10 +57,10 @@
                                 We are an expert visa consultant focusing on providing quick services to all your travelling needs. Be it a visa, travel insurance, flight ticketing, we cover it all.
                             </p>
                             <label for="countries" class="lead" style="text-indent: -9999px">Countries</label>
-                            <select class="form-control" id="countries">
+                            <select class="form-control country">
                                 <option value="1">Select Country</option>
-                                @foreach($country_list as $country)
-                                <option value="{{$country->id}}" data-capital="{{ucfirst($country->name)}}">{{$country->name}}</option>
+                                @foreach($country_list as $list)
+                                <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }} >{{$list->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -103,7 +103,8 @@
                     <div class=" featured-icon-box icon-align-top-content style5 border bor_rad_3">
                         <div class="featured-icon">
                             <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
-                                <i class="flaticon-bussiness-man"></i>
+                                <i class="{{$category->icon}}" aria-hidden="true"></i>
+
                             </div>
                         </div>
                         <div class="featured-content">

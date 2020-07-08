@@ -29,6 +29,7 @@
 <body>
     <div class="page">
         <header id="masthead" class="header cmt-header-style-03">
+            <meta name="csrf-token" content="{{ csrf_token() }}" />
             @include('frontend.layouts.header')
             @include('frontend.layouts.menu')
         </header>
@@ -56,6 +57,14 @@
     <script src="{{ asset('/revolution/js/rs6.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/frontend.js') }}" type="text/javascript"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ServiceCategoryRequest;
 use App\Models\ServiceCategory;
+use App\Models\Icons;
+use Illuminate\Support\Str;
 use Toastr;
 use Config;
 use DataTables;
@@ -41,8 +43,9 @@ class ServiceCategoryController extends Controller
     {
         $page_title         = 'Categories';
         $page_description   = '';
+        $icons = Icons::get();
         $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories']);
-        return view('backend.admin.service-category.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.service-category.add', compact('page_title', 'icons', 'page_description', 'page_breadcrumbs'));
     }
 
     /**
@@ -56,6 +59,7 @@ class ServiceCategoryController extends Controller
         $serviceCategory             = new ServiceCategory;
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
+        $service->slug =  Str::slug($request->name, '-');
         if ($serviceCategory->save()) {
             Toastr::success('Category added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service-category');
@@ -92,6 +96,7 @@ class ServiceCategoryController extends Controller
         $serviceCategory             = ServiceCategory::findOrFail($id);
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
+        $service->slug =  Str::slug($request->name, '-');
         if ($serviceCategory->save()) {
             Toastr::success('Category updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service-category');

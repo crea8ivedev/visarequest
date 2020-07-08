@@ -28,12 +28,12 @@
                         <div class="featured-icon d-flex flex-wrap justify-content-between align-items-center">
                             <div class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
                                 <h5>
-                                    {{$service->name}}
+                                    <i class="{{$service->icon}}" aria-hidden="true"></i> {{$service->name}}
                                 </h5>
                             </div>
                             <div class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
                                 <h5>
-                                {{$service->discount_price}} <del>{{$service->normal_price}}</del>
+                                    {{$service->discount_price}} <del>{{$service->normal_price}}</del>
                                 </h5>
                             </div>
                         </div>

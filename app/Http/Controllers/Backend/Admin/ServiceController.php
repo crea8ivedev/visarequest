@@ -13,6 +13,7 @@ use App\Models\ServiceCategory;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Toastr;
 use Config;
 
@@ -83,6 +84,8 @@ class ServiceController extends Controller
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
         $service->status     = $request->status;
+        $service->slug =  Str::slug($request->name, '-');
+
         if ($service->save()) {
             Toastr::success('Service added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');
@@ -171,6 +174,7 @@ class ServiceController extends Controller
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
         $service->status     = $request->status;
+        $service->slug =  Str::slug($request->name, '-');
         if ($service->save()) {
             Toastr::success('Service updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');

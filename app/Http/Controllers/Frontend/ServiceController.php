@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ServiceCategory;
 use App\Models\Service;
+use App\Models\Country;
 use App\Models\ServiceElement;
 use Config;
 
@@ -14,13 +15,15 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         $slug = ($request->slug) ? $request->slug : 'courier';
+        $country = session('country');
         $category = ServiceCategory::where('slug', $slug)->first();
         if (!$category) {
             return redirect()->intended(route('home'));
         }
         $service_category_list = ServiceCategory::get();
-        $service_list = Service::where('category_id', $category->id)->get();
-        return view('frontend.service.index', compact('service_category_list', 'service_list', 'category'));
+        $service_list = Service::where('category_id', $category->id)->where('country', $country);
+        $country_list = Country::get();
+        return view('frontend.service.index', compact('country_list', 'country', 'service_category_list', 'service_list', 'category'));
     }
 
     public function getServiceDetails(Request $request)
@@ -33,11 +36,12 @@ class ServiceController extends Controller
         return view('frontend.service.details', compact('service'));
     }
 
-    public function getServices(Request $request, $id)
+    public function getServices(Request $request)
     {
         if ($request->ajax()) {
-            $service_list = Service::where('category_id', $id);
-            return response()->json(['success' => true, 'data' => $service_list]);
+            $service_list = Service::where('category_id', $request->category)->where('country', $request->country);
+            $returnHTML = view('frontend.service.ajax-service')->with('service_list', $service_list)->render();
+            return response()->json(array('success' => true, 'html' => $returnHTML));
         }
     }
 

@@ -11,11 +11,17 @@ use App\Models\ServiceCategory;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $member_list = TeamMember::get();
         $service_category_list = ServiceCategory::get();
         $country_list = Country::get();
-        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list']));
+        $country = session('country');
+        return view('frontend.home', compact(['member_list', 'country', 'service_category_list', 'country_list']));
+    }
+
+    public function makeDefaultCountry(Request $request)
+    {
+        $request->session()->put('country', $request->country);
     }
 }
