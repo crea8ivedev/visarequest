@@ -35,8 +35,8 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-            <span class="card-icon">  {{ Metronic::getSVG("public/images/icons/Add-user.svg", "svg-icon-xm svg-icon-primary") }}</span></i></span>
-            <h3 class="card-label">Agents</h3>
+          <span class="card-icon"><i class="fas fa-users text-primary"></i></span>
+              <h3 class="card-label">Agents</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->

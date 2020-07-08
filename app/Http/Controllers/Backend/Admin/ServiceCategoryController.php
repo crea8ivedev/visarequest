@@ -39,9 +39,9 @@ class ServiceCategoryController extends Controller
 
     public function create(Request $request)
     {
-        $page_title         = 'Categories';
+        $page_title         = 'Category';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories']);
+        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/add', 'title' =>'Add Category']);
         return view('backend.admin.service-category.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
@@ -74,9 +74,9 @@ class ServiceCategoryController extends Controller
     public function edit($id)
     {
         $data               = ServiceCategory::findOrFail($id);
-        $page_title         = 'Service';
+        $page_title         = 'Category';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Service']);
+        $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/edit/'.$id.'', 'title' =>'Edit Category']);
         return view('backend.admin.service-category.edit', compact('data', 'page_title', 'page_description', 'page_breadcrumbs'));
     }
 

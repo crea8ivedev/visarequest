@@ -10,6 +10,7 @@ use App\Models\ServiceInput;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\ServiceCategory;
+use App\Models\ServiceCountry;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +34,7 @@ class ServiceController extends Controller
                 $service->where('name', 'LIKE', '%' . $request->search . '%');
                 // ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
             }
-            $data = $service->with(['country', 'staff', 'agent'])->latest()->get();
+            $data = $service->with(['countrys.country', 'staff', 'agent'])->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/service/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a> ';
@@ -41,6 +42,12 @@ class ServiceController extends Controller
                     $button .= '<a href="/admin/service/element/' . $data->id . '"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Add Input"><i class="la la-plus"></i></a> ';
                     return $button;
                 })
+                ->editColumn('country', function ($data) {
+                    return $data->countrys->map(function ($countrys) {
+                        return $name = $countrys->country->name;
+                   })->implode(', ');
+                   
+               })
                 ->editColumn('agentName', function ($data) {
                     return isset($data->agent->FullName) ? $data->agent->FullName : '';
                 })->editColumn('staffName', function ($data) {
@@ -56,7 +63,7 @@ class ServiceController extends Controller
     {
         $page_title         = 'Service';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/agent', 'title' => 'Service']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/add', 'title' =>'Add Service']);
         $country_list        = Country::latest()->get();
         $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
         $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
@@ -71,9 +78,8 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ServiceRequest $request)
-    {
+    {   
         $service             = new Service;
-        $service->country_id = $request->country_id;
         $service->category_id = $request->category_id;
         $service->processor_id = $request->processor_id;
         $service->agent_id  = $request->agent_id;
@@ -83,7 +89,19 @@ class ServiceController extends Controller
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
         $service->status     = $request->status;
-        if ($service->save()) {
+        $service->save();
+        $insertedId = $service->id;
+        $countrys = $request->country_id;
+        
+        //Multiple insert service country
+        foreach ($countrys as $country) {
+            ServiceCountry::create([
+                'country_id'    => $country,
+                'service_id'    => $insertedId,
+            ]);
+        }
+
+        if ($service) {
             Toastr::success('Service added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');
         } else {
@@ -103,19 +121,22 @@ class ServiceController extends Controller
         $data               = Service::findOrFail($id);
         $page_title         = 'Service';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Service']);
-        $country_list          = Country::latest()->get();
-        $category_list = ServiceCategory::get();
-        $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
-        return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs'));
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/edit/'.$id.'', 'title' =>'Edit Service']);
+        $country_list       = Country::latest()->get();
+        $category_list      = ServiceCategory::get();
+        $selected_country   = ServiceCountry::where('service_id',$id)->get()->toArray();
+        $selected_country   = array_column($selected_country, 'country_id');
+       
+        $staff_list         = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
+        $agent_list         = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
+        return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs','selected_country'));
     }
 
     public function createElement(Request $request, $id)
     {
-        $page_title         = 'Service';
+        $page_title         = 'Service input';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/agent', 'title' => 'Service']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/element/'.$id.'', 'title' =>'Service input']);
         $serviceElement          = Service::where('id', $id)->first();
         return view('backend.admin.services.element', compact('page_title', 'serviceElement', 'id', 'page_description', 'page_breadcrumbs'));
     }
@@ -161,7 +182,6 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, $id)
     {
         $service             = Service::findOrFail($id);
-        $service->country_id = $request->country_id;
         $service->category_id = $request->category_id;
         $service->processor_id = $request->processor_id;
         $service->agent_id  = $request->agent_id;
@@ -171,6 +191,17 @@ class ServiceController extends Controller
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
         $service->status     = $request->status;
+
+        ServiceCountry::where('service_id',$id)->delete();
+        $countrys = $request->country_id;
+        //Multiple insert service country
+        foreach ($countrys as $country) {
+            ServiceCountry::create([
+                'country_id'    => $country,
+                'service_id'    => $id,
+            ]);
+        }
+
         if ($service->save()) {
             Toastr::success('Service updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service');

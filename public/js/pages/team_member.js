@@ -78,7 +78,7 @@ $(document).ready(function() {
                    if (res.status != 400 ) {
                       swal.fire(
                            "Deleted!",
-                           "Your file has been deleted.",
+                          res.success,
                            "success"
                        )
                       $('#team_member_table').DataTable().ajax.reload();

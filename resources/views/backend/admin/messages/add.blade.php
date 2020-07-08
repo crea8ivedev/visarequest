@@ -21,7 +21,7 @@
         @csrf
         <div class="form-group row">
         <div class="col-lg-6">
-          <label>User<code>*</code>:</label>
+          <label>User :<code>*</code></label>
           <select class="form-control" id="user_id" name="user_id">
             <option value="">Select User</option>
             @foreach($user_list as $user)
@@ -34,7 +34,7 @@
         </div>
 
         <div class="col-lg-6">
-          <label>Email Type<code>*</code>:</label>
+          <label>Email Type :<code>*</code></label>
           <input class="form-control" id="email_type" name="email_type" placeholder="Email type" value="{{Request::old('email_type') ?? ''}}">
           @if ($errors->has('email_type'))
           <span class="invalid-feedback">{{ $errors->first('email_type') }}</span>
@@ -45,7 +45,7 @@
         </div>
 
         <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
-          <label>Subject<code>*</code>:</label>
+          <label>Subject :<code>*</code></label>
           <input class="form-control" id="subject" name="subject" placeholder="Subject" value="{{Request::old('subject') ?? ''}}">
           @if ($errors->has('subject'))
           <span class="invalid-feedback">{{ $errors->first('subject') }}</span>
@@ -54,7 +54,7 @@
           
 
         <div class="form-group {{ $errors->has('message') ? ' has-error' : '' }}">
-          <label>Message<code>*</code>:</label>
+          <label>Message :<code>*</code></label>
             <textarea class="form-control" id="message" name="message" placeholder="Message">{{Request::old('message') ?? ''}}</textarea>
           @if ($errors->has('message'))
           <span class="help-block">

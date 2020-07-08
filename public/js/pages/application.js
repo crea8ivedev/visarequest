@@ -1,13 +1,13 @@
 $(document).ready(function() {
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-    var table = $('#service_assign_table').DataTable({
+    var table = $('#application_table').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
         dom: "<'row'<'col-sm-12'tr>>\n\t\t\t<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7 dataTables_pager'lp>>",
         ajax: {
             type: 'post',
-            url: "service-assign",
+            url: "application",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
@@ -65,7 +65,7 @@ $(document).ready(function() {
             confirmButtonText: "Yes, delete it!"
         }).then(function(result) {
             if (result.value) {
-                var url = 'service/destroy/' + id;
+                var url = 'application/destroy/' + id;
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -77,10 +77,10 @@ $(document).ready(function() {
                         if (res.status != 400) {
                             swal.fire(
                                 "Deleted!",
-                                "Your file has been deleted.",
+                               res.success,
                                 "success"
                             )
-                            $('#agent_table').DataTable().ajax.reload();
+                            $('#application_table').DataTable().ajax.reload();
                         } else {
                             swal.fire(
                                 "Cancelled",

@@ -22,7 +22,7 @@
         <div class="form-group row">
         
         <div class="col-lg-6">
-          <label>Email Type<code>*</code>:</label>
+          <label>Email Type :<code>*</code></label>
           <input class="form-control" id="email_type" name="email_type" placeholder="Email type" value="{{ $data->email_type ?? ''}}">
           @if ($errors->has('email_type'))
           <span class="invalid-feedback">{{ $errors->first('email_type') }}</span>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-lg-6">
-            <label>Subject<code>*</code>:</label>
+            <label>Subject :<code>*</code></label>
             <input class="form-control" id="subject" name="subject" placeholder="Subject" value="{{ $data->subject ?? ''}}">
             @if ($errors->has('subject'))
             <span class="invalid-feedback">{{ $errors->first('subject') }}</span>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-lg-12">
-          <label>Message<code>*</code>:</label>
+          <label>Message :<code>*</code></label>
          
             <textarea class="form-control" id="message" name="message" placeholder="Message"></textarea>
          

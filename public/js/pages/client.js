@@ -82,7 +82,7 @@
                 if (res.status != 400 ) {
                    swal.fire(
                         "Deleted!",
-                        "Your file has been deleted.",
+                       res.success,
                         "success"
                     )
                    $('#client_table').DataTable().ajax.reload();

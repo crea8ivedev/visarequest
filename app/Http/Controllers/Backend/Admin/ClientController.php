@@ -70,8 +70,7 @@ class ClientController extends Controller
     {   
         $page_title         = 'Client';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Client']);
-
+        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Users'], ['page' => 'admin/client/add', 'title' =>'Add Client']);
         return view('backend.admin.client.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
     }
@@ -115,7 +114,7 @@ class ClientController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Client';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Client']);
+        $page_breadcrumbs   = array (['page' => 'admin/client', 'title' => 'Users'], ['page' => 'admin/client/edit/'.$id.'', 'title' =>'Edit Client']);
 
         return view('backend.admin.client.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

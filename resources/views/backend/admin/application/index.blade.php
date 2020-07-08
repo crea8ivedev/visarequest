@@ -30,7 +30,7 @@
       <div class="card-header">
         <div class="card-title">
            <span class="card-icon"><i class="fas fa-tasks text-primary"></i></span>
-          <h3 class="card-label">Service Assign</h3>
+          <h3 class="card-label">Applications</h3>
         </div>
         <div class="card-toolbar">
           <!--begin::Button-->
@@ -68,7 +68,7 @@
       </div>
     </div>
     <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-      <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="service_assign_table">
+      <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="application_table">
         <thead>
           <tr>
             <th>Service Name</th>
@@ -96,5 +96,5 @@
 @foreach(config('layout.resources.sweetalert') as $script)
 <script src="{{ asset($script) }}" type="text/javascript"></script>
 @endforeach
-<script src="{{ asset('js/pages/service_assign.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/pages/application.js') }}" type="text/javascript"></script>
 @endsection

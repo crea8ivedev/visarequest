@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Application extends Model
 {
-    protected $fillable = [
-        'country_id', 'staff_id', 'agent_id','name', 'description', 'normal_price', 'discount_price', 'commission', 'status',
-    ];
+    public function service()
+    {	
+    	return $this->belongsTo('App\Models\service', 'service_id');
+    }
 
     public function country()
     {	
@@ -25,8 +26,8 @@ class Service extends Model
     	return $this->belongsTo('App\Models\User', 'agent_id');
     }
 
-    public function countrys()
-    {
-        return $this->hasMany('App\Models\ServiceCountry');
+    public function user()
+    {	
+    	return $this->belongsTo('App\Models\User', 'user_id');
     }
 }

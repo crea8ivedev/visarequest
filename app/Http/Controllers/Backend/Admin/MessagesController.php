@@ -74,7 +74,7 @@ class MessagesController extends Controller
     {   
         $page_title         = 'Send New Message';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/messages', 'title' => 'Messages']);
+        $page_breadcrumbs   = array(['page' => 'admin/messages', 'title' => 'Messages'],['page' => 'admin/messages/send', 'title' =>'Send new Message']);
         $user_list          = User::get();
 
         return view('backend.admin.messages.add', compact('page_title', 'page_description', 'page_breadcrumbs', 'user_list'));
@@ -117,7 +117,7 @@ class MessagesController extends Controller
         $data               = Message::findOrFail($id);
         $page_title         = 'Massage Reply';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/messages', 'title' => 'Messages']);
+        $page_breadcrumbs   = array(['page' => 'admin/messages', 'title' => 'Messages'],['page' => 'admin/messages/reply/'.$id.'', 'title' =>'Message Reply']);
         $user_list          = User::get();
 
         return view('backend.admin.messages.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs', 'user_list'));

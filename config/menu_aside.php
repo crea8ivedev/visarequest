@@ -62,11 +62,16 @@ return [
                     'title' => 'Service',
                     'page'  => 'admin/service',
                 ],
-                [
-                    'title' => 'Service Assign',
-                    'page'  => 'admin/service-assign',
-                ],
             ]
+        ],
+
+        //Application
+        [
+            'title' => 'Applications',
+            'root'  => true,
+            'icon'  => 'public/images/icons/Clipboard.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page'  => 'admin/application',
+            'new-tab' => false,
         ],
 
         //Finance

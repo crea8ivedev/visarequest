@@ -35,7 +35,7 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-          <span class="card-icon">{{ Metronic::getSVG("public/images/icons/Dollar.svg", "svg-icon-xm svg-icon-primary") }}</span>
+          <span class="card-icon"><i class="fas fa-balance-scale text-primary"></i></span>
             <h3 class="card-label">Finance</h3>
           </div>
           

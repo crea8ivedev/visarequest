@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
-    var table = $('#agent_table').DataTable({
+    var table = $('#service_category_table').DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
@@ -66,10 +66,10 @@ $(document).ready(function () {
                         if (res.status != 400) {
                             swal.fire(
                                 "Deleted!",
-                                "Your file has been deleted.",
+                               res.success,
                                 "success"
                             )
-                            $('#agent_table').DataTable().ajax.reload();
+                            $('#service_category_table').DataTable().ajax.reload();
                         } else {
                             swal.fire(
                                 "Cancelled",

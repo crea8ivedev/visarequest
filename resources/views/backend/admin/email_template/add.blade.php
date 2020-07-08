@@ -20,29 +20,25 @@
       <form class="form" method="post" id="sample_form" action="{{ route('admin.email-template.store')  }}">
         @csrf
         <div class="form-group row">
-        
+          <div class="col-lg-6">
+            <label>Email Type :<code>*</code></label>
+            <input class="form-control" id="email_type" name="email_type" placeholder="Email type" value="{{Request::old('email_type') ?? ''}}">
+            @if ($errors->has('email_type'))
+            <span class="invalid-feedback">{{ $errors->first('email_type') }}</span>
+            @endif
+          </div>    
 
-        <div class="col-lg-6">
-          <label>Email Type<code>*</code>:</label>
-          <input class="form-control" id="email_type" name="email_type" placeholder="Email type" value="{{Request::old('email_type') ?? ''}}">
-          @if ($errors->has('email_type'))
-          <span class="invalid-feedback">{{ $errors->first('email_type') }}</span>
-          @endif
-        </div>
-
-        <div class="col-lg-6">
-          <label>Sender Email<code>*</code>:</label>
-          <input type="email" class="form-control" id="sender_email" name="sender_email" placeholder="Sender Email" value="{{Request::old('sender_email') ?? ''}}">
-          @if ($errors->has('snder_email'))
-          <span class="invalid-feedback">{{ $errors->first('sender_email') }}</span>
-          @endif
-        </div>
-
-
+          <div class="col-lg-6">
+            <label>Sender Email :<code>*</code></label>
+            <input type="email" class="form-control" id="sender_email" name="sender_email" placeholder="Sender Email" value="{{Request::old('sender_email') ?? ''}}">
+            @if ($errors->has('snder_email'))
+            <span class="invalid-feedback">{{ $errors->first('sender_email') }}</span>
+            @endif
+          </div>
         </div>
 
         <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
-          <label>Subject<code>*</code>:</label>
+          <label>Subject :<code>*</code></label>
           <input class="form-control" id="subject" name="subject" placeholder="Subject" value="{{Request::old('subject') ?? ''}}">
           @if ($errors->has('subject'))
           <span class="invalid-feedback">{{ $errors->first('subject') }}</span>
@@ -51,13 +47,13 @@
           
 
         <div class="form-group {{ $errors->has('message') ? ' has-error' : '' }}">
-          <label>Message<code>*</code>:</label>
-            <textarea class="form-control" id="message" name="message" placeholder="Message">{{Request::old('message') ?? ''}}</textarea>
-          @if ($errors->has('message'))
-          <span class="help-block">
-              <strong style="color: red">{{ $errors->first('message') }}</strong>
-          </span>
-      @endif
+            <label>Message :<code>*</code></label>
+              <textarea class="form-control" id="message" name="message" placeholder="Message">{{Request::old('message') ?? ''}}</textarea>
+            @if ($errors->has('message'))
+            <span class="help-block">
+                <strong style="color: red">{{ $errors->first('message') }}</strong>
+            </span>
+            @endif
         </div>
 
         <div class="card-footer">

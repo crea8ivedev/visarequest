@@ -72,13 +72,17 @@ return [
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/service',
                     ],
-                    [
-                        'title' => 'Service Assign',
-                        'icon'  => 'images/icons/service.svg',
-                        'page'  => 'admin/service-assign',
-                    ],
+                    
                 ]
             ]
+        ],
+
+        //Application
+        [
+            'title' => 'Applications',
+            'root'  => true,
+            'page'  => 'admin/application',
+            'new-tab' => false,
         ],
 
         //Finance

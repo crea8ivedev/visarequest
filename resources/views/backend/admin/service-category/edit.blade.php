@@ -21,7 +21,7 @@
         @csrf
 
         <div class="form-group {{ $errors->has('name') ? 'is-invalid' : '' }}">
-          <label>Category Name <code>*</code>:</label>
+          <label>Category Name  :<code>*</code></label>
           <div class="input-group">
             <input type="text" class="form-control" name="name" id="name" value="{{ $data->name ?? ''}}" placeholder="Country name" />
           </div>
