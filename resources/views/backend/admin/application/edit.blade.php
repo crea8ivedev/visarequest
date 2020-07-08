@@ -10,34 +10,16 @@
     <form class="form" method="post" id="sample_form" action="{{ route('admin.service.update',['id'=>$data->id])}}">
       @csrf
       <div class="card-body">
-        <div class="form-group ">
-            <label>Service Name :<code>*</code></label>
+        <div class="form-group row">
+          <div class="col-lg-6">
+            <label>Service Name</label>
             <input class="form-control" id="name" name="name" value="{{ $data->name ?? ''}}" placeholder="Service Name">
             @if ($errors->has('name'))
             <span class="invalid-feedback">{{ $errors->first('name') }}</span>
             @endif
-        </div>
-
-         <div class="form-group ">
-            <label>Country :<code>*</code></label>
-            <select class="form-control  country_id select2" id="country_id[]" name="country_id[]"  multiple="multiple">
-              <option value="">Select Country</option>
-              @foreach($country_list as $country)
-               @if(in_array($country->id, $selected_country))
-              <option value="{{ $country->id }}" selected="true" >{{ $country->name }}</option>
-              @else
-               <option value="{{ $country->id }}" >{{ $country->name }}</option>
-               @endif
-              @endforeach
-            </select>
-            @if ($errors->has('country_id'))
-            <span class="invalid-feedback">{{ $errors->first('country_id') }}</span>
-            @endif
           </div>
-
-        <div class="form-group row">
           <div class="col-lg-6">
-            <label>Category :<code>*</code></label>
+            <label>Category</label>
             <select class="form-control  country_id" id="category_id" name="category_id">
               <option value="">Select Category</option>
               @foreach($category_list as $category)
@@ -48,9 +30,22 @@
             <span class="invalid-feedback">{{ $errors->first('category_id') }}</span>
             @endif
           </div>
-         
+        </div>
+        <div class="form-group row">
           <div class="col-lg-6">
-            <label>Processor :<code>*</code></label>
+            <label>Country</label>
+            <select class="form-control  country_id" id="country_id" name="country_id">
+              <option value="">Select Country</option>
+              @foreach($country_list as $country)
+              <option value="{{ $country->id }}" {{ $country->id ==$data->country_id  ? 'selected="selected"' : '' }}>{{ $country->name }}</option>
+              @endforeach
+            </select>
+            @if ($errors->has('country_id'))
+            <span class="invalid-feedback">{{ $errors->first('country_id') }}</span>
+            @endif
+          </div>
+          <div class="col-lg-6">
+            <label>Processor</label>
             <select class="form-control" id="processor_id" name="processor_id">
               <option value="">Select Processor</option>
               @foreach($staff_list as $staff)
@@ -66,11 +61,11 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-6">
-            <label>Agent :<code>*</code></label>
+            <label>Agent</label>
             <select class="form-control" id="agent_id" name="agent_id">
               <option value="">Select Agent</option>
               @foreach($agent_list as $agent)
-              <option value="{{ $agent->id }}" {{ $agent->id ==$data->agent_id  ? 'selected="selected"' : '' }}>{{ $agent->FullName }}</option>
+              <option value="{{ $agent->id }}" {{ $agent->id ==$data->agent_id  ? 'selected="selected"' : '' }}>{{ $staff->FullName }}</option>
               @endforeach
             </select>
             @if ($errors->has('agent_id'))
@@ -78,7 +73,7 @@
             @endif
           </div>
           <div class="col-lg-6">
-            <label>Normal Price :<code>*</code></label>
+            <label>Normal Price</label>
             <input class="form-control" id="normal_price" name="normal_price" value="{{ $data->normal_price ?? ''}}" placeholder="Normal price">
             @if ($errors->has('normal_price'))
             <span class="invalid-feedback">{{ $errors->first('normal_price') }}</span>
@@ -87,14 +82,14 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-6">
-            <label>Discount Price :<code>*</code></label>
+            <label>Discount Price</label>
             <input class="form-control" id="discount_price" name="discount_price" value="{{ $data->discount_price ?? ''}}" placeholder="Discount price">
             @if ($errors->has('discount_price'))
             <span class="invalid-feedback">{{ $errors->first('discount_price') }}</span>
             @endif
           </div>
           <div class="col-lg-6">
-            <label>Commission :<code>*</code></label>
+            <label>Commission</label>
             <input class="form-control" id="commission" name="commission" value="{{ $data->commission ?? ''}}" placeholder="Commission">
             @if ($errors->has('commission'))
             <span class="help-block">
@@ -105,7 +100,7 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-12">
-            <label>Description :<code>*</code></label>
+            <label>Description</label>
             <textarea class="form-control" id="description" name="description" placeholder="Description">{{ $data->description ?? ''}}</textarea>
             @if ($errors->has('discount_price'))
             <span class="invalid-feedback">{{ $errors->first('discount_price') }}</span>
@@ -114,7 +109,7 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-6">
-            <label>Status :</label>
+            <label>Status:</label>
             <div class="radio">
               <label class="radio" id="active">
                 <input type="radio" name="status" id="active" class="form-control status" value="1" {{ $data->status == 1  ? 'checked' : '' }} /> Active
@@ -146,9 +141,6 @@
 @endforeach
 @foreach(config('layout.resources.select2_js') as $script)
 <script src="{{ asset($script) }}" type="text/javascript"></script>
-<script>
-  $('.select2').select2({container: 'body'})
-</script>
 @endforeach
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ServiceRequest') !!}
 @endsection

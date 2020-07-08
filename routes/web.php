@@ -161,14 +161,14 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     });
 
     /* routes for service view */
-    Route::group(["prefix" => "service-assign"], function () {
-        Route::get('/', "ServiceAssignController@index")->name("admin.service-assign");
-        Route::post('/', "ServiceAssignController@index")->name("admin.service-assign");
-        route::get('/add', "ServiceAssignController@create")->name("admin.service-assign.add");
-        Route::get('/edit/{id}', "ServiceAssignController@edit")->name("admin.service-assign.edit");
-        Route::post('/store', "ServiceAssignController@store")->name("admin.s-assign.store");
-        Route::post('/update/{id}', "ServiceAssignController@update")->name("admin.service-assign.update");
-        Route::post('/destroy/{id}', 'ServiceAssignController@destroy')->name("admin.service-assign.destroy");
+    Route::group(["prefix" => "application"], function () {
+        Route::get('/', "ApplicationController@index")->name("admin.application");
+        Route::post('/', "ApplicationController@index")->name("admin.application");
+        route::get('/add', "ApplicationController@create")->name("admin.application.add");
+        Route::get('/edit/{id}', "ApplicationController@edit")->name("admin.application.edit");
+        Route::post('/store', "ApplicationController@store")->name("admin.s-assign.store");
+        Route::post('/update/{id}', "ApplicationController@update")->name("admin.application.update");
+        Route::post('/destroy/{id}', 'ApplicationController@destroy')->name("admin.application.destroy");
     });
 
     /* routes for finance view */

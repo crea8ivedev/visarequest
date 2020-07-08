@@ -43,9 +43,9 @@ class CountryController extends Controller
 
     public function create(Request $request)
     {
-        $page_title         = 'Countries';
+        $page_title         = 'Country';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Country']);
+        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Countries'],['page' => 'admin/country/add', 'title' =>'Add Country']);
         return view('backend.admin.country.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
@@ -79,9 +79,9 @@ class CountryController extends Controller
     public function edit($id)
     {
         $data               = Country::findOrFail($id);
-        $page_title         = 'Countries';
+        $page_title         = 'Country';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Service']);
+        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Countries'],['page' => 'admin/country/edit/'.$id.'', 'title' =>'Edit Country']);
         $country_list          = Country::latest()->get();
         return view('backend.admin.country.edit', compact('data', 'page_title', 'page_description', 'page_breadcrumbs'));
     }

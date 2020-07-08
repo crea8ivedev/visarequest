@@ -439,7 +439,8 @@ class Menu
 
     // Check for active Vertical Menu item
     public static function isActiveVerMenuItem($item, $page, $rec = 0)
-    {
+    {   
+        //dd($page);
         $count = count(explode("/", $page));
         if ($count > 2) {
             $page = substr($page, 0, strpos($page, '/', strpos($page, '/') + 1));
@@ -457,8 +458,6 @@ class Menu
         
         if (is_array($item)) {
             foreach ($item as $each) {
-                $page = substr($page, 0, strrpos( $page, '/'));
-                //dd($page);
                 if (self::isActiveVerMenuItem($each, $page, $rec++)) {
                     return true;
                 }

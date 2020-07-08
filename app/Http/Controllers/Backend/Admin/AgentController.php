@@ -70,7 +70,7 @@ class AgentController extends Controller
     {   
         $page_title         = 'Agent';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agent']);
+        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Users'], ['page' => 'admin/agent/add', 'title' =>'Add Agent']);
 
         return view('backend.admin.agent.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -115,7 +115,7 @@ class AgentController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Agent';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agent']);
+        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Users'], ['page' => 'admin/agent/edit/'.$id.'', 'title' =>'Edit Agent']);
 
         return view('backend.admin.agent.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

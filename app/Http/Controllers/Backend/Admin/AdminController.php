@@ -82,7 +82,7 @@ class AdminController extends Controller
     {   
         $page_title         = 'Admin';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Admin']);
+        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Users'], ['page' => 'admin/admin/add', 'title' =>'Add Admin']);
 
         return view('backend.admin.admin.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -127,7 +127,7 @@ class AdminController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Admin';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Admin']);
+        $page_breadcrumbs   = array (['page' => 'admin/admin', 'title' => 'Users'] ,['page' => 'admin/admin/edit/'.$id.'', 'title' =>'Edit Admin']);
 
         return view('backend.admin.admin.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

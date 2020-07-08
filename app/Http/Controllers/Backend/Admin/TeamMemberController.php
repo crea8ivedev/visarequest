@@ -59,7 +59,7 @@ class TeamMemberController extends Controller
     {   
         $page_title         = 'Team Member';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/team-member', 'title' => 'Team Member']);
+        $page_breadcrumbs   = array(['page' => 'admin/team-member', 'title' => 'Team Members'],['page' => 'admin/team-member/add', 'title' =>'Add Team member']);
 
         return view('backend.admin.team_member.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -104,7 +104,7 @@ class TeamMemberController extends Controller
         $data               = TeamMember::findOrFail($id);
         $page_title         = 'Team Member';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/team-member', 'title' => 'Agent']);
+        $page_breadcrumbs   = array(['page' => 'admin/team-member', 'title' => 'Team Members'],['page' => 'admin/team-member/edit/'.$id.'', 'title' =>'Edit Team member']);
 
         return view('backend.admin.team_member.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

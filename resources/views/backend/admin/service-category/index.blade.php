@@ -35,7 +35,7 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-            <span class="card-icon">{{ Metronic::getSVG("public/images/icons/service.svg", "svg-icon-xm svg-icon-primary") }}</span>
+            <span class="card-icon"><i class="far fa-list-alt text-primary"></i></span>
             <h3 class="card-label">Categories</h3>
           </div>
           <div class="card-toolbar">
@@ -63,7 +63,7 @@
             </div>
           </div>
             <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="agent_table">
+            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="service_category_table">
                 <thead>
                     <tr>
                         <th>Category Name</th>

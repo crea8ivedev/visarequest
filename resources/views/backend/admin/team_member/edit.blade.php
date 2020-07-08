@@ -22,7 +22,7 @@
              
               <div class="form-group row {{ $errors->has('name') ? 'has-error' : '' }}">
                 <div class="col-lg-6">
-                  <label>Name <code>*</code></label>
+                  <label>Name :<code>*</code></label>
                   <div class="input-group">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name"  value="{{ $data->name ?? '' }}" />
                   </div>
@@ -35,7 +35,7 @@
 
                 <div class="col-lg-6">
                   <div class="form-group {{ $errors->has('position') ? ' has-error' : '' }}">
-                    <label>Position <code>*</code></label>
+                    <label>Position :<code>*</code></label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="position" name="position" placeholder="Position"  value="{{ $data->position ?? '' }}" />
                     </div>
@@ -52,7 +52,7 @@
 
                <div class="form-group row  {{ $errors->has('email') ? ' has-error' : '' }}">
                 <div class="col-lg-6">
-                   <label>Email</label>
+                   <label>Email :</label>
                    <div class="input-group">
                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ $data->email ?? '' }}" />
                    </div>
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                   <label>Phone Number</label>
+                   <label>Phone Number :</label>
                    <div class="input-group">
                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number" value="{{ $data->phone ?? '' }}" />
                    </div>
@@ -79,7 +79,7 @@
 
                <div class="form-group row  {{ $errors->has('facebook') ? ' has-error' : '' }}">
                 <div class="col-lg-6">
-                   <label>Facebook</label>
+                   <label>Facebook :</label>
                    <div class="input-group">
                      <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook" value="{{ $data->facebook ?? '' }}"/>
                    </div>
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                   <label>Instagram</label>
+                   <label>Instagram :</label>
                    <div class="input-group">
                      <input type="text" class="form-control" name="instagram" id="instagram" placeholder="Instagram" value="{{ $data->instagram ?? '' }}"/>
                    </div>
@@ -105,7 +105,7 @@
 
                <div class="form-group row  {{ $errors->has('twitter') ? ' has-error' : '' }}">
                 <div class="col-lg-6">
-                   <label>Twitter</label>
+                   <label>Twitter :</label>
                    <div class="input-group">
                      <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter"  value="{{ $data->twitter ?? '' }}" />
                    </div>

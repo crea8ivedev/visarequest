@@ -74,7 +74,7 @@ class EmailTemplateController extends Controller
     {   
         $page_title         = 'Email Template';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/email-template', 'title' => 'Email Template']);
+        $page_breadcrumbs   = array(['page' => 'admin/email-template', 'title' => 'Email Template'],['page' => 'admin/email-template/add', 'title' =>'Add Email Template']);
     
         return view('backend.admin.email_template.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -116,7 +116,7 @@ class EmailTemplateController extends Controller
         $data               = EmailTemplate::findOrFail($id);
         $page_title         = 'Email Template';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/email-template', 'title' => 'Email Template']);
+        $page_breadcrumbs   = array(['page' => 'admin/email-template', 'title' => 'Email Template'],['page' => 'admin/email-template/edit/'.$id.'', 'title' =>'Edit Email Template']);
     
         return view('backend.admin.email_template.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }
