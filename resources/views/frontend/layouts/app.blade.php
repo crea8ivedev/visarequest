@@ -40,6 +40,7 @@
         <a id="totop" href="#top">
             <i class="fa fa-angle-up"></i>
         </a>
+
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/tether.min.js') }}"></script>
@@ -65,6 +66,7 @@
             }
         });
     </script>
+    @include('frontend.common.auth-modal')
 </body>
 
 </html>

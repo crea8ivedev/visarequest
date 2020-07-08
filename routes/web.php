@@ -23,8 +23,7 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/service', 'ServiceController@index')->name('frontend.service');
     Route::get('/service/{slug}', 'ServiceController@index')->name('frontend.service.category');
     Route::get('/service-details/{slug}', 'ServiceController@getServiceDetails')->name('frontend.service.details');
-    Route::post('/get-services', 'ServiceController@getServices')->name('get.service');
-
+    Route::post('/get-services', 'ServiceController@getServices')->name('list-service');
 });
 //END FRONT ROUTE
 
