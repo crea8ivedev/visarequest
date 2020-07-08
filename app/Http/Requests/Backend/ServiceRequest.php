@@ -52,7 +52,8 @@ class ServiceRequest extends FormRequest
     public function messages()
     {
         return [
-            //'country_id.*.required'       => 'Please select country.',
+            'country_id.required'       => 'Please select country.',
+            'category_id.required'       => 'Please select category.',
             'processor_id.required'        => 'Please select processor.',
             'agent_id.required'            => 'Please select agent.',
             'name.required'         => 'Please enter service name.',
