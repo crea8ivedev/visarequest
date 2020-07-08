@@ -24,7 +24,7 @@ class ServiceAssignController extends Controller
     {
         $page_title        = 'Service Assign';
         $page_description  = '';
-        $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = '';
         if ($request->ajax()) {
             $service = ServiceAssign::query();
             if ($request->has('search') && !is_null($request->get('search'))) {

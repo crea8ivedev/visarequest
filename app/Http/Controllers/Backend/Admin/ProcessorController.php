@@ -23,7 +23,7 @@ class ProcessorController extends Controller
     {   
             $page_title        = 'Processors';
             $page_description  = '';
-            $page_breadcrumbs  = array (['page' => 'processor', 'title' => 'Dashboard']);
+            $page_breadcrumbs  = '';
 
             if($request->ajax())
             {
@@ -71,7 +71,7 @@ class ProcessorController extends Controller
     {   
         $page_title         = 'Processor';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Users'], ['page' => 'admin/processor/add', 'title' =>'Add Processor']);
+        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processors'], ['page' => 'admin/processor/add', 'title' =>'Add']);
 
         return view('backend.admin.processor.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -115,7 +115,7 @@ class ProcessorController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Processor';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Users'], ['page' => 'admin/processor/edit/'.$id.'', 'title' =>'Edit Processor']);
+        $page_breadcrumbs   = array (['page' => 'admin/processor', 'title' => 'Processors'], ['page' => 'admin/processor/edit/'.$id.'', 'title' =>'Edit']);
 
         return view('backend.admin.processor.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

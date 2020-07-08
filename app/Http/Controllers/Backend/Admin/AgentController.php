@@ -23,7 +23,7 @@ class AgentController extends Controller
     {   
             $page_title        = 'Agents';
             $page_description  = '';
-            $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+            $page_breadcrumbs  = '';
 
             if($request->ajax())
             {
@@ -70,7 +70,7 @@ class AgentController extends Controller
     {   
         $page_title         = 'Agent';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Users'], ['page' => 'admin/agent/add', 'title' =>'Add Agent']);
+        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agents'], ['page' => 'admin/agent/add', 'title' =>'Add']);
 
         return view('backend.admin.agent.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -115,7 +115,7 @@ class AgentController extends Controller
         $data               = User::findOrFail($id);
         $page_title         = 'Agent';
         $page_description   = '';
-        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Users'], ['page' => 'admin/agent/edit/'.$id.'', 'title' =>'Edit Agent']);
+        $page_breadcrumbs   = array (['page' => 'admin/agent', 'title' => 'Agents'], ['page' => 'admin/agent/edit/'.$id.'', 'title' =>'Edit']);
 
         return view('backend.admin.agent.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

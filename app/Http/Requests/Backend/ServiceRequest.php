@@ -26,9 +26,9 @@ class ServiceRequest extends FormRequest
         $id = request()->segment(4);
         if ($id) {
             return [
-                'country_id.*'        =>  'required',
+                'country_id'        =>  'required|array|min:1',
+                'category_id'         =>  'required',
                 'processor_id'         =>  'required',
-                'agent_id'             =>  'required',
                 'name'          =>  'required|unique:services,name,' . $id,
                 'description'  =>  'required',
                 'normal_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
@@ -37,8 +37,9 @@ class ServiceRequest extends FormRequest
             ];
         } else {
             return [
+                'country_id'        =>  'required|array|min:1',
+                'category_id'         =>  'required',
                 'processor_id'         =>  'required',
-                'agent_id'             =>  'required',
                 'name'          =>  'required|unique:services,name',
                 'description'  =>  'required',
                 'normal_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',

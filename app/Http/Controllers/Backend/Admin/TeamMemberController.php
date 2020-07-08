@@ -21,7 +21,7 @@ class TeamMemberController extends Controller
     {   
             $page_title        = 'Team Members';
             $page_description  = '';
-            $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+            $page_breadcrumbs  = '';
 
             if($request->ajax())
             {
@@ -59,7 +59,7 @@ class TeamMemberController extends Controller
     {   
         $page_title         = 'Team Member';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/team-member', 'title' => 'Team Members'],['page' => 'admin/team-member/add', 'title' =>'Add Team member']);
+        $page_breadcrumbs   = array(['page' => 'admin/team-member', 'title' => 'Team Members'],['page' => 'admin/team-member/add', 'title' =>'Add']);
 
         return view('backend.admin.team_member.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
 
@@ -104,7 +104,7 @@ class TeamMemberController extends Controller
         $data               = TeamMember::findOrFail($id);
         $page_title         = 'Team Member';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/team-member', 'title' => 'Team Members'],['page' => 'admin/team-member/edit/'.$id.'', 'title' =>'Edit Team member']);
+        $page_breadcrumbs   = array(['page' => 'admin/team-member', 'title' => 'Team Members'],['page' => 'admin/team-member/edit/'.$id.'', 'title' =>'Edit']);
 
         return view('backend.admin.team_member.edit', compact('data','page_title', 'page_description', 'page_breadcrumbs'));
     }

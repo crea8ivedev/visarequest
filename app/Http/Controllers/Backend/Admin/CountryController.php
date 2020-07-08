@@ -18,7 +18,7 @@ class CountryController extends Controller
     {
         $page_title        = 'Countries';
         $page_description  = '';
-        $page_breadcrumbs  = array(['page' => 'admin', 'title' => 'Dashboard']);
+        $page_breadcrumbs  = '';
         if ($request->ajax()) {
             $service = Country::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
@@ -45,7 +45,7 @@ class CountryController extends Controller
     {
         $page_title         = 'Country';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Countries'],['page' => 'admin/country/add', 'title' =>'Add Country']);
+        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Countries'],['page' => 'admin/country/add', 'title' =>'Add']);
         return view('backend.admin.country.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
@@ -81,7 +81,7 @@ class CountryController extends Controller
         $data               = Country::findOrFail($id);
         $page_title         = 'Country';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Countries'],['page' => 'admin/country/edit/'.$id.'', 'title' =>'Edit Country']);
+        $page_breadcrumbs   = array(['page' => 'admin/country', 'title' => 'Countries'],['page' => 'admin/country/edit/'.$id.'', 'title' =>'Edit']);
         $country_list          = Country::latest()->get();
         return view('backend.admin.country.edit', compact('data', 'page_title', 'page_description', 'page_breadcrumbs'));
     }

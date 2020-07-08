@@ -55,11 +55,11 @@ return [
             'root' => true,
             'submenu' => [
                 [
-                    'title' => 'Category',
+                    'title' => 'Categories',
                     'page'  => 'admin/service-category',
                 ],
                 [
-                    'title' => 'Service',
+                    'title' => 'Services',
                     'page'  => 'admin/service',
                 ],
             ]

@@ -18,18 +18,7 @@
             @endif
         </div>
 
-        <div class="form-group">
-          <label>Country :<code>*</code></label>
-          <select class="form-control  country_id select2" id="country_id[]" name="country_id[]"  multiple="multiple">
-            <option value="">Select Country</option>
-            @foreach($country_list as $country)
-            <option value="{{ $country->id }}" selected="true">{{ $country->name }}</option>
-            @endforeach
-          </select>
-          @if ($errors->has('country_id'))
-          <span class="invalid-feedback">{{ $errors->first('country_id') }}</span>
-          @endif
-        </div>
+        
 
         <div class="form-group row">
           
@@ -63,7 +52,7 @@
         </div>
         <div class="form-group row">
           <div class="col-lg-6">
-            <label>Agent :<code>*</code></label>
+            <label>Agent :</label>
             <select class="form-control" id="agent_id" name="agent_id">
               <option value="">Select Agent</option>
               @foreach($agent_list as $agent)
@@ -109,6 +98,18 @@
             @endif
           </div>
         </div>
+        <div class="form-group">
+          <label>Country :<code>*</code></label>
+          <select class="form-control  country_id select2" id="country_id" name="country_id[]"  multiple="multiple">
+            <option value="">Select Country</option>
+            @foreach($country_list as $country)
+            <option value="{{ $country->id }}" selected="true">{{ $country->name }}</option>
+            @endforeach
+          </select>
+          @if ($errors->has('country_id'))
+            <strong style="color: red">{{ $errors->first('country_id') }}</strong>
+          @endif
+        </div>
         <div class="form-group row">
           <div class="col-lg-6">
             <label>Status:</label>
@@ -143,10 +144,18 @@
 <script src="{{ asset($script) }}" type="text/javascript"></script>
 @endforeach
 
-<script>
-  $('.select2').select2({container: 'body'})
-</script>
+@foreach(config('layout.resources.validate_js') as $script)
+<script src="{{ asset($script) }}" type="text/javascript"></script>
+@endforeach
+
+
 
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ServiceRequest') !!}
+<script>
+  $('.select2').select2({container: 'body'})
+  $('.select2').on('change', function() {  // when the value changes
+    $(this).valid(); // trigger validation on this element
+}); 
+</script>
 
 @endsection

@@ -22,7 +22,7 @@ class MessagesController extends Controller
     {   
             $page_title        = 'Messages';
             $page_description  = '';
-            $page_breadcrumbs  = array (['page' => 'admin', 'title' => 'Dashboard']);
+            $page_breadcrumbs  = '';
 
             if($request->ajax())
             {
