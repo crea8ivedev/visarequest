@@ -105,7 +105,7 @@ return [
                     
                 ],
                 [
-                    'title' => 'Email Template',
+                    'title' => 'Email Templates',
                     'page'  => 'admin/email-template',
                     
                 ],

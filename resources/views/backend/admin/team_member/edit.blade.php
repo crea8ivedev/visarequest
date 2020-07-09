@@ -34,7 +34,6 @@
                 </div>
 
                 <div class="col-lg-6">
-                  <div class="form-group {{ $errors->has('position') ? ' has-error' : '' }}">
                     <label>Position :<code>*</code></label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="position" name="position" placeholder="Position"  value="{{ $data->position ?? '' }}" />
@@ -45,11 +44,8 @@
                         </span>
                     @endif
                   </div>
-                </div>
               </div>
-
-               
-
+              
                <div class="form-group row  {{ $errors->has('email') ? ' has-error' : '' }}">
                 <div class="col-lg-6">
                    <label>Email :</label>

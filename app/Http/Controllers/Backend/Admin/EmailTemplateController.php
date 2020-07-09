@@ -19,7 +19,7 @@ class EmailTemplateController extends Controller
      */
     public function index(Request $request)
     {   
-            $page_title        = 'Email Template';
+            $page_title        = 'Email Templates';
             $page_description  = '';
             $page_breadcrumbs  = '';
 

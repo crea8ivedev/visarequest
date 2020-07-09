@@ -21,7 +21,7 @@
             @csrf
              
               <div class="form-group row {{ $errors->has('name') ? 'has-error' : '' }}">
-                <div class="col-lg-6">
+                <div class="col-md-6">
                   <label>Name :<code>*</code></label>
                   <div class="input-group">
                     <input type="text" class="form-control" name="name" id="name" placeholder="Name"  value="" />
@@ -33,8 +33,7 @@
                   @endif
                 </div>
 
-                <div class="col-lg-6">
-                  <div class="form-group {{ $errors->has('position') ? ' has-error' : '' }}">
+                <div class="col-md-6">
                     <label>Position :<code>*</code></label>
                     <div class="input-group">
                       <input type="text" class="form-control" id="position" name="position" placeholder="Position" />
@@ -44,11 +43,9 @@
                             <strong style="color: red">{{ $errors->first('position') }}</strong>
                         </span>
                     @endif
-                  </div>
                 </div>
-              </div>
 
-               
+              </div>
 
                <div class="form-group row  {{ $errors->has('email') ? ' has-error' : '' }}">
                 <div class="col-lg-6">

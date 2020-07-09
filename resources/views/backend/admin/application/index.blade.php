@@ -73,7 +73,7 @@
           <tr>
             <th>Service Name</th>
             <th>User Name</th>
-            <th>Country</th>
+            {{-- <th>Country</th> --}}
             <th>Staff Name</th>
             <th>Commission</th>
             <th>Action</th>
@@ -85,6 +85,38 @@
 </div>
 </div>
 
+</div>
+
+
+<div id="formModal" class="modal fade" role="dialog">
+<!-- Image loader -->
+  <div id='loading' style='display: none;'>
+    <img src='{{ asset('/media/loader/reload.gif') }}' width='50px' height='50px'>
+  </div>
+<!-- Image loader -->
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-titles">Application</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form method="post" id="sample_form" class="form-horizontal">
+            <div class="modal-body" id="html_render">
+                <span id="form_result"></span>
+                  @csrf    
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-light-primary font-weight-bold" data-dismiss="modal">Close</button>
+              <input type="hidden" name="action" id="action" value="Add" />
+              <input type="hidden" name="hidden_id" id="hidden_id" />
+              {{-- <button type="submit"  id="submit" name="action_button" id="action_button" class="btn btn-primary">
+                Send
+              </button> --}}
+            </div>
+          </form>
+
+        </div>
+    </div>
 </div>
 
 

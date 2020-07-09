@@ -130,7 +130,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Avatar</label>
-                                    <div class="col-lg-9 col-xl-6">
+                                    <div class="col-lg-9 ">
                                         <div class="image-input image-input-outline" id="kt_profile_avatar" style="background-image: url({{ asset('media/users/blank.png') }})">
                                             <div class="image-input-wrapper" style="background-image: url({{asset("public/images/uploads/profile/".$user->profile_image)}} )"></div>
                                             <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Change avatar">
@@ -205,7 +205,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                {{-- <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Address</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <div class="input-group input-group-lg input-group-solid">
@@ -220,7 +220,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!--begin: Wizard Actions-->
                             <div>
                                 <!--begin::Header-->
@@ -253,10 +253,16 @@
 {{-- Scripts Section --}}
 @section('scripts')
     <script>
-            setTimeout(function() {
-                $('#alert-message').fadeOut('fast');
-            }, 5000); // <-- time in milliseconds
+            // setTimeout(function() {
+            //     $('#alert-message').fadeOut('fast');
+            // }, 5000); // <-- time in milliseconds
     </script>
+    @foreach(config('layout.resources.profile_js') as $script)
+            <script src="{{ asset($script) }}" type="text/javascript"></script>
+      @endforeach
+    @foreach(config('layout.resources.validate_js') as $script)
+<script src="{{ asset($script) }}" type="text/javascript"></script>
+@endforeach
     
     {!! JsValidator::formRequest('App\Http\Requests\Backend\ProfileRequest') !!}
 @endsection

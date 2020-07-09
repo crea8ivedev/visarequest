@@ -24,10 +24,10 @@ $(document).ready(function() {
                 data: 'userName',
                 name: 'userName',
             },
-            {
-                data: 'service.country.name',
-                name: 'Country Name',
-            },
+            // {
+            //     data: 'service.country.name',
+            //     name: 'Country Name',
+            // },
             {
                 data: 'staffName',
                 name: 'Staff Name',
@@ -54,6 +54,33 @@ $(document).ready(function() {
     $('.search').on('keyup', function() {
         table.draw();
     });
+
+     $(document).on('click', '.view_application', function() {
+        var id = $(this).attr('id');
+        var url = 'application/view_application/'+ id;
+       // url = url.replace(':id', id);
+        $('#form_result').html('');
+        $.ajax({
+           url :url,
+           dataType:"json",
+           beforeSend: function() {
+             $("#loading").show();
+           },
+            complete: function() {
+             $("#loading").hide();
+           },
+           success:function(data)
+           {
+                $('#hidden_id').val(id);
+                $('.modal-title').text('Edit Record');
+                $('#action_button').val('Edit');
+                $('#action').val('Edit');
+                $('#html_render').html(data.html);
+                $('#formModal').modal('show');
+           }
+        })
+    });
+
 
     $(document).on('click', '.delete', function() {
         var id = $(this).attr('id');

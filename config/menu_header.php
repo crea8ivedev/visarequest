@@ -109,7 +109,7 @@ return [
                     ],
 
                     [
-                        'title' => 'Email Template',  
+                        'title' => 'Email Templates',  
                         'icon'  => 'images/icons/email.svg',
                         'page'  => 'admin/email-template',
                     ],

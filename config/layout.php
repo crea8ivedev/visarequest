@@ -308,7 +308,7 @@ return [
         ],
 
         'profile_js' => [
-            'js/pages/custom/profile/jquery.repeater.js',
+            'js/pages/profile.js',
         ],
         'repeater_js' => [
             'js/jquery.repeater.min.js',
