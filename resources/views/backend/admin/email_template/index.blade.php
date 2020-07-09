@@ -42,7 +42,7 @@
             <!--begin::Button-->
             <a href="{{route('admin.email-template.add')}}" class="btn btn-primary font-weight-bolder">
               <i class="la la-plus"></i>
-              Add New Email Template
+              Add Email Template
             </a>
            <!--end::Button-->
           </div>

@@ -165,6 +165,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/', "ApplicationController@index")->name("admin.application");
         route::get('/add', "ApplicationController@create")->name("admin.application.add");
         Route::get('/edit/{id}', "ApplicationController@edit")->name("admin.application.edit");
+        Route::get('/view_application/{id}', "ApplicationController@view")->name("admin.application.view_application");
         Route::post('/store', "ApplicationController@store")->name("admin.s-assign.store");
         Route::post('/update/{id}', "ApplicationController@update")->name("admin.application.update");
         Route::post('/destroy/{id}', 'ApplicationController@destroy')->name("admin.application.destroy");
