@@ -38,8 +38,13 @@
                                         </ul>
                                     </nav>
                                     <div class="header_btn">
-                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey" href="#">LOGIN / REGISTER</a>
-                                    </div>
+                                        @if (Auth::check())
+                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey" href="#">My Profile</a>
+                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey" href="{{route('user.logout')}}">Logout</a>
+                                        @else
+                                        <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey btn-login" href="#">LOGIN / REGISTER</a>
+
+                                        @endif </div>
                                 </div>
                                 <!-- site-navigation end-->
                             </div>

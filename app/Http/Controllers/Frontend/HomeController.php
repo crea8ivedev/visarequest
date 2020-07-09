@@ -8,6 +8,7 @@ use App\Models\TeamMember;
 use App\Models\Service;
 use App\Models\Country;
 use App\Models\ServiceCategory;
+use Auth;
 
 class HomeController extends Controller
 {

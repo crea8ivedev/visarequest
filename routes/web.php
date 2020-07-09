@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+Route::namespace('Frontend\Auth')->group(function () {
+    Route::post('/login', 'LoginController@login')->name('user.login');
+    Route::post('/register', 'RegisterController@create')->name('user.register');
+    Route::get('/logout', 'LoginController@logout')->name('user.logout');
+});
 //FRONT ROUTE
 Route::namespace('Frontend')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::post('/set-country', 'HomeController@makeDefaultCountry')->name('country');
-
     Route::get('/service', 'ServiceController@index')->name('frontend.service');
     Route::get('/service/{slug}', 'ServiceController@index')->name('frontend.service.category');
     Route::get('/service-details/{slug}', 'ServiceController@getServiceDetails')->name('frontend.service.details');

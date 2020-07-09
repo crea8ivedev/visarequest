@@ -14,6 +14,7 @@ class ServiceController extends Controller
 {
     public function index(Request $request)
     {
+        
         $slug = ($request->slug) ? $request->slug : 'courier';
         $country = session('country');
         $category = ServiceCategory::where('slug', $slug)->first();

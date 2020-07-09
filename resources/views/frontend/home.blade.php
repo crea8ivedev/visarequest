@@ -113,7 +113,6 @@
                             <div class="featured-desc">
                                 <p>{{$category->description}}</p>
                             </div>
-                            <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor" href="{{route('frontend.service.category',$category->slug)}}">View more</a>
                         </div>
                     </div>
                 </div>
@@ -240,82 +239,5 @@
             </div>
         </div>
     </section>
-    <div class="cmt-row client-section cmt-bgcolor-grey cmt-bg cmt-bgimage-yes bg-img7 cmt-bg-pattern border-bottom clearfix">
-        <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
-        <div class="container">
-            <!-- row -->
-            <div class="row align-items-center">
-                <div class="col-lg-4 d-md-none d-lg-block">
-                    <div class="section-title">
-                        <div class="title-header">
-                            <h5>VisaRequest</h5>
-                            <h2 class="title"><strong>Clients</strong></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <!-- slick_slider -->
-                    <div class="slick_slider row" data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":false, "autoplay":true, "infinite":true, "responsive": [{"breakpoint":1200,"settings":{"slidesToShow": 4}}, {"breakpoint":1024,"settings":{"slidesToShow": 4}}, {"breakpoint":777,"settings":{"slidesToShow": 3}}, {"breakpoint":575,"settings":{"slidesToShow": 2}}, {"breakpoint":380,"settings":{"slidesToShow": 1}}]}'>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-01">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-01.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-02">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-02.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-03">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-03.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-04">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-04.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-05">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-05.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-06">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-03.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-02">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-02.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-04">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-04.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- cmt-client end -->
-                </div>
-            </div><!-- row end -->
-        </div>
-    </div>
 </div>
 @endsection()

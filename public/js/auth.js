@@ -25,9 +25,8 @@ $(function () {
             data: formData,
             success: function (data, textStatus, jqXHR) {
                 var result = data;
-                alert(result.status);
                 if (result.status) {
-                    window.location.assign("{{ route('home') }}");
+                    window.location.reload();
                 } else {
                     $("#loginForm")[0].reset();
                     $("#errorMessage").html(result.message);
@@ -38,7 +37,7 @@ $(function () {
             }
         });
     });
-    $('#registerForm').submit(function (e) {
+    $('#signupForm').submit(function (e) {
         e.preventDefault();
         var formData = $(this).serializeArray();
         $(".invalid-feedback").children("strong").text("");
@@ -52,11 +51,9 @@ $(function () {
             data: formData,
             success: function (data, textStatus, jqXHR) {
                 var result = data;
-                alert(result.status);
                 if (result.status) {
-                    window.location.assign("{{ route('home') }}");
+                    window.location.reload();
                 } else {
-                  //  $("#loginForm")[0].reset();
                     $("#errorMessage").html(result.message);
                 }
             },

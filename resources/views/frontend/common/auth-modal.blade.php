@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <p class="error" id="errorMessage"></p>
-                <form method="POST" id="loginForm" action="{{ route('login') }}">
+                <form method="POST" id="loginForm" action="{{ route('user.login') }}">
                     @csrf
                     <div class="form-group row">
                         <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
@@ -63,49 +63,55 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="signupForm">
+                <form method="POST" id="signupForm" action="{{ route('user.register') }}">
                     @csrf
                     <p class="error" id="errorMessage"></p>
                     <div class="form-group row">
-                        <label for="nameInput" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
+                        <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
                         <div class="col-md-6">
-                            <input id="nameInput" type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
-
+                            <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" autofocus>
                             <span class="invalid-feedback" role="alert" id="nameError">
                                 <strong></strong>
                             </span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                        <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
                         <div class="col-md-6">
-                            <input id="emailInput" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}">
+                            <span class="invalid-feedback" role="alert" id="nameError">
+                                <strong></strong>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                        <div class="col-md-6">
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
                             <span class="invalid-feedback" role="alert" id="emailError">
                                 <strong></strong>
                             </span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="passwordInput" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                         <div class="col-md-6">
-                            <input id="passwordInput" type="password" class="form-control" name="password" required autocomplete="new-password">
-
+                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
                             <span class="invalid-feedback" role="alert" id="passwordError">
                                 <strong></strong>
                             </span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                        <label for="confirm_password" class="col-md-4 col-form-label text-md-right">COnfirm Password</label>
                         <div class="col-md-6">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="confirm_password" type="password" class="form-control" name="confirm_password" required autocomplete="new-password">
                         </div>
                     </div>
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
+                                Signup
                             </button>
                             <a class="btn btn-link btn-login" href="#">
                                 Login
