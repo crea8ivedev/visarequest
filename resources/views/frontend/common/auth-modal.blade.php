@@ -8,15 +8,13 @@
                 </button>
             </div>
             <div class="modal-body">
+                <p class="error" id="errorMessage"></p>
                 <form method="POST" id="loginForm" action="{{ route('login') }}">
                     @csrf
-
                     <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
+                        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                            <input id="email" type="email" class="form-control" name="email" autofocus>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -24,13 +22,10 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
+                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
+                            <input id="password" type="password" class="form-control" name="password" autocomplete="current-password">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -38,19 +33,6 @@
                             @enderror
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <div class="col-md-6 offset-md-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
                             <button type="submit" class="btn btn-primary">
@@ -81,9 +63,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="registerForm">
+                <form method="POST" id="signupForm">
                     @csrf
-
+                    <p class="error" id="errorMessage"></p>
                     <div class="form-group row">
                         <label for="nameInput" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -95,22 +77,17 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="emailInput" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
                         <div class="col-md-6">
                             <input id="emailInput" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
-
                             <span class="invalid-feedback" role="alert" id="emailError">
                                 <strong></strong>
                             </span>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="passwordInput" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
                         <div class="col-md-6">
                             <input id="passwordInput" type="password" class="form-control" name="password" required autocomplete="new-password">
 
@@ -119,15 +96,12 @@
                             </span>
                         </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
                         <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
-
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
@@ -143,73 +117,3 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).on('click', '.btn-login', function() {
-        $("#loginForm")[0].reset()
-        $("#registerForm")[0].reset()
-        $('#registerModal').modal('hide');
-        $('#loginModal').modal('show');
-
-    });
-    $(document).on('click', '.btn-signup', function() {
-        $("#loginForm")[0].reset()
-        $("#registerForm")[0].reset()
-        $('#registerModal').modal('show');
-        $('#loginModal').modal('hide');
-    });
-    $(function() {
-        $('#registerForm').submit(function(e) {
-            e.preventDefault();
-            let formData = $(this).serializeArray();
-            $(".invalid-feedback").children("strong").text("");
-            $("#registerForm input").removeClass("is-invalid");
-            $.ajax({
-                method: "POST",
-                headers: {
-                    Accept: "application/json"
-                },
-                url: "{{ route('login') }}",
-                data: formData,
-                success: () => window.location.assign("{{ route('home') }}"),
-                error: (response) => {
-                    if (response.status === 422) {
-                        let errors = response.responseJSON.errors;
-                        Object.keys(errors).forEach(function(key) {
-                            $("#" + key + "Input").addClass("is-invalid");
-                            $("#" + key + "Error").children("strong").text(errors[key][0]);
-                        });
-                    } else {
-                        window.location.reload();
-                    }
-                }
-            })
-        });
-    })
-    // $('#registerForm').submit(function(e) {
-    // e.preventDefault();
-    // let formData = $(this).serializeArray();
-    // $(".invalid-feedback").children("strong").text("");
-    // $("#registerForm input").removeClass("is-invalid");
-    // $.ajax({
-    //     method: "POST",
-    //     headers: {
-    //         Accept: "application/json"
-    //     },
-    //     url: "{{ route('register') }}",
-    //     data: formData,
-    //     success: () => window.location.assign("{{ route('home') }}"),
-    //     error: (response) => {
-    //         if (response.status === 422) {
-    //             let errors = response.responseJSON.errors;
-    //             Object.keys(errors).forEach(function(key) {
-    //                 $("#" + key + "Input").addClass("is-invalid");
-    //                 $("#" + key + "Error").children("strong").text(errors[key][0]);
-    //             });
-    //         } else {
-    //             window.location.reload();
-    //         }
-    //     }
-    // })
-    // });
-    // })
-</script>

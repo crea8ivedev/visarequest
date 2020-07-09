@@ -42,6 +42,7 @@
         </a>
 
     </div>
+    @include('frontend.common.auth-modal')
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/tether.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -59,6 +60,7 @@
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/frontend.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -66,7 +68,10 @@
             }
         });
     </script>
-    @include('frontend.common.auth-modal')
+    @foreach(config('layout.resources.validate_js') as $script)
+    <script src="{{ asset($script) }}" type="text/javascript"></script>
+    @endforeach
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\LoginRequest','#loginForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 </body>
-
 </html>

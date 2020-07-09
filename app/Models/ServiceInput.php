@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceElement extends Model
+class ServiceInput extends Model
 {
     //
     public $timestamps = true;

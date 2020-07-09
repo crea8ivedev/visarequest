@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,6 +33,7 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Please enter email.',
             'email.email'  => 'Please enter valid email address',
+            'password.required' => 'Please enter password.',
         ];
     }
 }

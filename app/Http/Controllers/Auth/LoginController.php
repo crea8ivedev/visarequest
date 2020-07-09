@@ -41,14 +41,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         if (Auth::attempt(['role' => Config::get('constants.roles.USER'), 'email' => $request->email, 'password' => $request->password])) {
-            return redirect()->intended('/');
+            return response()->json(['status' => true, 'message' => 'Login Successfully.']);
+        }else{
+            return response()->json(['status' => false, 'message' => 'Please enter valid email and password.']);
         }
-    }
-    protected function getFailedLoginMessage()
-    {
-        return 'what you want here.';
     }
 }

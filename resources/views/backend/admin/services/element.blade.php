@@ -38,7 +38,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
 <script>
-  jQuery(function($) {
+  $(document).ready(function() {
     var data = <?php echo ($serviceElement->data) ? $serviceElement->data : 'null'; ?>;
     var options = {
       showActionButtons: false,
@@ -46,14 +46,11 @@
       disabledSubtypes: {
         text: ['password', 'color', 'tel']
       },
+      defaultFields: (data === 'null') ? [] : data,
       disableFields: ['button', 'hidden', 'header', 'starRating', 'autocomplete'],
       controlOrder: ['text', 'textarea', 'select', 'date', 'paragraph', 'checkbox-group', 'radio-group', 'file', 'number']
     };
-    if (data == 'null') {
-      this.options.push({
-        defaultFields: data
-      });
-    }
+
     var formBuilder = $(document.getElementById('builderForm')).formBuilder(options);
     document.getElementById('clear-all-fields').onclick = function() {
       formBuilder.actions.clearFields();

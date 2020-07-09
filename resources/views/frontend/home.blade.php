@@ -60,7 +60,7 @@
                             <select class="form-control country">
                                 <option value="1">Select Country</option>
                                 @foreach($country_list as $list)
-                                <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }} >{{$list->name}}</option>
+                                <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }}>{{$list->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -99,7 +99,6 @@
             <div class="row mb-40 res-991-mb-15">
                 @foreach($service_category_list as $category)
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <!--featured-icon-box-->
                     <div class=" featured-icon-box icon-align-top-content style5 border bor_rad_3">
                         <div class="featured-icon">
                             <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
@@ -116,16 +115,13 @@
                             </div>
                             <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor" href="{{route('frontend.service.category',$category->slug)}}">View more</a>
                         </div>
-                    </div><!-- featured-icon-box end-->
+                    </div>
                 </div>
                 @endforeach
-
-            </div><!-- row end -->
+            </div>
         </div>
     </section>
-    <!--services-section-->
 
-    <!--- conatact-section -->
     <section class="cmt-row conatact-section clearfix">
         <div class="container">
             <div class="row">
@@ -205,23 +201,18 @@
             </div>
         </div>
     </section>
-    <!-- conatact-section end -->
 
-    <!--team-section-->
     <section class="cmt-row team-section clearfix">
         <div class="container">
-            <!-- section title -->
             <div class="section-title title-style-center_text">
                 <div class="title-header">
                     <h5>Skillful Professionals</h5>
                     <h2 class="title">Meet Our <strong>Dedicated Team!</strong></h2>
                 </div>
-            </div><!-- section title end -->
-            <!-- row -->
+            </div>
             <div class="row slick_slider" data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":false, "autoplay":true, "infinite":true, "responsive": [{"breakpoint":991,"settings":{"slidesToShow": 3}}, {"breakpoint":678,"settings":{"slidesToShow": 2}}, {"breakpoint":460,"settings":{"slidesToShow": 1}}]}'>
                 @foreach($member_list as $member)
                 <div class="cmt-box-col-wrapper col-lg-4">
-                    <!-- featured-imagebox-team -->
                     <div class="featured-imagebox featured-imagebox-team bor_rad_5">
                         <div class="cmt-team-box-view-overlay">
                             <div class="featured-iconbox cmt-media-link">
@@ -245,14 +236,10 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-            <!-- row end -->
         </div>
     </section>
-    <!--team-section end-->
-
-    <!--client-section-->
     <div class="cmt-row client-section cmt-bgcolor-grey cmt-bg cmt-bgimage-yes bg-img7 cmt-bg-pattern border-bottom clearfix">
         <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
         <div class="container">
@@ -330,8 +317,5 @@
             </div><!-- row end -->
         </div>
     </div>
-    <!--client-section end-->
-
 </div>
-<!--site-main end-->
 @endsection()

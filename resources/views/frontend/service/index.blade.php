@@ -32,14 +32,6 @@
                                     <a href="#" class="mega-menu-link  {{($list->slug===$category->slug)?'active':''}}"> <i class="{{$list->icon}}" aria-hidden="true"></i>{{$list->name}}</a>
                                 </li>
                                 @endforeach
-                                <li>
-                                    <select class="form-control country">
-                                        <option value="1">Select Country</option>
-                                        @foreach($country_list as $list)
-                                        <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }}>{{$list->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </li>
                             </ul>
                         </nav>
                     </div>
@@ -77,7 +69,7 @@
                                         <p>{{ $service->description}}</p>
                                     </div>
                                 </div>
-                                <a href="#" type="button"  style="cursor: pointer" class="btn-login" >{{ __('Login') }}</a>
+                                <a href="#" type="button" style="cursor: pointer" class="btn-login">{{ __('Login') }}</a>
                                 <a class="cmt-btn btn-inline cmt-btn-size-md cmt-icon-btn-left cmt-btn-color-skincolor" href="services-details.html" title="">Apply</a>
                                 <a class="cmt-btn btn-inline cmt-btn-size-md cmt-icon-btn-left cmt-btn-color-skincolor" href="services-details.html" title="">Contact Agent</a>
                             </div>
