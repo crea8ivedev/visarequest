@@ -75,6 +75,7 @@ $(document).ready(function() {
                 $('.modal-title').text('Edit Record');
                 $('#action_button').val('Edit');
                 $('#action').val('Edit');
+                $('#service_name').text(data.data.service.name);
                 $('#html_render').html(data.html);
                 $('#formModal').modal('show');
            }

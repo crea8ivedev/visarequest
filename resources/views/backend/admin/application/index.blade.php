@@ -97,7 +97,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-titles">Application</h4>
+                <h4 class="modal-titles" id="service_name" >Service basic details</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <form method="post" id="sample_form" class="form-horizontal">
