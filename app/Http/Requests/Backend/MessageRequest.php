@@ -43,4 +43,14 @@ class MessageRequest extends FormRequest
             ];
         }
     }
+
+    public function messages()
+    {
+        return [
+            'user_id.required'          => 'Please select user',
+            'subject.required'          => 'Please enter subject',
+            'message.required'          => 'Please enter message',
+            'email_type.required'       => 'Please enter email type',
+        ];
+    }
 }

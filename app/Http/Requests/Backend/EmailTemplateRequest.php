@@ -44,4 +44,14 @@ class EmailTemplateRequest extends FormRequest
             ];
         }
     }
+
+    public function messages()
+    {
+        return [
+            'email_type.required'        => 'Please enter email type',
+            'sender_email.required'      => 'Please enter sender email',
+            'sender_email.email'         => 'Please enter valid email',
+            'subject.required'           => 'Please enter subject',
+        ];
+    }
 }

@@ -36,7 +36,7 @@
         <div class="card-header">
           <div class="card-title">
            <span class="card-icon"><i class="flaticon-email text-primary"></i></span>
-            <h3 class="card-label">Email Template</h3>
+            <h3 class="card-label">Email Templates</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->

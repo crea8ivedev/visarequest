@@ -56,6 +56,7 @@ class TeamMemberRequest extends FormRequest
     {
         return [
             'name.required'             => 'Please enter name',
+            'email.email'               => 'Please enter valid email',
             'position.required'         => 'Please enter position',
             'phone.numeric'             => 'Please enter valid phone number',
             'facebook.url'              => 'Please enter valid facebook url',
