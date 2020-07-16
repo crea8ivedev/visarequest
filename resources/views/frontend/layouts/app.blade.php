@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="HTML5 Template" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <meta name="viewport" content=" width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>VisaRequest</title>
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -24,10 +23,8 @@
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{asset('front/css/map.css' )}}"  rel="stylesheet" type="text/css">
-
+    @yield('styles')
 </head>
-
 <body>
     <div class="page">
         <header id="masthead" class="header cmt-header-style-03">
@@ -42,7 +39,6 @@
         <a id="totop" href="#top">
             <i class="fa fa-angle-up"></i>
         </a>
-
     </div>
     @include('frontend.common.auth-modal')
     <script src="{{ asset('js/jquery.min.js') }}"></script>
@@ -63,29 +59,7 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery-validate.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ asset('js/home.js') }}"></script>
-<script src="{{ asset('js/map/jquery.vmap.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/map/jquery.vmap.world.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/map/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/map/init_map.js') }}" type="text/javascript"></script>
-<script>
-     $('body').on('change','.country',function() {
-            var country = $('#select_country').val();
-            if(country != '') {
-              var url = '{{ route("frontend.service.country", ":country") }}';
-              url     = url.replace(':country', country);
-              window.location.href = url;
-            }
-        });
-</script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $(".select2").select2();
-    </script>
+    @yield('scripts')
     {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
     {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 </body>

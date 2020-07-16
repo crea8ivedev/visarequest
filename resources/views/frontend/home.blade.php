@@ -1,5 +1,9 @@
 @extends('frontend.layouts.app')
 
+@section('styles')
+<link href="{{asset('css/map.css' )}}"  rel="stylesheet" type="text/css">
+@endsection
+
 @section('content')
 <rs-module-wrap id="rev_slider_1_1_wrapper" data-source="gallery">
 
@@ -241,4 +245,24 @@
         </div>
     </section>
 </div>
+@endsection
+@section('scripts')
+<script src="{{ asset('js/home.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('js/map/jquery.vmap.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/map/jquery.vmap.world.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/map/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/map/init_map.js') }}" type="text/javascript"></script>
+<script>
+    $( document ).ready(function() {
+        $(".select2").select2();
+    $('body').on('change','.country',function() {
+            var country = $('#select_country').val();
+            if(country != '') {
+            var url = '{{ route("frontend.service.country", ":country") }}';
+            url     = url.replace(':country', country);
+            window.location.href = url;
+            }
+        });
+    });
+</script>
 @endsection

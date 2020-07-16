@@ -2,7 +2,6 @@ $(document).on('click', '.btn-login', function () {
     $("#loginForm")[0].reset();
     $('#registerModal').modal('hide');
     $('#loginModal').modal('show');
-
 });
 $(document).on('click', '.btn-signup', function () {
     $("#signupForm")[0].reset();

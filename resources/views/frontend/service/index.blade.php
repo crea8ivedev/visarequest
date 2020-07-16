@@ -1,7 +1,5 @@
 @extends('frontend.layouts.app')
 @section('content')
-
-            <!--Select Country Start-->
             <section class="fullwidth-section">
                 <div class="container">
                     <div class="content">
@@ -30,8 +28,6 @@
                     </div>
                 </div>
             </section>
-
-  <!-- Category Start -->
   <section class="category-row">
     <div class="container">
         <nav class="main-menu menu-mobile m-auto" id="menu">
@@ -90,17 +86,13 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- row end -->
+                </div>
             </div>
         </div>     
-        
     </div>
-
-
 @endsection()
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
-<!--site-main end-->
 <script type="text/javascript">
     var country = {!! json_encode($country->slug) !!};
 </script>

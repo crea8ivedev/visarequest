@@ -90,24 +90,14 @@
         </div>
     </div>
   </div>
-
 </div>
-
-
 @endsection
-
-{{-- Scripts Section --}}
 @section('scripts')
-   
     @foreach(config('layout.resources.datatable_js') as $script)
         <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
-
     @foreach(config('layout.resources.sweetalert') as $script)
         <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
-
-
     <script src="{{ asset('js/pages/admin.js') }}" type="text/javascript"></script>
-     
 @endsection
