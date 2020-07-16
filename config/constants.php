@@ -1,13 +1,22 @@
 <?php
 return [
-	'roles' => [
-		'SUPERADMIN' => 1,
-		'ADMIN' 	 => 2,
-		'PROCESSOR'  => 3,
-		'AGENT' 	 => 4,
-		'USER' 	 => 5,
+	'STATUS'=>[
+		'ACTIVE'=>'ACTIVE',
+		'INACTIVE'=>'INACTIVE'
 	],
-	'SERVICE_STATUS' => [
+	'ROLES' => [
+		'SUPERADMIN' => 'SUPERADMIN',
+		'ADMIN' 	 => 'ADMIN',
+		'PROCESSOR'  => 'PROCESSOR',
+		'AGENT' 	 => 'AGENT',
+		'USER' 	 => 'USER',
+	],
+	'SERVICE_TYPE' => [
+		'SERVICE' => 'SERVICE',
+		'VISA' => 'VISA'
+	],	
+	'SERVICE_APPLICATION_STATUS' => [
+		'APPROVED' => 'APPROVED',
 		'PENDING' => 'PENDING'
 	],
 	'toster' => [

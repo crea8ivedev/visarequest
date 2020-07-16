@@ -24,7 +24,7 @@ class ProcessorLoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-      if (Auth::guard('processor')->attempt(['email' => $request->email, 'role' => Config::get('constants.roles.PROCESSOR'), 'password' => $request->password], $request->remember)) {
+      if (Auth::guard('processor')->attempt(['email' => $request->email, 'status' => Config::get('constants.ROLES.ACTIVE'), 'role' => Config::get('constants.ROLES.PROCESSOR'), 'password' => $request->password], $request->remember)) {
 
         $user = Auth::guard('processor')->user();
 

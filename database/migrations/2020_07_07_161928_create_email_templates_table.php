@@ -19,7 +19,7 @@ class CreateEmailTemplatesTable extends Migration
             $table->string('sender_email')->nullable();
             $table->string('subject');
             $table->text('message');
-            $table->enum('status', ['1','0'])->default('1');
+            $table->enum('status', ['ACTIVE','INACTIVE'])->default('ACTIVE');
             $table->timestamps();
         });
     }

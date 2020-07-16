@@ -25,7 +25,7 @@ class AgentLoginController extends Controller
     public function login(LoginRequest $request)
     {
       // Attempt to log the user in
-      if (Auth::guard('agent')->attempt(['email' => $request->email, 'role' => Config::get('constants.roles.AGENT'), 'password' => $request->password], $request->remember)) {
+      if (Auth::guard('agent')->attempt(['email' => $request->email, 'status' => Config::get('constants.ROLES.ACTIVE'), 'role' => Config::get('constants.ROLES.AGENT'), 'password' => $request->password], $request->remember)) {
 
         $user = Auth::guard('agent')->user();
 

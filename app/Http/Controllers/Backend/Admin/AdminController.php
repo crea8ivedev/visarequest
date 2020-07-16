@@ -41,7 +41,7 @@ class AdminController extends Controller
 
             if($request->ajax())
             {
-                $users = User::where('role',Config::get('constants.roles.ADMIN'));
+                $users = User::where('role',Config::get('constants.ROLES.ADMIN'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -103,7 +103,7 @@ class AdminController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.ADMIN');
+        $user->role       = Config::get('constants.ROLES.ADMIN');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {

@@ -27,7 +27,7 @@ class AgentController extends Controller
 
             if($request->ajax())
             {
-                $users = User::where('role',Config::get('constants.roles.AGENT'));
+                $users = User::where('role',Config::get('constants.ROLES.AGENT'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -90,7 +90,7 @@ class AgentController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.AGENT');
+        $user->role       = Config::get('constants.ROLES.AGENT');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {

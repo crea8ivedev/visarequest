@@ -1,86 +1,107 @@
 @extends('frontend.layouts.app')
 @section('content')
-<div class="cmt-page-title-row">
-    <div class="cmt-page-title-row-inner">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="page-title-heading">
-                        <h2 class="title">Services</h2>
-                    </div>
-                    <div class="breadcrumb-wrapper">
-                        <span>
-                            <a title="Homepage" href="index.html">Home</a>
-                        </span>
-                        <span>Services</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="site-header-menu" class="site-header-menu cmt-bgcolor-white">
-    <div class="site-header-menu-inner cmt-stickable-header">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="site-navigation d-flex flex-row align-items-center">
-                        <nav class="main-menu menu-mobile m-auto" id="menu">
-                            <ul class="menu">
-                                @foreach($service_category_list as $list)
-                                <li data-id="{{$list->id}}" class="mega-menu-item service-category">
-                                    <a href="#" class="mega-menu-link  {{($list->slug===$category->slug)?'active':''}}"> <i class="{{$list->icon}}" aria-hidden="true"></i>{{$list->name}}</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="site-main">
-    <section class="cmt-row grid-section clearfix service-list">
-        <div class="container">
-            <div class="row">
-                @forelse ($service_list as $service)
 
-                <a href="{{route('frontend.service.details',$service->slug)}}">
-                    <div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="featured-icon-box icon-align-top-content style4 bor_rad_5">
-                            <div class="bg_icon"><i class="flaticon-passport-3"></i></div>
-                            <div class="featured-icon d-flex flex-wrap justify-content-between align-items-center">
-                                <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
-                                    <i class="{{ $service->icon }}flaticon-passport-3"></i>
-                                </div>
-                                <div class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
-                                    <h5>
-                                        {{ $service->discount_price}} <del>{{ $service->normal_price}}</del>
-                                    </h5>
-                                </div>
+            <!--Select Country Start-->
+            <section class="fullwidth-section">
+                <div class="container">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h4>Do I need a visa?</h4>
+                                <p>South African passport holders need a visa to visit Belarus</p>
+                                <h4>How Does It Work?</h4>
+                                <p>Applications are prepared and lodged with the embassy. VisaRequest can receive documents and assist with submission for applicants throughout South Africa. applicants do not have to be present on submission</p>  
                             </div>
-                            <div class="featured-content">
-                                <div class="content-inner">
-                                    <div class="featured-title">
-                                        <h5>{{ $service->name}}</h5>
-                                    </div>
-                                    <div class="featured-desc">
-                                        <p>{{ $service->description}}</p>
+                            <div class="col-lg-3">
+                                <div class="select-country">
+                                    <img src="{{ asset('/images/uploads/country/') }}/{{ $country->flag }}" alt="{{ $country->name }}">
+                                    <div class="form-group">
+                                      <select class="form-control" id="sel1">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                      </select>
+
                                     </div>
                                 </div>
-                                <a href="#" type="button" style="cursor: pointer" class="btn-login">{{ __('Login') }}</a>
-                                <a class="cmt-btn btn-inline cmt-btn-size-md cmt-icon-btn-left cmt-btn-color-skincolor" href="services-details.html" title="">Apply</a>
-                                <a class="cmt-btn btn-inline cmt-btn-size-md cmt-icon-btn-left cmt-btn-color-skincolor" href="services-details.html" title="">Contact Agent</a>
                             </div>
                         </div>
                     </div>
-                </a>
-                @empty
-                <p>No service found for {{$category->name}}.</p>
-                @endforelse
+                </div>
+            </section>
+
+  <!-- Category Start -->
+  <section class="category-row">
+    <div class="container">
+        <nav class="main-menu menu-mobile m-auto" id="menu">
+           <ul class="menu category-list">
+            @foreach($service_category_list as $list)
+           <li data-id="{{$list->id}}" class="mega-menu-item service-category">
+                   <a href="javascript:void(0);" class="mega-menu-link   {{($list->id===$service_category_list->first()->id)?'active':''}}"> <i class="{{$list->icon}}"></i>{{$list->name}}</a>
+               </li>
+               @endforeach
+            </ul>
+       </nav>
+    </div>
+</section>
+<!-- Category End -->
+     <!--site-main start-->
+     <div class="site-main">
+
+        <div class="cmt-row sidebar cmt-sidebar-left cmt-bgcolor-white clearfix service-list">
+            <div class="container">
+                <!-- row -->
+                <div class="row">
+                    <div class="col-lg-4 ttm-col-bgcolor-yes cmt-bg cmt-left-span cmt-bgcolor-grey mt_80 pt-60 mb_80 pb-60 res-991-mt-0 res-991-pt-0 widget-area sidebar-left">
+                        <div class="cmt-col-wrapper-bg-layer cmt-bg-layer"></div>
+                        <aside class="widget widget-nav-menu">
+                            <ul class="widget-menu">
+                                @forelse ($service_list as $key => $service)
+                                <li class="{{($key===0)?'active':''}} service-category" data-serviceid={{$service->id}} data-id={{$service->id}}><a href="javascript:void(0);">{{ $service->name}}</a></li>
+                                @endforeach
+                            </ul>
+                        </aside>
+                    </div>
+                    <div class="col-lg-8 content-area service-details">
+                        <div class="cmt-service-single-content-area">
+                            <div class="featured-icon d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
+                                    <h5>{{ $service_list->first()->name}}</h5>
+
+                                </div>
+                                <div class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
+                                    <h5>
+                                        {{ $service_list->first()->discount_price}} <del>{{$service_list->first()->normal_price}}</del>
+                                    </h5>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="cmt-service-description">
+                                <p>{{$service_list->first()->description}}</p>
+                                <div class="btn-group mt-30">
+                                    @if (Auth::check())
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 " href="javascript:void(0);">Apply</a>
+                                    @else
+                                    <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btn-login" href="javascript:void(0);">Apply</a>
+                                    @endif
+                                     <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark m-0" href="javascript:void(0);">Contact Agent</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- row end -->
             </div>
-        </div>
-    </section>
-</div>
+        </div>     
+        
+    </div>
+
+
 @endsection()
+@section('scripts')
+<script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
+<!--site-main end-->
+<script type="text/javascript">
+    var country = {!! json_encode($country->slug) !!};
+</script>
+ @endsection

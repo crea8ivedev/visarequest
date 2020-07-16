@@ -27,7 +27,7 @@ class ClientController extends Controller
 
             if($request->ajax())
             {
-                $users = User::where('role',Config::get('constants.roles.USER'));
+                $users = User::where('role',Config::get('constants.ROLES.USER'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -89,7 +89,7 @@ class ClientController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.USER');
+        $user->role       = Config::get('constants.ROLES.USER');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {

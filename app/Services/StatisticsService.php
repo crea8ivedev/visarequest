@@ -184,20 +184,20 @@ class StatisticsService {
     }
 
     public static function getAdminCount() {
-        return User::where('role',Config::get('constants.roles.ADMIN'))->get()->count();
+        return User::where('role',Config::get('constants.ROLES.ADMIN'))->get()->count();
     }
 
     public static function getProcessorCount() {
-        return User::where('role',Config::get('constants.roles.PROCESSOR'))->get()->count();
+        return User::where('role',Config::get('constants.ROLES.PROCESSOR'))->get()->count();
     }
 
     public static function getAgentCount() {
-        return User::where('role',Config::get('constants.roles.AGENT'))->get()->count();
+        return User::where('role',Config::get('constants.ROLES.AGENT'))->get()->count();
         return User::get()->count();
     }
 
      public static function getClientCount() {
-        return User::where('role',Config::get('constants.roles.CLIENT'))->get()->count();
+        return User::where('role',Config::get('constants.ROLES.CLIENT'))->get()->count();
         return User::get()->count();
     }
 

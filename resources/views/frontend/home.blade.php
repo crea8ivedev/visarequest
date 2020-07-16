@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+
 @section('content')
 <rs-module-wrap id="rev_slider_1_1_wrapper" data-source="gallery">
 
@@ -57,10 +58,10 @@
                                 We are an expert visa consultant focusing on providing quick services to all your travelling needs. Be it a visa, travel insurance, flight ticketing, we cover it all.
                             </p>
                             <label for="countries" class="lead" style="text-indent: -9999px">Countries</label>
-                            <select class="form-control country">
+                            <select class="form-control country" id="select_country">
                                 <option value="1">Select Country</option>
                                 @foreach($country_list as $list)
-                                <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }}>{{$list->name}}</option>
+                                <option value="{{strtolower($list->name)}}">{{$list->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,9 +70,9 @@
                 </div>
                 <div class="col-lg-6">
                     <!-- section title -->
-                    <div class="section-image style2">
-                        <img class="img-fluid" src="images/world-map.png" alt="image">
-                    </div>
+                    <div id="word">
+                        <div id="vmap"  class="" style="width: 100%; height: 500px;"></div>
+                      </div>
                     <!-- section title end -->
                 </div>
             </div>
@@ -240,4 +241,4 @@
         </div>
     </section>
 </div>
-@endsection()
+@endsection

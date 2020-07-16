@@ -65,8 +65,8 @@ class ServiceController extends Controller
         $page_description   = '';
         $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'], ['page' => 'admin/service/add', 'title' => 'Add']);
         $country_list        = Country::latest()->get();
-        $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
+        $staff_list          = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
+        $agent_list          = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         $category_list = ServiceCategory::get();
         return view('backend.admin.services.add', compact('page_title', 'category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
     }
@@ -128,8 +128,8 @@ class ServiceController extends Controller
         $selected_country   = ServiceCountry::where('service_id', $id)->get()->toArray();
         $selected_country   = array_column($selected_country, 'country_id');
 
-        $staff_list         = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list         = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
+        $staff_list         = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
+        $agent_list         = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs', 'selected_country'));
     }
 

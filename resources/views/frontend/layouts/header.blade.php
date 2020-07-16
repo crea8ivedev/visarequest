@@ -9,7 +9,7 @@
                                     </a>
                                 </div>
                                 <div class="widget_info mr-auto">
-                                    <div>Online Visa Specialist</div>
+                                    <div>Get your visa fast, easy and hassle-free</div>
                                 </div>
                                 <div class="widget_info d-flex flex-row align-items-center justify-content-end">
                                     <div class="widget_social mr-25">

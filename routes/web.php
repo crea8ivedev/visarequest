@@ -22,12 +22,12 @@ Route::namespace('Frontend\Auth')->group(function () {
 //FRONT ROUTE
 Route::namespace('Frontend')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::post('/country', 'HomeController@country')->name('visa.country');
     Route::post('/set-country', 'HomeController@makeDefaultCountry')->name('country');
     Route::get('/service', 'ServiceController@index')->name('frontend.service');
-    Route::get('/service/{slug}', 'ServiceController@index')->name('frontend.service.category');
-    Route::get('/service-details/{slug}', 'ServiceController@getServiceDetails')->name('frontend.service.details');
-    Route::post('/get-services', 'ServiceController@getServices')->name('list-service');
-});
+    Route::get('/visa/{country}', 'ServiceController@index')->name('frontend.service.country');
+    Route::post('/getservices', 'ServiceController@getServices')->name('frontend.service.details');
+    Route::post('/getservicedetails', 'ServiceController@getServiceDetails')->name('frontend.service.details');});
 //END FRONT ROUTE
 
 

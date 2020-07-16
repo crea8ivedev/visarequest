@@ -36,7 +36,7 @@ class SignupController extends Controller
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->status = 1;
-        $user->role = Config::get('constants.roles.USER');
+        $user->role = Config::get('constants.ROLES.USER');
         $user->password = Hash::make($request->password);
 
         if ($user->save()) {

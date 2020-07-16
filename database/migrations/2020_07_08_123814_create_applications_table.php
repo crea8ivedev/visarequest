@@ -13,7 +13,7 @@ class CreateApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('service_applications', function (Blueprint $table) {
             $table->id();
             $table->integer('service_id');
             $table->integer('user_id');

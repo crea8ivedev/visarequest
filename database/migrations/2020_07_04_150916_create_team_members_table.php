@@ -15,13 +15,14 @@ class CreateTeamMembersTable extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('position');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('twitter')->nullable();
+            $table->string('status')->default('ACTIVE');
             $table->timestamps();
         });
     }
