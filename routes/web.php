@@ -208,6 +208,29 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/update/{id}', "EmailTemplateController@update")->name("admin.email-template.update");
         Route::post('/destroy/{id}', 'EmailTemplateController@destroy')->name("admin.email-template.destroy");
     });
+
+    Route::group(["prefix" => "terms-and-conditions"], function () {
+        Route::get('/', "PageController@termsAndConditon")->name("admin.terms-and-conditions");
+        Route::post('/store', "PageController@termsUpdate")->name("admin.terms-and-conditions.store");
+    });
+
+     /* routes for about us view */
+     Route::group(["prefix" => "about-us"], function() {
+         Route::get('/', "PageController@about")->name("admin.about-us");
+         Route::post('/store', "PageController@aboutUpdate")->name("admin.about-us.store");
+     });
+
+    /* routes for terms and conditions view */
+    Route::group(["prefix" => "terms-and-conditions"], function() {
+        Route::get('/', "PageController@termsAndConditon")->name("admin.terms-and-conditions");
+        Route::post('/store', "PageController@termsUpdate")->name("admin.terms-and-conditions.store");
+    });
+
+    /* routes for contact us view */
+    Route::group(["prefix" => "contact-us"], function() {
+        Route::get('/', "PageController@ContactUs")->name("admin.contact-us");
+        Route::post('/store', "PageController@ContactUsUpdate")->name("admin.contact-us.store");
+    });
 });
 
 //Auth Processor

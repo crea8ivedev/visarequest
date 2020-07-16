@@ -113,6 +113,18 @@ return [
                         'icon'  => 'images/icons/email.svg',
                         'page'  => 'admin/email-template',
                     ],
+                    [
+                        'title' => 'Terms And Conditions',
+                        'page' => 'admin/terms-and-conditions',
+                    ],
+                    [
+                        'title' => 'About US',
+                        'page' => 'admin/about-us',
+                    ],
+                    [
+                        'title' => 'Contact US',
+                        'page' => 'admin/contact-us',
+                    ],
                 ]
             ]
         ],
