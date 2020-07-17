@@ -76,9 +76,10 @@
                      <div class="copyright text-center">
                          <div id="menu-footer-menu">
                              <ul class="footer-nav-menu text-center">
-                                 <li><a href="#">Home</a></li>
-                                 <li><a href="#">About</a></li>
-                                 <li><a href="#">Contact Us</a></li>
+                                 <li><a href="{{ url('/') }}">Home</a></li>
+                                 <li><a href="{{ route('frontend.about-us') }}">About</a></li>
+                                 <li><a href="{{ route('frontend.contact-us') }}">Contact Us</a></li>
+                                 <li><a href="{{ route('frontend.terms-and-conditions') }}">Terms And Conditions</a></li>
                              </ul>
                          </div>
                          <span>Copyright © 2020 VisaRequest. All rights reserved.</span>

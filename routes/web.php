@@ -27,9 +27,12 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/service', 'ServiceController@index')->name('frontend.service');
     Route::get('/visa/{country}', 'ServiceController@index')->name('frontend.service.country');
     Route::post('/getservices', 'ServiceController@getServices')->name('frontend.service.details');
-    Route::post('/getservicedetails', 'ServiceController@getServiceDetails')->name('frontend.service.details');});
+    Route::post('/getservicedetails', 'ServiceController@getServiceDetails')->name('frontend.service.details');
+    Route::get('/about-us', 'PageController@getAboutUs')->name('frontend.about-us');
+    Route::get('/contact-us', 'PageController@getContactUs')->name('frontend.contact-us');
+    Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
+});
 //END FRONT ROUTE
-
 
 //Processor
 Route::prefix('processor')->namespace('Backend\Auth')->group(function () {

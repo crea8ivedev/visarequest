@@ -20,20 +20,20 @@
                                     <!-- menu -->
                                     <nav class="main-menu menu-mobile m-auto" id="menu">
                                         <ul class="menu">
-                                            <li class="mega-menu-item active">
+                                            <li class="mega-menu-item {{ (request()->is('/')) ? 'active' : '' }}">
                                                 <a href="{{ route('home') }}" class="mega-menu-link">Home</a>
                                             </li>
-                                            <li class="mega-menu-item">
-                                                <a href="#" class="mega-menu-link">About Us</a>
+                                            <li class="mega-menu-item {{ (request()->is('about-us')) ? 'active' : '' }}">
+                                                <a href="{{ route('frontend.about-us') }}" class="mega-menu-link">About Us</a>
                                             </li>
-                                            <li class="mega-menu-item">
+                                            <li class="mega-menu-item {{ (request()->is('service')) ? 'active' : '' }}">
                                                 <a href="{{ route('frontend.service') }}" class="mega-menu-link">Our Service</a>
                                             </li>
                                             <li class="mega-menu-item">
                                                 <a href="#" class="mega-menu-link">News</a>
                                             </li>
-                                            <li class="mega-menu-item">
-                                                <a href="#" class="mega-menu-link">Contact</a>
+                                            <li class="mega-menu-item {{ (request()->is('contact-us')) ? 'active' : '' }}">
+                                                <a href="{{ route('frontend.contact-us') }}" class="mega-menu-link">Contact</a>
                                             </li>
                                         </ul>
                                     </nav>
