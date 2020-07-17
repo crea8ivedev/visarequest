@@ -40,7 +40,7 @@ class ApplicationController extends Controller
             //dd($data);
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
-                   // $button = '<a href="/admin/application/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
+                    $button = '<a href="/admin/application/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
                         ';
                     $button .= '<a href="javascript:void(0);"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 view_application btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-eye"></i></a> ';
                     return $button;
@@ -97,9 +97,10 @@ class ApplicationController extends Controller
     public function edit(Request $request, $id) {
 
         $page_title   = 'Application';
+        $page_breadcrumbs   = '';
 
-        if(request()->ajax())
-        {   
+       // if(request()->ajax())
+       // {   
             $dataView = [];
             $serviceInputeAnswer = ServiceInputAnswer::with(['service','user'])->findOrFail($id);
             $data = ServiceInputAnswer::where('service_id',$serviceInputeAnswer->service_id)->get()->toArray();
@@ -108,10 +109,13 @@ class ApplicationController extends Controller
                 $dataView[$element['type']][] = $element;
             }
             $dataView['data'] = $serviceInputeAnswer;
+
+            $data = $serviceInputeAnswer;
             //dd($dataView);
-            $returnHTML = view('backend.admin.services.templete')->with('data',$dataView)->render();
-            return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
-        }
+           // $returnHTML = view('backend.admin.services.templete')->with('data',$dataView)->render();
+            //return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
+        //}
+        return view('backend.admin.application.edit', compact('page_title', 'page_breadcrumbs', 'data'));
 
     }
 }

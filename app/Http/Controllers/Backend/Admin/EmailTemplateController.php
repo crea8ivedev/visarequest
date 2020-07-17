@@ -156,7 +156,7 @@ class EmailTemplateController extends Controller
      */
     public function destroy($id)
     {
-      $message = Message::findOrFail($id);
+      $message = EmailTemplate::findOrFail($id);
 
        if($message->delete()) {
          return response()->json(['success' => 'Email template deleted successfully!']);

@@ -53,7 +53,7 @@ License: You must have a valid license purchased only from themeforest(the above
             </a>
             <!--end::Logo-->
             <!--begin::Toolbar-->
-            <
+            @include('backend.layout.base_processor._header-mobile')
             <!--end::Toolbar-->
         </div>
         <!--end::Header Mobile-->

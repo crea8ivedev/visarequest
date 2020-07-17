@@ -1,7 +1,7 @@
 {{-- Header Mobile --}}
 <div id="kt_header_mobile" class="header-mobile {{ Metronic::printClasses('header-mobile', false) }}" {{ Metronic::printAttrs('header-mobile') }}>
     <div class="mobile-logo">
-        <a href="{{ url('/') }}">
+        <a href="{{ url('/admin') }}">
 
             @php
                 $kt_logo_image = 'logo-light.png'
@@ -31,15 +31,15 @@
     <div class="mobile-toolbar">
 
         @if (config('layout.aside.self.display'))
-            <button class="mobile-toggle mobile-toggle-left" id="kt_aside_mobile_toggle"><span></span></button>
+            <button class="mobile-toggle mobile-toggle-left btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle"><span></span></button>
         @endif
 
         @if (config('layout.header.menu.self.display'))
-            <button class="mobile-toggle ml-3" id="kt_header_mobile_toggle"><span></span></button>
+            <button class="mobile-toggle ml-3 btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle"><span></span></button>
         @endif
 
         <button class="topbar-toggle ml-3" id="kt_header_mobile_topbar_toggle">
-            {{ Metronic::getSVG('media/svg/icons/General/User.svg') }}
+            {{ Metronic::getSVG('public/images/icons/user.svg') }}
         </button>
     </div>
 </div>

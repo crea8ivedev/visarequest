@@ -231,6 +231,17 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/', "PageController@ContactUs")->name("admin.contact-us");
         Route::post('/store', "PageController@ContactUsUpdate")->name("admin.contact-us.store");
     });
+
+     /* routes for visa question view */
+    Route::group(["prefix" => "visa-question"], function () {
+        Route::get('/', "VisaQuestionController@index")->name("admin.visa-question");
+        Route::post('/', "VisaQuestionController@index")->name("admin.visa-question");
+        route::get('/add', "VisaQuestionController@create")->name("admin.visa-question.add");
+        route::post('/store', "VisaQuestionController@store")->name("admin.visa-question.store");
+        Route::get('/edit/{id}', "VisaQuestionController@edit")->name("admin.visa-question.edit");
+        Route::post('/update/{id}', "VisaQuestionController@update")->name("admin.visa-question.update");
+        Route::post('/destroy/{id}', 'VisaQuestionController@destroy')->name("admin.visa-question.destroy");
+    });
 });
 
 //Auth Processor

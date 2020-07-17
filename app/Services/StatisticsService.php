@@ -6,6 +6,7 @@ use App\Models\Statistic;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\Service;
+use App\Models\Application;
 use Carbon\Carbon;
 use DB;
 use Config;
@@ -203,6 +204,10 @@ class StatisticsService {
 
      public static function getServiceCount() {
         return Service::get()->count();
+    }
+
+    public static function getApplicationCount() {
+        return Application::get()->count();
     }
 
      

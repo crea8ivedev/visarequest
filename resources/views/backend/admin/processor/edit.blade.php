@@ -30,7 +30,7 @@
                 <div class="col-lg-6">
                   <label>First Name  :<code>*</code></label>
                   <div class="input-group">
-                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"  value="{{ $data->first_name ?? ''}}" />
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" autocomplete="off"  value="{{ $data->first_name ?? ''}}" />
                   </div>
                   @if ($errors->has('first_name'))
                   <span id="first_name-error" class="invalid-feedback">{{ $errors->first('first_name') }}</span>
@@ -38,17 +38,15 @@
                 </div>
 
                 <div class="col-lg-6">
-                  <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
                     <label>Last Name :</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" id="last_name" name="last_name"  placeholder="Last name" value="{{ $data->last_name ?? ''}}" />
+                      <input type="text" class="form-control" id="last_name" name="last_name"  placeholder="Last name" autocomplete="off" value="{{ $data->last_name ?? ''}}" />
                     </div>
                     @if ($errors->has('last_name'))
                         <span class="help-block">
                             <strong style="color: red">{{ $errors->first('last_name') }}</strong>
                         </span>
                     @endif
-                  </div>
                 </div>
               </div>
 
@@ -56,7 +54,7 @@
                  <div class="col-lg-6">
                     <label>Email :<code>*</code></label>
                     <div class="input-group">
-                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ $data->email ?? ''}}" />
+                      <input type="email" class="form-control" name="email" id="email" placeholder="Email" autocomplete="off" value="{{ $data->email ?? ''}}" />
                     </div>
                     @if ($errors->has('email'))
                         <span class="help-block">
@@ -68,7 +66,7 @@
                  <div class="col-lg-6">
                     <label>Phone Number :<code>*</code></label>
                     <div class="input-group">
-                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number"  value="{{ $data->phone ?? ''}}" />
+                      <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone number" autocomplete="off"  value="{{ $data->phone ?? ''}}" />
                     </div>
                     @if ($errors->has('phone'))
                         <span class="help-block">
@@ -82,7 +80,7 @@
                 <div class="col-lg-6">
                   <label>Password :</label>
                   <div class="input-group">
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
                   </div>
                   @if ($errors->has('password'))
                       <span class="help-block">
@@ -90,18 +88,16 @@
                       </span>
                   @endif
                 </div>
-                <div class="col-lg-6">
-                  <div class="form-group hide password_hide_show {{ $errors->has('confirm_password') ? ' has-error' : '' }}"  >
+                <div class="col-lg-6 hide password_hide_show">
                     <label>Confirm Password :</label>
                     <div class="input-group">
-                      <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Comfirm password" />
+                      <input type="password" class="form-control" name="confirm_password" id="confirm_password" autocomplete="off" placeholder="Comfirm password" />
                     </div>
                      @if ($errors->has('confirm_password'))
                         <span class="help-block">
                             <strong style="color: red">{{ $errors->first('confirm_password') }}</strong>
                         </span>
                     @endif
-                  </div>
                 </div>
               </div>
 

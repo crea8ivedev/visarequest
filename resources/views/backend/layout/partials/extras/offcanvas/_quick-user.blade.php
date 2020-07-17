@@ -43,10 +43,10 @@
                             <span class="navi-text text-muted text-hover-primary">{{ Auth::user()->email }}</span>
                         </span>
                     </a>
-                    <a href="{{ route('admin.logout') }}"
+                    <a class="btn btn-sm btn-light-primary font-weight-bolder py-2 px-5" href="{{ route('admin.logout') }}"
 	                    onclick="event.preventDefault();
 	                                document.getElementById('logout-form').submit();">
-	                    Logout
+	                    Sign Out
 	                </a>
 
                 	<form  action="{{ route('admin.logout') }}" method="POST" style="display: none;">
