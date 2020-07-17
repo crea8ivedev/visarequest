@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ServiceRequest;
 use App\Models\Service;
-use App\Models\Application;
+use App\Models\ServiceApplication;
 use App\Models\ServiceInputAnswer;
 use App\Models\ServiceElement;
 use App\Models\User;
@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Hash;
 use Toastr;
 use Config;
 
-class ApplicationController extends Controller
+class ServiceApplicationController extends Controller
 {
     public function index(Request $request)
     {
@@ -26,10 +26,10 @@ class ApplicationController extends Controller
         $page_description  = '';
         $page_breadcrumbs  = '';
         if ($request->ajax()) {
-            $service = Application::query();
+            $service = ServiceApplication::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
                 $search = $request->get('search');
-                $service = Application::whereHas('service', function ($q) use ($search) {
+                $service = ServiceApplication::whereHas('service', function ($q) use ($search) {
                     $q->where('name', 'LIKE', '%' . $search . '%');
                 });
             }
@@ -84,7 +84,7 @@ class ApplicationController extends Controller
             }
             $dataView['data'] = $serviceInputeAnswer;
             //dd($dataView);
-            $returnHTML = view('backend.admin.services.templete')->with('data', $dataView)->render();
+            $returnHTML = view('backend.admin.templete')->with('data', $dataView)->render();
             return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
         }
     }
@@ -104,7 +104,7 @@ class ApplicationController extends Controller
             }
             $dataView['data'] = $serviceInputeAnswer;
             //dd($dataView);
-            $returnHTML = view('backend.admin.services.templete')->with('data', $dataView)->render();
+            $returnHTML = view('backend.admin.templete')->with('data', $dataView)->render();
             return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
         }
     }

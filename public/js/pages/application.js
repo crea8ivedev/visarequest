@@ -24,10 +24,6 @@ $(document).ready(function() {
                 data: 'userName',
                 name: 'userName',
             },
-            // {
-            //     data: 'service.country.name',
-            //     name: 'Country Name',
-            // },
             {
                 data: 'staffName',
                 name: 'Staff Name',

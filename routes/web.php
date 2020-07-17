@@ -27,7 +27,10 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/service', 'ServiceController@index')->name('frontend.service');
     Route::get('/visa/{country}', 'ServiceController@index')->name('frontend.service.country');
     Route::post('/getservices', 'ServiceController@getServices')->name('frontend.service.details');
-    Route::post('/getservicedetails', 'ServiceController@getServiceDetails')->name('frontend.service.details');});
+    Route::post('/getservicedetails', 'ServiceController@getServiceDetails')->name('frontend.service.details');
+    Route::get('/application', 'ServiceApplicationController@index')->name('frontend.service.application.index');
+});
+
 //END FRONT ROUTE
 
 
@@ -164,14 +167,14 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
 
     /* routes for service view */
     Route::group(["prefix" => "application"], function () {
-        Route::get('/', "ApplicationController@index")->name("admin.application");
-        Route::post('/', "ApplicationController@index")->name("admin.application");
-        route::get('/add', "ApplicationController@create")->name("admin.application.add");
-        Route::get('/edit/{id}', "ApplicationController@edit")->name("admin.application.edit");
-        Route::get('/view_application/{id}', "ApplicationController@view")->name("admin.application.view_application");
-        Route::post('/store', "ApplicationController@store")->name("admin.s-assign.store");
-        Route::post('/update/{id}', "ApplicationController@update")->name("admin.application.update");
-        Route::post('/destroy/{id}', 'ApplicationController@destroy')->name("admin.application.destroy");
+        Route::get('/', "ServiceApplicationController@index")->name("admin.service.application");
+        Route::post('/', "ServiceApplicationController@index")->name("admin.service.application");
+        route::get('/add', "ServiceApplicationController@create")->name("admin.service.application.add");
+        Route::get('/edit/{id}', "ServiceApplicationController@edit")->name("admin.service.application.edit");
+        Route::get('/view_application/{id}', "ServiceApplicationController@view")->name("admin.service.application.view_application");
+        Route::post('/store', "ServiceApplicationController@store")->name("admin.s-assign.store");
+        Route::post('/update/{id}', "ServiceApplicationController@update")->name("admin.service.application.update");
+        Route::post('/destroy/{id}', 'ServiceApplicationController@destroy')->name("admin.service.application.destroy");
     });
 
     /* routes for finance view */
