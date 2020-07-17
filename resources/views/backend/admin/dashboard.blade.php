@@ -268,7 +268,7 @@
 
 				<div class="col-xl-4">
 					<!--begin::Stats Widget 15-->
-					<a href="{{route('admin.application') }}" class="card card-custom bg-info bg-hover-state-success card-stretch gutter-b">
+					<a href="{{route('admin.service.application') }}" class="card card-custom bg-info bg-hover-state-success card-stretch gutter-b">
 						<!--begin::Body-->
 						<div class="card-body">
 							<span class="svg-icon svg-icon-white svg-icon-3x ml-n1">

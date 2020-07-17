@@ -66,7 +66,7 @@ class ServiceApplicationController extends Controller
         $staff_list          = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
         $agent_list          = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         $service_list       = Service::get();
-        return view('backend.admin.application.add', compact('page_title', 'service_list', 'user_list', 'page_description', 'page_breadcrumbs', 'staff_list', 'agent_list'));
+        return view('backend.admin.service.application.add', compact('page_title', 'service_list', 'user_list', 'page_description', 'page_breadcrumbs', 'staff_list', 'agent_list'));
     }
 
 
