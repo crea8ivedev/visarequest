@@ -276,7 +276,7 @@
 								{{ Metronic::getSVG("public/images/icons/Clipboard.svg", "svg-icon-xl svg-icon-primary") }}
 								<!--end::Svg Icon-->
 							</span>
-							<div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">{{ $statistics['applicationCount'] }}</div>
+							<div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">{{ $statistics['serviceCount'] }}</div>
 							<div class="font-weight-bold text-inverse-success font-size-sm">Applications</div>
 						</div>
 						<!--end::Body-->

@@ -34,7 +34,7 @@ class DashboardController extends Controller
         $statistics['agentCount']           = StatisticsService::getAgentCount();
         $statistics['clientCount']          = StatisticsService::getClientCount();
         $statistics['serviceCount']         = StatisticsService::getServiceCount();
-        $statistics['applicationCount']     = StatisticsService::getApplicationCount();
+        //$statistics['applicationCount']     = StatisticsService::getApplicationCount();
 
         return view('backend.admin.dashboard', compact('page_title', 'page_description' ,'statistics'));
     }
