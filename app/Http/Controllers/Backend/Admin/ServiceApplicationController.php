@@ -37,6 +37,7 @@ class ServiceApplicationController extends Controller
             //dd($data);
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
+
                     // $button = '<a href="/admin/application/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
                     $button = '<a href="javascript:void(0);"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 view_application btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-eye"></i></a> ';
                     return $button;
@@ -93,6 +94,8 @@ class ServiceApplicationController extends Controller
     {
 
         $page_title   = 'Application';
+        $page_breadcrumbs   = '';
+
 
         if (request()->ajax()) {
             $dataView = [];
@@ -103,6 +106,8 @@ class ServiceApplicationController extends Controller
                 $dataView[$element['type']][] = $element;
             }
             $dataView['data'] = $serviceInputeAnswer;
+
+            $data = $serviceInputeAnswer;
             //dd($dataView);
             $returnHTML = view('backend.admin.templete')->with('data', $dataView)->render();
             return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);

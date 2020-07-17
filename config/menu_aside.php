@@ -121,6 +121,10 @@ return [
                     'title' => 'Contact US',
                     'page' => 'admin/contact-us',
                 ],
+                [
+                    'title' => 'Visa Questions',
+                    'page' => 'admin/visa-question',
+                ],
             ]
         ],
 

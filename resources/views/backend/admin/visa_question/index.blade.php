@@ -1,5 +1,5 @@
 {{-- Extends layout --}}
-@extends('backend.layout.processor')
+@extends('backend.layout.default')
 
 {{-- Styles Section --}}
 @section('styles')
@@ -35,15 +35,15 @@
     <div class="card card-custom">
         <div class="card-header">
           <div class="card-title">
-            <span class="card-icon"><i class="fas fa-tasks text-primary"></i></span> 
-            <h3 class="card-label">Services</h3>
+            <span class="card-icon"><i class="fas fa-info-circle text-primary"></i></span>
+            <h3 class="card-label">Visa Questions</h3>
           </div>
           <div class="card-toolbar">
             <!--begin::Button-->
-            {{-- <a href="{{route('processor.client.add')}}" class="btn btn-primary font-weight-bolder">
+            <a href="{{route('admin.visa-question.add')}}" class="btn btn-primary font-weight-bolder">
               <i class="la la-plus"></i>
-             Add Services
-            </a> --}}
+             Add Visa Question
+            </a>
            <!--end::Button-->
           </div>
         </div>
@@ -54,33 +54,20 @@
                 <div class="row align-items-center">
                   <div class="col-md-6 my-2 my-md-0">
                     <div class="input-icon">
-                      <input type="text" class="form-control search" autocomplete="off" placeholder="Search by service name" id="kt_datatable_search_query">
+                      <input type="text" class="form-control search" placeholder="Search by lable, value" id="kt_datatable_search_query">
                       <span><i class="flaticon2-search-1 text-muted"></i></span>
                     </div>
                   </div>
-                  {{-- <div class="col-md-4 my-2 my-md-0">
-                    <div class="d-flex align-items-center">
-                      <label class="mr-5 mb-2 my-md-0 d-none ">Visa Name:</label>
-                        <select name="visa_filter" id="visa_filter" id="kt_datatable_search_status" class="form-control visa_filter">
-                              <option value="">Select Visa</option>
-                               @foreach($visa_list as $visa)
-                                <option value="{{ $visa->id }}">{{ $visa->visa_type }}</option>
-                               @endforeach
-                        </select>
-                    </div>
-                  </div> --}}
                 </div>
               </div>
             </div>
           </div>
             <div id="kt_datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="service_table">
+            <table class="table datatable table-bordered table-checkable dataTable no-footer dtr-inline collapsed" id="visa_question_table">
                 <thead>
                     <tr>
-                        <th>Service Name</th>
-                        <th>Normal Price</th>
-                        <th>Discount Price</th>
-                        <th>Commission</th>
+                        <th>Lable</th>
+                        <th>Value</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -97,7 +84,6 @@
 
 {{-- Scripts Section --}}
 @section('scripts')
-   
 
     @foreach(config('layout.resources.datatable_js') as $script)
         <script src="{{ asset($script) }}" type="text/javascript"></script>
@@ -107,7 +93,6 @@
         <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
 
-
-    <script src="{{ asset('js/pages/processor/service.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/pages/visa_question.js') }}" type="text/javascript"></script>
      
 @endsection

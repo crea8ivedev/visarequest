@@ -268,16 +268,16 @@
 
 				<div class="col-xl-4">
 					<!--begin::Stats Widget 15-->
-					<a href="{{route('admin.processor') }}" class="card card-custom bg-info bg-hover-state-success card-stretch gutter-b">
+					<a href="{{route('admin.application') }}" class="card card-custom bg-info bg-hover-state-success card-stretch gutter-b">
 						<!--begin::Body-->
 						<div class="card-body">
 							<span class="svg-icon svg-icon-white svg-icon-3x ml-n1">
 								<!--begin::Svg Icon | path:assets/media/svg/icons/Media/Equalizer.svg-->
-								{{ Metronic::getSVG("public/images/icons/Group.svg", "svg-icon-xl svg-icon-primary") }}
+								{{ Metronic::getSVG("public/images/icons/Clipboard.svg", "svg-icon-xl svg-icon-primary") }}
 								<!--end::Svg Icon-->
 							</span>
-							<div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">{{ $statistics['processorCount'] }}</div>
-							<div class="font-weight-bold text-inverse-success font-size-sm">Processors</div>
+							<div class="text-inverse-success font-weight-bolder font-size-h5 mb-2 mt-5">{{ $statistics['serviceCount'] }}</div>
+							<div class="font-weight-bold text-inverse-success font-size-sm">Applications</div>
 						</div>
 						<!--end::Body-->
 					</a>
