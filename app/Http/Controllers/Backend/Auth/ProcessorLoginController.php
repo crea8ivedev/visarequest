@@ -24,11 +24,12 @@ class ProcessorLoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-      if (Auth::guard('processor')->attempt(['email' => $request->email, 'status' => Config::get('constants.ROLES.ACTIVE'), 'role' => Config::get('constants.ROLES.PROCESSOR'), 'password' => $request->password], $request->remember)) {
+      //dd($request);
+      if (Auth::guard('processor')->attempt(['email' => $request->email, 'status' => Config::get('constants.STATUS.ACTIVE'), 'role' => Config::get('constants.ROLES.PROCESSOR'), 'password' => $request->password], $request->remember)) {
 
         $user = Auth::guard('processor')->user();
 
-        if ($user->status == 1) {
+        if ($user->status == Config::get('constants.STATUS.ACTIVE')) {
 
          Toastr::success('Welcome back! <strong>' . $user->first_name. ' '. $user->first_name  .'</strong>','', Config::get('constants.toster'));
          return redirect()->intended(route('processor.dashboard'));
