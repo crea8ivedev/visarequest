@@ -26,7 +26,7 @@ class FinanceController extends Controller
 
             if($request->ajax())
             {
-                $users = User::where('role',Config::get('constants.roles.USER'));
+                $users = User::where('role',Config::get('constants.ROLES.USER'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {

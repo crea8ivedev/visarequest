@@ -106,11 +106,11 @@
                   <label>Status :</label>
                   <div class="radio">
                       <label class="radio" id="active">
-                          <input type="radio" name="status" id="active"  class="form-control status" value="1" {{ $data->status == 1  ? 'checked' : '' }} /> Active
+                          <input type="radio" name="status" id="active"  class="form-control status" value="ACTIVE" {{ $data->status == 'ACTIVE'  ? 'checked' : '' }} /> Active
                           <span></span>
                       </label>
                       <label class="radio" id="deactive">
-                          <input type="radio" name="status" id="deactive"  class="form-control status" value="0"  {{ $data->status == 0  ? 'checked' : '' }} /> Deactive
+                          <input type="radio" name="status" id="active"  class="form-control status" value="DEACTIVE" {{ $data->status == 'DEACTIVE'  ? 'checked' : '' }} /> Active
                           <span></span>
                       </label>
                   </div>

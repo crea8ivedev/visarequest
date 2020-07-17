@@ -14,41 +14,30 @@ class ServiceController extends Controller
 {
     public function index(Request $request)
     {
-        $slug = ($request->slug) ? $request->slug : 'courier';
-        $country = session('country');
-        $category = ServiceCategory::where('slug', $slug)->first();
-        if (!$category) {
+        $country = Country::where('slug',$request->country)->first();
+        if (!$country) {
             return redirect()->intended(route('home'));
         }
-        $service_category_list = ServiceCategory::get();
-        $service_list = Service::where('category_id', $category->id)
+        $service_category_list = ServiceCategory::where('status',Config::get('constants.STATUS.ACTIVE'))->get();
+        $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
+            ->where('category_id',$service_category_list->first()->id)
             ->whereHas('countrys', function ($q) use ($country) {
-                $q->where('country_id', $country);
+                $q->where('country_id', $country->id);
             })->get();
-        $country_list = Country::get();
-        return view('frontend.service.index', compact('country_list', 'country', 'service_category_list', 'service_list', 'category'));
-    }
-
-    public function getServiceDetails(Request $request)
-    {
-        $slug = $request->slug;
-        $service = Service::where('slug', $slug)->first();
-        if (!$service) {
-            return redirect()->intended(route('home'));
-        }
-        return view('frontend.service.details', compact('service'));
+        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country'));
     }
 
     public function getServices(Request $request)
     {
         if ($request->ajax()) {
-            $country = session('country');
-            $service_list = Service::where('category_id',  $request->category)
+            $country = Country::where('slug',$request->country)->first();
+            $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
+                ->where('category_id', $request->category)
                 ->whereHas('countrys', function ($q) use ($country) {
-                    $q->where('country_id', $country);
+                    $q->where('country_id', $country->id);
                 })->get();
-            $category = ServiceCategory::where('id', $request->category)->first();
-            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list, 'category' => $category])->render();
+            $service =  ($request->service)?$service_list->find($request->service): $service_list->first();
+            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list,'service'=>$service])->render();
             return response()->json(array('success' => true, 'html' => $returnHTML));
         }
     }

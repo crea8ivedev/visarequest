@@ -19,7 +19,6 @@ class CreateMessagesTable extends Migration
             $table->string('subject')->nullable();
             $table->text('message')->nullable();
             $table->string('email_type')->nullable();
-            $table->enum('status', ['1','0'])->default('1');
             $table->timestamps();
         });
     }

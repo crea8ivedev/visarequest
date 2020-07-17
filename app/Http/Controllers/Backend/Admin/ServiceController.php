@@ -46,9 +46,8 @@ class ServiceController extends Controller
                 ->editColumn('country', function ($data) {
                     return $data->countrys->map(function ($countrys) {
                         return $name = $countrys->country->name;
-                   })->implode(', ');
-                   
-               })
+                    })->implode(', ');
+                })
                 ->editColumn('agentName', function ($data) {
                     return isset($data->agent->FullName) ? $data->agent->FullName : '';
                 })->editColumn('staffName', function ($data) {
@@ -64,10 +63,10 @@ class ServiceController extends Controller
     {
         $page_title         = 'Service';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/add', 'title' =>'Add']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'], ['page' => 'admin/service/add', 'title' => 'Add']);
         $country_list        = Country::latest()->get();
-        $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
+        $staff_list          = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
+        $agent_list          = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         $category_list = ServiceCategory::get();
         return view('backend.admin.services.add', compact('page_title', 'category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
     }
@@ -79,7 +78,7 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ServiceRequest $request)
-    {   
+    {
         $service             = new Service;
         $service->category_id = $request->category_id;
         $service->processor_id = $request->processor_id;
@@ -94,7 +93,7 @@ class ServiceController extends Controller
         $service->save();
         $insertedId = $service->id;
         $countrys = $request->country_id;
-        
+
         //Multiple insert service country
         foreach ($countrys as $country) {
             ServiceCountry::create([
@@ -123,22 +122,22 @@ class ServiceController extends Controller
         $data               = Service::findOrFail($id);
         $page_title         = 'Service';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/edit/'.$id.'', 'title' =>'Edit']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'], ['page' => 'admin/service/edit/' . $id . '', 'title' => 'Edit']);
         $country_list       = Country::latest()->get();
         $category_list      = ServiceCategory::get();
-        $selected_country   = ServiceCountry::where('service_id',$id)->get()->toArray();
+        $selected_country   = ServiceCountry::where('service_id', $id)->get()->toArray();
         $selected_country   = array_column($selected_country, 'country_id');
-       
-        $staff_list         = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list         = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
-        return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs','selected_country'));
+
+        $staff_list         = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
+        $agent_list         = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
+        return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs', 'selected_country'));
     }
 
     public function createElement(Request $request, $id)
     {
         $page_title         = 'Service input';
         $page_description   = '';
-        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'],['page' => 'admin/service/element/'.$id.'', 'title' =>'Service input']);
+        $page_breadcrumbs   = array(['page' => 'admin/service', 'title' => 'Services'], ['page' => 'admin/service/element/' . $id . '', 'title' => 'Service input']);
         $serviceElement          = Service::where('id', $id)->first();
         return view('backend.admin.services.element', compact('page_title', 'serviceElement', 'id', 'page_description', 'page_breadcrumbs'));
     }
@@ -194,7 +193,7 @@ class ServiceController extends Controller
         $service->commission      = $request->commission;
         $service->status     = $request->status;
         $service->slug =  Str::slug($request->name, '-');
-        ServiceCountry::where('service_id',$id)->delete();
+        ServiceCountry::where('service_id', $id)->delete();
         $countrys = $request->country_id;
         //Multiple insert service country
         foreach ($countrys as $country) {

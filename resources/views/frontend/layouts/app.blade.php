@@ -24,6 +24,8 @@
     <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('front/css/map.css' )}}"  rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -42,6 +44,7 @@
         </a>
 
     </div>
+    @include('frontend.common.auth-modal')
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/tether.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
@@ -58,15 +61,32 @@
     <script src="{{ asset('/revolution/js/rs6.min.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/frontend.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery-validate.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset('js/map/jquery.vmap.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/map/jquery.vmap.world.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/map/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/map/init_map.js') }}" type="text/javascript"></script>
+<script>
+     $('body').on('change','.country',function() {
+            var country = $('#select_country').val();
+            if(country != '') {
+              var url = '{{ route("frontend.service.country", ":country") }}';
+              url     = url.replace(':country', country);
+              window.location.href = url;
+            }
+        });
+</script>
     <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        $(".select2").select2();
     </script>
-    @include('frontend.common.auth-modal')
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 </body>
-
 </html>

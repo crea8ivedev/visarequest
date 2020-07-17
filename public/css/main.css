@@ -2250,3 +2250,83 @@ article.cmt-blog-classic .cmt-box-post-date .cmt-entry-date{
     margin: 0 0 0 15px;
     opacity: 0.3;
 }
+
+/*------------------------------------------------------------------------------*/
+/*  Service_page_category
+/*------------------------------------------------------------------------------*/ 
+section.category-row {
+  width: 100%;
+  display: inline-block;
+  padding: 80px 0 0 0;
+}
+section.category-row nav ul.category-list li {
+  width: 15.7%;
+  float: left;
+  margin: 5px;
+}
+section.category-row nav ul.category-list li a {
+  text-align: center;
+  font-size: 19px;
+  padding: 40px 0 30px;
+  background-color: #fff;
+  box-shadow: 0 0 9px 0 rgba(29, 33, 67, 0.10);
+  border: 2px dashed rgb(1, 153, 203) !important;
+  background: transparent;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+}
+section.category-row nav ul.category-list li a i {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  font-size: 48px;
+  margin: 0 0 40px 0;
+  color: #1E63B1;
+  font-weight: normal;
+}
+section.category-row nav ul.category-list li a:hover {
+  background: #0199cb;
+  color:  #fff;
+}
+
+section.category-row nav ul.category-list li a:hover i {
+  color: #fff;
+}
+
+/*------------------------------------------------------------------------------*/
+/*  Select Country Start
+/*------------------------------------------------------------------------------*/ 
+section.fullwidth-section {
+  width: 100%;
+  float: left;
+  padding: 50px 0;
+  background-color: #f5faff;
+}
+
+section.fullwidth-section .content h4 {
+  font-size: 19px;
+  line-height: 25px;
+  margin-bottom: 0px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+section.fullwidth-section .content .select-country {
+  text-align: center;
+}
+section.fullwidth-section .content .select-country img {
+  width: 100%;
+  max-width: 80px;
+  border-radius: 100%;
+  min-height: 80px;
+  object-fit: cover;
+}
+section.fullwidth-section .content .select-country select {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 22px;
+  height: 42px;
+  outline: none;
+  margin: 15px 0 0 0;
+  box-shadow: none;
+}

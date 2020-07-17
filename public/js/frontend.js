@@ -1,37 +1,11 @@
 $(document).ready(function () {
-
-    $(document).on('change', '.country', function () {
-        $.ajax({
-            url: "/set-country",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "POST",
-            data: { country: $(this).val() },
-            success: function (data, textStatus, jqXHR) {
-
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-
-            }
-        });
-    });
-
-    $(document).on('click', '.service-category', function () {
-        $.ajax({
-            url: "/get-services",
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            type: "POST",
-            data: { category: $(this).data('id') },
-            success: function (data, textStatus, jqXHR) {
-                $(".service-list").html(data.html);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-
-            }
-        });
-    });
-
-});
+    $(".select2").select2();
+    $('body').on('click','.country-submit',function() {
+          var country = $('#select_country').val();
+          if(country != '') {
+            var url = '{{ route("visa.selected_country", ":id") }}';
+            url     = url.replace(':id', country);
+            window.location.href = url;
+          }
+      });
+  });

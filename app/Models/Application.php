@@ -8,7 +8,7 @@ class Application extends Model
 {
     public function service()
     {	
-    	return $this->belongsTo('App\Models\service', 'service_id');
+    	return $this->belongsTo('App\Models\Service', 'service_id');
     }
 
     public function country()

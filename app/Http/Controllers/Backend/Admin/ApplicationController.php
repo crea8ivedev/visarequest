@@ -29,20 +29,17 @@ class ApplicationController extends Controller
             $service = Application::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
                 $search = $request->get('search');
-                $service = Application::whereHas('service', function($q) use($search)
-                {
+                $service = Application::whereHas('service', function ($q) use ($search) {
                     $q->where('name', 'LIKE', '%' . $search . '%');
-
                 });
-            
             }
             $data = $service->with(['service', 'service.staff', 'service.agent', 'user'])->latest()->get();
             //dd($data);
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="/admin/application/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>
-                        ';
-                    $button .= '<a href="javascript:void(0);"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 view_application btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-eye"></i></a> ';
+
+                    // $button = '<a href="/admin/application/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
+                    $button = '<a href="javascript:void(0);"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 view_application btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-eye"></i></a> ';
                     return $button;
                 })
                 ->editColumn('userName', function ($data) {
@@ -56,7 +53,7 @@ class ApplicationController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-    
+
         return view('backend.admin.application.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
@@ -65,46 +62,46 @@ class ApplicationController extends Controller
         $page_title         = 'Application';
         $page_description   = '';
         $page_breadcrumbs   = array(['page' => 'admin/agent', 'title' => 'Service']);
-        $user_list          = User::where('role', Config::get('constants.roles.USER'))->latest()->get();
-        $staff_list          = User::where('role', Config::get('constants.roles.PROCESSOR'))->latest()->get();
-        $agent_list          = User::where('role', Config::get('constants.roles.AGENT'))->latest()->get();
+        $user_list          = User::where('role', Config::get('constants.ROLES.USER'))->latest()->get();
+        $staff_list          = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
+        $agent_list          = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         $service_list       = Service::get();
         return view('backend.admin.application.add', compact('page_title', 'service_list', 'user_list', 'page_description', 'page_breadcrumbs', 'staff_list', 'agent_list'));
     }
 
 
-    public function view(Request $request, $id) {
+    public function view(Request $request, $id)
+    {
 
         $page_title   = 'Application';
 
-        if(request()->ajax())
-        {   
+        if (request()->ajax()) {
             $dataView = [];
-            $serviceInputeAnswer = ServiceInputAnswer::with(['service','user'])->findOrFail($id);
-            $data = ServiceInputAnswer::where('service_id',$serviceInputeAnswer->service_id)->get()->toArray();
-        
+            $serviceInputeAnswer = ServiceInputAnswer::with(['service', 'user'])->findOrFail($id);
+            $data = ServiceInputAnswer::where('service_id', $serviceInputeAnswer->service_id)->get()->toArray();
+
             foreach ($data as $element) {
                 $dataView[$element['type']][] = $element;
             }
             $dataView['data'] = $serviceInputeAnswer;
             //dd($dataView);
-            $returnHTML = view('backend.admin.services.templete')->with('data',$dataView)->render();
+            $returnHTML = view('backend.admin.services.templete')->with('data', $dataView)->render();
             return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
         }
-
     }
 
-    public function edit(Request $request, $id) {
+    public function edit(Request $request, $id)
+    {
 
         $page_title   = 'Application';
         $page_breadcrumbs   = '';
 
-       // if(request()->ajax())
-       // {   
+
+        if (request()->ajax()) {
             $dataView = [];
-            $serviceInputeAnswer = ServiceInputAnswer::with(['service','user'])->findOrFail($id);
-            $data = ServiceInputAnswer::where('service_id',$serviceInputeAnswer->service_id)->get()->toArray();
-        
+            $serviceInputeAnswer = ServiceInputAnswer::with(['service', 'user'])->findOrFail($id);
+            $data = ServiceInputAnswer::where('service_id', $serviceInputeAnswer->service_id)->get()->toArray();
+
             foreach ($data as $element) {
                 $dataView[$element['type']][] = $element;
             }
@@ -112,10 +109,8 @@ class ApplicationController extends Controller
 
             $data = $serviceInputeAnswer;
             //dd($dataView);
-           // $returnHTML = view('backend.admin.services.templete')->with('data',$dataView)->render();
-            //return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
-        //}
-        return view('backend.admin.application.edit', compact('page_title', 'page_breadcrumbs', 'data'));
-
+            $returnHTML = view('backend.admin.services.templete')->with('data', $dataView)->render();
+            return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
+        }
     }
 }

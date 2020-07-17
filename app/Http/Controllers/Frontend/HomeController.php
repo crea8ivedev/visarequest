@@ -8,6 +8,7 @@ use App\Models\TeamMember;
 use App\Models\Service;
 use App\Models\Country;
 use App\Models\ServiceCategory;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -16,12 +17,12 @@ class HomeController extends Controller
         $member_list = TeamMember::get();
         $service_category_list = ServiceCategory::get();
         $country_list = Country::get();
-        $country = session('country');
-        return view('frontend.home', compact(['member_list', 'country', 'service_category_list', 'country_list']));
+        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list']));
     }
 
-    public function makeDefaultCountry(Request $request)
+    public function country(Request $request)
     {
-        $request->session()->put('country', $request->country);
+        $country = Country::where('slug',$request->country)->first();
+        return response()->json(['success' =>($country)?true:false]);
     }
 }

@@ -1,4 +1,5 @@
 @extends('frontend.layouts.app')
+
 @section('content')
 <rs-module-wrap id="rev_slider_1_1_wrapper" data-source="gallery">
 
@@ -57,10 +58,10 @@
                                 We are an expert visa consultant focusing on providing quick services to all your travelling needs. Be it a visa, travel insurance, flight ticketing, we cover it all.
                             </p>
                             <label for="countries" class="lead" style="text-indent: -9999px">Countries</label>
-                            <select class="form-control country">
+                            <select class="form-control country" id="select_country">
                                 <option value="1">Select Country</option>
                                 @foreach($country_list as $list)
-                                <option value="{{$list->id}}" {{ $list->id ==$country ? 'selected="selected"' : '' }} >{{$list->name}}</option>
+                                <option value="{{strtolower($list->name)}}">{{$list->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,9 +70,9 @@
                 </div>
                 <div class="col-lg-6">
                     <!-- section title -->
-                    <div class="section-image style2">
-                        <img class="img-fluid" src="images/world-map.png" alt="image">
-                    </div>
+                    <div id="word">
+                        <div id="vmap"  class="" style="width: 100%; height: 500px;"></div>
+                      </div>
                     <!-- section title end -->
                 </div>
             </div>
@@ -99,7 +100,6 @@
             <div class="row mb-40 res-991-mb-15">
                 @foreach($service_category_list as $category)
                 <div class="col-lg-4 col-md-6 col-sm-6">
-                    <!--featured-icon-box-->
                     <div class=" featured-icon-box icon-align-top-content style5 border bor_rad_3">
                         <div class="featured-icon">
                             <div class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
@@ -114,18 +114,14 @@
                             <div class="featured-desc">
                                 <p>{{$category->description}}</p>
                             </div>
-                            <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor" href="{{route('frontend.service.category',$category->slug)}}">View more</a>
                         </div>
-                    </div><!-- featured-icon-box end-->
+                    </div>
                 </div>
                 @endforeach
-
-            </div><!-- row end -->
+            </div>
         </div>
     </section>
-    <!--services-section-->
 
-    <!--- conatact-section -->
     <section class="cmt-row conatact-section clearfix">
         <div class="container">
             <div class="row">
@@ -205,23 +201,18 @@
             </div>
         </div>
     </section>
-    <!-- conatact-section end -->
 
-    <!--team-section-->
     <section class="cmt-row team-section clearfix">
         <div class="container">
-            <!-- section title -->
             <div class="section-title title-style-center_text">
                 <div class="title-header">
                     <h5>Skillful Professionals</h5>
                     <h2 class="title">Meet Our <strong>Dedicated Team!</strong></h2>
                 </div>
-            </div><!-- section title end -->
-            <!-- row -->
+            </div>
             <div class="row slick_slider" data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":false, "autoplay":true, "infinite":true, "responsive": [{"breakpoint":991,"settings":{"slidesToShow": 3}}, {"breakpoint":678,"settings":{"slidesToShow": 2}}, {"breakpoint":460,"settings":{"slidesToShow": 1}}]}'>
                 @foreach($member_list as $member)
                 <div class="cmt-box-col-wrapper col-lg-4">
-                    <!-- featured-imagebox-team -->
                     <div class="featured-imagebox featured-imagebox-team bor_rad_5">
                         <div class="cmt-team-box-view-overlay">
                             <div class="featured-iconbox cmt-media-link">
@@ -245,93 +236,9 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
-            <!-- row end -->
         </div>
     </section>
-    <!--team-section end-->
-
-    <!--client-section-->
-    <div class="cmt-row client-section cmt-bgcolor-grey cmt-bg cmt-bgimage-yes bg-img7 cmt-bg-pattern border-bottom clearfix">
-        <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
-        <div class="container">
-            <!-- row -->
-            <div class="row align-items-center">
-                <div class="col-lg-4 d-md-none d-lg-block">
-                    <div class="section-title">
-                        <div class="title-header">
-                            <h5>VisaRequest</h5>
-                            <h2 class="title"><strong>Clients</strong></h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <!-- slick_slider -->
-                    <div class="slick_slider row" data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":false, "autoplay":true, "infinite":true, "responsive": [{"breakpoint":1200,"settings":{"slidesToShow": 4}}, {"breakpoint":1024,"settings":{"slidesToShow": 4}}, {"breakpoint":777,"settings":{"slidesToShow": 3}}, {"breakpoint":575,"settings":{"slidesToShow": 2}}, {"breakpoint":380,"settings":{"slidesToShow": 1}}]}'>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-01">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-01.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-02">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-02.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-03">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-03.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-04">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-04.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-05">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-05.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-06">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-03.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-02">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-02.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip" data-tooltip="client-04">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-04.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- cmt-client end -->
-                </div>
-            </div><!-- row end -->
-        </div>
-    </div>
-    <!--client-section end-->
-
 </div>
-<!--site-main end-->
-@endsection()
+@endsection

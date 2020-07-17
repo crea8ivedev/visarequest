@@ -26,11 +26,11 @@ class AdminLoginController extends Controller
   public function login(LoginRequest $request){
     // Attempt to log the user in
 
-    if (Auth::guard('admin')->attempt(['email' => $request->email, 'role' => Config::get('constants.roles.ADMIN')  , 'password' => $request->password], $request->remember)) {
+    if (Auth::guard('admin')->attempt(['email' => $request->email, 'status' => Config::get('constants.STATUS.ACTIVE'), 'role' => Config::get('constants.ROLES.ADMIN')  , 'password' => $request->password], $request->remember)) {
 
       $user = Auth::guard('admin')->user();
 
-      if ($user->status == 1) {
+      if ($user->status === Config::get('constants.STATUS.ACTIVE')) {
 
        Toastr::success('Welcome back! <strong>' . $user->first_name. ' '. $user->first_name  .'</strong>','', Config::get('constants.toster'));
        return redirect()->intended(route('admin.dashboard'));

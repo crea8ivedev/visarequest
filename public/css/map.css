@@ -1,0 +1,71 @@
+.mapa {
+  background: #ADD136;
+  box-shadow: inset 0 0 10px #6A8026;
+  display: none;
+}
+
+.mapa .rotulus {
+  position: absolute;
+  bottom: 30px;
+  opacity: .7;
+}
+
+.jqvmap-label {
+  position: absolute;
+  display: block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #292929;
+  color: white;
+  font-family: sans-serif, Verdana;
+  font-size: smaller;
+  padding: 3px 10px;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 100;
+}
+
+.jqvmap-pin {
+  pointer-events: none;
+}
+
+.jqvmap-zoomin,
+.jqvmap-zoomout {
+  position: absolute;
+  left: inherit;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  background: #000000;
+  padding: 3px;
+  color: white;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  line-height: 10px;
+  text-align: center;
+}
+
+.jqvmap-zoomin {
+  top: inherit;
+  bottom: 0;
+  right: 20px;
+}
+
+.jqvmap-zoomout {
+  top: inherit;
+  bottom: 0;
+  right: 0;
+}
+
+.jqvmap-region {
+  cursor: pointer;
+  border: 1px solid #1A3B4C;
+
+}
+
+.jqvmap-ajax_response {
+  width: 100%;
+  height: 500px;
+}

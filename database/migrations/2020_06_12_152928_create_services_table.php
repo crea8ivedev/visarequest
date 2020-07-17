@@ -15,15 +15,19 @@ class CreateServicesTable extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->integer('country_id')->nullable();
-            $table->integer('processor_id')->nullable();
+            $table->integer('category_id');
+            $table->integer('country_id');
+            $table->integer('processor_id');
             $table->integer('agent_id')->nullable();
-            $table->string('name')->nullable();
+            $table->string('name');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->double('normal_price')->nullable();
             $table->double('discount_price')->nullable();
             $table->double('commission')->nullable();
-            $table->tinyInteger('status')->default(1);
+            $table->string('icon')->nullable();
+            $table->longText('data');
+            $table->string('status')->default('ACTIVE');
             $table->timestamps();
         });
     }

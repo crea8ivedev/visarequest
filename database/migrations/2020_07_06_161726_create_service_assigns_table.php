@@ -13,7 +13,7 @@ class CreateServiceAssignsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_assigns', function (Blueprint $table) {
+        Schema::create('application_assign', function (Blueprint $table) {
             $table->id();
             $table->integer('service_id');
             $table->integer('user_id');

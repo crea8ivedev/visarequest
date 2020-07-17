@@ -28,7 +28,7 @@ class ProcessorController extends Controller
             if($request->ajax())
             {
 
-                $users = User::where('role',Config::get('constants.roles.PROCESSOR'));
+                $users = User::where('role',Config::get('constants.ROLES.PROCESSOR'));
 
                 // Search for a services based on their name.
                 if ($request->has('search') && ! is_null($request->get('search'))) {
@@ -91,7 +91,7 @@ class ProcessorController extends Controller
         $user->email      = $request->email;
         $user->phone      = $request->phone;
         $user->status     = $request->status;
-        $user->role       = Config::get('constants.roles.PROCESSOR');
+        $user->role       = Config::get('constants.ROLES.PROCESSOR');
         $user->password   = Hash::make($request->password);
 
        if($user->save()) {
