@@ -24,7 +24,8 @@ class ServiceController extends Controller
             ->whereHas('countrys', function ($q) use ($country) {
                 $q->where('country_id', $country->id);
             })->get();
-        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country'));
+        $country_list = Country::get();
+        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','country_list'));
     }
 
     public function getServices(Request $request)

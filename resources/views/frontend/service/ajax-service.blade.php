@@ -28,11 +28,11 @@
                         <p>{{$service->description}}</p>
                         <div class="btn-group mt-30">
                             @if (Auth::check())
-                            <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 " href="javascript:void(0);">Apply</a>
+                            <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btnPaymentModal" href="javascript:void(0);">Apply</a>
                             @else
                             <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btn-login" href="javascript:void(0);">Apply</a>
                             @endif
-                             <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark m-0" href="javascript:void(0);">Contact Agent</a>
+                             <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark m-0 btnContactAgent" href="javascript:void(0);">Contact Agent</a>
                         </div>
                     </div>
                 </div>
