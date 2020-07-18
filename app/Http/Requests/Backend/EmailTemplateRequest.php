@@ -52,6 +52,7 @@ class EmailTemplateRequest extends FormRequest
             'sender_email.required'      => 'Please enter sender email',
             'sender_email.email'         => 'Please enter valid email',
             'subject.required'           => 'Please enter subject',
+            'message.required'           => 'Please enter message',
         ];
     }
 }

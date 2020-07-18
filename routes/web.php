@@ -31,6 +31,7 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/application', 'ServiceApplicationController@index')->name('frontend.service.application.index');
     Route::get('/about-us', 'PageController@getAboutUs')->name('frontend.about-us');
     Route::get('/contact-us', 'PageController@getContactUs')->name('frontend.contact-us');
+    Route::post('/contact', 'ContactController@store')->name('frontend.contact');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
 });
 //END FRONT ROUTE
@@ -248,6 +249,15 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/edit/{id}', "VisaQuestionController@edit")->name("admin.visa-question.edit");
         Route::post('/update/{id}', "VisaQuestionController@update")->name("admin.visa-question.update");
         Route::post('/destroy/{id}', 'VisaQuestionController@destroy')->name("admin.visa-question.destroy");
+    });
+
+    /* routes for contacts view */
+    Route::group(["prefix" => "contact"], function() {
+        Route::get('/', "ContactController@index")->name("admin.contact");
+        Route::post('/', "ContactController@index")->name("admin.contact");
+        Route::get('/reply/{id}', "ContactController@reply")->name("admin.contact.reply");
+        Route::post('/update', "ContactController@update")->name("admin.contact.update");
+        Route::post('/destroy/{id}', 'ContactController@destroy')->name("admin.contact.destroy");
     });
 });
 

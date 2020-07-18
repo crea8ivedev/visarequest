@@ -59,6 +59,16 @@
 
   <script>
    CKEDITOR.replace('description');
+    CKEDITOR.instances.description.on('change', function() {    
+    for (instance in CKEDITOR.instances) {
+          CKEDITOR.instances['description'].updateElement();
+      }
+      if(CKEDITOR.instances.description.getData().length >  0) {
+        $('#description-error').hide();
+      } else {
+        $('#description-error').show();
+      }
+   });
 </script>
 
 {!! JsValidator::formRequest('App\Http\Requests\Backend\AboutUsRequest') !!}

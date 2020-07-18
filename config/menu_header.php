@@ -93,6 +93,14 @@ return [
             'new-tab' => false,
         ],
 
+        //Contact
+        // [
+        //     'title' => 'Contact US',
+        //     'root'  => true,
+        //     'page'  => 'admin/contact',
+        //     'new-tab' => false,
+        // ],
+        
         //Update
         [
             'title' => 'Update',

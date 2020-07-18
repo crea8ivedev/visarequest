@@ -89,6 +89,16 @@
 
 <script>
    CKEDITOR.replace('message');
+    for (instance in CKEDITOR.instances) {
+          CKEDITOR.instances['message'].updateElement();
+      }
+   CKEDITOR.instances.message.on('change', function() {    
+      if(CKEDITOR.instances.message.getData().length >  0) {
+        $('#message-error').hide();
+      } else {
+        $('#message-error').show();
+      }
+  });
 </script>
 
 {!! JsValidator::formRequest('App\Http\Requests\Backend\MessageRequest') !!}
