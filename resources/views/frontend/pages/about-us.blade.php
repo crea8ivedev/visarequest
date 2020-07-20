@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('content')
 
-    <section class="fullwidth-section">
+    {{-- <section class="fullwidth-section"> --}}
         <div class="container">
             <div class="content">
                 <div class="row">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    {{-- </section> --}}
 
 
 @endsection()

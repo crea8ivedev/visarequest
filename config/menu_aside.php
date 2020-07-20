@@ -141,6 +141,10 @@ return [
                     'title' => 'Visa Questions',
                     'page' => 'admin/visa-question',
                 ],
+                [
+                    'title' => 'News',
+                    'page' => 'admin/news',
+                ],
             ]
         ],
 
