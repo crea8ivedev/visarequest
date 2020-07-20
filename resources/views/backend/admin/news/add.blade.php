@@ -10,49 +10,41 @@
   <div class="card card-custom card-collapse" data-card="true" id="kt_card_4">
     <div class="card-header">
       <div class="card-title">
-        <h3 class="card-label">Send New Message</h3>
+        <h3 class="card-label">Add News</h3>
       </div>
 
     </div>
 
     <div class="card-body" id="card-collapse">
       <!--begin::Form-->
-      <form class="form" method="post" id="sample_form" action="{{ route('admin.messages.store')  }}">
+      <form class="form" method="post" id="sample_form" action="{{ route('admin.news.store')  }}">
         @csrf
         <div class="form-group row">
         <div class="col-lg-6">
-          <label>User :<code>*</code></label>
-          <select class="form-control" id="user_id" name="user_id">
-            <option value="">Select User</option>
-            @foreach($user_list as $user)
-            <option value="{{$user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->FullName }}</option>
+          <label>Country :<code>*</code></label>
+          <select class="form-control" id="country_id" name="country_id">
+            <option value="">Select country</option>
+            @foreach($country_list as $country)
+            <option value="{{$country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>{{ $country->name }}</option>
             @endforeach
           </select>
-          @if ($errors->has('user_id'))
-          <span class="invalid-feedback">{{ $errors->first('user_id') }}</span>
+          @if ($errors->has('country_id'))
+          <span class="invalid-feedback">{{ $errors->first('country_id') }}</span>
           @endif
         </div>
 
         <div class="col-lg-6">
-          <label>Email Type :<code>*</code></label>
-          <input class="form-control" id="email_type" name="email_type" placeholder="Email type" value="{{Request::old('email_type') ?? ''}}">
-          @if ($errors->has('email_type'))
-          <span class="invalid-feedback">{{ $errors->first('email_type') }}</span>
+          <label>Heading :<code>*</code></label>
+          <input class="form-control" id="heading" name="heading" placeholder="Heading" value="{{Request::old('heading') ?? ''}}">
+          @if ($errors->has('heading'))
+          <span class="invalid-feedback">{{ $errors->first('heading') }}</span>
           @endif
         </div>
 
 
         </div>
 
-        <div class="form-group {{ $errors->has('subject') ? ' has-error' : '' }}">
-          <label>Subject :<code>*</code></label>
-          <input class="form-control" id="subject" name="subject" placeholder="Subject" value="{{Request::old('subject') ?? ''}}">
-          @if ($errors->has('subject'))
-          <span class="invalid-feedback">{{ $errors->first('subject') }}</span>
-          @endif
-        </div>
-          
-
+        
         <div class="form-group {{ $errors->has('message') ? ' has-error' : '' }}">
           <label>Message :<code>*</code></label>
             <textarea class="form-control" id="message" name="message" placeholder="Message">{{Request::old('message') ?? ''}}</textarea>
@@ -66,8 +58,8 @@
         <div class="card-footer">
           <input type="hidden" name="action" id="action" value="Add" />
           <input type="hidden" name="hidden_id" id="hidden_id" />
-          <button type="submit" class="btn btn-primary mr-2">Send</button>
-          <a href="{{ route('admin.messages')  }}" type="button" class="btn btn-secondary cancel">Cancel</a>
+          <button type="submit" class="btn btn-primary mr-2">Add</button>
+          <a href="{{ route('admin.news')  }}" type="button" class="btn btn-secondary cancel">Cancel</a>
         </div>
       </form>
       <!--end::Form-->
@@ -89,10 +81,10 @@
 
 <script>
    CKEDITOR.replace('message');
+   CKEDITOR.instances.message.on('change', function() {    
     for (instance in CKEDITOR.instances) {
           CKEDITOR.instances['message'].updateElement();
       }
-   CKEDITOR.instances.message.on('change', function() {    
       if(CKEDITOR.instances.message.getData().length >  0) {
         $('#message-error').hide();
       } else {
@@ -101,5 +93,5 @@
   });
 </script>
 
-{!! JsValidator::formRequest('App\Http\Requests\Backend\MessageRequest') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Backend\NewsRequest') !!}
 @endsection

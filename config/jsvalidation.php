@@ -49,5 +49,5 @@ return [
      *
      * See https://jqueryvalidation.org/validate/#ignore
      */
-    'ignore' => ":hidden, [contenteditable='true']",
+    'ignore' => "input:hidden:not(input:hidden.required)",
 ];

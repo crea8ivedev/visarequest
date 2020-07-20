@@ -92,6 +92,22 @@ return [
         //     'new-tab' => false,
         // ],
 
+        // Contact
+        [
+            'title' => 'Contact US',
+            'root' => true,
+            'icon' => 'public/images/icons/Contact1.svg', // or can be 'flaticon-home' or any flaticon-*
+            'page' => 'admin/contact',
+            'new-tab' => false,
+            'bullet' => 'dot',
+            'submenu' => [
+                [
+                    'title' => 'Contact US',
+                    'page' => 'admin/contact',
+                ],
+            ]
+        ],
+
         //Update
         [
             'title' => 'Update',
@@ -124,6 +140,10 @@ return [
                 [
                     'title' => 'Visa Questions',
                     'page' => 'admin/visa-question',
+                ],
+                [
+                    'title' => 'News',
+                    'page' => 'admin/news',
                 ],
             ]
         ],

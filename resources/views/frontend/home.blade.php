@@ -167,35 +167,40 @@
                                             <h2 class="title">Contact <strong>VisaRequest</strong></h2>
                                         </div>
                                     </div><!-- section title end -->
-                                    <form id="contact_form" class="contact_form wrap-form pt-15 clearfix" method="post" novalidate="novalidate" action="#">
+                                    <div id="showResponseArea" class="showResponseArea alert d-none">
+                                        <span>
+                                            <strong id="alertType">Success !! </strong> <span id="requestId"> // Request id goes here</span>
+                                        </span>
+                                    </div>
+                                    <form id="contact_form" class="contact_form wrap-form pt-15 clearfix" method="post" novalidate="novalidate" >
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <label>
-                                                    <span class="text-input"><input name="name" type="text" value="" placeholder="Your Name" required="required"></span>
+                                                    <span class="text-input"><input name="name" type="text" value="" placeholder="Your Name" ></span>
                                                 </label>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <label>
-                                                    <span class="text-input"><input name="address" type="text" value="" placeholder="Your Email" required="required"></span>
+                                                    <span class="text-input"><input name="email" type="email" value="" placeholder="Your Email" ></span>
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6">
                                                 <label>
-                                                    <span class="text-input"><input name="phone" type="text" value="" placeholder="Phone Number" required="required"></span>
+                                                    <span class="text-input"><input name="phone" type="text" value="" placeholder="Phone Number" ></span>
                                                 </label>
                                             </div>
                                             <div class="col-lg-6 col-md-6">
                                                 <label>
-                                                    <span class="text-input"><input name="phone" type="text" value="" placeholder="Subject" required="required"></span>
+                                                    <span class="text-input"><input name="subject" type="text" value="" placeholder="Subject" required="required"></span>
                                                 </label>
                                             </div>
                                         </div>
                                         <label>
                                             <span class="text-input"><textarea name="message" rows="5" placeholder="Message" required="required"></textarea></span>
                                         </label>
-                                        <button class="submit cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100" type="submit">Submit Request !</button>
+                                        <button class="submit cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100" type="submit">Submit Request !  <i id="submit" class="fa fa-spinner fa-spin d-none" ></i></button>
                                     </form>
                                 </div>
                             </div>
@@ -252,6 +257,11 @@
 <script src="{{ asset('js/map/jquery.vmap.world.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/map/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/map/init_map.js') }}" type="text/javascript"></script>
+@foreach(config('layout.resources.validate_js') as $script)
+    <script src="{{ asset($script) }}" type="text/javascript"></script>
+@endforeach
+{!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest') !!}
+<script src="{{ asset('js/contact.js') }}" type="text/javascript" ></script>
 <script>
     $( document ).ready(function() {
         $(".select2").select2();

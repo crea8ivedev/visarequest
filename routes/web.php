@@ -31,7 +31,10 @@ Route::namespace('Frontend')->group(function () {
     Route::get('/application', 'ServiceApplicationController@index')->name('frontend.service.application.index');
     Route::get('/about-us', 'PageController@getAboutUs')->name('frontend.about-us');
     Route::get('/contact-us', 'PageController@getContactUs')->name('frontend.contact-us');
+    Route::post('/contact', 'ContactController@store')->name('frontend.contact');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
+    Route::get('/news', 'NewsController@getNews')->name('frontend.news');
+
 });
 //END FRONT ROUTE
 
@@ -239,6 +242,8 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/store', "PageController@ContactUsUpdate")->name("admin.contact-us.store");
     });
 
+   
+
      /* routes for visa question view */
     Route::group(["prefix" => "visa-question"], function () {
         Route::get('/', "VisaQuestionController@index")->name("admin.visa-question");
@@ -248,6 +253,26 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/edit/{id}', "VisaQuestionController@edit")->name("admin.visa-question.edit");
         Route::post('/update/{id}', "VisaQuestionController@update")->name("admin.visa-question.update");
         Route::post('/destroy/{id}', 'VisaQuestionController@destroy')->name("admin.visa-question.destroy");
+    });
+
+    /* routes for contacts view */
+    Route::group(["prefix" => "contact"], function() {
+        Route::get('/', "ContactController@index")->name("admin.contact");
+        Route::post('/', "ContactController@index")->name("admin.contact");
+        Route::get('/reply/{id}', "ContactController@reply")->name("admin.contact.reply");
+        Route::post('/update', "ContactController@update")->name("admin.contact.update");
+        Route::post('/destroy/{id}', 'ContactController@destroy')->name("admin.contact.destroy");
+    });
+
+     /* routes for news view */
+    Route::group(["prefix" => "news"], function () {
+        Route::get('/', "NewsController@index")->name("admin.news");
+        Route::post('/', "NewsController@index")->name("admin.news");
+        route::get('/add', "NewsController@create")->name("admin.news.add");
+        route::post('/store', "NewsController@store")->name("admin.news.store");
+        Route::get('/edit/{id}', "NewsController@edit")->name("admin.news.edit");
+        Route::post('/update/{id}', "NewsController@update")->name("admin.news.update");
+        Route::post('/destroy/{id}', 'NewsController@destroy')->name("admin.news.destroy");
     });
 });
 
