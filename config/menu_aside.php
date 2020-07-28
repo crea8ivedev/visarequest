@@ -105,6 +105,10 @@ return [
                     'title' => 'Contact US',
                     'page' => 'admin/contact',
                 ],
+                [
+                    'title' => 'Feedback',
+                    'page' => 'admin/feedback',
+                ],
             ]
         ],
 

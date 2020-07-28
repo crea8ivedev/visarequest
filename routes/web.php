@@ -34,6 +34,7 @@ Route::namespace('Frontend')->group(function () {
     Route::post('/contact', 'ContactController@store')->name('frontend.contact');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
     Route::get('/news', 'NewsController@getNews')->name('frontend.news');
+    Route::post('/feedback', 'ContactController@feedbackStore')->name('frontend.feedback');
 
 });
 //END FRONT ROUTE
@@ -262,6 +263,15 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/reply/{id}', "ContactController@reply")->name("admin.contact.reply");
         Route::post('/update', "ContactController@update")->name("admin.contact.update");
         Route::post('/destroy/{id}', 'ContactController@destroy')->name("admin.contact.destroy");
+    });
+
+     /* routes for feedback view */
+     Route::group(["prefix" => "feedback"], function() {
+        Route::get('/', "FeedbackController@index")->name("admin.feedback");
+        Route::post('/', "FeedbackController@index")->name("admin.feedback");
+        Route::get('/reply/{id}', "FeedbackController@reply")->name("admin.feedback.reply");
+        Route::post('/update', "FeedbackController@update")->name("admin.feedback.update");
+        Route::post('/destroy/{id}', 'FeedbackController@destroy')->name("admin.feedback.destroy");
     });
 
      /* routes for news view */
