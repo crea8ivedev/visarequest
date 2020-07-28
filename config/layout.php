@@ -293,7 +293,7 @@ return [
             'js/pages/features/charts/apexcharts.js',
         ],
         'image_js' => [
-            'js/pages/crud/file-upload/image-input.js',
+            'plugins/custom/file-upload/image-input.js',
         ],
         'datetimepicker_css' => [
             'plugins/custom/datetimepicker/datetimepicker.min.css',

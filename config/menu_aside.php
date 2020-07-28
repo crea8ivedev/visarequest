@@ -120,6 +120,11 @@ return [
             'root' => true,
             'submenu' => [
                 [
+                    'title' => 'Sliders',
+                    'page'  => 'admin/slider',
+                    
+                ],
+                [
                     'title' => 'Team Members',
                     'page'  => 'admin/team-member',
                     
@@ -139,7 +144,17 @@ return [
                 ],
                 [
                     'title' => 'Contact US',
-                    'page' => 'admin/contact-us',
+                    'bullet' => 'dot',
+                    'submenu' => [
+                            [
+                                'title' => 'Contact US',
+                                'page' => 'admin/contact-us'
+                            ],
+                            [
+                                'title' => 'Social Links',
+                                'page' => 'admin/social-link'
+                            ],
+                    ],
                 ],
                 [
                     'title' => 'Visa Questions',

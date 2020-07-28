@@ -35,5 +35,8 @@ return [
 		"hideEasing" => "linear",
 		"showMethod" => "fadeIn",
 		"hideMethod" => "fadeOut"
-	]
+	],
+
+	'SLIDER_STORE'        =>  'public/slider',
+	'SLIDER_IMAGE_GET'    =>  'public/storage/slider',
 ];

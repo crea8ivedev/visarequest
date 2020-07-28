@@ -239,8 +239,26 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
 
     /* routes for contact us view */
     Route::group(["prefix" => "contact-us"], function() {
-        Route::get('/', "PageController@ContactUs")->name("admin.contact-us");
-        Route::post('/store', "PageController@ContactUsUpdate")->name("admin.contact-us.store");
+        Route::get('/', "PageController@contactUs")->name("admin.contact-us");
+        Route::post('/store', "PageController@contactUsUpdate")->name("admin.contact-us.store");
+        Route::get('/edit/{id}', "PageController@contactUsEdit")->name("admin.contact-us.edit");
+    });
+
+     /* routes for social links view */
+     Route::group(["prefix" => "social-link"], function() {
+        Route::get('/', "PageController@socialLink")->name("admin.social-link");
+        Route::post('/store', "PageController@socialLinkUpdate")->name("admin.social-link.store");
+    });
+
+    /* routes for slider view */
+    Route::group(["prefix" => "slider"], function () {
+        Route::get('/', "SliderController@index")->name("admin.slider");
+        Route::post('/', "SliderController@index")->name("admin.slider");
+        route::get('/add', "SliderController@create")->name("admin.slider.add");
+        Route::get('/edit/{id}', "SliderController@edit")->name("admin.slider.edit");
+        Route::post('/store', "SliderController@store")->name("admin.slider.store");
+        Route::post('/update/{id}', "SliderController@update")->name("admin.slider.update");
+        Route::post('/destroy/{id}', 'SliderController@destroy')->name("admin.slider.destroy");
     });
 
    

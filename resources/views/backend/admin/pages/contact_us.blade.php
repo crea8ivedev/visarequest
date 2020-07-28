@@ -20,16 +20,26 @@
           <!--begin::Form-->
           <form class="form" method="post" id="sample_form" action="{{ route('admin.contact-us.store')  }}">
             @csrf
+
+            
+            <div class="form-group">
+                <label>Office :<code>*</code></label>
+                <select class="form-control office_name" id="office_name" name="office_name" >
+                   <option value="Pretoria Head Office" {{ 'Pretoria Head Office' == $data->office_name  ? 'selected="selected"' : '' }} > Pretoria Head Office</option>
+                   <option value="Cape Town Regional Office" {{ 'Cape Town Regional Office' == $data->office_name  ? 'selected="selected"' : '' }}> Cape Town Regional Office</option>
+                   <option value="Harare International Office" {{ 'Harare International Office' == $data->office_name  ? 'selected="selected"' : '' }}> Harare International Office</option>
+                </select>
+            </div>
              
               <div class="form-group">
                 <label>Address :<code>*</code></label>
                   <textarea rows="5" placeholder="Address" class="form-control form-control-solid kt-ckeditor-1" id="address" name="address" autocomplete="off">{{ $data->address ?? '' }}</textarea>
               </div>
 
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label>Address1 : </label>
                   <textarea rows="5" placeholder="Address1" class="form-control form-control-solid kt-ckeditor-1" id="address1" name="address1" autocomplete="off">{{ $data->address1 ?? '' }}</textarea>
-              </div>
+              </div> --}}
 
                <div class="form-group">
                 <label>Email : </label>
@@ -46,9 +56,14 @@
                   <textarea placeholder="Telephone" class="form-control form-control-solid kt-ckeditor-1" id="telephone" name="telephone" autocomplete="off">{{ $data->telephone ?? '' }}</textarea>
               </div>
 
-                <div class="form-group">
+              <div class="form-group">
                 <label>International Calls : </label>
                   <textarea placeholder="International Calls" class="form-control form-control-solid kt-ckeditor-1" id="international_call" name="international_call" autocomplete="off">{{ $data->international_call ?? '' }}</textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Hours : </label>
+                  <textarea placeholder="Hours" class="form-control form-control-solid kt-ckeditor-1" id="hours" name="hours" autocomplete="off">{{ $data->hours ?? '' }}</textarea>
               </div>
 
             <div class="card-footer">
@@ -74,12 +89,50 @@
       <script src="{{ asset($script) }}" type="text/javascript"></script>
   @endforeach
 
-  <script>
-   CKEDITOR.replace('description');
-</script>
-
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ContactUsRequest') !!}
 
+ <script>
+  $(document).ready(function() {
+
+    
+     $('.office_name').on('change', function() {
+      $('#address').val('');
+      $('#email').val('');
+      $('#cell_phone').val('');
+      $('#telephone').val('');
+      $('#international_call').val('');
+
+       var office = $(this).find("option:selected").val();
+       $.ajax({
+            url: '{{ url("admin/contact-us/edit") }}/'+ office,
+            dataType: "json",
+            beforeSend: function() {
+            $("#loading").show();
+            },
+            complete: function() {
+            $("#loading").hide();
+            },
+            success: function(data) {
+                if(data.result != ''){
+                $('#address').val(data.result.address);
+                $('#email').val(data.result.email);
+                $('#cell_phonee').val(data.result.cell_phone);
+                $('#telephone').val(data.result.telephone);
+                $('#international_call').val(data.result.international_call);
+                $('#hidden_id').val(data.result.id);
+                $('#action').val('Edit');
+                } else{
+                    $('#action').val('Add');
+                    $('#hidden_id').val('');
+                }
+            }
+        })
+
+     });
+
+  });
+
+ </script>
  
 
 @endsection

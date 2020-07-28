@@ -111,6 +111,11 @@ return [
                 'alignment' => 'left',
                   'items' => [
                     [
+                        'title' => 'Sliders',
+                        'page'  => 'admin/slider',
+                        
+                    ],
+                    [
                         'title' => 'Team Members',  
                         'icon'  => 'images/icons/service.svg',
                         'page'  => 'admin/team-member',
@@ -131,7 +136,17 @@ return [
                     ],
                     [
                         'title' => 'Contact US',
-                        'page' => 'admin/contact-us',
+                        'bullet' => 'dot',
+                        'submenu' => [
+                                [
+                                    'title' => 'Contact US',
+                                    'page' => 'admin/contact-us'
+                                ],
+                                [
+                                    'title' => 'Social Links',
+                                    'page' => 'admin/social-link'
+                                ],
+                        ],
                     ],
                     [
                         'title' => 'Visa Questions',
