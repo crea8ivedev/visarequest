@@ -152,6 +152,10 @@ return [
                         'title' => 'Visa Questions',
                         'page' => 'admin/visa-question',
                     ],
+                    [
+                        'title' => 'Meta Page',
+                        'page' => 'admin/meta-page',
+                    ],
                 ]
             ]
         ],

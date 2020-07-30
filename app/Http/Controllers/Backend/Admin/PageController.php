@@ -49,6 +49,8 @@ class PageController extends Controller
         $page->slug         = $slug;
         $page->heading      = $request->heading;
         $page->description  = $request->description;
+        $page->meta_description  = $request->meta_description;
+        $page->meta_keywords  = $request->meta_keywords;
         $page->id           = $request->hidden_id;
         
        if($page->save()) {
@@ -98,6 +100,8 @@ class PageController extends Controller
         $page->slug         = $slug;
         $page->heading      = $request->heading;
         $page->description  = $request->description;
+        $page->meta_description  = $request->meta_description;
+        $page->meta_keywords  = $request->meta_keywords;
         $page->id           = $request->hidden_id;
         
        if($page->save()) {

@@ -302,6 +302,15 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/update/{id}', "NewsController@update")->name("admin.news.update");
         Route::post('/destroy/{id}', 'NewsController@destroy')->name("admin.news.destroy");
     });
+
+    /* routes for meta tag view */
+    Route::group(["prefix" => "meta-page"], function() {
+        // Route::get('/', "TermsAndConditionsController@index")->name("admin.terms-and-conditions");
+         Route::get('/', "MetaPageController@index")->name("admin.meta-page");
+         Route::post('/store', "MetaPageController@store")->name("admin.meta-page.store");
+         Route::get('/{page}/edit', "MetaPageController@edit")->name("admin.meta-page.edit");
+
+     });
 });
 
 //Auth Processor

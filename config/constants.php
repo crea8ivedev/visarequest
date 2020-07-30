@@ -37,6 +37,14 @@ return [
 		"hideMethod" => "fadeOut"
 	],
 
+	'PAGE'=>[
+        'HOME'    => 'Home',
+        'SERVICE' => 'Service',
+        'ABOUT'   => 'About',
+        'NEWS'   => 'News',
+        'TERMS'   => 'Terms and Conditions',
+    ],
+
 	'SLIDER_STORE'        =>  'public/slider',
 	'SLIDER_IMAGE_GET'    =>  'public/storage/slider',
 ];

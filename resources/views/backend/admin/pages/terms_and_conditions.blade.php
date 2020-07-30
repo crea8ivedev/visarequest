@@ -38,6 +38,19 @@
                     @endif
               </div>
 
+              <div class="form-group">
+                <label>Meta Description :</label>
+                <textarea rows="7" placeholder="Meta Description" class="form-control" id="meta_description" name="meta_description"
+                autocomplete="off">{{ $data->meta_description ?? '' }}</textarea>
+              </div>
+
+              <div class="form-group">
+                  <label>Meta Keywords :</label>
+                  <div class="input-group">
+                  <textarea rows="7" class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Meta Keywords"
+                      autocomplete="off">{{ $data->meta_keywords ?? '' }}</textarea>
+              </div>
+
             <div class="card-footer">
                 <input type="hidden" name="name" value="Terms And Conditions" />
                 <input type="hidden" name="hidden_id" id="hidden_id" value="{{ $data->id ?? ''}}" />

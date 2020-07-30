@@ -164,6 +164,10 @@ return [
                     'title' => 'News',
                     'page' => 'admin/news',
                 ],
+                [
+                    'title' => 'Meta Page',
+                    'page' => 'admin/meta-page',
+                ],
             ]
         ],
 
