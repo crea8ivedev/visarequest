@@ -1,124 +1,75 @@
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog cascading-modal" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="loginModal">{{ __('Login') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="error" id="errorMessage"></p>
-                <form method="POST" id="loginForm" action="{{ route('user.login') }}">
-                    @csrf
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" autofocus>
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal"><span
+                    aria-hidden="true">×</span></button>
+            <div class="modal-c-tabs">
+                <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#loginPane" role="tab">SignIn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#signupPane" role="tab">SignUp</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in show active" id="loginPane" role="loginPane">
+                        <p class="error" id="errorMessage"></p>
+                        <form method="POST" id="loginForm" action="{{ route('user.login') }}">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="email">email</label>
+                                    <input id="email" type="email" class="form-control" name="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">password</label>
+                                    <input id="password" type="password" class="form-control" name="password"
+                                        autocomplete="current-password">
+
+                                </div>
+                                <div class="text-right mt-4">
+                                    <p> <a href="#forgotPane" data-toggle="tab" role="tab"
+                                            class="blue-text">Forgot Password?</a></p>
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button
+                                        class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor w-100"
+                                        type="submit">Log in</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control" name="password" autocomplete="current-password">
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                    <div class="tab-pane fade" id="signupPane" role="signupPane">
+                        <form method="POST" id="signupForm" action="{{ route('user.register') }}">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" id="first_name" name="first_name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" id="last_name" name="last_name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" class="form-control">
+                                </div>
+                                <div class="text-center mt-4">
+                                    <button
+                                        class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor w-100"
+                                        type="submit">Sign up</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                Login
-                            </button>
-                            <a class="btn btn-link btn-signup" href="#">
-                                Signup
-                            </a>
-                            <!-- @if (Route::has('password.request'))
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                Forgot Your Password?
-                            </a>
-                            @endif -->
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="registerModal">{{ __('Register') }}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" id="signupForm" action="{{ route('user.register') }}">
-                    @csrf
-                    <p class="error" id="errorMessage"></p>
-                    <div class="form-group row">
-                        <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
-                        <div class="col-md-6">
-                            <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" autofocus>
-                            <span class="invalid-feedback" role="alert" id="nameError">
-                                <strong></strong>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
-                        <div class="col-md-6">
-                            <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}">
-                            <span class="invalid-feedback" role="alert" id="nameError">
-                                <strong></strong>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-                            <span class="invalid-feedback" role="alert" id="emailError">
-                                <strong></strong>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password">
-                            <span class="invalid-feedback" role="alert" id="passwordError">
-                                <strong></strong>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="confirm_password" class="col-md-4 col-form-label text-md-right">COnfirm Password</label>
-                        <div class="col-md-6">
-                            <input id="confirm_password" type="password" class="form-control" name="confirm_password" required autocomplete="new-password">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                Signup
-                            </button>
-                            <a class="btn btn-link btn-login" href="#">
-                                Login
-                            </a>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

@@ -25,4 +25,7 @@ class HomeController extends Controller
         $country = Country::where('slug',$request->country)->first();
         return response()->json(['success' =>($country)?true:false]);
     }
+
+    
+
 }

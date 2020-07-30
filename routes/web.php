@@ -350,3 +350,6 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
         Route::post('/', "FinanceController@index")->name("agent.finance");
     });
 });
+
+Route::get('assets/{path}/{file}', 'CommonController@displayImage')->name('display.image');
+Route::get('download/{path}/{file}', 'CommonController@getDownload')->name('download');

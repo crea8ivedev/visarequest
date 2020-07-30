@@ -35,5 +35,7 @@ return [
 		"hideEasing" => "linear",
 		"showMethod" => "fadeIn",
 		"hideMethod" => "fadeOut"
-	]
+	],
+
+	'COUNTRY_IMAGE_STORE'   =>  'country'
 ];

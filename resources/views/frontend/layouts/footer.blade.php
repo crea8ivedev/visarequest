@@ -1,4 +1,3 @@
- <!--footer start-->
  <footer class="footer cmt-bgcolor-darkgrey widget-footer clearfix">
      <div class="second-footer">
          <div class="container">

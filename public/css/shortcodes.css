@@ -192,13 +192,13 @@
     background-size: cover;
 }
 .col-bg-img-four.cmt-col-bgimage-yes > .cmt-col-wrapper-bg-layer{
-    background-image: url(../images/bg-image/col-bgimage-4.jpg);
+    background-image: url(../images/How-to-Get-a-Visa-Application-Quickly.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .col-bg-img-five.cmt-col-bgimage-yes > .cmt-col-wrapper-bg-layer{
-    background-image: url(../images/bg-image/col-bgimage-5.jpg);
+    background-image: url(../images/How-to-Get-a-Visa-Application-Quickly.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -223,7 +223,7 @@
     position: relative;
     margin-bottom: 0;
 }
-.client-section .section-title:before {
+/*.client-section .section-title:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -233,7 +233,7 @@
     min-height: 120px;
     background-color: #1f2437;
     transform: translateY(-50%);
-}
+}*/
 .section-title h5{
     font-weight: 500;
     display: block;
@@ -378,10 +378,10 @@
     top: 50%;
     width: 150%;
     z-index: -1;
-    -webkit-transition: all 0.75s ease 0s;
-    -moz-transition: all 0.75s ease 0s;
-    -o-transition: all 0.75s ease 0s;
-    transition: all 0.75s ease 0s;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
 }
 .cmt-btn:not(.btn-inline):before {
     -moz-transform: translateX(-50%) translateY(-50%) rotate(-25deg);
@@ -610,7 +610,7 @@ i.fa-play{ padding-left: 5px; }
     transform: translate(-50%,-50%);
 }
 /** icon-size-xs **/
-.cmt-icon.cmt-icon_element-size-xs { height: 40px; width: 40px; line-height: 40px; }
+.cmt-icon.cmt-icon_element-size-xs { height: 30px; width: 30px; line-height: 30px; }
 .cmt-icon.cmt-icon_element-size-xs i { font-size: 18px; }
 
 /** icon-size-sm **/
@@ -775,6 +775,7 @@ i.fa-play{ padding-left: 5px; }
 .featured-icon-box { position: relative; margin: 15px 0; }
 .featured-icon-box .cmt-icon{ margin-bottom: 0; }
 .featured-title h5{ font-size: 19px; line-height: 25px; margin-bottom: 15px; font-weight: 500; text-transform: capitalize;}
+/*section.services-section .featured-title h5{color:#1E63B1;}*/
 
 .featured-icon-box.icon-align-before-content .featured-icon,
 .featured-icon-box.icon-align-before-content .featured-content,
@@ -1101,7 +1102,8 @@ div.col-lg-3:nth-child(even) .featured-icon-box.icon-align-top-content.style1{
     text-align: center;
     margin-bottom: 15px;
     overflow: hidden;
-    border: 2px dashed rgba(255, 255, 255, 0.24) !important;
+    /*border: 2px dashed rgba(255, 255, 255, 0.24) !important;*/
+    border: 2px dashed #0199cb !important;
     background-color: transparent;/*#00000014*/
 }
 .featured-icon-box.icon-align-top-content.style5 .featured-content {
@@ -1202,7 +1204,7 @@ div.col-lg-3:nth-child(even) .featured-icon-box.icon-align-top-content.style1{
 /* style7 */
 .featured-icon-box.icon-align-top-content.style7 { 
     opacity: .88;
-    padding: 65px 20px 80px 30px;
+    padding: 65px 20px 100px 30px;
     height: 100%;
     margin: 0;
     min-width: 340px;

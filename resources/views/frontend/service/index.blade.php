@@ -12,7 +12,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="select-country">
-                                    <img src="{{ asset('/images/uploads/country/') }}/{{ $country->flag }}" alt="{{ $country->name }}">
+                                    <img src={{ route('display.image',[config("constants.COUNTRY_IMAGE_STORE"),$country->flag]) }}" alt="{{ $country->name }}">
                                     <div class="form-group">
                                       <select class="form-control" id="sel1">
                                         <option>1</option>
