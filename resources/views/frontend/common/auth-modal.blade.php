@@ -1,4 +1,4 @@
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+<div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
         <div class="modal-content">
             <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal"><span

@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="select-country">
-                        <img src={{ route('display.image',[config("constants.COUNTRY_IMAGE_STORE"),$country->flag]) }}"
+                        <img src={{ route('display.image',[config("constants.IMAGES.COUNTRY_IMAGE"),$country->flag]) }}"
                             alt="{{ $country->name }}">
                         <div class="form-group">
                             <select class="form-control" id="sel1">
@@ -38,7 +38,7 @@
                 <li data-id="{{$list->id}}" class="mega-menu-item service-category">
                     <a href="javascript:void(0);"
                         class="mega-menu-link   {{($list->id===$service_category_list->first()->id)?'active':''}}"> <i
-                            class="{{$list->icon}}"></i>{{$list->name}}</a>
+                            class="{{$list->icon}}"></i>{{$list->country_name}}</a>
                 </li>
                 @endforeach
             </ul>
