@@ -63338,7 +63338,7 @@ code {
     box-shadow: none !important;
 }
 
-.form-control.form-control-solid {
+.form-control. {
     background-color: #F3F6F9;
     border-color: #F3F6F9;
     color: #464E5F;
@@ -63348,23 +63348,23 @@ code {
     transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, -webkit-box-shadow 0.15s ease;
 }
 
-.form-control.form-control-solid::-moz-placeholder {
+.form-control.::-moz-placeholder {
     color: #B5B5C3;
     opacity: 1;
 }
 
-.form-control.form-control-solid:-ms-input-placeholder {
+.form-control.:-ms-input-placeholder {
     color: #B5B5C3;
 }
 
-.form-control.form-control-solid::-webkit-input-placeholder {
+.form-control.::-webkit-input-placeholder {
     color: #B5B5C3;
 }
 
-.form-control.form-control-solid:active,
-.form-control.form-control-solid.active,
-.form-control.form-control-solid:focus,
-.form-control.form-control-solid.focus {
+.form-control.:active,
+.form-control..active,
+.form-control.:focus,
+.form-control..focus {
     background-color: #ECF0F3;
     border-color: #ECF0F3;
     color: #464E5F;
@@ -63505,10 +63505,10 @@ code {
     box-shadow: none;
 }
 
-.input-group.input-group-solid .form-control.form-control-solid:active,
-.input-group.input-group-solid .form-control.form-control-solid.active,
-.input-group.input-group-solid .form-control.form-control-solid:focus,
-.input-group.input-group-solid .form-control.form-control-solid.focus {
+.input-group.input-group-solid .form-control.:active,
+.input-group.input-group-solid .form-control..active,
+.input-group.input-group-solid .form-control.:focus,
+.input-group.input-group-solid .form-control..focus {
     background-color: #ECF0F3;
     border-color: #ECF0F3;
     color: #464E5F;

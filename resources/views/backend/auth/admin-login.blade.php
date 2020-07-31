@@ -36,7 +36,7 @@
 							@endif
 							<div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 								<label class="font-size-h6 font-weight-bolder text-dark">Email</label>
-								<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="off" />
+								<input class="form-control  h-auto py-7 px-6 rounded-lg" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="off" />
 								@if ($errors->has('email'))
 								<span class="help-block">
 									<strong style="color: red">{{ $errors->first('email') }}</strong>
@@ -45,7 +45,7 @@
 							</div>
 							<div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
 								<label class="font-size-h6 font-weight-bolder text-dark">Password</label>
-								<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="password" name="password" required autocomplete="off" />
+								<input class="form-control  h-auto py-7 px-6 rounded-lg" type="password" name="password" required autocomplete="off" />
 								@if ($errors->has('password'))
 								<span class="help-block">
 									<strong style="color: red">{{ $errors->first('password') }}</strong>

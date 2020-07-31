@@ -8,6 +8,7 @@ use App\Models\ServiceCategory;
 use App\Models\Service;
 use App\Models\Country;
 use App\Models\ServiceElement;
+use App\Models\MetaPage;
 use Config;
 
 class ServiceController extends Controller
@@ -15,9 +16,7 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         $country = Country::where('slug',$request->country)->first();
-        if (!$country) {
-            return redirect()->intended(route('home'));
-        }
+        
         $service_category_list = ServiceCategory::where('status',Config::get('constants.STATUS.ACTIVE'))->get();
         $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
             ->where('category_id',$service_category_list->first()->id)
@@ -25,7 +24,8 @@ class ServiceController extends Controller
                 $q->where('country_id', $country->id);
             })->get();
         $country_list = Country::get();
-        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','country_list'));
+        $metaData = MetaPage::where('slug','home')->first();
+        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','metaData','country_list'));
     }
 
     public function getServices(Request $request)

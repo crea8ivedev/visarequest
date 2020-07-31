@@ -34,6 +34,7 @@ Route::namespace('Frontend')->group(function () {
     Route::post('/contact', 'ContactController@store')->name('frontend.contact');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
     Route::get('/news', 'NewsController@getNews')->name('frontend.news');
+    Route::post('/feedback', 'ContactController@feedbackStore')->name('frontend.feedback');
 
 });
 //END FRONT ROUTE
@@ -238,8 +239,26 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
 
     /* routes for contact us view */
     Route::group(["prefix" => "contact-us"], function() {
-        Route::get('/', "PageController@ContactUs")->name("admin.contact-us");
-        Route::post('/store', "PageController@ContactUsUpdate")->name("admin.contact-us.store");
+        Route::get('/', "PageController@contactUs")->name("admin.contact-us");
+        Route::post('/store', "PageController@contactUsUpdate")->name("admin.contact-us.store");
+        Route::get('/edit/{id}', "PageController@contactUsEdit")->name("admin.contact-us.edit");
+    });
+
+     /* routes for social links view */
+     Route::group(["prefix" => "social-link"], function() {
+        Route::get('/', "PageController@socialLink")->name("admin.social-link");
+        Route::post('/store', "PageController@socialLinkUpdate")->name("admin.social-link.store");
+    });
+
+    /* routes for slider view */
+    Route::group(["prefix" => "slider"], function () {
+        Route::get('/', "SliderController@index")->name("admin.slider");
+        Route::post('/', "SliderController@index")->name("admin.slider");
+        route::get('/add', "SliderController@create")->name("admin.slider.add");
+        Route::get('/edit/{id}', "SliderController@edit")->name("admin.slider.edit");
+        Route::post('/store', "SliderController@store")->name("admin.slider.store");
+        Route::post('/update/{id}', "SliderController@update")->name("admin.slider.update");
+        Route::post('/destroy/{id}', 'SliderController@destroy')->name("admin.slider.destroy");
     });
 
    
@@ -264,6 +283,15 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'ContactController@destroy')->name("admin.contact.destroy");
     });
 
+     /* routes for feedback view */
+     Route::group(["prefix" => "feedback"], function() {
+        Route::get('/', "FeedbackController@index")->name("admin.feedback");
+        Route::post('/', "FeedbackController@index")->name("admin.feedback");
+        Route::get('/reply/{id}', "FeedbackController@reply")->name("admin.feedback.reply");
+        Route::post('/update', "FeedbackController@update")->name("admin.feedback.update");
+        Route::post('/destroy/{id}', 'FeedbackController@destroy')->name("admin.feedback.destroy");
+    });
+
      /* routes for news view */
     Route::group(["prefix" => "news"], function () {
         Route::get('/', "NewsController@index")->name("admin.news");
@@ -274,6 +302,15 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/update/{id}', "NewsController@update")->name("admin.news.update");
         Route::post('/destroy/{id}', 'NewsController@destroy')->name("admin.news.destroy");
     });
+
+    /* routes for meta tag view */
+    Route::group(["prefix" => "meta-page"], function() {
+        // Route::get('/', "TermsAndConditionsController@index")->name("admin.terms-and-conditions");
+         Route::get('/', "MetaPageController@index")->name("admin.meta-page");
+         Route::post('/store', "MetaPageController@store")->name("admin.meta-page.store");
+         Route::get('/{page}/edit', "MetaPageController@edit")->name("admin.meta-page.edit");
+
+     });
 });
 
 //Auth Processor
@@ -350,3 +387,6 @@ Route::group(['namespace' => 'Backend\Agent', 'middleware' => ['auth:agent'], 'p
         Route::post('/', "FinanceController@index")->name("agent.finance");
     });
 });
+
+Route::get('assets/{path}/{file}', 'CommonController@displayImage')->name('display.image');
+Route::get('download/{path}/{file}', 'CommonController@getDownload')->name('download');

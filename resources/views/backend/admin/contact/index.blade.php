@@ -109,7 +109,7 @@
                         <div class="form-group row my-2">
                             <label class="col-4 col-form-label">Comment :</label>
                             <div class="col-8">
-                                    <textarea  rows="5" name="comment" id="comment" class="form-control form-control-solid" ></textarea>
+                                    <textarea  rows="5" name="comment" id="comment" class="form-control " ></textarea>
                             </div>
                         </div>
                     </div>

@@ -150,7 +150,7 @@
                                 <div class="form-group row {{ $errors->has('current-password') ? ' has-error' : '' }}">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-alert">Current Password</label>
                                     <div class="col-lg-9 col-xl-6">
-                                        <input type="password" name="current-password" id="current-password" class="form-control form-control-lg form-control-solid mb-2" value="" placeholder="Current password"  />
+                                        <input type="password" name="current-password" id="current-password" class="form-control form-control-lg  mb-2" value="" placeholder="Current password"  />
                                         @if ($errors->has('current-password'))
                                         <span style="color: red" class="help-block">
                                             <strong>{{ $errors->first('current-password') }}</strong>
@@ -162,7 +162,7 @@
                                 <div class="form-group row {{ $errors->has('new-password') ? ' has-error' : '' }}">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-alert">New Password</label>
                                     <div class="col-lg-9 col-xl-6">
-                                        <input id="new-password" type="password"  name="new-password"  class="form-control form-control-lg form-control-solid" placeholder="New password" />
+                                        <input id="new-password" type="password"  name="new-password"  class="form-control form-control-lg " placeholder="New password" />
                                          @if ($errors->has('new-password'))
                                             <span style="color: red" class="help-block">
                                                 <strong>{{ $errors->first('new-password') }}</strong>
@@ -173,7 +173,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-alert">Verify Password</label>
                                     <div class="col-lg-9 col-xl-6">
-                                        <input type="password" id="new-password-confirm" class="form-control form-control-lg form-control-solid" name="new-password_confirmation"  placeholder="Verify password" />
+                                        <input type="password" id="new-password-confirm" class="form-control form-control-lg " name="new-password_confirmation"  placeholder="Verify password" />
                                     </div>
                                 </div>
                             </div>

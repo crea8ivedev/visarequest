@@ -30,12 +30,25 @@
 
                <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
                 <label>Description :<code>*</code></label>
-                  <textarea placeholder="Description" class="form-control form-control-solid kt-ckeditor-1" id="description" name="description" autocomplete="off">{{ $data->description ?? '' }}</textarea>
+                  <textarea placeholder="Description" class="form-control  kt-ckeditor-1" id="description" name="description" autocomplete="off">{{ $data->description ?? '' }}</textarea>
                    @if ($errors->has('description'))
                     <span class="help-block">
                         <strong style="color: red">{{ $errors->first('description') }}</strong>
                     </span>
                     @endif
+              </div>
+
+              <div class="form-group">
+                <label>Meta Description :</label>
+                <textarea rows="7" placeholder="Meta Description" class="form-control" id="meta_description" name="meta_description"
+                autocomplete="off">{{ $data->meta_description ?? '' }}</textarea>
+              </div>
+
+              <div class="form-group">
+                  <label>Meta Keywords :</label>
+                  <div class="input-group">
+                  <textarea rows="7" class="form-control" name="meta_keywords" id="meta_keywords" placeholder="Meta Keywords"
+                      autocomplete="off">{{ $data->meta_keywords ?? '' }}</textarea>
               </div>
 
             <div class="card-footer">

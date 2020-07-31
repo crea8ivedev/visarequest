@@ -1,4 +1,3 @@
- <!--footer start-->
  <footer class="footer cmt-bgcolor-darkgrey widget-footer clearfix">
      <div class="second-footer">
          <div class="container">
@@ -14,7 +13,7 @@
                              </div>
                              <div class="featured-content">
                                  <div class="featured-title">
-                                     <h5><a href="mailto:visa@visarequest.co.za">visa@visarequest.co.za</a></h5>
+                                 <h5><a href="mailto:{{$address[0]->email}}">{{$address[0]->email}}</a></h5>
                                  </div>
                                  <div class="featured-desc">
                                      <p>Drop Us a Line</p>
@@ -35,7 +34,7 @@
                              </div>
                              <div class="featured-content">
                                  <div class="featured-title">
-                                     <h5>+082-733-5236</h5>
+                                     <h5><a href="tel:{{$address[0]->cell_phone}}">{{$address[0]->cell_phone}}</a></h5>
                                  </div>
                                  <div class="featured-desc">
                                      <p>Call Us Now!</p>
@@ -56,14 +55,13 @@
                              </div>
                              <div class="featured-content">
                                  <div class="featured-title">
-                                     <h5>Suite 4B Schoeman street forum building, 1157 Francis Baard street Hatfield, Pretoria.</h5>
+                                     <h5>{{$address[0]->address}}</h5>
                                  </div>
                                  <div class="featured-desc">
                                      <a href="https://www.google.com/maps/place/VisaRequest.co.za/@-25.7461274,28.2357884,17z/data=!3m1!4b1!4m5!3m4!1s0x1e95607829ad0685:0xf469322b7bc3cf79!8m2!3d-25.7461322!4d28.2379771">Get Direction</a>
                                  </div>
                              </div>
                          </div>
-                         <!-- featured-icon-box end-->
                      </aside>
                  </div>
              </div>
@@ -82,7 +80,7 @@
                                  <li><a href="{{ route('frontend.terms-and-conditions') }}">Terms And Conditions</a></li>
                              </ul>
                          </div>
-                         <span>Copyright © 2020 VisaRequest. All rights reserved.</span>
+                         <span>Copyright © {{date('Y')}} VisaRequest. All rights reserved.</span>
                      </div>
                  </div>
              </div>

@@ -35,5 +35,15 @@ return [
 		"hideEasing" => "linear",
 		"showMethod" => "fadeIn",
 		"hideMethod" => "fadeOut"
-	]
+	],
+	'COUNTRY_IMAGE_STORE'   =>  'country',
+	'PAGE'=>[
+        'HOME'    => 'Home',
+        'SERVICE' => 'Service',
+        'ABOUT'   => 'About',
+        'NEWS'   => 'News',
+        'TERMS'   => 'Terms and Conditions',
+    ],
+	'SLIDER_STORE'        =>  'public/slider',
+	'SLIDER_IMAGE_GET'    =>  'public/storage/slider',
 ];
