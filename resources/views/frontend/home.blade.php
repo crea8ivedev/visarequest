@@ -11,7 +11,7 @@
                             width="1920" height="450" class="img-fluid object-fit">
                         <div class="overlay">
                             <h2>
-                               {{$list->text}}
+                               {!! $list->text !!}
                             </h2>
                         </div>
                     </div>
