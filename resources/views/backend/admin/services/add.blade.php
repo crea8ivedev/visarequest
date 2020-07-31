@@ -10,18 +10,27 @@
     <form class="form" method="post" id="sample_form" action="{{ route('admin.service.store')  }}">
       @csrf
       <div class="card-body">
-        <div class="form-group">
-            <label>Service Name  :<code>*</code></label>
+        <div class="row">
+
+          <div class="form-group col-lg-6">
+            <label>Service Name :<code>*</code></label>
             <input class="form-control" id="name" name="name" placeholder="Service Name">
             @if ($errors->has('name'))
             <span class="invalid-feedback">{{ $errors->first('name') }}</span>
             @endif
+          </div>
+          <div class="form-group col-lg-6">
+            <label>Code :<code>*</code></label>
+            <input class="form-control" id="code" name="code" placeholder="Code">
+            @if ($errors->has('code'))
+            <span class="invalid-feedback">{{ $errors->first('code') }}</span>
+            @endif
+          </div>
         </div>
 
-        
 
         <div class="form-group row">
-          
+
           <div class="col-lg-6">
             <label>Category :<code>*</code></label>
             <select class="form-control" id="category_id" name="category_id">
@@ -34,7 +43,7 @@
             <span class="invalid-feedback">{{ $errors->first('category_id') }}</span>
             @endif
           </div>
-          
+
           <div class="col-lg-6">
             <label>Processor :<code>*</code></label>
             <select class="form-control" id="processor_id" name="processor_id">
@@ -93,21 +102,40 @@
           <div class="col-lg-12">
             <label>Description :<code>*</code></label>
             <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+            @if ($errors->has('description'))
+            <span class="invalid-feedback">{{ $errors->first('description') }}</span>
+            @endif
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-12">
+            <label>Instruction :</label>
+            <textarea class="form-control" id="instruction" name="instruction" placeholder="Instruction"></textarea>
+            @if ($errors->has('instruction'))
+            <span class="invalid-feedback">{{ $errors->first('instruction') }}</span>
+            @endif
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-12">
+            <label>Staff Instruction :</label>
+            <textarea class="form-control" id="staffInstruction" name="staffInstruction"
+              placeholder="Staff Instruction"></textarea>
             @if ($errors->has('discount_price'))
-            <span class="invalid-feedback">{{ $errors->first('discount_price') }}</span>
+            <span class="invalid-feedback">{{ $errors->first('staffInstruction') }}</span>
             @endif
           </div>
         </div>
         <div class="form-group">
           <label>Country :<code>*</code></label>
-          <select class="form-control  country_id select2" id="country_id" name="country_id[]"  multiple="multiple">
+          <select class="form-control  country_id select2" id="country_id" name="country_id[]" multiple="multiple">
             <option value="">Select Country</option>
             @foreach($country_list as $country)
             <option value="{{ $country->id }}" selected="true">{{ $country->name }}</option>
             @endforeach
           </select>
           @if ($errors->has('country_id'))
-            <strong style="color: red">{{ $errors->first('country_id') }}</strong>
+          <strong style="color: red">{{ $errors->first('country_id') }}</strong>
           @endif
         </div>
         <div class="form-group row">
@@ -115,7 +143,8 @@
             <label>Status:</label>
             <div class="radio">
               <label class="radio" id="active">
-                <input type="radio" name="status" id="active" class="form-control status" value="ACTIVE" checked="" /> Active
+                <input type="radio" name="status" id="active" class="form-control status" value="ACTIVE" checked="" />
+                Active
                 <span></span>
               </label>
               <label class="radio" id="deactive">

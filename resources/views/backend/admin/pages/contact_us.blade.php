@@ -52,6 +52,45 @@
           <textarea placeholder="Hours" class="form-control  " id="hours" name="hours"
             autocomplete="off">{{ $data->hours ?? '' }}</textarea>
         </div>
+        <div class="form-group">
+          <label>Facebook :</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="facebook" id="facebook" placeholder="Facebook"
+              value="{{ $data->facebook ?? '' }}" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Twitter :</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="twitter" id="twitter" placeholder="Twitter"
+              value="{{ $data->twitter ?? '' }}" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Google :</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="google" id="google" placeholder="Google"
+              value="{{ $data->google ?? '' }}" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Linkedin :</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="linkedin" id="linkedin" placeholder="Linkedin"
+              value="{{ $data->linkedin ?? '' }}" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Instagram :</label>
+          <div class="input-group">
+            <input type="text" class="form-control" name="instagram" id="instagram" placeholder="Instagram"
+              value="{{ $data->instagram ?? '' }}" autocomplete="off" />
+          </div>
+        </div>
         <div class="card-footer">
           <input type="hidden" name="hidden_id" id="hidden_id" value="{{ $data->id ?? ''}}" />
           <button type="submit" class="btn btn-primary mr-2">{{ $data ? 'Update' : 'Add'}}</button>

@@ -168,7 +168,11 @@ class PageController extends Controller
         }
         $contactUs->office_name    = $request->office_name;
         $contactUs->address    = $request->address;
-        //$contactUs->address1   = $request->address1;
+        $contactUs->facebook         = $request->facebook;
+        $contactUs->twitter          = $request->twitter;
+        $contactUs->google           = $request->google;
+        $contactUs->linkedin         = $request->linkedin;
+        $contactUs->instagram        = $request->instagram;
         $contactUs->email      = $request->email;
         $contactUs->hours      = $request->hours;
         $contactUs->cell_phone = $request->cell_phone;
@@ -202,44 +206,4 @@ class PageController extends Controller
         return view('backend.admin.pages.social_link', compact('page_title', 'page_description', 'page_breadcrumbs','data'));
 
     }
-
-     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Country  $banner
-     * @return \Illuminate\Http\Response
-     */
-     public function socialLinkUpdate(SocialLinkRequest $request)
-     {
-         if($request->hidden_id != '') {
-             $social           = SocialLink::findOrFail($request->hidden_id);
-         } else {
-             $social           = new SocialLink;
-         }
-         $social->facebook         = $request->facebook;
-         $social->twitter          = $request->twitter;
-         $social->google           = $request->google;
-         $social->linkedin         = $request->linkedin;
-         $social->instagram        = $request->instagram;
-         $social->id               = $request->hidden_id;
-         
-        if($social->save()) {
-         $data = SocialLink::first();
-             if($request->hidden_id != '') {
-                 Toastr::success('Social link updated successfully!','', Config::get('constants.toster'));
-                 return redirect('/admin/social-link')->with( ['data' => $data] );
-             } else {
-                 Toastr::success('Social link added successfully!','', Config::get('constants.toster'));
-                 return redirect('/admin/social-link')->with( ['data' => $data] );
-             }
-        } else {
-         Toastr::success('Social link dose not added!','', Config::get('constants.toster'));
-         return redirect('/admin/social-link');
-        }
- 
-     }
-
-
-
 }

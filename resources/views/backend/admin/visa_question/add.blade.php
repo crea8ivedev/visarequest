@@ -11,7 +11,6 @@
     <div class="card-header">
       <div class="card-title">
         <h3 class="card-label">Add Visa Question  
-        <div class="text-muted pt-2 font-size-sm">NOTE: "XX" replace by  country name</div></h3>
       </div>
     </div>
 
@@ -21,7 +20,7 @@
         @csrf
 
         <div class="form-group {{ $errors->has('lable') ? 'is-invalid' : '' }}">
-          <label>Lable  :<code>*</code></label>
+          <label>Question :<code>*</code></label>
           <div class="input-group">
             <textarea class="form-control" id="lable" name="lable" placeholder="Lable"></textarea>
           </div>
@@ -30,7 +29,7 @@
           @endif
         </div>
         <div class="form-group {{ $errors->has('value') ? ' has-error' : '' }}">
-          <label>Value :<code>*</code></label>
+          <label>URL :<code>*</code></label>
           <div class="input-group">
             <textarea class="form-control" id="value" name="value" placeholder="Value"></textarea>
           </div>

@@ -36,7 +36,6 @@ return [
 		"showMethod" => "fadeIn",
 		"hideMethod" => "fadeOut"
 	],
-	'COUNTRY_IMAGE_STORE'   =>  'country',
 	'PAGE'=>[
         'HOME'    => 'Home',
         'SERVICE' => 'Service',
@@ -46,4 +45,10 @@ return [
     ],
 	'SLIDER_STORE'        =>  'public/slider',
 	'SLIDER_IMAGE_GET'    =>  'public/storage/slider',
+	'IMAGES'=>[
+		'COUNTRY_IMAGE'   =>  'country',
+		'COUNTRY_TOURIST_IMAGE'   =>  'country-tourist',
+		'SLIDER_IMAGE'        =>  'slider',
+	
+	]
 ];

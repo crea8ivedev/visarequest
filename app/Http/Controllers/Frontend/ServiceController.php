@@ -24,7 +24,7 @@ class ServiceController extends Controller
                 $q->where('country_id', $country->id);
             })->get();
         $country_list = Country::get();
-        $metaData = MetaPage::where('slug','home')->first();
+        $metaData = MetaPage::first();
         return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','metaData','country_list'));
     }
 

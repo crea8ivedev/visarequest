@@ -14,13 +14,13 @@
                                 <div class="widget_info d-flex flex-row align-items-center justify-content-end">
                                     <div class="widget_social mr-25">
                                         <ul class="social-icons">
-                                            <li><a href="#"><i class="ti ti-facebook"></i></a>
+                                            <li><a href="@yield('social_link', $address[0]->facebook ?? '#')"><i class="ti ti-facebook"></i></a>
                                             </li>
-                                            <li><a href="#"><i class="ti ti-twitter-alt"></i></a>
+                                            <li><a href="@yield('social_link', $address[0]->twitter ?? '#')"><i class="ti ti-twitter-alt"></i></a>
                                             </li>
-                                            <li><a href="#"><i class="ti ti-google"></i></a>
+                                            <li><a href="@yield('social_link', $address[0]->google ?? '#')"><i class="ti ti-google"></i></a>
                                             </li>
-                                            <li><a href="#"><i class="ti ti-linkedin"></i></a>
+                                            <li><a href="@yield('social_link', $address[0]->linkedin ?? '#')"><i class="ti ti-linkedin"></i></a>
                                             </li>
                                         </ul>
                                     </div>

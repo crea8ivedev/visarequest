@@ -26,11 +26,13 @@ class SliderRequest extends FormRequest
         $id = request()->segment(4);
         if ($id) {
             return [
-                'image'   =>  'sometimes|nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'name'=>"required|unique:sliders,name,".$id,
+                'image'   =>  'mimes:jpeg,png,jpg,gif',
             ];
         } else {
             return [
-                'image'   =>  'required|image|mimes:jpeg,png,jpg|max:2048',
+                'name'=>"required|unique:sliders,name",
+                'image'   =>  'required|mimes:jpeg,png,jpg,gif',
             ];
         }
     }
@@ -38,7 +40,9 @@ class SliderRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required' =>"Please enter name",
             'image.required'          => 'Please select valid image',
+            'image.mimes'          => 'Please select valid image',
         ];
     }
 }

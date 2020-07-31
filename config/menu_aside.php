@@ -38,15 +38,6 @@ return [
             ]
         ],
 
-        //Country
-        [
-            'title' => 'Countries',
-            'root'  => true,
-            'icon'  => 'public/images/icons/country.svg', // or can be 'flaticon-home' or any flaticon-*
-            'page'  => 'admin/country',
-            'new-tab' => false,
-        ],
-        
         //Services
         [
             'title' => 'Services',
@@ -54,6 +45,14 @@ return [
             'bullet' => 'dot',
             'root' => true,
             'submenu' => [
+                [
+                    'title' => 'Processing',
+                    'page'  => 'admin/application',
+                ],
+                [
+                    'title' => 'Completed',
+                    'page'  => 'admin/application',
+                ],
                 [
                     'title' => 'Categories',
                     'page'  => 'admin/service-category',
@@ -64,16 +63,6 @@ return [
                 ],
             ]
         ],
-
-        //Application
-        [
-            'title' => 'Applications',
-            'root'  => true,
-            'icon'  => 'public/images/icons/Clipboard.svg', // or can be 'flaticon-home' or any flaticon-*
-            'page'  => 'admin/application',
-            'new-tab' => false,
-        ],
-
         //Finance
         [
             'title' => 'Finance',
@@ -83,16 +72,7 @@ return [
             'new-tab' => false,
         ],
 
-        //Reports
-        // [
-        //     'title' => 'Reports',
-        //     'root'  => true,
-        //     'icon'  => 'public/images/icons/File.svg', // or can be 'flaticon-home' or any flaticon-*
-        //     'page'  => 'admin/reports',
-        //     'new-tab' => false,
-        // ],
 
-        // Contact
         [
             'title' => 'Contact US',
             'root' => true,
@@ -120,14 +100,8 @@ return [
             'root' => true,
             'submenu' => [
                 [
-                    'title' => 'Sliders',
-                    'page'  => 'admin/slider',
-                    
-                ],
-                [
-                    'title' => 'Team Members',
-                    'page'  => 'admin/team-member',
-                    
+                    'title' => 'Countries',
+                    'page'  => 'admin/country',
                 ],
                 [
                     'title' => 'Email Templates',
@@ -135,42 +109,27 @@ return [
                     
                 ],
                 [
-                    'title' => 'Terms And Conditions',
-                    'page' => 'admin/terms-and-conditions',
-                ],
-                [
-                    'title' => 'About US',
-                    'page' => 'admin/about-us',
-                ],
-                [
-                    'title' => 'Contact US',
-                    'bullet' => 'dot',
-                    'submenu' => [
-                            [
-                                'title' => 'Contact US',
-                                'page' => 'admin/contact-us'
-                            ],
-                            [
-                                'title' => 'Social Links',
-                                'page' => 'admin/social-link'
-                            ],
-                    ],
-                ],
-                [
                     'title' => 'Visa Questions',
                     'page' => 'admin/visa-question',
+                ],
+                [
+                    'title' => 'Team Members',
+                    'page'  => 'admin/team-member',
+                    
+                ],
+                [
+                    'title' => 'Sliders',
+                    'page'  => 'admin/slider',
+                    
                 ],
                 [
                     'title' => 'News',
                     'page' => 'admin/news',
                 ],
-                [
-                    'title' => 'Meta Page',
-                    'page' => 'admin/meta-page',
-                ],
             ]
         ],
 
+    
          //Update
          [
             'title' => 'Messages',
@@ -184,6 +143,30 @@ return [
                     
                 ],
             ]
+        ],
+        [
+            'title' => 'Pages',
+            'icon' => 'public/images/icons/service.svg',
+            'bullet' => 'dot',
+            'root' => true,
+            'submenu' => [
+                [
+                    'title' => 'Contact US',
+                    'page' => 'admin/contact-us'
+                ],
+                [
+                    'title' => 'Terms And Conditions',
+                    'page' => 'admin/terms-and-conditions',
+                ],
+                [
+                    'title' => 'About US',
+                    'page' => 'admin/about-us',
+                ],
+                [
+                    'title' => 'Meta Setting',
+                    'page' => 'admin/meta-page',
+                ],
+        ],
         ],
         
     ],

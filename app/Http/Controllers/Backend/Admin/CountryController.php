@@ -9,6 +9,8 @@ use App\Models\Country;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use File;
 use Toastr;
 use Config;
 
@@ -23,7 +25,7 @@ class CountryController extends Controller
             $service = Country::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
                 $search = $request->get('search');
-                $service->where('name', 'LIKE', '%' . $request->search . '%');
+                $service->where('country_name', 'LIKE', '%' . $request->search . '%');
             }
             $data = $service->latest()->get();
             return DataTables::of($data)
@@ -56,17 +58,30 @@ class CountryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CountryRequest $request)
-    {
-        $country             = new Country;
+    {      
+
+        $country  = new Country;
         $country->name = $request->name;
         $country->description = $request->description;
         $country->need_visa  = $request->need_visa;
-        if ($country->save()) {
+        if ($request->hasFile('countryFlag')) {
+            $image = $request->file('countryFlag');
+            $save_name = $country->name.'.'.$image->getClientOriginalExtension();
+            $image->storeAs(Config::get('constants.IMAGES.COUNTRY_IMAGE'), $save_name);
+            $country->flag = $save_name;
+        }
+        if ($request->hasFile('countryTouristImage')) {
+            $image = $request->file('countryTouristImage');
+            $save_name =  $country->name.'.'.$image->getClientOriginalExtension();
+            $image->storeAs(Config::get('constants.IMAGES.COUNTRY_TOURIST_IMAGE'), $save_name);
+            $country->tourist_image = $save_name;
+        }
+       if ($country->save()) {
             Toastr::success('Country added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/country');
         } else {
             Toastr::error('Country  dose not added successfully!', '', Config::get('constants.toster'));
-            return redirect('/admin/country/add');
+            return redirect('/admin/country');
         }
     }
 
@@ -95,10 +110,30 @@ class CountryController extends Controller
      */
     public function update(CountryRequest $request, $id)
     {
-        $country             = Country::findOrFail($id);
+        $country  = Country::findOrFail($id);
         $country->name = $request->name;
         $country->description = $request->description;
         $country->need_visa  = $request->need_visa;
+        if ($request->hasFile('countryFlag')) {
+            $old_path = Storage::path(Config::get('constants.APPLICATION_FILE_STORE').'/'. $country->flag);
+            if(File::exists($old_path)) {
+                File::delete($old_path);
+            }
+            $image = $request->file('countryFlag');
+            $save_name = $country->name.'.'.$image->getClientOriginalExtension();
+            $image->storeAs(Config::get('constants.IMAGES.COUNTRY_IMAGE'), $save_name);
+            $country->flag = $save_name;
+        }
+        if ($request->hasFile('countryTouristImage')) {
+            $old_path = Storage::path(Config::get('constants.APPLICATION_FILE_STORE').'/'. $country->tourist_image);
+            if(File::exists($old_path)) {
+                File::delete($old_path);
+            }
+            $image = $request->file('countryTouristImage');
+            $save_name =  $country->name.'.'.$image->getClientOriginalExtension();
+            $image->storeAs(Config::get('constants.IMAGES.COUNTRY_TOURIST_IMAGE'), $save_name);
+            $country->tourist_image = $save_name;
+        }
         if ($country->save()) {
             Toastr::success('Country updated successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/country');

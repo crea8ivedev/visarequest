@@ -5,26 +5,17 @@
         <div class="row h-100">
             <div class="col-lg-12 h-100">
                 <div id="main-banner" class="owl-carousel owl-theme h-100">
+                    @foreach($sliders as $list)
                     <div class="item h-100">
-                        <img src="images/slides/slider-mainbg-005.jpg" width="1920" height="450"
-                            class="img-fluid object-fit">
+                        <img src="{{ route('display.image',[config("constants.IMAGES.SLIDER_IMAGE"),$list->image]) }}"
+                            width="1920" height="450" class="img-fluid object-fit">
                         <div class="overlay">
                             <h2>
-                                Welcome to VisaRequest agency <br>
-                                <strong>Since 1980</strong> we are experts in the <strong>global industry</strong>
+                               {{$list->text}}
                             </h2>
                         </div>
                     </div>
-                    <div class="item h-100">
-                        <img src="images/slides/slider-mainbg-006.jpg" width="1920" height="450"
-                            class="img-fluid object-fit">
-                        <div class="overlay">
-                            <h2>
-                                We bring the breadth of <strong>our experience</strong> and <br>
-                                <strong>industry knowledge</strong> to help you Succeed.
-                            </h2>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

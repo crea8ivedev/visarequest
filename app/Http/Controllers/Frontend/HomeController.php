@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\ServiceCategory;
 use App\Models\ContactUs;
 use App\Models\MetaPage;
+use App\Models\Slider;
 use Auth;
 
 class HomeController extends Controller
@@ -20,8 +21,9 @@ class HomeController extends Controller
         $service_category_list = ServiceCategory::get();
         $country_list = Country::get();
         $address = ContactUs::get();
-        $metaData = MetaPage::where('slug','home')->first();
-        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list','address','metaData']));
+        $metaData = MetaPage::first();
+        $sliders = Slider::get();
+        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list','address','metaData','sliders']));
     }
 
     public function country(Request $request)

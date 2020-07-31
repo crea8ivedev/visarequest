@@ -84,6 +84,9 @@ class ServiceController extends Controller
         $service->processor_id = $request->processor_id;
         $service->agent_id  = $request->agent_id;
         $service->name      = $request->name;
+        $service->code      = $request->code;
+        $service->staffInstruction      = $request->staffInstruction;
+        $service->instruction      = $request->instruction;
         $service->description      = $request->description;
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;
@@ -187,6 +190,9 @@ class ServiceController extends Controller
         $service->processor_id = $request->processor_id;
         $service->agent_id  = $request->agent_id;
         $service->name      = $request->name;
+        $service->code      = $request->code;
+        $service->staffInstruction      = $request->staffInstruction;
+        $service->instruction      = $request->instruction;
         $service->description      = $request->description;
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;

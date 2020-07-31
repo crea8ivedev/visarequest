@@ -23,15 +23,33 @@ class CountryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name'        =>  'required',
-        ];
+        $segmentId = request()->segment(4); //returns 'posts'
+        if ($segmentId) {
+            $request = $this->request->all();
+            return [
+                    'name'        =>  'required|unique:countries,name,'.$segmentId,
+                    'countryFlag' => "mimes:png,jpeg,jpg,gif",
+                    'countryTouristImage' => "mimes:png,jpeg,jpg"
+
+                ];
+
+        } else {
+            return [
+                'name'        =>  'required|unique:countries,name',
+                'countryFlag' => "required|mimes:png,jpeg,jpg,gif",
+                'countryTouristImage' => "mimes:png,jpeg,jpg,gif"
+
+            ];
+        }
     }
 
     public function messages()
     {
         return [
             'name.required'       => 'Please enter country name',
+            'name.unique'       => 'Country name already exists.',
+            'countryTouristImage.mimes'       => 'Please select valid image.',
+            'countryFlag.mimes'       => 'Please select valid image.',
         ];
     }
 }
