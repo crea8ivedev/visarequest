@@ -485,7 +485,33 @@
         
     }); 
 
-
+/*------------------------------------------------------------------------------*/
+/* Owl Crousel
+/*------------------------------------------------------------------------------*/
+$(document).ready(function() {
+  $('#main-banner').owlCarousel({
+    loop: true,
+    dots: false,
+    margin: 10,
+    responsiveClass: true,
+    responsive: {
+      0: {
+        items: 1,
+        nav: true
+      },
+      600: {
+        items: 1,
+        nav: true
+      },
+      1000: {
+        items: 1,
+        nav: true,
+        loop: false,
+        margin: 0
+      }
+    }
+  });
+});
 /*------------------------------------------------------------------------------*/
 /* Back to top
 /*------------------------------------------------------------------------------*/
@@ -519,18 +545,18 @@
       if (!item.id) {
         return item.text;
       }
-
+      var countryUrl = "https://lipis.github.io/flag-icon-css/flags/4x3/";
+      var stateUrl = "https://oxguy3.github.io/flags/svg/us/";
+      var url = state ? stateUrl : countryUrl;
       var img = $("<img>", {
         class: "img-flag",
         width: 26,
-        src: url+"/assets/country/"+item.element.dataset.capital
+        src: url + item.element.value.toLowerCase() + ".svg"
       });
       var span = $("<span>", {
         text: " " + item.text
       });
-        if(item.element.dataset.capital){
-        span.prepend(img);
-        }
+      span.prepend(img);
       return span;
     }
 
@@ -538,6 +564,11 @@
       $("#countries").select2({
         templateResult: function(item) {
           return format(item, false);
+        }
+      });
+      $("#us-states").select2({
+        templateResult: function(item) {
+          return format(item, true);
         }
       });
     });

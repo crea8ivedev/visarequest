@@ -501,8 +501,8 @@
     </div>
 </div>
 @include('frontend.layouts.footer')
-@include('frontend.common.auth-modal')
 @endsection
+@include('frontend.common.auth-modal')
 @section('scripts')
 <script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/home.js') }}" type="text/javascript"></script>

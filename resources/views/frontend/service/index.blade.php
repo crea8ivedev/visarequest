@@ -14,17 +14,6 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="select-country">
-<<<<<<< HEAD
-                        <img src="{{ asset('/images/country/') }}/{{ $country->flag }}"
-                            alt="{{ $country->name }}">
-                        <div class="form-group">
-                            <select class="form-control country" id="select_country">
-                                <option value="1">Select Country</option>
-                                @foreach($country_list as $list)
-                                <option value="{{strtolower($list->name)}}" {{($list->id===$country->id)?'selected':''}}>{{$list->name}}</option>
-                                @endforeach
-                            </select>
-=======
                         <img src={{ route('display.image',[config("constants.COUNTRY_IMAGE_STORE"),$country->flag]) }}"
                             alt="{{ $country->name }}">
                         <div class="form-group">
@@ -34,8 +23,6 @@
                                 <option>3</option>
                                 <option>4</option>
                             </select>
-
->>>>>>> development
                         </div>
                     </div>
                 </div>
@@ -58,11 +45,8 @@
         </nav>
     </div>
 </section>
-<<<<<<< HEAD
-=======
 <!-- Category End -->
 <!--site-main start-->
->>>>>>> development
 <div class="site-main">
 
     <div class="cmt-row sidebar cmt-sidebar-left cmt-bgcolor-white clearfix service-list">
@@ -118,10 +102,14 @@
         </div>
     </div>
 </div>
-@include('frontend.common.auth-modal')
 @endsection()
+@include('frontend.common.auth-modal')
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
+<script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
+{!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
+{!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest') !!}
 <script type="text/javascript">
     var country = {!! json_encode($country->slug) !!};
     $('body').on('change','.country',function() {
