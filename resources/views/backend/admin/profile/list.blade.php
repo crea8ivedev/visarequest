@@ -151,7 +151,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">First Name</label>
                                     <div class="col-lg-9 col-xl-6">
-                                         <input type="text" class="form-control form-control-solid form-control-lg" name="first_name" placeholder="First Name" value="{{$user->first_name}}">
+                                         <input type="text" class="form-control  form-control-lg" name="first_name" placeholder="First Name" value="{{$user->first_name}}">
                                 @if($errors->has('first_name'))
                                     <div style="color: red" class="error">{{ $errors->first('first_name') }}</div>
                                 @endif
@@ -160,7 +160,7 @@
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label text-right">Last Name</label>
                                     <div class="col-lg-9 col-xl-6">
-                                        <input type="text" class="form-control form-control-solid form-control-lg" name="last_name" placeholder="Last Name" value="{{$user->last_name}}">
+                                        <input type="text" class="form-control  form-control-lg" name="last_name" placeholder="Last Name" value="{{$user->last_name}}">
                                         @if($errors->has('last_name'))
                                             <div style="color: red" class="error">{{ $errors->first('last_name') }}</div>
                                         @endif
@@ -181,7 +181,7 @@
                                                     <i class="la la-phone"></i>
                                                 </span>
                                             </div>
-                                             <input type="tel" class="form-control form-control-solid form-control-lg" name="phone" placeholder="Phone" value="{{ $user->phone }}">
+                                             <input type="tel" class="form-control  form-control-lg" name="phone" placeholder="Phone" value="{{ $user->phone }}">
                                             @if($errors->has('phone'))
                                                 <div style="color: red" class="error">{{ $errors->first('phone') }}</div>
                                             @endif
@@ -198,7 +198,7 @@
                                                     <i class="la la-at"></i>
                                                 </span>
                                             </div>
-                                           <input type="email" class="form-control form-control-solid form-control-lg" name="email" placeholder="Email" value="{{ $user->email }}">
+                                           <input type="email" class="form-control  form-control-lg" name="email" placeholder="Email" value="{{ $user->email }}">
                                             @if($errors->has('email'))
                                                 <div style="color: red" class="error">{{ $errors->first('email') }}</div>
                                             @endif
@@ -214,7 +214,7 @@
                                                     <i class="la la-at"></i>
                                                 </span>
                                             </div>
-                                           <input type="text" class="form-control form-control-solid form-control-lg" name="address" placeholder="Email" value="{{ $user->address }}">
+                                           <input type="text" class="form-control  form-control-lg" name="address" placeholder="Email" value="{{ $user->address }}">
                                             @if($errors->has('address'))
                                                 <div style="color: red" class="error">{{ $errors->first('address') }}</div>
                                             @endif

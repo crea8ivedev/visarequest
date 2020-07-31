@@ -8,6 +8,7 @@ use App\Models\ServiceCategory;
 use App\Models\Service;
 use App\Models\Country;
 use App\Models\ServiceElement;
+use App\Models\MetaPage;
 use Config;
 
 class ServiceController extends Controller
@@ -24,7 +25,8 @@ class ServiceController extends Controller
             ->whereHas('countrys', function ($q) use ($country) {
                 $q->where('country_id', $country->id);
             })->get();
-        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country'));
+        $metaData = MetaPage::where('slug','home')->first();
+        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','metaData'));
     }
 
     public function getServices(Request $request)

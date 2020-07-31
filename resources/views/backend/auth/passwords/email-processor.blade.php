@@ -69,7 +69,7 @@
 								<!--begin::Form group-->
 								<div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 									<label class="font-size-h6 font-weight-bolder text-dark">Email</label>
-                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="off" />
+                                    <input class="form-control  h-auto py-7 px-6 rounded-lg" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="off" />
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong style="color: red">{{ $errors->first('email') }}</strong>
@@ -101,22 +101,22 @@
 								<!--end::Title-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="Fullname" name="fullname" autocomplete="off" />
+									<input class="form-control  h-auto py-7 px-6 rounded-lg font-size-h6" type="text" placeholder="Fullname" name="fullname" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" autocomplete="off" />
+									<input class="form-control  h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="Password" name="password" autocomplete="off" />
+									<input class="form-control  h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="Password" name="password" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
 								<div class="form-group">
-									<input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="Confirm password" name="cpassword" autocomplete="off" />
+									<input class="form-control  h-auto py-7 px-6 rounded-lg font-size-h6" type="password" placeholder="Confirm password" name="cpassword" autocomplete="off" />
 								</div>
 								<!--end::Form group-->
 								<!--begin::Form group-->
@@ -150,7 +150,7 @@
 								<!--end::Title-->
 								<!--begin::Form group-->
 								<div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                                    <input class="form-control form-control-solid h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="off" />
+                                    <input class="form-control  h-auto py-7 px-6 rounded-lg font-size-h6" type="email" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="off" />
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                             <strong style="color: red">{{ $errors->first('email') }}</strong>

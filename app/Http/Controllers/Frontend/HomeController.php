@@ -8,6 +8,8 @@ use App\Models\TeamMember;
 use App\Models\Service;
 use App\Models\Country;
 use App\Models\ServiceCategory;
+use App\Models\ContactUs;
+use App\Models\MetaPage;
 use Auth;
 
 class HomeController extends Controller
@@ -17,7 +19,9 @@ class HomeController extends Controller
         $member_list = TeamMember::get();
         $service_category_list = ServiceCategory::get();
         $country_list = Country::get();
-        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list']));
+        $address = ContactUs::get();
+        $metaData = MetaPage::where('slug','home')->first();
+        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list','address','metaData']));
     }
 
     public function country(Request $request)

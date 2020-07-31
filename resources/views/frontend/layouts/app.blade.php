@@ -4,9 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+    <meta name="keywords" content="@yield('page_description', $metaData->keywords ?? '')">
+    <meta name="description" content="@yield('page_description', $metaData->description ?? '')">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>VisaRequest</title>
     <link rel="shortcut icon" href="images/favicon.ico" />

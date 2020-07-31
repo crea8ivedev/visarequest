@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\AboutUsRequest;
+use App\Http\Requests\Backend\SocialLinkRequest;
 use App\Http\Requests\Backend\TermsAndConditionRequest;
 use App\Http\Requests\Backend\ContactUsRequest;
 use App\Models\Page;
 use App\Models\ContactUs;
+use App\Models\SocialLink;
 use Illuminate\Support\Str;
 use Toastr;
 use Config;
@@ -47,6 +49,8 @@ class PageController extends Controller
         $page->slug         = $slug;
         $page->heading      = $request->heading;
         $page->description  = $request->description;
+        $page->meta_description  = $request->meta_description;
+        $page->meta_keywords  = $request->meta_keywords;
         $page->id           = $request->hidden_id;
         
        if($page->save()) {
@@ -96,6 +100,8 @@ class PageController extends Controller
         $page->slug         = $slug;
         $page->heading      = $request->heading;
         $page->description  = $request->description;
+        $page->meta_description  = $request->meta_description;
+        $page->meta_keywords  = $request->meta_keywords;
         $page->id           = $request->hidden_id;
         
        if($page->save()) {
@@ -115,7 +121,7 @@ class PageController extends Controller
     }
 
 
-    public function ContactUs(Request $request)
+    public function contactUs(Request $request)
     {
         $page_title         = 'Contact US';
         $page_description   = '';
@@ -127,13 +133,32 @@ class PageController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\ContactUs  $contactUs
+     * @return \Illuminate\Http\Response
+     */
+     public function contactUsEdit($office_name)
+     {
+         if(request()->ajax())
+         {
+             $data = ContactUs::where('office_name',$office_name)->first();
+             //dd($data);
+             if($data == NULL) {
+                 $data = '';
+             }
+             return response()->json(['result' => $data]);
+         }
+     }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\ContactUs  $contactus
      * @return \Illuminate\Http\Response
      */
-    public function ContactUsUpdate(ContactUsRequest $request)
+    public function contactUsUpdate(ContactUsRequest $request)
     {
 
         if($request->hidden_id != '') {
@@ -141,9 +166,11 @@ class PageController extends Controller
         } else {
             $contactUs        = new ContactUs;
         }
+        $contactUs->office_name    = $request->office_name;
         $contactUs->address    = $request->address;
-        $contactUs->address1   = $request->address1;
+        //$contactUs->address1   = $request->address1;
         $contactUs->email      = $request->email;
+        $contactUs->hours      = $request->hours;
         $contactUs->cell_phone = $request->cell_phone;
         $contactUs->telephone  = $request->telephone;
         $contactUs->international_call  = $request->international_call;
@@ -164,6 +191,54 @@ class PageController extends Controller
        }
 
     }
+
+    public function socialLink(Request $request)
+    {
+        $page_title         = 'Social Link';
+        $page_description   = '';
+        $page_breadcrumbs  = '';
+        $data = SocialLink::first();
+
+        return view('backend.admin.pages.social_link', compact('page_title', 'page_description', 'page_breadcrumbs','data'));
+
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Country  $banner
+     * @return \Illuminate\Http\Response
+     */
+     public function socialLinkUpdate(SocialLinkRequest $request)
+     {
+         if($request->hidden_id != '') {
+             $social           = SocialLink::findOrFail($request->hidden_id);
+         } else {
+             $social           = new SocialLink;
+         }
+         $social->facebook         = $request->facebook;
+         $social->twitter          = $request->twitter;
+         $social->google           = $request->google;
+         $social->linkedin         = $request->linkedin;
+         $social->instagram        = $request->instagram;
+         $social->id               = $request->hidden_id;
+         
+        if($social->save()) {
+         $data = SocialLink::first();
+             if($request->hidden_id != '') {
+                 Toastr::success('Social link updated successfully!','', Config::get('constants.toster'));
+                 return redirect('/admin/social-link')->with( ['data' => $data] );
+             } else {
+                 Toastr::success('Social link added successfully!','', Config::get('constants.toster'));
+                 return redirect('/admin/social-link')->with( ['data' => $data] );
+             }
+        } else {
+         Toastr::success('Social link dose not added!','', Config::get('constants.toster'));
+         return redirect('/admin/social-link');
+        }
+ 
+     }
 
 
 

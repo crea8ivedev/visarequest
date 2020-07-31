@@ -111,7 +111,7 @@
                                         <div class="d-flex align-items-center">
                                             <label for="countries" class="lead"
                                                 style="text-indent: -9999px">Countries</label>
-                                            <select class="form-control" id="countries">
+                                            <select class="form-control country" id="countries">
                                                 <option value="1">Select Country</option>
                                                 @foreach($country_list as $list)
                                                 <option data-capital="{{$list->flag}}"
@@ -353,65 +353,47 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row res-991-mt-0">
+                        @foreach($address as $key=>$list)
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                             <div
-                                class="featured-icon-box icon-align-before-content cmt-bgcolor-darkgrey icon-ver_align-top style6 h-100">
+                                class="featured-icon-box icon-align-before-content @if($key%2==0) cmt-bgcolor-darkgrey @else cmt-bgcolor-skincolor @endif icon-ver_align-top style6 h-100">
                                 <div class="featured-content pl-10 pr-10">
                                     <div class="featured-title">
-                                        <h5>Pretoria Head Office</h5>
+                                        <h5>{{$list->office_name}}</h5>
                                     </div>
                                     <div class="featured-desc">
-                                        <p>Email: visa@visarequest.co.za</p>
+                                        <p>Email: <a href="mailto:{{$list->email}}"> {{$list->email}}</a></p>
                                         <p>
-                                            Address: Suite 4B Schoeman street forum building, 1157 Francis Baard street
-                                            Hatfield, Pretoria.
+                                            {{$list->address}}
                                         </p>
+
+                                        @if($list->cell_phone)
                                         <p>
+                                            Cell Phone: <a href="tel:{{$list->cell_phone}}"> {{$list->cell_phone}}</a>
+                                        </p>
+                                        @endif
+                                        @if($list->telephone)
+                                        <p>
+                                            Telephone: <a href="tel:{{$list->telephone}}"> {{$list->telephone}}</a>
+                                        </p>
+                                        @endif
+                                        @if($list->international_call)
+                                        <p>
+                                            International Calls: <a href="tel:{{$list->international_call}}">
+                                                {{$list->international_call}}</a>
+                                        </p>
+                                        @endif
+                                        <p>
+                                            Hours: {{$list->hours}}
+                                        </p>
+                                        {{-- <p>
                                             <a href="https://g.page/Visarequest?share" target="_blank">GPS</a>
-                                        </p>
-                                        <p>
-                                            Phone: 082-733-5236
-                                        </p>
-                                        <p>
-                                            Hours: Mon-Fri: 8am – 4:30pm
-                                        </p>
+                                        </p> --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                            <div
-                                class="featured-icon-box icon-align-before-content cmt-bgcolor-skincolor icon-ver_align-top style6 h-100">
-                                <div class="featured-content pl-10 pr-10">
-                                    <div class="featured-title">
-                                        <h5>Cape Town Regional Office</h5>
-                                    </div>
-                                    <div class="featured-desc">
-                                        <p>Email: capetown@visarequest.co.za<br>Address: No 42 Earlgo Building House
-                                            Floor 2 : Office Directly Opposite the Elevator Corner Of Kloof and Park
-                                            Road(Next To Nandos) Gardens Cape Town.<br><a
-                                                href="https://g.page/Visarequest?share"
-                                                target="_blank">GPS</a><br>Phone: 067-018-6976<br> +27 21 422
-                                            0840<br>Hours: Mon-Fri: 8am – 7pm</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                            <div
-                                class="featured-icon-box icon-align-before-content cmt-bgcolor-darkgrey icon-ver_align-top style6 h-100">
-                                <div class="featured-content pl-10 pr-10">
-                                    <div class="featured-title">
-                                        <h5>Harare International Office</h5>
-                                    </div>
-                                    <div class="featured-desc">
-                                        <p>Email: visa@visarequest.co.za<br>Address: 2307 Beverley Rd Brooklyn,
-                                            NY<br>Phone: 0861-88-88-28<br> +27 12 342 5674<br>Hours: Mon-Fri: 8am – 7pm
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -519,14 +501,13 @@
     </div>
 </div>
 @include('frontend.layouts.footer')
-@endsection
 @include('frontend.common.auth-modal')
+@endsection
 @section('scripts')
 <script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/home.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/contact.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
 {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 {!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest') !!}
@@ -534,7 +515,7 @@
     $( document ).ready(function() {
         $(".select2").select2();
         $('body').on('change','.country',function() {
-            var country = $('#select_country').val();
+            var country = $('#countries').val();
             if(country != '') {
             var url = '{{ route("frontend.service.country", ":country") }}';
             window.location.href = url.replace(':country', country);
