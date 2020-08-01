@@ -1586,6 +1586,7 @@ ul.widget_contact_wrapper li i{
 }
 .footer .social-icons li>a i {
     padding: 10px 0 0 0;
+    display: inline-block;
 }
 
 .bottom-footer-text{
@@ -2270,6 +2271,7 @@ article.cmt-blog-classic .cmt-box-post-date .cmt-entry-date{
 .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #444;
     line-height: 40px;
+    padding: 7px 15px;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 40px;
