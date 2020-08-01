@@ -22,16 +22,16 @@
         <div class="form-group {{ $errors->has('lable') ? 'is-invalid' : '' }}">
           <label>Question :<code>*</code></label>
           <div class="input-group">
-            <textarea class="form-control" id="lable" name="lable" placeholder="Lable"></textarea>
+            <textarea class="form-control" id="lable" name="lable" placeholder="Question"></textarea>
           </div>
           @if ($errors->has('lable'))
           <span id="name-error" class="invalid-feedback">{{ $errors->first('lable') }}</span>
           @endif
         </div>
         <div class="form-group {{ $errors->has('value') ? ' has-error' : '' }}">
-          <label>URL :<code>*</code></label>
+          <label>Url :<code>*</code></label>
           <div class="input-group">
-            <textarea class="form-control" id="value" name="value" placeholder="Value"></textarea>
+            <textarea class="form-control" id="value" name="value" placeholder="Url"></textarea>
           </div>
         </div>
         <div class="form-group row">

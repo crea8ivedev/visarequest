@@ -10,6 +10,7 @@ use App\Models\Country;
 use App\Models\ServiceCategory;
 use App\Models\ContactUs;
 use App\Models\MetaPage;
+use App\Models\VisaQuestion;
 use App\Models\Slider;
 use Auth;
 
@@ -23,7 +24,8 @@ class HomeController extends Controller
         $address = ContactUs::get();
         $metaData = MetaPage::first();
         $sliders = Slider::get();
-        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list','address','metaData','sliders']));
+        $visaQuestion = VisaQuestion::get();
+        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list','address','metaData','sliders','visaQuestion']));
     }
 
     public function country(Request $request)

@@ -29,8 +29,8 @@
 
                                 </div>
                                 <div class="text-right mt-4">
-                                    <p> <a href="#forgotPane" data-toggle="tab" role="tab"
-                                            class="blue-text">Forgot Password?</a></p>
+                                    <p> <a href="#forgotPane" data-toggle="tab" role="tab" class="blue-text">Forgot
+                                            Password?</a></p>
                                 </div>
                                 <div class="text-center mt-4">
                                     <button
@@ -70,6 +70,58 @@
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="agentModal" tabindex="-1" role="dialog" aria-labelledby="agentModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agent">Contact Agent</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="agentForm" action="">
+                    @csrf
+                    <p class="error" id="errorMessage"></p>
+                    <div class="form-group row">
+                        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                        <div class="col-md-6">
+                            <input id="name" type="text" class="form-control" name="name" autofocus>
+                            <span class="invalid-feedback" role="alert" id="nameError">
+                                <strong></strong>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                        <div class="col-md-6">
+                            <input id="email" type="email" class="form-control" name="email">
+                            <span class="invalid-feedback" role="alert" id="emailError">
+                                <strong></strong>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="message" class="col-md-4 col-form-label text-md-right">Message</label>
+                        <div class="col-md-6">
+                            <textarea id="message" name="message"></textarea>
+                            <span class="invalid-feedback" role="alert" id="emailError">
+                                <strong></strong>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

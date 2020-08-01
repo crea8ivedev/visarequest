@@ -72,11 +72,10 @@
         <thead>
           <tr>
             <th>Service Name</th>
-            <th>Country</th>
             <th>Processor</th>
             <th>Agent</th>
-            <th>Discount price</th>
             <th>Normal price</th>
+            <th>Discount price</th>
             <th>Commission</th>
             <th>Action</th>
           </tr>

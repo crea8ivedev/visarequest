@@ -43,11 +43,6 @@ class ServiceController extends Controller
                     $button .= '<a href="/admin/service/element/' . $data->id . '"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Add Input"><i class="la la-plus"></i></a> ';
                     return $button;
                 })
-                ->editColumn('country', function ($data) {
-                    return $data->countrys->map(function ($countrys) {
-                        return $name = $countrys->country->name;
-                    })->implode(', ');
-                })
                 ->editColumn('agentName', function ($data) {
                     return isset($data->agent->FullName) ? $data->agent->FullName : '';
                 })->editColumn('staffName', function ($data) {

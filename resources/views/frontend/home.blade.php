@@ -11,7 +11,7 @@
                             width="1920" height="450" class="img-fluid object-fit">
                         <div class="overlay">
                             <h2>
-                               {!! $list->text !!}
+                                {!! $list->text !!}
                             </h2>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                             <label for="countries" class="lead"
                                                 style="text-indent: -9999px">Countries</label>
                                             <select class="form-control country" id="countries">
-                                                <option value="1">Select Country</option>
+                                                <option value="">Select Country</option>
                                                 @foreach($country_list as $list)
                                                 <option data-capital="{{$list->flag}}"
                                                     value="{{strtolower($list->slug)}}">{{$list->country_name}}</option>
@@ -156,8 +156,8 @@
                             <div class="featured-desc">
                                 <p>{{$category->description}}</p>
                             </div>
-                            <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor"
-                                href="services.html">View more</a>
+                            <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor" href="services.html"
+                                data-toggle="modal" data-target="#modalService">View more</a>
                         </div>
                     </div>
                 </div>
@@ -235,7 +235,6 @@
             </div>
         </div>
     </section>
-
     <section class="cmt-row cta-section clearfix">
         <div class="container-fluid">
             <div class="row">
@@ -276,23 +275,26 @@
                 <div class="col-lg-12">
                     <div class="cmt-col-bgcolor-yes cmt-bg cmt-bgcolor-grey z-index-2 spacing-7 mt-0 box-shadow">
                         <div class="cmt-col-wrapper-bg-layer cmt-bg-layer"></div>
+
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="pr-30 res-991-pr-0 res-991-mb-30">
-                                    <div class="section-title with-desc clearfix">
+                                    <div class="section-title with-desc title-style-center_text">
                                         <div class="title-header">
                                             <h5>why choose us</h5>
-                                            <h2 class="title">Have Be Any Question? <strong>Feel Free To Contact With
-                                                    Us</strong></h2>
+                                            <h2 class="title">Have Be Any Question? <strong>Contact Us</strong></h2>
                                         </div>
                                         <div class="title-desc">
-                                            The Most Eminent Visas and Immigration Consultant service provider.
+                                            <p class="mb-0">The Most Eminent Visas and Immigration Consultant service
+                                                provider.</p>
+                                            <p>Foundation was established with a small idea that was incepted in the
+                                                minds of its promoters in the year 1994! We skillfully.</p>
                                         </div>
                                     </div>
-                                    <p>Foundation was established with a small idea that was incepted in the minds of
-                                        its promoters in the year 1994! We skillfully.</p>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-lg-6">
                                 <form id="contact_form" class="contact_form wrap-form clearfix" method="post"
                                     novalidate="novalidate" action="#">
@@ -333,7 +335,19 @@
                                         type="submit">Submit Request !</button>
                                 </form>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="qLink">
+                                    <ul>
+                                        @foreach($visaQuestion as $key=>$value)
+                                        <li><a target="_blank" href="{{$value->value}}"><i
+                                                    class="cmt-textcolor-skincolor fa fa-check-circle"></i>{{$value->lable}}</a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -377,9 +391,6 @@
                                         <p>
                                             Hours: {{$list->hours}}
                                         </p>
-                                        {{-- <p>
-                                            <a href="https://g.page/Visarequest?share" target="_blank">GPS</a>
-                                        </p> --}}
                                     </div>
                                 </div>
                             </div>
@@ -424,9 +435,17 @@
     <div
         class="cmt-row client-section cmt-bgcolor-grey cmt-bg cmt-bgimage-yes bg-img7 cmt-bg-pattern border-bottom clearfix">
         <div class="cmt-row-wrapper-bg-layer cmt-bg-layer"></div>
+        <div class="section-title title-style-center_text pt-30">
+            <div class="title-header">
+                <h5>Our Amazing</h5>
+                <h2 class="title">VisaRequest Corporate <strong>Clients</strong></h2>
+            </div>
+        </div>
         <div class="container">
+            <!-- row -->
             <div class="row align-items-center">
                 <div class="col-lg-12">
+                    <!-- slick_slider -->
                     <div class="slick_slider row"
                         data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":true, "autoplay":true, "infinite":true, "responsive": [{"breakpoint":1200,"settings":{"slidesToShow": 4}}, {"breakpoint":1024,"settings":{"slidesToShow": 4}}, {"breakpoint":777,"settings":{"slidesToShow": 3}}, {"breakpoint":575,"settings":{"slidesToShow": 2}}, {"breakpoint":380,"settings":{"slidesToShow": 1}}]}'>
                         <div class="client-box">
@@ -485,14 +504,45 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div><!-- cmt-client end -->
                 </div>
-            </div>
+            </div><!-- row end -->
         </div>
     </div>
 </div>
+
+<!-- login - modal -end -->
+
 @include('frontend.layouts.footer')
+
 @endsection
+<div class="modal fade sModal" id="modalService" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal"><span
+                    aria-hidden="true">×</span></button>
+            <div class="section-title text-center mb-10">
+                <div class="title-header">
+                    <h2 class="title">Select a country to view </br><strong>the services offered</strong></h2>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <label for="countries2" class="lead" style="text-indent: -9999px">Countries</label>
+                <select class="form-control country" id="countries2">
+                    <option value="">Select Country</option>
+                    @foreach($country_list as $list)
+                    <option data-capital="{{$list->flag}}" value="{{$list->slug}}">{{$list->country_name}}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
 @include('frontend.common.auth-modal')
 @section('scripts')
 <script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
@@ -506,7 +556,7 @@
     $( document ).ready(function() {
         $(".select2").select2();
         $('body').on('change','.country',function() {
-            var country = $('#countries').val();
+            var country = $(this).val();
             if(country != '') {
             var url = '{{ route("frontend.service.country", ":country") }}';
             window.location.href = url.replace(':country', country);

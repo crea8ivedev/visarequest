@@ -21,10 +21,6 @@ $(document).ready(function() {
                 name: 'Service Name'
             },
             {
-                data: 'country',
-                name: 'country',
-            },
-            {
                 data: 'staffName',
                 name: 'Staff Name',
             },

@@ -25,8 +25,8 @@ $(document).ready(function () {
                 name: 'lable'
             },
             {
-                data: 'value',
-                name: 'value'
+                data: 'url',
+                name: 'url'
             },
             
             {

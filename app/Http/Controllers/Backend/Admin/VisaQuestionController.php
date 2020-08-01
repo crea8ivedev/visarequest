@@ -32,7 +32,6 @@ class VisaQuestionController extends Controller
                      $search = $request->get('search');
                      $question->where(function($query) use ($search) {
                         $query->orWhere('lable', 'LIKE', '%' . $search . '%');
-                        $query->orWhere('value', 'LIKE', '%' . $search . '%');
                      });
                  }
  
@@ -47,7 +46,11 @@ class VisaQuestionController extends Controller
                          
                          return $button;
                      })
-                     ->rawColumns(['action'])
+                     ->addColumn('url', function($data) {
+                        $button = '<a href="'.$data->value.'" target="_blank"  name="edit" id="'.$data->id.'">'.$data->value.'</a>';
+                        return $button;
+                    })
+                     ->rawColumns(['action','url'])
                      ->make(true);
              }
  

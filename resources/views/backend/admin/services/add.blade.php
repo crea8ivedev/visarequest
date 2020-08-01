@@ -107,8 +107,8 @@
             @endif
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-lg-12">
+        <div class="row">
+          <div class="form-group col-lg-12">
             <label>Instruction :</label>
             <textarea class="form-control" id="instruction" name="instruction" placeholder="Instruction"></textarea>
             @if ($errors->has('instruction'))
@@ -116,8 +116,8 @@
             @endif
           </div>
         </div>
-        <div class="form-group row">
-          <div class="col-lg-12">
+        <div class="row">
+          <div class="form-group col-lg-12">
             <label>Staff Instruction :</label>
             <textarea class="form-control" id="staffInstruction" name="staffInstruction"
               placeholder="Staff Instruction"></textarea>

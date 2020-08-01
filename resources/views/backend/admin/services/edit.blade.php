@@ -10,7 +10,7 @@
     <form class="form" method="post" id="sample_form" action="{{ route('admin.service.update',['id'=>$data->id])}}">
       @csrf
       <div class="card-body">
-        <div class="form-group row">
+        <div class="row">
 
           <div class="form-group col-lg-6">
             <label>Service Name :<code>*</code></label>

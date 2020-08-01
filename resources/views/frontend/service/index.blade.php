@@ -86,13 +86,13 @@
                             <p>{{$service_list->first()->description}}</p>
                             <div class="btn-group mt-30">
                                 @if (Auth::check())
-                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 "
+                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btnPaymentModal"
                                     href="javascript:void(0);">Apply</a>
                                 @else
                                 <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btn-login"
                                     href="javascript:void(0);">Apply</a>
                                 @endif
-                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark m-0"
+                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark m-0 btnContactAgent"
                                     href="javascript:void(0);">Contact Agent</a>
                             </div>
                         </div>
@@ -102,8 +102,10 @@
         </div>
     </div>
 </div>
+@include('frontend.layouts.footer')
 @endsection()
 @include('frontend.common.auth-modal')
+@include('frontend.common.payment')
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
 <script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
@@ -121,4 +123,5 @@
             }
         });
 </script>
+<script type="text/javascript" src="https://www.simplify.com/commerce/v1/simplify.js"></script>
 @endsection

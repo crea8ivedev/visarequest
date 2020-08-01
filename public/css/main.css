@@ -1671,14 +1671,14 @@ ul.footer-nav-menu li:last-child:after{
 }
 .cmt-page-title-row-inner { 
     width: 100%;
-    padding: 60px 0;
+    padding: 30px 0;
     background-color: rgba(0, 0, 0, 0.02);
 }
 .cmt-page-title-row-inner .row{
-    border-left-width: 6px;
+    /*border-left-width: 6px;
     margin: 0;
     padding-left: 7px;
-    border-left-style: solid;
+    border-left-style: solid;*/
 }
 .page-title-heading h2 {
     font-weight: 500;
@@ -1687,6 +1687,14 @@ ul.footer-nav-menu li:last-child:after{
     line-height: 51px;
     margin-bottom: 0px;
 }
+.page-title-heading.innerpagetitle h2 {
+  font-weight: normal;
+  font-size: 34px;
+}
+.page-title-heading.innerpagetitle h2 strong {
+  color: #fff;
+}
+
 .page-title-heading p { 
     font-size: 18px;
     color: #fff;
@@ -2658,4 +2666,64 @@ button.btn.btn-outline-info:focus, button.btn.btn-outline-info:active,
   border: solid #1E63B1;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+/*------------------------------------------------------------------------------*/
+/*  Services modal Start
+/*------------------------------------------------------------------------------*/
+.modal-open .modal {
+  padding-right: 0px !important;
+}
+.sModal .modal-dialog .modal-content {
+    max-width: 450px;
+  height: auto;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: #fff;
+}
+.sModal .modal-dialog .modal-content .section-title {
+  margin-bottom: 6px;
+}
+.sModal .modal-dialog .modal-content .section-title h2.title {
+  font-size: 24px;
+  line-height: 30px;
+  margin: 0 0 10px 0;
+}
+.sModal .modal-dialog .modal-content .featured-icon-box {
+  padding: 0 0 20px 0 !important;
+}
+.sModal .modal-dialog .modal-content p {
+  margin: 0px;
+}
+.sModal .modal-dialog .modal-content select#countries {
+  margin: 20px 0;
+}
+.sModal .modal-dialog .modal-content .select2-container {
+  width: 100% !important;
+  box-shadow: 0 0 30px -2px rgb(135 135 135 / 40%) !important;
+}
+.modal-backdrop.show {
+    opacity: .8;
+}
+
+.qLink ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+.qLink ul li {
+  margin: 0 0 15px 0;
+}
+.qLink ul li a {
+  color: #1d2143;
+  font-weight: 600;
+}
+.qLink ul li a i {
+  margin: 0 5px 0 0;
+}
+.qLink ul li a:hover {
+  color: #0199cb;
 }
