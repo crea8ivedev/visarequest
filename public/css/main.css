@@ -1574,7 +1574,7 @@ ul.widget_contact_wrapper li i{
 .footer .social-icons li>a {
     display: block;
     height: 36px;
-    width: 36px;
+    width: 36px;    
     line-height: 36px;
     border-width: 1px ;
     border-style: solid;
@@ -1583,6 +1583,9 @@ ul.widget_contact_wrapper li i{
     -moz-transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
+}
+.footer .social-icons li>a i {
+    padding: 10px 0 0 0;
 }
 
 .bottom-footer-text{
@@ -1694,6 +1697,9 @@ ul.footer-nav-menu li:last-child:after{
 .page-title-heading.innerpagetitle h2 strong {
   color: #fff;
 }
+.page-title-heading.innerpagetitle h2 a {
+  color: #fff;
+}
 
 .page-title-heading p { 
     font-size: 18px;
@@ -1721,7 +1727,7 @@ ul.footer-nav-menu li:last-child:after{
     content: "";
     width: 2px;
     height: 15px;
-    right: 12px;
+    right: 6px;
     background-color: #fff;
     top: 4px;
     display: inline-block;
@@ -2248,10 +2254,10 @@ article.cmt-blog-classic .cmt-box-post-date .cmt-entry-date{
   box-shadow: none;
 }
 .select2-container--default .select2-selection--single {
-    background-color: #fff;
-    border: 1px solid #000;
-    border-radius: 22px;
-    height: 42px;
+    background-color: #fff !important;
+    border: 1px solid #000 !important;
+    border-radius: 22px !important;
+    height: 42px !important;
 }
 .select2-container .select2-selection--single .select2-selection__rendered {
     display: block;
@@ -2387,6 +2393,11 @@ section.category-row nav ul.category-list li a {
   display: inline-block;
   width: 100%;
   position: relative;
+}
+section.category-row nav ul.category-list li a.active,
+section.category-row nav ul.category-list li a.active i {
+  background: #0199cb;
+  color: #fff;
 }
 section.category-row nav ul.category-list li a i {
   width: 100%;
@@ -2599,7 +2610,7 @@ button.btn.btn-outline-info:focus, button.btn.btn-outline-info:active,
 .modal-c-tabs .modal-body .cmt-btn.cmt-btn-size-sm {
     font-size: 16px;
     padding: 12px 24px 12px 24px;
-    color: #1d2143;
+    color: #fff;
 }
 .modal-c-tabs .modal-body .cmt-btn.cmt-btn-size-sm:hover {
   color: #fff;
@@ -2726,4 +2737,101 @@ button.btn.btn-outline-info:focus, button.btn.btn-outline-info:active,
 }
 .qLink ul li a:hover {
   color: #0199cb;
+}
+
+/*------------------------------------------------------------------------------*/
+/*  Services Start
+/*------------------------------------------------------------------------------*/
+section.services-row {
+  width: 100%;
+  float: left;
+  padding: 0px;
+  margin: 0 0 20px 0;
+  position: relative;
+  background: #f5faff;
+}
+section.services-row:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../images/map-bg.png');
+}
+section.services-row .country-bx {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 10px 20px;
+  margin: 35px 0 -40px 0;
+  float: left;
+  position: relative;
+}
+section.services-row .country-bx .country-img img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+section.services-row .country-bx .country-info-btm .country-flag-img {
+  width: 80px;
+  height: 80px;
+  float: right;
+  border-radius: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+}
+section.services-row .country-bx .country-info-btm h5 {
+  text-align: right;
+  margin: 10px 130px 0 0;
+  float: right;
+  display: inline-block;
+  color: #1d2143;
+}
+section.services-row .country-bx .country-info-btm .country-flag-img:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    right: -9px;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 100px;
+    z-index: 1;
+}
+section.services-row .country-bx .country-info-btm .country-flag-img img {
+  border-radius: 100px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+  z-index: 9;
+}
+section.services-row .country-info {
+  padding: 0 0 0 100px;
+}
+section.services-row .country-info .section-title {
+  margin: 0px;
+}
+section.services-row .country-info .section-title .title-header h2 {
+  font-size: 32px;
+  color: #0199CB;
+}
+section.services-row .country-info .section-title .title-header h2 strong {
+  color: #1e63b1;
+}
+section.services-row .country-info p {
+  color: #898a9c;
+}
+
+.lpmodal ul li a:after {
+  display: none;
+}
+.lpmodal h5 {
+  text-align: center;
+  color: #1E63B1;
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
