@@ -433,6 +433,7 @@
                             <div class="team-position">{{$member->position}}</div>
                             @if($member->email)
                             <div class="team-position">Email: <a href="mailto:{{$member->email}}">{{$member->email}}</a></div>
+                            @endif
                         </div>
                     </div>
                 </div>
