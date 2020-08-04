@@ -26,7 +26,7 @@
                         <img
                             src="{{ route('display.image',[config("constants.IMAGES.COUNTRY_TOURIST_IMAGE"),$country->tourist_image]) }}">
                         @else
-                        <img src="../images/ind.jpg">
+                        <img src="../images/country.jpg">
                         @endif
                     </div>
                     <div class="country-info-btm">
