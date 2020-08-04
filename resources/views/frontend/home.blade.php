@@ -431,7 +431,8 @@
                                 <h5><a href="team-details.html">{{$member->name}}</a></h5>
                             </div>
                             <div class="team-position">{{$member->position}}</div>
-                            {{-- <div class="team-position">Email: xyz@example.com</div> --}}
+                            @if($member->email)
+                            <div class="team-position">Email: <a href="mailto:{{$member->email}}">{{$member->email}}</a></div>
                         </div>
                     </div>
                 </div>
@@ -509,7 +510,6 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/home.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/contact.js') }}" type="text/javascript"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest') !!}
 <script>
     var serviceUrl = '{{ route("frontend.service.country", ":country") }}';
 </script>

@@ -42,8 +42,6 @@
     <script>
         var url = '{{route("home")}}';
     </script>
-        {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
-        {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.js') }}"></script>
@@ -58,7 +56,9 @@
     @foreach(config('layout.resources.validate_js') as $script)
     <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
-    @yield('scripts')
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
     <script src="{{ asset('js/main.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

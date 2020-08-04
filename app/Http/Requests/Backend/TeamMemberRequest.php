@@ -28,9 +28,9 @@ class TeamMemberRequest extends FormRequest
         if ($segmentId) {
             $request = $this->request->all();
            return [
-                'name'              =>  'required',
+                'name'              =>  'required|unique:team_members,name,'.$segmentId,
                 'position'          =>  'required',
-                'email'             =>  'nullable|email|unique:team_members,email,'.$segmentId,
+                'email'             =>  'nullable|email',
                 'phone'             =>  'nullable|numeric',
                 'facebook'          =>  'nullable|url',
                 'instagram'         =>  'nullable|url',
@@ -41,9 +41,9 @@ class TeamMemberRequest extends FormRequest
         } else {
 
            return [
-                'name'              =>  'required',
+                'name'              =>  'required|unique:team_members,name,',
                 'position'          =>  'required',
-                'email'             =>  'nullable|email|unique:team_members,email',
+                'email'             =>  'nullable|email',
                 'phone'             =>  'nullable|numeric',
                 'facebook'          =>  'nullable|url',
                 'instagram'         =>  'nullable|url',
