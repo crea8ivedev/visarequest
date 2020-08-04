@@ -56,9 +56,10 @@
     @foreach(config('layout.resources.validate_js') as $script)
     <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
-    {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
-    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
+
     <script src="{{ asset('js/main.js') }}"></script>
     @yield('scripts')
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 </body>
 </html>

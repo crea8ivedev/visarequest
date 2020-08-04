@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".select2").select2();
+    $(".country").select2();
     $('body').on('change','.country',function() {
         var country = $(this).val();
         if(country != '') {

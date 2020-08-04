@@ -537,11 +537,6 @@ function format(item, state) {
   }
 
   $(document).ready(function() {
-    $(".country").select2({
-      templateResult: function(item) {
-        return format(item, false);
-      }
-    });
     $(document).on('click', '.btn-login', function () {
         $("#loginForm")[0].reset();
         $("#signupForm")[0].reset();
