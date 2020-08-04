@@ -21,7 +21,7 @@
           },
           columns: [
            {
-            data: 'country_name',
+            data: 'name',
             name: 'Country Name'
            },
            {

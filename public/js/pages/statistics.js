@@ -29,8 +29,8 @@
             name: 'ip'
            },
            {
-            data: 'country_name',
-            name: 'country_name'
+            data: 'name',
+            name: 'name'
            },
            {
             data: 'region_name',

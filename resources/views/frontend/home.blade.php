@@ -106,7 +106,7 @@
                                                 <option value="">Select Country</option>
                                                 @foreach($country_list as $list)
                                                 <option data-capital="{{$list->flag}}"
-                                                    value="{{strtolower($list->slug)}}">{{$list->country_name}}</option>
+                                                    value="{{strtolower($list->slug)}}">{{$list->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -496,7 +496,7 @@
                 <select class="form-control country" id="countries2">
                     <option value="">Select Country</option>
                     @foreach($country_list as $list)
-                    <option data-capital="{{$list->flag}}" value="{{$list->slug}}">{{$list->country_name}}
+                    <option data-capital="{{$list->flag}}" value="{{$list->slug}}">{{$list->name}}
                     </option>
                     @endforeach
                 </select>

@@ -17,7 +17,7 @@ class CreateStatisticsTable extends Migration
             $table->id();
             $table->string('ip');
             $table->string('country_code')->nullale();
-            $table->string('country_name')->nullale();
+            $table->string('name')->nullale();
             $table->string('region_code')->nullale();
             $table->string('region_name')->nullale();
             $table->string('city')->nullale();

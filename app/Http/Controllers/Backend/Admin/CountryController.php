@@ -25,7 +25,7 @@ class CountryController extends Controller
             $service = Country::query();
             if ($request->has('search') && !is_null($request->get('search'))) {
                 $search = $request->get('search');
-                $service->where('country_name', 'LIKE', '%' . $request->search . '%');
+                $service->where('name', 'LIKE', '%' . $request->search . '%');
             }
             $data = $service->latest()->get();
             return DataTables::of($data)
