@@ -118,6 +118,11 @@ return [
                     
                 ],
                 [
+                    'title' => 'Visa Client',
+                    'page'  => 'admin/visa-client',
+                    
+                ],
+                [
                     'title' => 'Sliders',
                     'page'  => 'admin/slider',
                     

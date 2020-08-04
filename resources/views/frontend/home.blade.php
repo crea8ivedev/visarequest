@@ -295,6 +295,7 @@
                             </div>
                         </div>
                         <div class="row">
+                            <p class="contactmessage"></p>
                             <div class="col-lg-6">
                                 <form id="contact_form" class="contact_form wrap-form clearfix" method="post"
                                     novalidate="novalidate" action="#">
@@ -307,7 +308,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label>
-                                                <span class="text-input"><input name="address" type="text" value=""
+                                                <span class="text-input"><input name="email" type="text" value=""
                                                         placeholder="Your Email" required="required"></span>
                                             </label>
                                         </div>
@@ -321,7 +322,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <label>
-                                                <span class="text-input"><input name="phone" type="text" value=""
+                                                <span class="text-input"><input name="subject" type="text" value=""
                                                         placeholder="Subject" required="required"></span>
                                             </label>
                                         </div>
@@ -363,6 +364,12 @@
                             <div
                                 class="featured-icon-box icon-align-before-content @if($key%2==0) cmt-bgcolor-darkgrey @else cmt-bgcolor-skincolor @endif icon-ver_align-top style6 h-100">
                                 <div class="featured-content pl-10 pr-10">
+                                    <div class="featured-icon mb-20">
+                                        <div
+                                            class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-md">
+                                            <i class="fa fa-map-marker"></i>
+                                        </div>
+                                    </div>
                                     <div class="featured-title">
                                         <h5>{{$list->office_name}}</h5>
                                     </div>
@@ -424,7 +431,7 @@
                                 <h5><a href="team-details.html">{{$member->name}}</a></h5>
                             </div>
                             <div class="team-position">{{$member->position}}</div>
-                            <div class="team-position">Email: xyz@example.com</div>
+                            {{-- <div class="team-position">Email: xyz@example.com</div> --}}
                         </div>
                     </div>
                 </div>
@@ -448,62 +455,17 @@
                     <!-- slick_slider -->
                     <div class="slick_slider row"
                         data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":true, "autoplay":true, "infinite":true, "responsive": [{"breakpoint":1200,"settings":{"slidesToShow": 4}}, {"breakpoint":1024,"settings":{"slidesToShow": 4}}, {"breakpoint":777,"settings":{"slidesToShow": 3}}, {"breakpoint":575,"settings":{"slidesToShow": 2}}, {"breakpoint":380,"settings":{"slidesToShow": 1}}]}'>
+                        @foreach($visaClients as $key=>$list)
                         <div class="client-box">
                             <div class="cmt-client-logo-tooltip">
                                 <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-01.png" alt="image">
+                                    <img class="img-fluid"
+                                        src="{{ route('display.image',[config("constants.IMAGES.VISA_CLIENT_IMAGE"),$list->file]) }}"
+                                        alt="{{$list->title}}">
                                 </div>
                             </div>
                         </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-02.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-03.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-04.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-05.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-03.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-02.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="client-box">
-                            <div class="cmt-client-logo-tooltip">
-                                <div class="client-thumbnail">
-                                    <img class="img-fluid" src="images/client/client-04.png" alt="image">
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div><!-- cmt-client end -->
                 </div>
             </div><!-- row end -->
@@ -543,25 +505,12 @@
         <!--/.Content-->
     </div>
 </div>
-@include('frontend.common.auth-modal')
 @section('scripts')
 <script src="{{ asset('js/owl.carousel.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/home.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/contact.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
-{!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
-{!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 {!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest') !!}
 <script>
-    $( document ).ready(function() {
-        $(".select2").select2();
-        $('body').on('change','.country',function() {
-            var country = $(this).val();
-            if(country != '') {
-            var url = '{{ route("frontend.service.country", ":country") }}';
-            window.location.href = url.replace(':country', country);
-            }
-        });
-    });
+    var serviceUrl = '{{ route("frontend.service.country", ":country") }}';
 </script>
 @endsection

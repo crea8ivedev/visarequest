@@ -88,6 +88,10 @@
 
 	.spacing-1{ margin-right: 0px;}
 	.testimonials-nav { margin-right: -80px; }
+
+	section.category-row {
+		padding: 0px;
+	}
 }
 
 
@@ -96,6 +100,25 @@
 	.bg-anim-1, .bg-anim-2 { display: none; }
 
 	.testimonials-nav { margin-right: -20px; padding: 0 40px; }
+
+	section.category-row .main-menu.menu-mobile {
+		display: inline-block;
+		position: inherit;
+		padding: 20px 0 0;
+	}
+	section.category-row nav ul.category-list {
+		padding: 15px;
+		display: inline-block;
+	}
+	section.category-row nav ul.category-list li {
+		width: 23.8%;
+	}
+	section.category-row nav ul.category-list li a:after {
+		float: none !important;
+	}
+	.cmt-row.grid-section {
+		padding: 0px 0 60px;
+	}
 }
 
 
@@ -437,6 +460,34 @@
 	
 	#map { height: 264px; }
 
+	section.services-row {
+		padding: 0 0 40px 0;
+	}
+	section.services-row .country-info {
+		padding: 50px 0 0 0;
+	}
+	section.category-row {
+		padding: 0px;
+	}
+	.cmt-row.grid-section {
+		padding: 0 0 30px 0 !important;
+	}
+	section.category-row .main-menu.menu-mobile ul {
+		padding: 15px 10px 15px 20px;
+    	display: inline-block;
+	}
+	section.category-row .main-menu.menu-mobile ul li {
+		width: 31%;
+	}
+	section.category-row .main-menu.menu-mobile ul li a:after {
+		float: none;
+	}
+	section.category-row .main-menu.menu-mobile {
+		display: inline-block;
+		position: inherit;
+		padding: 20px 0 0;
+	}
+
 }
 
 
@@ -489,6 +540,24 @@
 
 	.featured-icon-box.icon-align-top-content.style7 { min-width: auto; max-width: 220px; padding-left: 20px;padding-right: 10px;}
 	.featured-icon-box.icon-align-top-content.style7 .featured-title h5 { font-size: 32px; line-height: 42px; }
+
+	section.services-row {
+		padding: 0 0 40px 0;
+	}
+	section.services-row .country-info {
+		padding: 50px 0 0 0;
+	}
+	section.category-row {
+		padding: 30px 0 0 0;
+	}
+	.cmt-row.grid-section {
+		padding: 0 0 30px 0 !important;
+	}
+	section.category-row .main-menu.menu-mobile {
+		display: inline-block;
+		position: inherit;
+		padding: 20px 0 0;
+	}
 }
 
 
@@ -531,6 +600,35 @@
 
 	div.col-lg-3:nth-child(even) .featured-icon-box.icon-align-top-content.style1{ 
 	    margin-top: 15px;
+	}
+
+	section.services-row {
+		padding: 0 0 40px 0;
+	}
+	section.services-row .country-info {
+		padding: 50px 0 0 0;
+	}
+	section.category-row {
+		padding: 30px 0 0 0;
+	}
+	.cmt-row.grid-section {
+		padding: 0 0 30px 0 !important;
+	}
+	.cmt-row.grid-section .row {
+		float: left;
+	}
+	section.category-row .main-menu.menu-mobile ul li {
+		width: 45%;
+	}
+	section.category-row nav ul.category-list li a {
+		font-size: 16px;
+    	padding: 30px 5px 30px;
+	}
+	section.category-row nav ul.category-list li a i {
+		margin: 0 0 30px 0;
+	}
+	section.category-row nav ul.category-list li a:after {
+		float: none !important;
 	}
 
 }

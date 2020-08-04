@@ -24,7 +24,6 @@ class FeedbackRequest extends FormRequest
     public function rules()
     {
         return [
-            'type'              =>  'required',
             'name'              =>  'required',
             'email'             =>  'required|email',
             'message'           =>  'required',
@@ -34,7 +33,6 @@ class FeedbackRequest extends FormRequest
     public function messages()
     {
         return [
-            'type.required' => 'Please select type.',
             'name.required' => 'Please enter name.',
             'email.required' => 'Please enter email.',
             'email.email'  => 'Please enter valid email address.',

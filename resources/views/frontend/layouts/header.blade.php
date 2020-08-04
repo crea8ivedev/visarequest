@@ -5,7 +5,7 @@
                 <div class="d-flex flex-row align-items-center">
                     <div class="site-branding ">
                         <a class="home-link" href="{{ route('home') }}" title="VisaRequest" rel="home">
-                            <img id="logo-img" class="img-center" src="{{ asset('images/logo.png') }}"
+                            <img id="logo-img" class="img-center" src="{{ asset('/images/logo.png') }}"
                                 alt="VisaRequest">
                         </a>
                     </div>
@@ -15,18 +15,32 @@
                     <div class="widget_info d-flex flex-row align-items-center justify-content-end">
                         <div class="widget_social mr-25">
                             <ul class="social-icons">
-                                <li><a target="_blank" href="@yield('social_link', $address[0]->facebook ?? '#')"><i
+                                @if($comman_address->facebook)
+                                <li><a target="_blank" href="{{$comman_address->facebook}}"><i
                                             class="ti ti-facebook"></i></a>
                                 </li>
-                                <li><a target="_blank" href="@yield('social_link', $address[0]->twitter ?? '#')"><i
+                                @endif
+                                @if($comman_address->twitter)
+
+                                <li><a target="_blank" href="{{$comman_address->twitter}}"><i
                                             class="ti ti-twitter-alt"></i></a>
                                 </li>
-                                <li><a target="_blank" href="@yield('social_link', $address[0]->google ?? '#')"><i
+                                @endif
+
+                                @if($comman_address->google)
+
+                                <li><a target="_blank" href="{{$comman_address->google}}"><i
                                             class="ti ti-google"></i></a>
                                 </li>
-                                <li><a target="_blank" href="@yield('social_link', $address[0]->linkedin ?? '#')"><i
+                                @endif
+
+                                @if($comman_address->linkedin)
+
+                                <li><a target="_blank" href="{{$comman_address->linkedin}}"><i
                                             class="ti ti-linkedin"></i></a>
                                 </li>
+                                @endif
+
                             </ul>
                         </div>
                         <div class="header_btn">
@@ -42,7 +56,9 @@
                             @endif </div>
                     </div>
                     <div class="widget_info d-flex flex-row align-items-center justify-content-end">
-                        <h5 class="mb-0"><i class="fa fa-phone mr-2 cmt-textcolor-skincolor"></i>+0861 88 88 28</h5>
+                        <h5 class="mb-0"><i class="fa fa-phone mr-2 cmt-textcolor-skincolor"></i><a
+                                href="tel: {{$comman_address->cell_phone }}">{{$comman_address->cell_phone ?? '-' }}</a>
+                        </h5>
                     </div>
                 </div>
             </div>

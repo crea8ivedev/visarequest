@@ -1,79 +1,165 @@
 @extends('frontend.layouts.app')
 @section('content')
-
-    {{-- <section class="fullwidth-section"> --}}
+<!-- page-title -->
+<div class="cmt-page-title-row">
+    <div class="cmt-page-title-row-inner">
         <div class="container">
-            <div class="content">
-                <div class="row">
-                    <div class="col-lg-9">
-                    <h6>Pretoria Address<h6>
-                        <p>{!! $contactUs->address ?? '' !!}</p>
-                    <h6>Cape Town Address<h6>
-                        <p>{!! $contactUs->address1 ?? '' !!}</p>
-                    <h6>Email<h6>
-                        <p>{!! $contactUs->email ?? '' !!}</p>
-                    <h6>Cell Phone<h6>
-                        <p>{!! $contactUs->cell_phone ?? '' !!}</p>
-                    <h6>Telephone<h6>
-                        <p>{!! $contactUs->telephone ?? '' !!}</p>
-                    <h6>International Calls<h6>
-                        <p>{!! $contactUs->international_call ?? '' !!}</p>
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="page-title-heading innerpagetitle text-center">
+                        <h2 class="title"><a href="services.html">Contact</a></h2>
                     </div>
                 </div>
             </div>
         </div>
-    {{-- </section> --}}
+    </div>
+</div>
 
-    <div class="col-lg-8 col-md-7">
-        <div class="pl-30 res-991-pl-0 res-767-mt-30">
-            <!-- section title -->
-            <div class="section-title with-desc clearfix">
-                <div class="title-header">
-                    <h2 class="title">Feedback <strong>VisaRequest</strong></h2>
+<div class="site-main">
+
+    <!--google_map-->
+    <section class="google-map">
+        <iframe src="https://www.google.com/maps/embed?pb={{$comman_address->address}}" frameborder="0" style="border:0;"
+            allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </section>
+
+
+    <!--- conatact-section -->
+    <section class="cmt-row conatact-section clearfix ctbox">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="cmt-col-bgcolor-yes cmt-bg cmt-bgcolor-white z-index-2 spacing-7 box-shadow ctbox-row">
+                        <div class="cmt-col-wrapper-bg-layer cmt-bg-layer"></div>
+                        <div class="row ">
+                            <div class="col-lg-12 col-md-7">
+                                <div class="pl-30 res-991-pl-0 res-767-mt-30">
+                                    <!-- section title -->
+                                    <div class="section-title with-desc clearfix">
+                                        <div class="title-header">
+                                            <h5>why choose us</h5>
+                                            <h2 class="title">Get In <strong>Touch?</strong></h2>
+                                        </div>
+                                    </div><!-- section title end -->
+                                    <form id="contact_form" class="contact_form wrap-form pt-15 clearfix" method="post"
+                                        novalidate="novalidate" action="#">
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <label>
+                                                    <span class="text-input"><input name="name" type="text" value=""
+                                                            placeholder="Your Name" required="required"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <label>
+                                                    <span class="text-input"><input name="email" type="text" value=""
+                                                            placeholder="Your Email" required="required"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <label>
+                                                    <span class="text-input"><input name="phone" type="text" value=""
+                                                            placeholder="Phone Number" required="required"></span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <label>
+                                                    <span class="text-input"><input name="phone" type="text" value=""
+                                                            placeholder="Subject" required="required"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <label>
+                                            <span class="text-input"><textarea name="message" rows="5"
+                                                    placeholder="Message" required="required"></textarea></span>
+                                        </label>
+                                        <button
+                                            class="submit cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100"
+                                            type="submit">Submit Request !</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div><!-- section title end -->
-            <div id="showResponseArea" class="showResponseArea alert d-none">
-                <span>
-                    <strong id="alertType">Success !! </strong> <span id="requestId"> // Request id goes here</span>
-                </span>
             </div>
-            <form id="contact_form" class="contact_form wrap-form pt-15 clearfix" method="post" novalidate="novalidate" >
-                <div class="row">
-                <div class="form-field col-md-12">
-                    <select name="type" id="type" class="input-text js-select">
-                        <option value=''>Select feedback type</option>
-                        <option value="COMPLIMENTS">Compliments</option>
-                        <option value="COMPLAINTS">Complaints</option>
-                    </select>
-                </div>
-                    <div class="col-lg-6 col-md-6">
-                        <label>
-                            <span class="text-input"><input name="name" type="text" value="" placeholder="Your Name" ></span>
-                        </label>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <label>
-                            <span class="text-input"><input name="email" type="email" value="" placeholder="Your Email" ></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <label>
-                    <span class="text-input"><textarea name="message" rows="5" placeholder="Message" required="required"></textarea></span>
-                </label>
-                <button class="submit cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100" type="submit">Submit Request !  <i id="submit" class="fa fa-spinner fa-spin d-none" ></i></button>
-            </form>
+            <!-- row -->
         </div>
-    </div> 
+    </section>
+    <!-- conatact-section end -->
+
+    <section class="cmt-row cta-section res-991-mt-0 clearfix ctsection mt-50 mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row res-991-mt-0">
+                        @foreach($address_list as $key=>$list)
+
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <!--featured-icon-box-->
+                            <div
+                                class="featured-icon-box icon-align-before-content @if($key%2==0) cmt-bgcolor-darkgrey @else cmt-bgcolor-skincolor @endif icon-ver_align-top style6 h-100">
+                                <div class="featured-content pl-10 pr-10">
+                                    <div class="featured-icon mb-20">
+                                        <div
+                                            class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-md">
+                                            <i class="fa fa-map-marker"></i>
+                                        </div>
+                                    </div>
+                                    <div class="featured-title">
+                                        <h5>{{$list->office_name}}</h5>
+                                    </div>
+                                    <div class="featured-desc">
+                                        <p>Email: <a href="mailto:{{$list->email}}"> {{$list->email}}</a></p>
+                                        <p>
+                                            {{$list->address}}
+                                        </p>
+
+                                        @if($list->cell_phone)
+                                        <p>
+                                            Cell Phone: <a href="tel:{{$list->cell_phone}}"> {{$list->cell_phone}}</a>
+                                        </p>
+                                        @endif
+                                        @if($list->telephone)
+                                        <p>
+                                            Telephone: <a href="tel:{{$list->telephone}}"> {{$list->telephone}}</a>
+                                        </p>
+                                        @endif
+                                        @if($list->international_call)
+                                        <p>
+                                            International Calls: <a href="tel:{{$list->international_call}}">
+                                                {{$list->international_call}}</a>
+                                        </p>
+                                        @endif
+                                        <p>
+                                            Hours: {{$list->hours}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+<!--site-main end-->
+@include('frontend.layouts.footer')
 
 @endsection
 
 @section('scripts')
 @foreach(config('layout.resources.validate_js') as $script)
-    <script src="{{ asset($script) }}" type="text/javascript"></script>
+<script src="{{ asset($script) }}" type="text/javascript"></script>
 @endforeach
 {!! JsValidator::formRequest('App\Http\Requests\Frontend\FeedbackRequest') !!}
-<script src="{{ asset('js/feedback.js') }}" type="text/javascript" ></script>
+<script src="{{ asset('js/feedback.js') }}" type="text/javascript"></script>
 <script>
 
 </script>

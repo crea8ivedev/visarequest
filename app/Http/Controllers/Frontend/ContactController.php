@@ -42,7 +42,6 @@ class ContactController extends Controller
      public function feedbackStore(FeedbackRequest $request)
      {   
          $feedback             = new Feedback;
-         $feedback->type       = $request->type;
          $feedback->name       = $request->name;
          $feedback->email      = $request->email;
          $feedback->message    = $request->message;

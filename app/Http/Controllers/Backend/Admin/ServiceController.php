@@ -35,7 +35,7 @@ class ServiceController extends Controller
                 $service->where('name', 'LIKE', '%' . $request->search . '%');
                 // ->orWhere('last_name', 'LIKE', '%' . $request->search . '%');
             }
-            $data = $service->with(['countrys.country', 'staff', 'agent'])->latest()->get();
+            $data = $service->with(['countries.country', 'staff', 'agent'])->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
                     $button = '<a href="/admin/service/edit/' . $data->id . '"  name="edit" id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a> ';
@@ -90,10 +90,10 @@ class ServiceController extends Controller
         $service->slug =  Str::slug($request->name, '-');
         $service->save();
         $insertedId = $service->id;
-        $countrys = $request->country_id;
+        $countries = $request->country_id;
 
         //Multiple insert service country
-        foreach ($countrys as $country) {
+        foreach ($countries as $country) {
             ServiceCountry::create([
                 'country_id'    => $country,
                 'service_id'    => $insertedId,
@@ -195,9 +195,9 @@ class ServiceController extends Controller
         $service->status     = $request->status;
         $service->slug =  Str::slug($request->name, '-');
         ServiceCountry::where('service_id', $id)->delete();
-        $countrys = $request->country_id;
+        $countries = $request->country_id;
         //Multiple insert service country
-        foreach ($countrys as $country) {
+        foreach ($countries as $country) {
             ServiceCountry::create([
                 'country_id'    => $country,
                 'service_id'    => $id,

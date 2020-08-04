@@ -20,20 +20,20 @@ Route::namespace('Frontend\Auth')->group(function () {
     Route::get('/logout', 'LoginController@logout')->name('user.logout');
 });
 //FRONT ROUTE
-Route::namespace('Frontend')->group(function () {
+    Route::group(['namespace' => 'Frontend', 'middleware' => ['header.data']], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::post('/country', 'HomeController@country')->name('visa.country');
-    Route::post('/set-country', 'HomeController@makeDefaultCountry')->name('country');
-    Route::get('/service', 'ServiceController@index')->name('frontend.service');
     Route::get('/visa/{country}', 'ServiceController@index')->name('frontend.service.country');
+    Route::get('/details/{country}/{category}/{service}', 'ServiceController@serviceDetails')->name('frontend.category.service.details');
     Route::post('/getservices', 'ServiceController@getServices')->name('frontend.service.details');
-    Route::post('/getservicedetails', 'ServiceController@getServiceDetails')->name('frontend.service.details');
+    Route::post('/get-services-details', 'ServiceController@getServiceDetails')->name('frontend.service.details.ajax');
     Route::get('/application', 'ServiceApplicationController@index')->name('frontend.service.application.index');
     Route::get('/about-us', 'PageController@getAboutUs')->name('frontend.about-us');
     Route::get('/contact-us', 'PageController@getContactUs')->name('frontend.contact-us');
     Route::post('/contact', 'ContactController@store')->name('frontend.contact');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
     Route::get('/news', 'NewsController@getNews')->name('frontend.news');
+    Route::get('/news/{slug}', 'NewsController@getNewsDetails')->name('frontend.news.details');   
     Route::post('/feedback', 'ContactController@feedbackStore')->name('frontend.feedback');
 
 });
@@ -144,6 +144,16 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/store', "CountryController@store")->name("admin.country.store");
         Route::post('/update/{id}', "CountryController@update")->name("admin.country.update");
         Route::post('/destroy/{id}', 'CountryController@destroy')->name("admin.country.destroy");
+    });
+
+    Route::group(["prefix" => "visa-client"], function () {
+        Route::get('/', "VisaClientController@index")->name("admin.visa-client");
+        Route::post('/', "VisaClientController@index")->name("admin.visa-client");
+        Route::get('/edit/{id}', "VisaClientController@edit")->name("admin.visa-client.edit");
+        route::get('/add', "VisaClientController@create")->name("admin.visa-client.add");
+        Route::post('/store', "VisaClientController@store")->name("admin.visa-client.store");
+        Route::post('/update/{id}', "VisaClientController@update")->name("admin.visa-client.update");
+        Route::post('/destroy/{id}', 'VisaClientController@destroy')->name("admin.visa-client.destroy");
     });
 
     /* routes for Service Category view */

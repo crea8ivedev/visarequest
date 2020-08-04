@@ -25,8 +25,12 @@ class Service extends Model
     	return $this->belongsTo('App\Models\User', 'agent_id');
     }
 
-    public function countrys()
+    public function countries()
     {
         return $this->hasMany('App\Models\ServiceCountry');
+    }
+    public function category()
+    {
+        return $this->belongsTo('App\Models\ServiceCategory');
     }
 }

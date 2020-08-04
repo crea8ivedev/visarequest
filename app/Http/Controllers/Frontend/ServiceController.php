@@ -16,16 +16,18 @@ class ServiceController extends Controller
     public function index(Request $request)
     {
         $country = Country::where('slug',$request->country)->first();
-        
         $service_category_list = ServiceCategory::where('status',Config::get('constants.STATUS.ACTIVE'))->get();
         $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
             ->where('category_id',$service_category_list->first()->id)
-            ->whereHas('countrys', function ($q) use ($country) {
+            ->whereHas('countries', function ($q) use ($country) {
                 $q->where('country_id', $country->id);
-            })->get();
+            })
+            ->with('category')
+            ->get();
         $country_list = Country::get();
         $metaData = MetaPage::first();
-        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','metaData','country_list'));
+        $page_title       = 'Service-'. $country->name;
+        return view('frontend.service.index', compact( 'service_category_list', 'service_list','country','metaData','country_list','page_title'));
     }
 
     public function getServices(Request $request)
@@ -34,11 +36,43 @@ class ServiceController extends Controller
             $country = Country::where('slug',$request->country)->first();
             $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
                 ->where('category_id', $request->category)
-                ->whereHas('countrys', function ($q) use ($country) {
+                ->whereHas('countries', function ($q) use ($country) {
                     $q->where('country_id', $country->id);
-                })->get();
-            $service =  ($request->service)?$service_list->find($request->service): $service_list->first();
-            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list,'service'=>$service])->render();
+                })
+                 ->with('category')
+                ->get();
+            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list,'country'=>$country])->render();
+            return response()->json(array('success' => true, 'html' => $returnHTML));
+        }
+    }
+
+    public function serviceDetails(Request $request){
+        $country = Country::where('slug',$request->country)
+        ->first();
+        $service = Service::where('slug',$request->service)        
+        ->where('status',Config::get('constants.STATUS.ACTIVE'))
+        ->first();
+        $category = ServiceCategory::where('slug',$request->category)
+        ->where('status',Config::get('constants.STATUS.ACTIVE'))
+        ->first();
+        $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
+            ->where('category_id',$category->id)
+            ->whereHas('countries', function ($q) use ($country) {
+                $q->where('country_id', $country->id);
+            })->get();
+        $metaData = MetaPage::first();
+        $page_title       = 'Service-'. $country->name.'-'.$category->name;
+        return view('frontend.service.details', compact( 'service_list','category','country','metaData','service'));
+    }
+
+    
+    public function getServiceDetails(Request $request)
+    {
+        if ($request->ajax()) {
+            $service = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
+                ->where('id', $request->service)
+                ->first();
+            $returnHTML = view('frontend.service.ajax-service-details')->with(['service' => $service])->render();
             return response()->json(array('success' => true, 'html' => $returnHTML));
         }
     }

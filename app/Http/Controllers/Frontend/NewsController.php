@@ -11,6 +11,14 @@ class NewsController extends Controller
     public function getNews(Request $request)
     {   
         $newsList = News::with('country')->latest()->get();
-        return view('frontend.news.news', compact('newsList'));
+        $page_title       = 'News';
+        return view('frontend.news.news', compact('newsList','page_title'));
+    }
+
+    public function getNewsDetails(Request $request)
+    {   
+        $news = News::where('slug', $request->slug)->first();
+        $page_title       = 'News-'.$news->heading;
+        return view('frontend.news.details', compact('news','page_title'));
     }
 }

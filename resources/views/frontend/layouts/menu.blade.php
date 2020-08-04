@@ -26,9 +26,7 @@
                                             <li class="mega-menu-item {{ (request()->is('about-us')) ? 'active' : '' }}">
                                                 <a href="{{ route('frontend.about-us') }}" class="mega-menu-link">About Us</a>
                                             </li>
-                                            <li class="mega-menu-item {{ (request()->is('service')) ? 'active' : '' }}">
-                                                <a href="{{ route('frontend.service') }}" class="mega-menu-link">Our Service</a>
-                                            </li>
+                          
                                             <li class="mega-menu-item {{ (request()->is('news')) ? 'active' : '' }}">
                                                 <a href="{{ route('frontend.news') }}" class="mega-menu-link">News</a>
                                             </li>

@@ -49,6 +49,6 @@ return [
 		'COUNTRY_IMAGE'   =>  'country',
 		'COUNTRY_TOURIST_IMAGE'   =>  'country-tourist',
 		'SLIDER_IMAGE'        =>  'slider',
-	
+		'VISA_CLIENT_IMAGE'        =>  'visa-client',
 	]
 ];

@@ -11,6 +11,7 @@ use App\Models\ServiceCategory;
 use App\Models\ContactUs;
 use App\Models\MetaPage;
 use App\Models\VisaQuestion;
+use App\Models\VisaClient;
 use App\Models\Slider;
 use Auth;
 
@@ -18,14 +19,15 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $member_list = TeamMember::get();
-        $service_category_list = ServiceCategory::get();
-        $country_list = Country::get();
-        $address = ContactUs::get();
-        $metaData = MetaPage::first();
-        $sliders = Slider::get();
-        $visaQuestion = VisaQuestion::get();
-        return view('frontend.home', compact(['member_list', 'service_category_list', 'country_list','address','metaData','sliders','visaQuestion']));
+        $member_list = TeamMember::latest()->get();
+        $service_category_list = ServiceCategory::latest()->get();
+        $country_list = Country::latest()->get();
+        $address = ContactUs::latest()->get();
+        $sliders = Slider::latest()->get();
+        $visaQuestion = VisaQuestion::latest()->get();
+        $visaClients = VisaClient::latest()->get();
+        $page_title       = 'Home';
+        return view('frontend.home', compact(['member_list','page_title', 'service_category_list', 'country_list','address','sliders','visaQuestion','visaClients']));
     }
 
     public function country(Request $request)

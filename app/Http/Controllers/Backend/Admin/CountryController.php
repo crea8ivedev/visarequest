@@ -115,7 +115,7 @@ class CountryController extends Controller
         $country->description = $request->description;
         $country->need_visa  = $request->need_visa;
         if ($request->hasFile('countryFlag')) {
-            $old_path = Storage::path(Config::get('constants.APPLICATION_FILE_STORE').'/'. $country->flag);
+            $old_path = Storage::path(Config::get('constants.COUNTRY_IMAGE').'/'. $country->flag);
             if(File::exists($old_path)) {
                 File::delete($old_path);
             }
@@ -125,7 +125,7 @@ class CountryController extends Controller
             $country->flag = $save_name;
         }
         if ($request->hasFile('countryTouristImage')) {
-            $old_path = Storage::path(Config::get('constants.APPLICATION_FILE_STORE').'/'. $country->tourist_image);
+            $old_path = Storage::path(Config::get('constants.COUNTRY_TOURIST_IMAGE').'/'. $country->tourist_image);
             if(File::exists($old_path)) {
                 File::delete($old_path);
             }

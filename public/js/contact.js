@@ -30,8 +30,7 @@ $(document).ready(function () {
                 $(".showResponseArea").removeClass("d-none");
                 $(".showResponseArea").removeClass("alert-success");
                 $(".showResponseArea").addClass("alert-danger");
-                $("#alertType").text("Error !!");
-                $("#requestId").text(data.errors);
+                $(".contactmessage").text(data.errors);
             }
             if(data.success)
             {
@@ -39,8 +38,7 @@ $(document).ready(function () {
                 $(".showResponseArea").removeClass("d-none");
                 $(".showResponseArea").removeClass("alert-danger");
                 $(".showResponseArea").addClass("alert-success");
-                $("#requestId").text("Success !!");
-                $("#requestId").text(data.success);
+                $(".contactmessage").text(data.success);
             }
             }
         });

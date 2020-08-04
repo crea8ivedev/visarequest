@@ -10,6 +10,7 @@ use DataTables;
 use Toastr;
 use Config;
 use App\Http\Requests\Backend\NewsRequest;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -96,7 +97,8 @@ class NewsController extends Controller
          $news->country_id      = $request->country_id;
          $news->heading         = $request->heading;
          $news->message         = $request->message;
- 
+         $news->slug =  Str::slug($request->heading, '-');
+
         if($news->save()) {
          
          Toastr::success('News added successfully!','', Config::get('constants.toster'));
@@ -140,7 +142,8 @@ class NewsController extends Controller
          $news->country_id = $request->country_id;
          $news->heading    = $request->heading;
          $news->message    = $request->message;
- 
+         $news->slug =  Str::slug($request->heading, '-');
+
         if($news->save()) {
              Toastr::success('News updated successfully!','', Config::get('constants.toster'));
              return redirect('/admin/news');

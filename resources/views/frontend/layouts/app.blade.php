@@ -7,7 +7,7 @@
     <meta name="keywords" content="@yield('page_description', $metaData->keywords ?? '')">
     <meta name="description" content="@yield('page_description', $metaData->description ?? '')">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>VisaRequest</title>
+    <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
@@ -38,9 +38,12 @@
             <i class="fa fa-angle-up"></i>
         </a>
     </div>
+    @include('frontend.common.auth-modal')
     <script>
         var url = '{{route("home")}}';
     </script>
+        {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
+        {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.easing.js') }}"></script>
@@ -51,11 +54,11 @@
     <script src="{{ asset('js/imagesloaded.min.js') }}"></script>
     <script src="{{ asset('js/jquery-isotope.js') }}"></script>
     <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script src="{{ asset('js/auth.js') }}" type="text/javascript"></script>
     @foreach(config('layout.resources.validate_js') as $script)
     <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
     @yield('scripts')
     <script src="{{ asset('js/main.js') }}"></script>
 </body>
-
 </html>
