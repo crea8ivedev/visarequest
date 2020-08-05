@@ -9,6 +9,9 @@ use App\Models\TeamMember;
 use DataTables;
 use Toastr;
 use Config;
+use Illuminate\Support\Facades\Storage;
+use File;
+
 
 class TeamMemberController extends Controller
 {
@@ -79,9 +82,13 @@ class TeamMemberController extends Controller
         $teamMember->email      = $request->email;
         $teamMember->phone      = $request->phone;
         $teamMember->facebook   = $request->facebook;
-        $teamMember->instagram  = $request->instagram;
         $teamMember->twitter    = $request->twitter;
-
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $save_name = $teamMember->name.'.'.$image->getClientOriginalExtension();
+            $image->storeAs(Config::get('constants.IMAGES.TEAM_MEMBER_IMAGE'), $save_name);
+            $teamMember->file = $save_name;
+        }
        if($teamMember->save()) {
         
         Toastr::success('Team member added successfully!','', Config::get('constants.toster'));
@@ -126,10 +133,18 @@ class TeamMemberController extends Controller
         $teamMember->email      = $request->email;
         $teamMember->phone      = $request->phone;
         $teamMember->facebook   = $request->facebook;
-        $teamMember->instagram  = $request->instagram;
         $teamMember->twitter    = $request->twitter;
 
-       
+        if ($request->hasFile('file')) {
+            $old_path = Storage::path(Config::get('constants.TEAM_MEMBER_IMAGE').'/'. $teamMember->file);
+            if(File::exists($old_path)) {
+                File::delete($old_path);
+            }
+            $image = $request->file('file');
+            $save_name = $teamMember->title.'.'.$image->getClientOriginalExtension();
+            $image->storeAs(Config::get('constants.IMAGES.TEAM_MEMBER_IMAGE'), $save_name);
+            $teamMember->file = $save_name;
+        }
 
        if($teamMember->save()) {
             Toastr::success('Team member updated successfully!','', Config::get('constants.toster'));

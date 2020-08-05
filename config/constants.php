@@ -50,5 +50,6 @@ return [
 		'COUNTRY_TOURIST_IMAGE'   =>  'country-tourist',
 		'SLIDER_IMAGE'        =>  'slider',
 		'VISA_CLIENT_IMAGE'        =>  'visa-client',
+		'TEAM_MEMBER_IMAGE'        =>  'team=member',
 	]
 ];

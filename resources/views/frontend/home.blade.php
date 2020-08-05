@@ -9,7 +9,7 @@
                     @foreach($sliders as $list)
                     <div class="item h-100">
                         <img src="{{ route('display.image',[config("constants.IMAGES.SLIDER_IMAGE"),$list->image]) }}"
-                            width="1920" height="450" class="img-fluid object-fit">
+                            width="1920" height="450" alt="{{$list->name}}" class="img-fluid object-fit">
                         <div class="overlay">
                             <h2>
                                 {!! $list->text !!}
@@ -433,7 +433,15 @@
                     <div class="featured-imagebox featured-imagebox-team bor_rad_5">
                         <div class="cmt-team-box-view-overlay">
                             <div class="featured-thumbnail">
-                                <img class="img-fluid" src="images/team-member/team-img01.jpg" alt="image">
+                                @if($member->file)
+                                <img class="img-fluid"
+                                    src="{{ route('display.image',[config("constants.IMAGES.TEAM_MEMBER_IMAGE"),$member->file]) }}"
+                                    alt="{{$member->name}}">
+                                @else
+                                <img class="img-fluid" src="{{ asset('images/member.jpg') }}" alt="member">
+
+                                @endif
+
                             </div>
                         </div>
                         <div class="featured-content featured-content-team">
