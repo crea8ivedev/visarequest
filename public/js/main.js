@@ -541,6 +541,8 @@ function format(item, state) {
 });
   $(document).ready(function() {
     $(document).on('click', '.btn-login', function () {
+        $(".alertMessage").html('');
+        $(".invalid-feedback").remove();
         $("#loginForm")[0].reset();
         $("#signupForm")[0].reset();
         $('#authModal').modal('show');

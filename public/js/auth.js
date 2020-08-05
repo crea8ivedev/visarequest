@@ -1,8 +1,3 @@
-$(document).on('click', '.btn-login', function () {
-    $("#loginForm")[0].reset();
-    $("#signupForm")[0].reset();
-    $('#authModal').modal('show');
-});
 $(function () {
     $('#loginForm').submit(function (e) {
         e.preventDefault();

@@ -23,27 +23,12 @@ class SignupRequest extends FormRequest
      */
     public function rules()
     {
-        $segmentId = request()->segment(4); //returns 'posts'
-
-        if ($segmentId) {
-            $request = $this->request->all();
-            return [
-                'first_name'        =>  'required',
-                'last_name'        =>  'required',
-                'email'             =>  'required|email|unique:users,email,' . $segmentId,
-                'password'          =>  'nullable|min:6',
-                'confirm_password'  =>  'required_with:password|same:password',
-            ];
-        } else {
-
             return [
                 'first_name'        =>  'required',
                 'last_name'        =>  'required',
                 'email'             =>  'required|email|unique:users,email',
                 'password'          =>  'required|min:6',
-                'confirm_password'  =>  'required|same:password',
             ];
-        }
     }
 
     public function messages()
@@ -55,7 +40,6 @@ class SignupRequest extends FormRequest
             'phone.required'            => 'Please enter phone number.',
             'phone.numeric'             => 'Please enter valid phone number.',
             'password.required'         => 'Please enter password.',
-            'confirm_password.required' => 'Please enter confirm password.',
         ];
     }
 }
