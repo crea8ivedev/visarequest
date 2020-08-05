@@ -2,6 +2,7 @@
 {{-- Styles Section --}}
 @section('styles')
 
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
 
 @endsection
 @section('content')
@@ -21,7 +22,7 @@
         @csrf
 
         <div class="form-group {{ $errors->has('name') ? 'is-invalid' : '' }}">
-          <label>Category Name  :<code>*</code></label>
+          <label>Category Name :<code>*</code></label>
           <div class="input-group">
             <input type="text" class="form-control" name="name" id="name" placeholder="Country name" />
           </div>
@@ -35,17 +36,17 @@
             <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
           </div>
         </div>
-        {{-- <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
-          <label>Category icon :</label>
+        <div class="form-group {{ $errors->has('icon') ? ' has-error' : '' }}">
+          <label>Category icon : <code>*</code></label>
           <div class="input-group">
-            <select class="form-control" id="category_id" name="category_id">
+            <select class="form-control select2" id="icon" name="icon">
               <option value="">Select icon</option>
               @foreach($icons as $icon)
-              <option value="{{ $icon->id }}">{{ $category->name }}</option>
+              <option value="{{ $icon->icon }}">{{ $icon->icon }}</option>
               @endforeach
             </select>
           </div>
-        </div> --}}
+        </div>
         <div class="card-footer">
           <input type="hidden" name="action" id="action" value="Add" />
           <input type="hidden" name="hidden_id" id="hidden_id" />
@@ -65,4 +66,21 @@
 <script src="{{ asset($script) }}" type="text/javascript"></script>
 @endforeach
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ServiceCategoryRequest') !!}
+<script>
+  function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+  var $state = $(
+    '<p> <i class="fa '+state.text +'"></i> fa ' + state.text + '</p>'
+  );
+  return $state;
+};
+  $(document).ready(function () {
+
+  $(".select2").select2({
+  templateResult: formatState
+});
+});
+</script>
 @endsection

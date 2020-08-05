@@ -35,6 +35,8 @@ class ServiceRequest extends FormRequest
                 'normal_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
                 'discount_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
                 'commission'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
+                'icon'=>'required'
+
             ];
         } else {
             return [
@@ -47,6 +49,7 @@ class ServiceRequest extends FormRequest
                 'normal_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
                 'discount_price'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
                 'commission'  =>  'required|regex:/^\d+(\.\d{1,2})?$/',
+                'icon'=>'required'
             ];
         }
     }
@@ -66,6 +69,7 @@ class ServiceRequest extends FormRequest
             'normal_price.regex' => 'Please enter valid normal price.',
             'discount_price.regex' => 'Please enter valid discount price.',
             'commission.regex' => 'Please enter valid commission.',
+            'icon.required'       => 'Please select icon.'
         ];
     }
 }

@@ -17,13 +17,15 @@
 
     <div class="card-body" id="card-collapse">
       <!--begin::Form-->
-      <form class="form" method="post" id="sample_form" action="{{ route('admin.category.service.update',['id'=>$data->id])}}">
+      <form class="form" method="post" id="sample_form"
+        action="{{ route('admin.category.service.update',['id'=>$data->id])}}">
         @csrf
 
         <div class="form-group {{ $errors->has('name') ? 'is-invalid' : '' }}">
-          <label>Category Name  :<code>*</code></label>
+          <label>Category Name :<code>*</code></label>
           <div class="input-group">
-            <input type="text" class="form-control" name="name" id="name" value="{{ $data->name ?? ''}}" placeholder="Country name" />
+            <input type="text" class="form-control" name="name" id="name" value="{{ $data->name ?? ''}}"
+              placeholder="Country name" />
           </div>
           @if ($errors->has('name'))
           <span id="name-error" class="invalid-feedback">{{ $errors->first('name') }}</span>
@@ -32,7 +34,20 @@
         <div class="form-group {{ $errors->has('last_name') ? ' has-error' : '' }}">
           <label>Descriptions :</label>
           <div class="input-group">
-            <textarea class="form-control" id="description" name="description" placeholder="Description">{{ $data->description ?? ''}}</textarea>
+            <textarea class="form-control" id="description" name="description"
+              placeholder="Description">{{ $data->description ?? ''}}</textarea>
+          </div>
+        </div>
+        <div class="form-group {{ $errors->has('icon') ? ' has-error' : '' }}">
+          <label>Category icon : <code>*</code></label>
+          <div class="input-group">
+            <select class="form-control select2" id="icon" name="icon">
+              <option value="">Select icon</option>
+              @foreach($icons as $icon)
+              <option value="fa {{ $icon->icon }}" @if( $data->icon=== 'fa '.$icon->icon ) selected
+                @endif>{{ $icon->icon }}</option>
+              @endforeach
+            </select>
           </div>
         </div>
         <div class="card-footer">
@@ -55,4 +70,21 @@
 @endforeach
 
 {!! JsValidator::formRequest('App\Http\Requests\Backend\ServiceCategoryRequest') !!}
+<script>
+  function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+  var $state = $(
+    '<p> <i class="fa '+state.text +'"></i> fa ' + state.text + '</p>'
+  );
+  return $state;
+};
+  $(document).ready(function () {
+
+  $(".select2").select2({
+  templateResult: formatState
+});
+});
+</script>
 @endsection

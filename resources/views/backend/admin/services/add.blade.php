@@ -139,6 +139,17 @@
           @endif
         </div>
         <div class="form-group row">
+          <label>Category icon : <code>*</code></label>
+          <div class="input-group">
+            <select class="form-control select2" id="icon" name="icon">
+              <option value="">Select icon</option>
+              @foreach($icons as $icon)
+              <option value="fa {{ $icon->icon }}">{{ $icon->icon }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
           <div class="col-lg-6">
             <label>Status:</label>
             <div class="radio">
@@ -186,5 +197,21 @@
     $(this).valid(); // trigger validation on this element
 }); 
 </script>
+<script>
+  function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+  var $state = $(
+    '<p> <i class="fa '+state.text +'"></i> fa ' + state.text + '</p>'
+  );
+  return $state;
+};
+  $(document).ready(function () {
 
+  $(".select2").select2({
+  templateResult: formatState
+});
+});
+</script>
 @endsection

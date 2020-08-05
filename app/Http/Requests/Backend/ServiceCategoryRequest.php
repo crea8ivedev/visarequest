@@ -29,11 +29,13 @@ class ServiceCategoryRequest extends FormRequest
             $request = $this->request->all();
             return [
                 'name'             =>  'required|unique:service_categories,name,' . $segmentId,
+                'icon'=>'required'
             ];
         } else {
 
             return [
                 'name'             =>  'required|unique:service_categories,name',
+                'icon'=>'required'
             ];
         }
     }
@@ -43,6 +45,7 @@ class ServiceCategoryRequest extends FormRequest
         return [
             'name.required'       => 'Please enter category name',
             'name.unique'       => 'The service name has already been taken',
+            'icon.required'       => 'Please select icon.'
         ];
     }
 }

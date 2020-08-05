@@ -15,6 +15,7 @@ use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Models\Icons;
 use Toastr;
 use Config;
 
@@ -63,7 +64,8 @@ class ServiceController extends Controller
         $staff_list          = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
         $agent_list          = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         $category_list = ServiceCategory::get();
-        return view('backend.admin.services.add', compact('page_title', 'category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
+        $icons = Icons::get();
+        return view('backend.admin.services.add', compact('page_title', 'icons','category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
     }
 
     /**
@@ -87,6 +89,7 @@ class ServiceController extends Controller
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
         $service->status     = $request->status;
+        $service->icon = $request->icon;
         $service->slug =  Str::slug($request->name, '-');
         $service->save();
         $insertedId = $service->id;
@@ -125,10 +128,10 @@ class ServiceController extends Controller
         $category_list      = ServiceCategory::get();
         $selected_country   = ServiceCountry::where('service_id', $id)->get()->toArray();
         $selected_country   = array_column($selected_country, 'country_id');
-
+        $icons = Icons::get();
         $staff_list         = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
         $agent_list         = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
-        return view('backend.admin.services.edit', compact('data', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs', 'selected_country'));
+        return view('backend.admin.services.edit', compact('data', 'icons','category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs', 'selected_country'));
     }
 
     public function createElement(Request $request, $id)
@@ -192,6 +195,7 @@ class ServiceController extends Controller
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
+        $service->icon = $request->icon;
         $service->status     = $request->status;
         $service->slug =  Str::slug($request->name, '-');
         ServiceCountry::where('service_id', $id)->delete();

@@ -151,6 +151,18 @@
           @endif
         </div>
         <div class="form-group row">
+          <label>Category icon : <code>*</code></label>
+          <div class="input-group">
+            <select class="form-control select2" id="icon" name="icon">
+              <option value="">Select icon</option>
+              @foreach($icons as $icon)
+              <option value="fa {{ $icon->icon }}" @if( $data->icon=== 'fa '.$icon->icon ) selected
+                @endif>{{ $icon->icon }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
           <div class="col-lg-6">
             <label>Status :</label>
             <div class="radio">

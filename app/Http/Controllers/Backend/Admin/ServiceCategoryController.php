@@ -59,6 +59,7 @@ class ServiceCategoryController extends Controller
         $serviceCategory             = new ServiceCategory;
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
+        $serviceCategory->icon = $request->icon;
         $serviceCategory->slug =  Str::slug($request->name, '-');
         if ($serviceCategory->save()) {
             Toastr::success('Category added successfully!', '', Config::get('constants.toster'));
@@ -80,8 +81,9 @@ class ServiceCategoryController extends Controller
         $data               = ServiceCategory::findOrFail($id);
         $page_title         = 'Category';
         $page_description   = '';
+        $icons = Icons::get();
         $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/edit/'.$id.'', 'title' =>'Edit']);
-        return view('backend.admin.service-category.edit', compact('data', 'page_title', 'page_description', 'page_breadcrumbs'));
+        return view('backend.admin.service-category.edit', compact('data', 'icons','page_title', 'page_description', 'page_breadcrumbs'));
     }
 
     /**
@@ -96,6 +98,7 @@ class ServiceCategoryController extends Controller
         $serviceCategory             = ServiceCategory::findOrFail($id);
         $serviceCategory->name = $request->name;
         $serviceCategory->description = $request->description;
+        $serviceCategory->icon = $request->icon;
         $serviceCategory->slug =  Str::slug($request->name, '-');
         if ($serviceCategory->save()) {
             Toastr::success('Category updated successfully!', '', Config::get('constants.toster'));
