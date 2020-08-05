@@ -1,5 +1,6 @@
 @extends('frontend.layouts.app')
 @section('content')
+
 <section class="main_banner">
     <div class="container-fluid h-100 p-0">
         <div class="row h-100">
@@ -22,8 +23,10 @@
     </div>
 </section>
 <!-- END REVOLUTION SLIDER -->
+
 <!--site-main start-->
 <div class="site-main">
+
     <!--zero_padding-section-->
     <section class="cmt-row zero_padding-section bg-layer-equal-height cmt-bgcolor-grey clearfix">
         <div class="container">
@@ -141,6 +144,7 @@
             <!-- row -->
             <div class="row res-991-mb-15">
                 @foreach($service_category_list as $category)
+
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <!--featured-icon-box-->
                     <div class=" featured-icon-box icon-align-top-content style5 border bor_rad_3">
@@ -157,15 +161,17 @@
                             <div class="featured-desc">
                                 <p>{{$category->description}}</p>
                             </div>
-                            <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor" href="services.html"
+                            <a class="cmt-btn btn-inline cmt-btn-size-md cmt-btn-color-skincolor" href="#"
                                 data-toggle="modal" data-target="#modalService">View more</a>
                         </div>
-                    </div>
+                    </div><!-- featured-icon-box end-->
                 </div>
                 @endforeach
-            </div>
+            </div><!-- row end -->
         </div>
     </section>
+    <!--services-section-->
+
     <section class="cmt-row cta-section clearfix">
         <div class="container-fluid">
             <div class="row">
@@ -236,40 +242,47 @@
             </div>
         </div>
     </section>
+
     <section class="cmt-row cta-section clearfix">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-6 col-md-3 p-0">
+                    <!-- featured-imagebox -->
                     <div class="featured-icon-box m-0">
                         <div class="featured-icon text-center">
                             <img src="images/20200726_095648_0003.jpg" class="img-fluid object-fit">
                         </div>
-                    </div>
+                    </div><!-- featured-imagebox end-->
                 </div>
                 <div class="col-sm-6 col-md-3 p-0">
+                    <!-- featured-imagebox -->
                     <div class="featured-icon-box m-0">
                         <div class="featured-icon text-center">
                             <img src="images/20200726_075929_0000.jpg" class="img-fluid object-fit">
                         </div>
-                    </div>
+                    </div><!-- featured-imagebox end-->
                 </div>
                 <div class="col-sm-6 col-md-3 p-0">
+                    <!-- featured-imagebox -->
                     <div class="featured-icon-box m-0">
                         <div class="featured-icon text-center">
                             <img src="images/20200726_091706_0001.jpg" class="img-fluid object-fit">
                         </div>
-                    </div>
+                    </div><!-- featured-imagebox end-->
                 </div>
                 <div class="col-sm-6 col-md-3 p-0">
+                    <!-- featured-imagebox -->
                     <div class="featured-icon-box m-0">
                         <div class="featured-icon text-center">
                             <img src="images/20200726_094951_0000.jpg" class="img-fluid object-fit">
                         </div>
-                    </div>
+                    </div><!-- featured-imagebox end-->
                 </div>
             </div>
         </div>
     </section>
+
+    <!--- conatact-section -->
     <section class="cmt-row conatact_2-section clearfix">
         <div class="container">
             <div class="row">
@@ -280,6 +293,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="pr-30 res-991-pr-0 res-991-mb-30">
+                                    <!-- section title -->
                                     <div class="section-title with-desc title-style-center_text">
                                         <div class="title-header">
                                             <h5>why choose us</h5>
@@ -291,10 +305,11 @@
                                             <p>Foundation was established with a small idea that was incepted in the
                                                 minds of its promoters in the year 1994! We skillfully.</p>
                                         </div>
-                                    </div>
+                                    </div><!-- section title end -->
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <p class="contactmessage"></p>
                             <div class="col-lg-6">
@@ -352,18 +367,22 @@
 
                     </div>
                 </div>
-            </div>
+            </div><!-- row end -->
         </div>
     </section>
-    <section class="cmt-row cta-section res-991-mt-0 clearfix">
+    <!-- conatact-section end -->
+
+    <section class="cmt-row cta-section res-991-mt-0 clearfix ctsection">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="row res-991-mt-0">
                         @foreach($address as $key=>$list)
+
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                            <!--featured-icon-box-->
                             <div
-                                class="featured-icon-box icon-align-before-content @if($key%2==0) cmt-bgcolor-darkgrey @else cmt-bgcolor-skincolor @endif icon-ver_align-top style6 h-100">
+                                class="featured-icon-box icon-align-before-content  {{ ($key%2==0) ? 'cmt-bgcolor-darkgrey' : 'cmt-bgcolor-skincolor' }} icon-ver_align-top style6 h-100">
                                 <div class="featured-content pl-10 pr-10">
                                     <div class="featured-icon mb-20">
                                         <div
@@ -399,9 +418,9 @@
                                         <p>
                                             Hours: {{$list->hours}}
                                         </p>
-                                    </div>
+                                    </div>v>
                                 </div>
-                            </div>
+                            </div><!-- featured-icon-box end-->
                         </div>
                         @endforeach
                     </div>
@@ -409,14 +428,18 @@
             </div>
         </div>
     </section>
+
+    <!--team-section-->
     <section class="cmt-row team-section clearfix">
         <div class="container">
+            <!-- section title -->
             <div class="section-title title-style-center_text">
                 <div class="title-header">
                     <h5>SKILLFUL PROFESSIONALS</h5>
                     <h2 class="title">Meet our <strong>Visa Experts</strong></h2>
                 </div>
-            </div>
+            </div><!-- section title end -->
+            <!-- row -->
             <div class="row slick_slider"
                 data-slick='{"slidesToShow": 4, "slidesToScroll": 1, "arrows":true, "autoplay":false, "infinite":true, "responsive": [{"breakpoint":991,"settings":{"slidesToShow": 3}}, {"breakpoint":678,"settings":{"slidesToShow": 2}}, {"breakpoint":460,"settings":{"slidesToShow": 1}}]}'>
                 @foreach($member_list as $member)
@@ -440,8 +463,15 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
+            </div><!-- row end -->
         </div>
+    </section>
+    <!--team-section end-->
+
+    <!--client-section-->
+    <section class="client-section-mn">
+        <!-- section title -->
+        <!-- section title end -->
     </section>
     <div
         class="cmt-row client-section cmt-bgcolor-grey cmt-bg cmt-bgimage-yes bg-img7 cmt-bg-pattern border-bottom clearfix">
@@ -475,12 +505,12 @@
             </div><!-- row end -->
         </div>
     </div>
-</div>
+    <!--client-section end-->
 
-<!-- login - modal -end -->
+</div>
+<!--site-main end-->
 
 @include('frontend.layouts.footer')
-
 @endsection
 <div class="modal fade sModal" id="modalService" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
     aria-hidden="true">

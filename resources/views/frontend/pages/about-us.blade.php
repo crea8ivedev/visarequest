@@ -36,4 +36,7 @@
 
 </div>
 <!--site-main end-->
-@endsection()
+<!--site-main end-->
+@include('frontend.layouts.footer')
+
+@endsection

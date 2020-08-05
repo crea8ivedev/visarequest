@@ -34,6 +34,9 @@ class ServiceController extends Controller
     {
         if ($request->ajax()) {
             $country = Country::where('slug',$request->country)->first();
+            $category = ServiceCategory::where('id',$request->category)
+            ->where('status',Config::get('constants.STATUS.ACTIVE'))
+            ->first();
             $service_list = Service::where('status',Config::get('constants.STATUS.ACTIVE'))
                 ->where('category_id', $request->category)
                 ->whereHas('countries', function ($q) use ($country) {
@@ -41,7 +44,7 @@ class ServiceController extends Controller
                 })
                  ->with('category')
                 ->get();
-            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list,'country'=>$country])->render();
+            $returnHTML = view('frontend.service.ajax-service')->with(['service_list' => $service_list,'country'=>$country,'category'=>$category])->render();
             return response()->json(array('success' => true, 'html' => $returnHTML));
         }
     }

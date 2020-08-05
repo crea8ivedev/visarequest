@@ -8,6 +8,10 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.service-category', function () {
+        $(".service-list").html('');
+        $('.mega-menu-link').removeClass('active');
+        $(this).children('a').addClass("active");
+        $("#loading").show();
         $.ajax({
             url: "/getservices",
             headers: {
@@ -16,12 +20,12 @@ $(document).ready(function () {
             type: "POST",
             data: { category: $(this).data('id'),country: $('.country').val()},
             success: function (data, textStatus, jqXHR) {
+                $("#loading").hide();
                 $(".service-list").html(data.html);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-
+                $("#loading").hide();
             }
         });
     });
-
 });

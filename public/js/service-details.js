@@ -39,6 +39,10 @@ $(document).ready(function () {
         $('#agentModal').modal('show');
     });
     $(document).on('click', '.service-category', function () {
+        $("#loading").show();
+        $(".service-details").html('');
+        $('.service-category').removeClass('active');
+        $(this).addClass("active");
         $.ajax({
             url: "/get-services-details",
             headers: {
@@ -47,10 +51,11 @@ $(document).ready(function () {
             type: "POST",
             data: { service: $(this).data('id')},
             success: function (data, textStatus, jqXHR) {
+                $("#loading").hide();
                 $(".service-details").html(data.html);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-
+                $("#loading").hide();
             }
         });
     });

@@ -14,8 +14,6 @@
         </div>
     </div>
 </div>
-<!-- page-title end -->
-<!--Select Country Start-->
 <section class="cmt-bgcolor-skincolor services-row">
     <div class="container">
         <div class="row align-items-center">
@@ -55,7 +53,8 @@
                             <option value="">Select Country</option>
                             @foreach($country_list as $list)
                             <option data-capital="{{$list->flag}}"
-                                value="{{($list->slug)?strtolower($list->slug):strtolower($list->name)}}">
+                                value="{{($list->slug)?strtolower($list->slug):strtolower($list->name)}}" @if($country->
+                                id===$list->id) selected @endif>
                                 {{$list->name}}</option>
                             @endforeach
                         </select>
@@ -65,9 +64,6 @@
         </div>
     </div>
 </section>
-<!--Select Country End-->
-
-<!-- Category Start -->
 <section class="category-row">
     <div class="container">
         <nav class="main-menu menu-mobile m-auto" id="menu">
@@ -82,26 +78,29 @@
             </ul>
         </nav>
     </div>
+
 </section>
 <div class="site-main">
-    <section class="cmt-row grid-section clearfix pt-0 service-list">
-        <div class="container">
-            <!-- row -->
+    <section class="cmt-row grid-section clearfix pt-0 ">
+        <div id='loading' style="text-align:center;display: none">
+            <img src='{{ asset('/images/reload.gif') }}' width='25px' height='25px'>
+        </div>
+        <div class="container service-list">
             <div class="row">
                 @forelse ($service_list as $key => $service)
                 <div class="col-lg-4 col-md-4 col-sm-6">
-                    <!-- featured-imagebox -->
                     <div class="featured-icon-box icon-align-top-content style4 bor_rad_5">
-                        <div class="bg_icon"><i class="{{ $service->icon}}"></i></div>
+                        <div class="bg_icon"><i class="{{ ($service->icon)?$service->icon :'flaticon-passport-3'}}"></i>
+                        </div>
                         <div class="featured-icon d-flex flex-wrap justify-content-between align-items-center mb-20">
                             <div
                                 class="cmt-icon cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
-                                <i class="{{ $service->icon}}"></i>
+                                <i class="{{ ($service->icon)?$service->icon :'flaticon-passport-3'}}"></i>
                             </div>
                             <div
                                 class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">
                                 <h5>
-                                    {{ $service->discount_price}} <del>{{ $service->normal_price}}</del>
+                                    R{{ $service->discount_price}} <del>{{ $service->normal_price}}</del>
                                 </h5>
                             </div>
                         </div>
@@ -121,7 +120,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
         </div>
     </section>

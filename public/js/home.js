@@ -6,9 +6,6 @@ $(document).ready(function () {
           window.location.href = serviceUrl.replace(':country', country);
         }
     });
-
-
-  
   });
 /*------------------------------------------------------------------------------*/
 /* Owl Crousel

@@ -36,6 +36,9 @@
                     </aside>
                 </div>
                 <div class="col-lg-8 content-area">
+                    <div id='loading' class="text-center mt-80" style="display: none;">
+                        <img src='{{ asset('/images/reload.gif') }}' width='25px' height='25px'>
+                    </div>
                     <div class="cmt-service-single-content-area service-details">
                         <div class="featured-icon d-flex flex-wrap justify-content-between align-items-center">
                             <div
