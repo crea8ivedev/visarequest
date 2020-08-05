@@ -29,9 +29,9 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <!-- featured-imagebox-post -->
                     <div class="featured-imagebox featured-imagebox-post style3">
-                        {{-- <div class="cmt-post-thumbnail featured-thumbnail">
-                            <img class="img-fluid" src="images/blog/blog-one-720X620.jpg" alt="image">
-                        </div> --}}
+                        <div class="cmt-post-thumbnail featured-thumbnail">
+                            <img class="img-fluid" src="{{ asset('images/blog/blog-one-720X620.jpg') }}" alt="image">
+                        </div>
                         <div class="featured-content featured-content-post">
                             <div class="post-header">
                                 <div class="post-title featured-title">

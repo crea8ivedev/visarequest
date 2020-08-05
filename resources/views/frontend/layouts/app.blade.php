@@ -8,7 +8,7 @@
     <meta name="description" content="@yield('page_description', $metaData->description ?? '')">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <title>{{ config('app.name') }} | @yield('title', $page_title ?? '')</title>
-    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Backend\ServiceCategoryRequest;
 use App\Models\ServiceCategory;
+use App\Models\Icons;
 use Illuminate\Support\Str;
 use Toastr;
 use Config;
@@ -43,7 +44,8 @@ class ServiceCategoryController extends Controller
         $page_title         = 'Category';
         $page_description   = '';
         $page_breadcrumbs   = array(['page' => 'admin/service-category', 'title' => 'Categories'],['page' => 'admin/service-category/add', 'title' =>'Add']);
-        return view('backend.admin.service-category.add', compact('page_title', 'page_description', 'page_breadcrumbs'));
+        $icons = Icons::get();
+        return view('backend.admin.service-category.add', compact('page_title', 'page_description', 'page_breadcrumbs','icons'));
     }
 
     /**

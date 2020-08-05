@@ -19,10 +19,7 @@
 
     <!--google_map-->
     <section class="google-map">
-        <iframe src="https://www.google.com/maps/embed?pb={{$comman_address->address}}" frameborder="0"
-            style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-    </section>
-
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3593.7393520336054!2d28.2379845!3d-25.746131800000004!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9561b8806cf8c9%3A0xaf4fe743c92c784d!2s1157+Francis+Baard+St%2C+Pretoria%2C+0028%2C+South+Africa!5e0!3m2!1sen!2sin!4v1426673965766" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>    </section>
 
     <!--- conatact-section -->
     <section class="cmt-row conatact-section clearfix ctbox">
