@@ -1,4 +1,9 @@
 @extends('backend.layout.default')
+@section('styles')
+
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+
+@endsection
 @section('content')
 <div class="col-md-12">
   <div class="card card-custom card-collapse" data-card="true" id="kt_card_4">

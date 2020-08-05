@@ -2,6 +2,7 @@
 {{-- Styles Section --}}
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('css/common.css') }}">
+<link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
 
 @endsection
 @section('content')
