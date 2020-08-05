@@ -29,4 +29,19 @@ class PageController extends Controller
         $page_title       = 'Contact Us';
         return view('frontend.pages.contact-us', compact('address_list','page_title'));
     }
+
+    public function getPrivacy(Request $request)
+    {
+        $privacy = Page::where('slug','privacy')->first();
+        $page_title       = 'Privacy';
+        return view('frontend.pages.privacy', compact('privacy','page_title'));
+    }
+    public function getDisclaimer(Request $request)
+    {
+        $disclaimer = Page::where('slug','disclaimer')->first();
+        $page_title       = 'Disclaimer';
+        return view('frontend.pages.disclaimer', compact('disclaimer','page_title'));
+    }
+
+    
 }

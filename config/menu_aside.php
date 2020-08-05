@@ -168,6 +168,14 @@ return [
                     'page' => 'admin/about-us',
                 ],
                 [
+                    'title' => 'Privacy',
+                    'page' => 'admin/privacy',
+                ],
+                [
+                    'title' => 'Disclaimer',
+                    'page' => 'admin/disclaimer',
+                ],
+                [
                     'title' => 'Meta Setting',
                     'page' => 'admin/meta-page',
                 ],

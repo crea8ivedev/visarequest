@@ -69,6 +69,102 @@ class PageController extends Controller
 
     }
 
+    public function privacy(Request $request)
+    {
+        $page_title         = 'Privacy';
+        $page_description   = '';
+        $page_breadcrumbs  = '';
+        $data = Page::where('slug', 'privacy')->first();
+        return view('backend.admin.pages.privacy', compact('page_title', 'page_description', 'page_breadcrumbs','data'));
+
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Country  $banner
+     * @return \Illuminate\Http\Response
+     */
+    public function privacyUpdate(AboutUsRequest $request)
+    {
+        $slug = Str::slug($request->name, "-");
+
+        if($request->hidden_id != '') {
+            $page           = Page::findOrFail($request->hidden_id);
+        } else {
+            $page           = new Page;
+        }
+        $page->name         = $request->name;
+        $page->slug         = $slug;
+        $page->heading      = $request->heading;
+        $page->description  = $request->description;
+        $page->id           = $request->hidden_id;
+        
+       if($page->save()) {
+        $data = Page::where('slug', 'privacy')->first();
+            if($request->hidden_id != '') {
+                Toastr::success('Privacy updated successfully!','', Config::get('constants.toster'));
+                return redirect('/admin/privacy')->with( ['data' => $data] );
+            } else {
+                Toastr::success('Privacy added successfully!','', Config::get('constants.toster'));
+                return redirect('/admin/privacy')->with( ['data' => $data] );
+            }
+       } else {
+        Toastr::success('Privacy dose not added!','', Config::get('constants.toster'));
+        return redirect('/admin/privacy');
+       }
+
+    }
+
+    public function disclaimer(Request $request)
+    {
+        $page_title         = 'Disclaimer';
+        $page_description   = '';
+        $page_breadcrumbs  = '';
+        $data = Page::where('slug', 'disclaimer')->first();
+        return view('backend.admin.pages.disclaimer', compact('page_title', 'page_description', 'page_breadcrumbs','data'));
+
+    }
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Country  $banner
+     * @return \Illuminate\Http\Response
+     */
+    public function disclaimerUpdate(AboutUsRequest $request)
+    {
+        $slug = Str::slug($request->name, "-");
+
+        if($request->hidden_id != '') {
+            $page           = Page::findOrFail($request->hidden_id);
+        } else {
+            $page           = new Page;
+        }
+        $page->name         = $request->name;
+        $page->slug         = $slug;
+        $page->heading      = $request->heading;
+        $page->description  = $request->description;
+        $page->id           = $request->hidden_id;
+        
+       if($page->save()) {
+        $data = Page::where('slug', 'disclaimer')->first();
+            if($request->hidden_id != '') {
+                Toastr::success('Disclaimer updated successfully!','', Config::get('constants.toster'));
+                return redirect('/admin/disclaimer')->with( ['data' => $data] );
+            } else {
+                Toastr::success('Disclaimer added successfully!','', Config::get('constants.toster'));
+                return redirect('/admin/disclaimer')->with( ['data' => $data] );
+            }
+       } else {
+        Toastr::success('Disclaimer dose not added!','', Config::get('constants.toster'));
+        return redirect('/admin/disclaimer');
+       }
+
+    }
+
     public function termsAndConditon(Request $request)
     {
         $page_title         = 'Terms And Conditions';

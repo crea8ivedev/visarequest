@@ -31,6 +31,8 @@ Route::namespace('Frontend\Auth')->group(function () {
     Route::get('/about-us', 'PageController@getAboutUs')->name('frontend.about-us');
     Route::get('/contact-us', 'PageController@getContactUs')->name('frontend.contact-us');
     Route::post('/contact', 'ContactController@store')->name('frontend.contact');
+    Route::get('/privacy', 'PageController@getPrivacy')->name('frontend.privacy');
+    Route::get('/disclaimer', 'PageController@getDisclaimer')->name('frontend.disclaimer');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
     Route::get('/news', 'NewsController@getNews')->name('frontend.news');
     Route::get('/news/{slug}', 'NewsController@getNewsDetails')->name('frontend.news.details');   
@@ -254,6 +256,19 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::get('/edit/{id}', "PageController@contactUsEdit")->name("admin.contact-us.edit");
     });
 
+    /* routes for Privacy view */
+    Route::group(["prefix" => "privacy"], function() {
+        Route::get('/', "PageController@privacy")->name("admin.privacy");
+        Route::post('/store', "PageController@privacyUpdate")->name("admin.privacy.store");
+    });
+
+      /* routes for disclaimer view */
+      Route::group(["prefix" => "disclaimer"], function() {
+        Route::get('/', "PageController@disclaimer")->name("admin.disclaimer");
+        Route::post('/store', "PageController@disclaimerUpdate")->name("admin.disclaimer.store");
+    });
+
+    
      /* routes for social links view */
      Route::group(["prefix" => "social-link"], function() {
         Route::get('/', "PageController@socialLink")->name("admin.social-link");

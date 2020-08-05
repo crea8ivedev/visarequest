@@ -175,6 +175,14 @@ return [
                                 'page' => 'admin/terms-and-conditions',
                             ],
                             [
+                                'title' => 'Privacy',
+                                'page' => 'admin/privacy',
+                            ],
+                            [
+                                'title' => 'Disclaimer',
+                                'page' => 'admin/disclaimer',
+                            ],
+                            [
                                 'title' => 'About US',
                                 'page' => 'admin/about-us',
                             ],

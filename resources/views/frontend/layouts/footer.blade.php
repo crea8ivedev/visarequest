@@ -12,6 +12,8 @@
                         <ul class="footer-nav-menu text-center">
                             <li><a href="{{ route('frontend.about-us') }}">About</a></li>
                             <li><a href="{{ route('frontend.terms-and-conditions') }}">T&C</a></li>
+                            <li><a href="{{ route('frontend.privacy') }}">Privacy Statement</a></li>
+                            <li><a href="{{ route('frontend.disclaimer')}}">Disclaimer</a></li>
                         </ul>
                     </div>
                 </div>
