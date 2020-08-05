@@ -109,7 +109,7 @@
      
         <div class="row">
           <div class="form-group col-lg-6">
-            <label>Image :<code>*</code></label>
+            <label>Image :</label>
             <input type="file" class="images-load" id="file" name="file" accept="image/*" />
             <span class="form-text text-muted">Allowed file types: jpg, png, jpeg.</span>
           </div>
