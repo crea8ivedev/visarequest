@@ -404,7 +404,7 @@
                                         <p>
                                             Hours: {{$list->hours}}
                                         </p>
-                                    </div>v>
+                                    </div>
                                 </div>
                             </div><!-- featured-icon-box end-->
                         </div>

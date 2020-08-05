@@ -16,12 +16,7 @@
         </div>
     </div>
 </div>
-<!-- page-title end -->
-
-
-
 <div class="site-main">
-
     <section class="cmt-row clearfix">
         <div class="container">
             <div class="row">
@@ -32,9 +27,6 @@
             </div>
         </div>
     </section>
-
 </div>
-
 @include('frontend.layouts.footer')
-
 @endsection
