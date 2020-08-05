@@ -5,8 +5,9 @@
                 <div class="d-flex flex-row align-items-center">
                     <div class="site-branding ">
                         <a class="home-link" href="{{ route('home') }}" title="VisaRequest" rel="home">
-                            <img id="logo-img" class="img-center" src="{{ asset('/images/logo.png') }}"
-                                alt="VisaRequest">
+                   
+                            <img src="{{ asset('images/logo.png') }}" alt="VisaRequest" class="navbar-brand-img">
+
                         </a>
                     </div>
                     <div class="widget_info mr-auto">

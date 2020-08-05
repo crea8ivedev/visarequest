@@ -535,7 +535,10 @@ function format(item, state) {
       }
     return span;
   }
-
+  $(document).ready(function () {
+    $(".disableBtn").removeAttr("disabled","disabled")
+    setTimeout(function() { $(".alertMessage").html('')}, 10000);
+});
   $(document).ready(function() {
     $(document).on('click', '.btn-login', function () {
         $("#loginForm")[0].reset();

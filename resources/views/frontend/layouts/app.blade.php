@@ -20,7 +20,8 @@
     <link href="{{ asset('css/shortcodes.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('css/megamenu.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
@@ -56,10 +57,11 @@
     @foreach(config('layout.resources.validate_js') as $script)
     <script src="{{ asset($script) }}" type="text/javascript"></script>
     @endforeach
-
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\LoginRequest','#loginForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
+    {!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest','#contact_form') !!}
     <script src="{{ asset('js/main.js') }}"></script>
     @yield('scripts')
-    {!! JsValidator::formRequest('App\Http\Requests\Frontend\AuthRequest','#loginForm') !!}
-    {!! JsValidator::formRequest('App\Http\Requests\Frontend\SignupRequest','#signupForm') !!}
 </body>
+
 </html>

@@ -56,7 +56,8 @@
                         </div>
                         <hr />
                         <div class="cmt-service-description">
-                            {{ $service->description}}
+                            <p> {{ $service->description}}
+                            </p>
                             <div class="btn-group mt-30">
                                 @if (Auth::check())
                                 <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btnPaymentModal"

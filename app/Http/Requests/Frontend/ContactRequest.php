@@ -26,8 +26,6 @@ class ContactRequest extends FormRequest
         return [
             'name'              =>  'required',
             'email'             =>  'required|email',
-            'phone'             =>  'required|numeric',
-            'subject'           =>  'required',
             'message'           =>  'required',
         ];
     }
@@ -38,9 +36,6 @@ class ContactRequest extends FormRequest
             'name.required' => 'Please enter name.',
             'email.required' => 'Please enter email.',
             'email.email'  => 'Please enter valid email address.',
-            'phone.required' => 'Please enter phone number.',
-            'phone.numeric' => 'Please enter valid phone number.',
-            'subject.required' => 'Please enter subject.',
             'message.required' => 'Please enter message.',
         ];
     }

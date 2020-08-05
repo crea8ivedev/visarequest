@@ -19,8 +19,8 @@
 
     <!--google_map-->
     <section class="google-map">
-        <iframe src="https://www.google.com/maps/embed?pb={{$comman_address->address}}" frameborder="0" style="border:0;"
-            allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb={{$comman_address->address}}" frameborder="0"
+            style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
     </section>
 
 
@@ -33,12 +33,14 @@
                         <div class="cmt-col-wrapper-bg-layer cmt-bg-layer"></div>
                         <div class="row ">
                             <div class="col-lg-12 col-md-7">
+
                                 <div class="pl-30 res-991-pl-0 res-767-mt-30">
+                                    <div class="alertMessage pb-5 text-success"></div>
+
                                     <!-- section title -->
                                     <div class="section-title with-desc clearfix">
                                         <div class="title-header">
-                                            <h5>why choose us</h5>
-                                            <h2 class="title">Get In <strong>Touch?</strong></h2>
+                                            <h2 class="title">Contact <strong>Us</strong></h2>
                                         </div>
                                     </div><!-- section title end -->
                                     <form id="contact_form" class="contact_form wrap-form pt-15 clearfix" method="post"
@@ -57,26 +59,12 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6">
-                                                <label>
-                                                    <span class="text-input"><input name="phone" type="text" value=""
-                                                            placeholder="Phone Number" required="required"></span>
-                                                </label>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <label>
-                                                    <span class="text-input"><input name="phone" type="text" value=""
-                                                            placeholder="Subject" required="required"></span>
-                                                </label>
-                                            </div>
-                                        </div>
                                         <label>
                                             <span class="text-input"><textarea name="message" rows="5"
                                                     placeholder="Message" required="required"></textarea></span>
                                         </label>
-                                        <button
-                                            class="submit cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100"
+                                        <button disabled
+                                            class="submit  disableBtn cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100"
                                             type="submit">Submit Request !</button>
                                     </form>
                                 </div>
@@ -149,18 +137,8 @@
     </section>
 
 </div>
-<!--site-main end-->
 @include('frontend.layouts.footer')
-
 @endsection
-
 @section('scripts')
-@foreach(config('layout.resources.validate_js') as $script)
-<script src="{{ asset($script) }}" type="text/javascript"></script>
-@endforeach
-{!! JsValidator::formRequest('App\Http\Requests\Frontend\FeedbackRequest') !!}
-<script src="{{ asset('js/feedback.js') }}" type="text/javascript"></script>
-<script>
-
-</script>
+<script src="{{ asset('js/contact.js') }}" type="text/javascript"></script>
 @endsection

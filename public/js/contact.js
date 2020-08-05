@@ -1,10 +1,8 @@
 
 $(document).ready(function () {
-    //contact us Submit
     $('#contact_form').on('submit', function(event) {
         event.preventDefault();
         var $form = $(this);
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -17,31 +15,23 @@ $(document).ready(function () {
             data:$(this).serialize(),
             dataType:"json",
             beforeSend: function() {
-                $( "#submit" ).removeClass("d-none");
+                $('.disableBtn').attr("disabled", true);
             },
             complete: function(){
-                $( "#submit" ).addClass( "d-none");
+                $(".disableBtn").attr("disabled", false);
             },
             success:function(data)
             {
-            var html = '';
             if(data.errors)
             {
-                $(".showResponseArea").removeClass("d-none");
-                $(".showResponseArea").removeClass("alert-success");
-                $(".showResponseArea").addClass("alert-danger");
-                $(".contactmessage").text(data.errors);
+                $(".alertMessage").html('<p class="text-danger">'+data.errors+'</p>');
             }
             if(data.success)
             {
                 $('#contact_form')[0].reset();
-                $(".showResponseArea").removeClass("d-none");
-                $(".showResponseArea").removeClass("alert-danger");
-                $(".showResponseArea").addClass("alert-success");
-                $(".contactmessage").text(data.success);
+                $(".alertMessage").html('<p class="text-success">'+data.success+'</p>');
             }
             }
         });
-            setTimeout(function() { $("#showResponseArea").addClass('d-none'); }, 10000);
     });
 });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\AuthRequest;
+use App\Http\Requests\Frontend\LoginRequest;
 use Config;
 use Auth;
 
@@ -26,7 +26,7 @@ class LoginController extends Controller
     }
 
 
-    public function login(AuthRequest $request)
+    public function login(LoginRequest $request)
     {
         if (Auth::attempt(['role' => Config::get('constants.ROLES.USER'), 'email' => $request->email, 'password' => $request->password])) {
             return response()->json(['status' => true, 'message' => 'Login Successfully.']);

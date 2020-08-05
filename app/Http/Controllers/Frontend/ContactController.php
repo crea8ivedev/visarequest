@@ -22,8 +22,6 @@ class ContactController extends Controller
         $contact             = new Contact;
         $contact->name       = $request->name;
         $contact->email      = $request->email;
-        $contact->phone      = $request->phone;
-        $contact->subject    = $request->subject;
         $contact->message    = $request->message;
 
        if($contact->save()) {
@@ -32,25 +30,4 @@ class ContactController extends Controller
         return response()->json(['success' => 'Your contact information has been  not sent successfully. Plese try again!']);
        }
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-     public function feedbackStore(FeedbackRequest $request)
-     {   
-         $feedback             = new Feedback;
-         $feedback->name       = $request->name;
-         $feedback->email      = $request->email;
-         $feedback->message    = $request->message;
- 
-        if($feedback->save()) {
-             return response()->json(['success' => 'Thank You! Your feedback information has been sent successfully. We will contact you very soon!']);
-        } else {
-         return response()->json(['success' => 'Your feedback information has been  not sent successfully. Plese try again!']);
-        }
-     }
-
 }

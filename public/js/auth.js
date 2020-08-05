@@ -6,10 +6,10 @@ $(document).on('click', '.btn-login', function () {
 $(function () {
     $('#loginForm').submit(function (e) {
         e.preventDefault();
-        $("#errorMessage").html('');
+        $(".alertMessage").html('');
         var formData = $(this).serializeArray();
-        $(".invalid-feedback").children("strong").text("");
-        $("#registerForm input").removeClass("is-invalid");
+        var $form = $(this);
+        if(! $form.valid()) return false;
         $.ajax({
             method: "POST",
             headers: {
@@ -17,25 +17,32 @@ $(function () {
             },
             url: "/login",
             data: formData,
+            beforeSend: function() {
+                $('.disableBtn').attr("disabled", true);
+            },
+            complete: function(){
+                $(".disableBtn").attr("disabled", false);
+            },
             success: function (data, textStatus, jqXHR) {
-                var result = data;
-                if (result.status) {
+                $("#loginForm")[0].reset();
+                if (data.status) {
+                    $(".alertMessage").html('<p class="text-success">'+data.message+'</p>');
                     window.location.reload();
                 } else {
-                    $("#loginForm")[0].reset();
-                    $("#errorMessage").html(result.message);
+                    $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-
+            error: function (data, textStatus, errorThrown) {
+                $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
             }
         });
     });
     $('#signupForm').submit(function (e) {
         e.preventDefault();
+        var $form = $(this);
+        if(! $form.valid()) return false;
         var formData = $(this).serializeArray();
-        $(".invalid-feedback").children("strong").text("");
-        $("#registerForm input").removeClass("is-invalid");
+        $(".alertMessage").html('');
         $.ajax({
             method: "POST",
             headers: {
@@ -43,16 +50,22 @@ $(function () {
             },
             url: "/register",
             data: formData,
+            beforeSend: function() {
+                $('.disableBtn').attr("disabled", true);
+            },
+            complete: function(){
+                $(".disableBtn").attr("disabled", false);
+            },
             success: function (data, textStatus, jqXHR) {
-                var result = data;
-                if (result.status) {
+                if (data.status) {
+                    $(".alertMessage").html('<p class="text-success">'+data.message+'</p>');
                     window.location.reload();
                 } else {
-                    $("#errorMessage").html(result.message);
+                    $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
                 }
             },
-            error: function (jqXHR, textStatus, errorThrown) {
-
+            error: function (data, textStatus, errorThrown) {
+                $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
             }
         });
     });

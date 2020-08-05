@@ -17,30 +17,23 @@ $(document).ready(function () {
             data:$(this).serialize(),
             dataType:"json",
             beforeSend: function() {
-                $( "#submit" ).removeClass("d-none");
+                $('.disableBtn').attr("disabled", true);
             },
             complete: function(){
-                $( "#submit" ).addClass( "d-none");
+                $('.disableBtn').attr("disabled", false);
             },
             success:function(data)
             {
             var html = '';
             if(data.errors)
             {
-                $(".showResponseArea").removeClass("d-none");
-                $(".showResponseArea").removeClass("alert-success");
-                $(".showResponseArea").addClass("alert-danger");
-                $("#alertType").text("Error !!");
-                $("#requestId").text(data.errors);
+                $(".alertMessage").text(data.errors);
+
             }
             if(data.success)
             {
                 $('#contact_form')[0].reset();
-                $(".showResponseArea").removeClass("d-none");
-                $(".showResponseArea").removeClass("alert-danger");
-                $(".showResponseArea").addClass("alert-success");
-                $("#requestId").text("Success !!");
-                $("#requestId").text(data.success);
+                $(".alertMessage").html(data.success);
             }
             }
         });

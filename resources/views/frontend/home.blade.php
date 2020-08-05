@@ -311,8 +311,8 @@
                         </div>
 
                         <div class="row">
-                            <p class="contactmessage"></p>
                             <div class="col-lg-6">
+                                <div class="alertMessage pb-5 text-success"></div>
                                 <form id="contact_form" class="contact_form wrap-form clearfix" method="post"
                                     novalidate="novalidate" action="#">
                                     <div class="row">
@@ -329,26 +329,12 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <label>
-                                                <span class="text-input"><input name="phone" type="text" value=""
-                                                        placeholder="Phone Number" required="required"></span>
-                                            </label>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label>
-                                                <span class="text-input"><input name="subject" type="text" value=""
-                                                        placeholder="Subject" required="required"></span>
-                                            </label>
-                                        </div>
-                                    </div>
                                     <label>
                                         <span class="text-input"><textarea name="message" rows="4" placeholder="Message"
                                                 required="required"></textarea></span>
                                     </label>
-                                    <button
-                                        class="submit cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100"
+                                    <button disabled
+                                        class="submit disableBtn cmt-btn cmt-btn-size-lg cmt-btn-shape-rounded cmt-btn-style-border cmt-btn-color-dark w-100"
                                         type="submit">Submit Request !</button>
                                 </form>
                             </div>
