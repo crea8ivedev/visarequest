@@ -19,13 +19,13 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $member_list = TeamMember::latest()->get();
-        $service_category_list = ServiceCategory::latest()->get();
-        $country_list = Country::latest()->get();
-        $address = ContactUs::latest()->get();
-        $sliders = Slider::latest()->get();
-        $visaQuestion = VisaQuestion::latest()->get();
-        $visaClients = VisaClient::latest()->get();
+        $member_list = TeamMember::get();
+        $service_category_list = ServiceCategory::get();
+        $country_list = Country::get();
+        $address = ContactUs::get();
+        $sliders = Slider::get();
+        $visaQuestion = VisaQuestion::get();
+        $visaClients = VisaClient::get();
         $page_title       = 'Home';
         return view('frontend.home', compact(['member_list','page_title', 'service_category_list', 'country_list','address','sliders','visaQuestion','visaClients']));
     }

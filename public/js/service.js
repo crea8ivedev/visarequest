@@ -3,8 +3,7 @@ $(document).ready(function () {
     $('body').on('change','.country',function() {
         var country = $(this).val();
         if(country != '') {
-        var url = '{{ route("frontend.service.country", ":country") }}';
-        window.location.href = url.replace(':country', country);
+          window.location.href = serviceUrl.replace(':country', country);
         }
     });
 

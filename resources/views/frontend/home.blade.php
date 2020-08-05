@@ -106,7 +106,8 @@
                                                 <option value="">Select Country</option>
                                                 @foreach($country_list as $list)
                                                 <option data-capital="{{$list->flag}}"
-                                                    value="{{strtolower($list->slug)}}">{{$list->name}}</option>
+                                                    value="{{($list->slug)?strtolower($list->slug):strtolower($list->name)}}">
+                                                    {{$list->name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -432,7 +433,8 @@
                             </div>
                             <div class="team-position">{{$member->position}}</div>
                             @if($member->email)
-                            <div class="team-position">Email: <a href="mailto:{{$member->email}}">{{$member->email}}</a></div>
+                            <div class="team-position">Email: <a href="mailto:{{$member->email}}">{{$member->email}}</a>
+                            </div>
                             @endif
                         </div>
                     </div>

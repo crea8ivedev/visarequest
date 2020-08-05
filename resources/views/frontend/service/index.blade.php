@@ -54,7 +54,8 @@
                         <select class="form-control country" id="countries">
                             <option value="">Select Country</option>
                             @foreach($country_list as $list)
-                            <option data-capital="{{$list->flag}}" value="{{$list->slug}}" @if($list->id===$country->id) selected="selected" @endif>
+                            <option data-capital="{{$list->flag}}"
+                                value="{{($list->slug)?strtolower($list->slug):strtolower($list->name)}}">
                                 {{$list->name}}</option>
                             @endforeach
                         </select>
@@ -129,4 +130,7 @@
 @endsection()
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/service.js') }}"></script>
+<script>
+    var serviceUrl = '{{ route("frontend.service.country", ":country") }}';
+</script>
 @endsection
