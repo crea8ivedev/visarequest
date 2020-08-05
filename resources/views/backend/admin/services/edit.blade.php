@@ -153,7 +153,7 @@
         <div class="form-group row">
           <label>Category icon : <code>*</code></label>
           <div class="input-group">
-            <select class="form-control select2" id="icon" name="icon">
+            <select class="form-control icon-select2" id="icon" name="icon">
               <option value="">Select icon</option>
               @foreach($icons as $icon)
               <option value="fa {{ $icon->icon }}" @if( $data->icon=== 'fa '.$icon->icon ) selected
@@ -205,6 +205,19 @@
   $('.select2').select2({container: 'body'})
     $('.select2').on('change', function() {  // when the value changes
     $(this).valid(); // trigger validation on this element
+});
+function formatState (state) {
+  if (!state.id) {
+    return state.text;
+  }
+  var $state = $(
+    '<p> <i class="fa '+state.text +'"></i> fa ' + state.text + '</p>'
+  );
+  return $state;
+};
+
+  $(".icon-select2").select2({
+  templateResult: formatState
 });
 </script>
 @endsection
