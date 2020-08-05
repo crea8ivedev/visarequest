@@ -24,4 +24,6 @@
         </div>
     </section>
 </div>
+@include('frontend.layouts.footer')
+
 @endsection()
