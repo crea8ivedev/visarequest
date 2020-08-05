@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <p>
-                    {!!$disclaimer->heading!!}
+                    {!!$disclaimer->description!!}
                 </p>
 
             </div>

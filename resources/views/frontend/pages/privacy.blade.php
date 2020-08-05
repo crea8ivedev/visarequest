@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <p>
-                    {!!$privacy->heading!!}
+                    {!!$privacy->description!!}
                 </p>
 
             </div>
