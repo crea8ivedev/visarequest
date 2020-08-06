@@ -39,9 +39,11 @@
             <i class="fa fa-angle-up"></i>
         </a>
     </div>
-    @include('frontend.common.auth-modal')
+    @include('frontend.common.modals')
     <script>
         var url = '{{route("home")}}';
+    var serviceUrl = '{{ route("frontend.service.country", ":country") }}';
+    var countryImage = '{{ route("display.image",[config("constants.IMAGES.COUNTRY_IMAGE"),":countryId"]) }}';
     </script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

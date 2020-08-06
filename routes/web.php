@@ -24,6 +24,7 @@ Route::namespace('Frontend\Auth')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::post('/country', 'HomeController@country')->name('visa.country');
     Route::get('/visa/{country}', 'ServiceController@index')->name('frontend.service.country');
+    Route::get('/services', 'ServiceController@index')->name('frontend.services');
     Route::get('/details/{country}/{category}/{service}', 'ServiceController@serviceDetails')->name('frontend.category.service.details');
     Route::post('/getservices', 'ServiceController@getServices')->name('frontend.service.details');
     Route::post('/get-services-details', 'ServiceController@getServiceDetails')->name('frontend.service.details.ajax');

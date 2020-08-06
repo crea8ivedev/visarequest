@@ -21,13 +21,12 @@ class HomeController extends Controller
     {
         $member_list = TeamMember::get();
         $service_category_list = ServiceCategory::get();
-        $country_list = Country::get();
         $address = ContactUs::get();
         $sliders = Slider::get();
         $visaQuestion = VisaQuestion::get();
         $visaClients = VisaClient::get();
         $page_title       = 'Home';
-        return view('frontend.home', compact(['member_list','page_title', 'service_category_list', 'country_list','address','sliders','visaQuestion','visaClients']));
+        return view('frontend.home', compact(['member_list','page_title', 'service_category_list', 'address','sliders','visaQuestion','visaClients']));
     }
 
     public function country(Request $request)

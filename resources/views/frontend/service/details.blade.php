@@ -9,18 +9,34 @@
                     <div class="page-title-heading innerpagetitle text-center">
                         <h2><strong>{{$country->name}}</strong></h2>
                         <h2 class="title">{{$category->name}}</h2>
-                        {{-- <h2>{{$service->name}}</h2> --}}
+                        <h2>{{$service->name}}</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- page-title end -->
-<!--site-main start-->
+<!-- Category Start -->
+<section class="category-row">
+    <div class="container">
+        <nav class="main-menu menu-mobile m-auto" id="menu">
+            <ul class="menu category-list">
+                @foreach($categories as $key=>$list)
+                <li data-id="{{$list->id}}" data-country="{{$country->id}}" class="mega-menu-item service-category">
+                    <a href="javascript:void(0);" class="mega-menu-link   {{($list->id===$category->id)?'active':''}}">
+                        <i class="{{$list->icon}}"></i>{{$list->name}}</a>
+                </li>
+                @endforeach
+            </ul>
+        </nav>
+    </div>
+</section>
+<div id='loading' class="text-center" style="display: none;">
+    <img src='{{ asset('/images/reload.gif') }}' width='25px' height='25px'>
+</div>
 <div class="site-main">
     <div class="cmt-row sidebar cmt-sidebar-left cmt-bgcolor-white clearfix">
-        <div class="container">
+        <div class="container  service-details">
             <!-- row -->
             <div class="row">
                 <div
@@ -29,17 +45,15 @@
                     <aside class="widget widget-nav-menu">
                         <ul class="widget-menu">
                             @forelse ($service_list as $key => $list)
-                            <li class="{{($key===0)?'active':''}} service-category" data-id={{$list->id}}><a
+                            <li class="{{($service->id===$list->id)?'active':''}} service-category"
+                                data-service="{{ $list->id}}" data-country="{{$country->id}}" data-id={{$category->id}}><a
                                     href="javascript:void(0);">{{ $list->name}}</a></li>
                             @endforeach
                         </ul>
                     </aside>
                 </div>
                 <div class="col-lg-8 content-area">
-                    <div id='loading' class="text-center mt-80" style="display: none;">
-                        <img src='{{ asset('/images/reload.gif') }}' width='25px' height='25px'>
-                    </div>
-                    <div class="cmt-service-single-content-area service-details">
+                    <div class="cmt-service-single-content-area">
                         <div class="featured-icon d-flex flex-wrap justify-content-between align-items-center">
                             <div
                                 class="cmt-text cmt-icon_element-onlytxt cmt-icon_element-color-skincolor cmt-icon_element-size-lg">

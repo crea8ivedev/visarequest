@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App\Models\ContactUs;
 use App\Models\MetaPage;
+use App\Models\Country;
 use View;
 
 class HeaderData
@@ -20,7 +21,9 @@ class HeaderData
     {
         $address = ContactUs::latest()->first();
         $metaData = MetaPage::first();
+        $country_list = Country::get();
         View::share('metaData', $metaData);
+        View::share('country_list', $country_list);
         View::share('comman_address', $address);
         return $next($request);
     }

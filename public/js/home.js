@@ -1,12 +1,3 @@
-$(document).ready(function () {
-    $(".country").select2();
-    $('body').on('change','.country',function() {
-        var country = $(this).val();
-        if(country != '') {
-          window.location.href = serviceUrl.replace(':country', country);
-        }
-    });
-  });
 /*------------------------------------------------------------------------------*/
 /* Owl Crousel
 /*------------------------------------------------------------------------------*/

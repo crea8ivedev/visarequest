@@ -49,7 +49,7 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             type: "POST",
-            data: { service: $(this).data('id')},
+            data: { id: $(this).data('id'),service: $(this).data('service'),country: $(this).data('country')},
             success: function (data, textStatus, jqXHR) {
                 $("#loading").hide();
                 $(".service-details").html(data.html);
