@@ -55,7 +55,7 @@
                             <option data-capital="{{$list->flag}}"
                                 value="{{($list->slug)?strtolower($list->slug):strtolower($list->name)}}" @if($country->
                                 id===$list->id) selected @endif>
-                                {{$list->name}}</option>
+                                {{ucfirst($list->name)}}</option>
                             @endforeach
                         </select>
                     </div>

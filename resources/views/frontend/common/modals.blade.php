@@ -6,10 +6,10 @@
             <div class="modal-c-tabs">
                 <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#loginPane" role="tab">SignIn</a>
+                        <a class="nav-link active" data-toggle="tab" href="#loginPane" role="tab">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#signupPane" role="tab">SignUp</a>
+                        <a class="nav-link" data-toggle="tab" href="#signupPane" role="tab">Register</a>
                     </li>
                 </ul>
                 <div class="tab-content">
@@ -130,16 +130,14 @@
 </div>
 <div class="modal fade sModal" id="modalService" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog cascading-modal" role="document">
-        <!--Content-->
         <div class="modal-content">
             <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal"><span
                     aria-hidden="true">×</span></button>
             <div class="section-title text-center mb-10">
                 <div class="title-header">
-                    <h2 class="title">Select a country to view </br><strong>the services offered</strong></h2>
+                    <h2 class="title">Select a country to view <br /><strong>the services offered</strong></h2>
                 </div>
             </div>
-
             <div class="d-flex align-items-center">
                 <label for="countries2" class="lead" style="text-indent: -9999px">Countries</label>
                 <select class="form-control country" id="countries2">
@@ -151,6 +149,5 @@
                 </select>
             </div>
         </div>
-        <!--/.Content-->
     </div>
 </div>

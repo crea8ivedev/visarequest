@@ -519,11 +519,11 @@ function format(item, state) {
     if (!item.id) {
         return item.text;
       }
-
+      item.element.value = item.element.value.charAt(0).toUpperCase() + item.element.value.slice(1);
     var img = $("<img>", {
       class: "img-flag",
       width: 26,
-      src: countryImage.replace(':countryId', item.element.dataset.capital)
+      src: countryImage.replace(':countryId', item.element.dataset.capital.toUpperCase())
     });
     var span = '';
     if(item.element.dataset.capital){

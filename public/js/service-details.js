@@ -41,8 +41,8 @@ $(document).ready(function () {
     $(document).on('click', '.service-category', function () {
         $("#loading").show();
         $(".service-details").html('');
-        $('.service-category').removeClass('active');
-        $(this).addClass("active");
+        $('.mega-menu-link').removeClass('active');
+        $(this).children('a').addClass("active");
         $.ajax({
             url: "/get-services-details",
             headers: {
@@ -60,20 +60,20 @@ $(document).ready(function () {
         });
     });
 
-    $("#paymentForm").on("submit", function() {
-        // Disable the submit button
-        $("#process-payment-btn").attr("disabled", "disabled");
-        // Generate a card token & handle the response
-        SimplifyCommerce.generateToken({
-            key: "YOUR_PUBLIC_KEY",
-            card: {
-                number: $("#ccNumber").val(),
-                cvc: $("#cvc").val(),
-                expMonth: $("#ccExpMonth").val(),
-                expYear: $("#ccExpYear").val()
-            }
-        }, simplifyResponseHandler);
-        // Prevent the form from submitting
-        return false;
-    });
+    // $("#paymentForm").on("submit", function() {
+    //     // Disable the submit button
+    //     $("#process-payment-btn").attr("disabled", "disabled");
+    //     // Generate a card token & handle the response
+    //     SimplifyCommerce.generateToken({
+    //         key: "YOUR_PUBLIC_KEY",
+    //         card: {
+    //             number: $("#ccNumber").val(),
+    //             cvc: $("#cvc").val(),
+    //             expMonth: $("#ccExpMonth").val(),
+    //             expYear: $("#ccExpYear").val()
+    //         }
+    //     }, simplifyResponseHandler);
+    //     // Prevent the form from submitting
+    //     return false;
+    // });
 });

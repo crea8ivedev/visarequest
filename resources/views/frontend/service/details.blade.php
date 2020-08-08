@@ -46,8 +46,8 @@
                         <ul class="widget-menu">
                             @forelse ($service_list as $key => $list)
                             <li class="{{($service->id===$list->id)?'active':''}} service-category"
-                                data-service="{{ $list->id}}" data-country="{{$country->id}}" data-id={{$category->id}}><a
-                                    href="javascript:void(0);">{{ $list->name}}</a></li>
+                                data-service="{{ $list->id}}" data-country="{{$country->id}}" data-id={{$category->id}}>
+                                <a href="javascript:void(0);">{{ $list->name}}</a></li>
                             @endforeach
                         </ul>
                     </aside>
@@ -74,8 +74,10 @@
                             </p>
                             <div class="btn-group mt-30">
                                 @if (Auth::check())
-                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btnPaymentModal"
-                                    href="javascript:void(0);">Apply</a>
+                                {{-- <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btnPaymentModal"
+                                    href="javascript:void(0);">Apply</a> --}}
+                                <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30"
+                                    href="{{ route('frontend.service.application.index',[$service->id])  }}">Apply</a>
                                 @else
                                 <a class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark mr-30 btn-login"
                                     href="javascript:void(0);">Apply</a>
@@ -89,14 +91,12 @@
             </div><!-- row end -->
         </div>
     </div>
-
 </div>
-<!--site-main end-->
 @include('frontend.layouts.footer')
 @endsection()
 @include('frontend.common.payment')
 @section('scripts')
 <script type="text/javascript" src="{{ asset('js/service-details.js') }}"></script>
 {!! JsValidator::formRequest('App\Http\Requests\Frontend\ContactRequest') !!}
-<script type="text/javascript" src="https://www.simplify.com/commerce/v1/simplify.js"></script>
+{{-- <script type="text/javascript" src="https://www.simplify.com/commerce/v1/simplify.js"></script> --}}
 @endsection

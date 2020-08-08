@@ -110,7 +110,7 @@
                                                 @foreach($country_list as $list)
                                                 <option data-capital="{{$list->flag}}"
                                                     value="{{($list->slug)?strtolower($list->slug):strtolower($list->name)}}">
-                                                    {{$list->name}}</option>
+                                                    {{ucfirst($list->name)}}</option>
                                                 @endforeach
                                             </select>
                                         </div>

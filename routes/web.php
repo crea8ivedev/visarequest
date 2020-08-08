@@ -20,15 +20,15 @@ Route::namespace('Frontend\Auth')->group(function () {
     Route::get('/logout', 'LoginController@logout')->name('user.logout');
 });
 //FRONT ROUTE
-    Route::group(['namespace' => 'Frontend', 'middleware' => ['header.data']], function () {
+Route::group(['namespace' => 'Frontend', 'middleware' => ['header.data']], function () {
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/index', 'HomeController@index')->name('login');
     Route::post('/country', 'HomeController@country')->name('visa.country');
     Route::get('/visa/{country}', 'ServiceController@index')->name('frontend.service.country');
-    Route::get('/services', 'ServiceController@index')->name('frontend.services');
+    Route::get('/service', 'ServiceController@service')->name('frontend.service');
     Route::get('/details/{country}/{category}/{service}', 'ServiceController@serviceDetails')->name('frontend.category.service.details');
     Route::post('/getservices', 'ServiceController@getServices')->name('frontend.service.details');
     Route::post('/get-services-details', 'ServiceController@getServiceDetails')->name('frontend.service.details.ajax');
-    Route::get('/application', 'ServiceApplicationController@index')->name('frontend.service.application.index');
     Route::get('/about-us', 'PageController@getAboutUs')->name('frontend.about-us');
     Route::get('/contact-us', 'PageController@getContactUs')->name('frontend.contact-us');
     Route::post('/contact', 'ContactController@store')->name('frontend.contact');
@@ -36,10 +36,16 @@ Route::namespace('Frontend\Auth')->group(function () {
     Route::get('/disclaimer', 'PageController@getDisclaimer')->name('frontend.disclaimer');
     Route::get('/terms-and-conditions', 'PageController@getTermsAndConditions')->name('frontend.terms-and-conditions');
     Route::get('/news', 'NewsController@getNews')->name('frontend.news');
-    Route::get('/news/{slug}', 'NewsController@getNewsDetails')->name('frontend.news.details');   
+    Route::get('/news/{slug}', 'NewsController@getNewsDetails')->name('frontend.news.details');
     Route::post('/feedback', 'ContactController@feedbackStore')->name('frontend.feedback');
-
+    Route::group(['middleware' => ['auth:web']], function () {
+        Route::get('/application/{id}', 'ServiceApplicationController@index')->name('frontend.service.application.index');
+    });
 });
+
+
+
+
 //END FRONT ROUTE
 
 //Processor
@@ -238,40 +244,40 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/store', "PageController@termsUpdate")->name("admin.terms-and-conditions.store");
     });
 
-     /* routes for about us view */
-     Route::group(["prefix" => "about-us"], function() {
-         Route::get('/', "PageController@about")->name("admin.about-us");
-         Route::post('/store', "PageController@aboutUpdate")->name("admin.about-us.store");
-     });
+    /* routes for about us view */
+    Route::group(["prefix" => "about-us"], function () {
+        Route::get('/', "PageController@about")->name("admin.about-us");
+        Route::post('/store', "PageController@aboutUpdate")->name("admin.about-us.store");
+    });
 
     /* routes for terms and conditions view */
-    Route::group(["prefix" => "terms-and-conditions"], function() {
+    Route::group(["prefix" => "terms-and-conditions"], function () {
         Route::get('/', "PageController@termsAndConditon")->name("admin.terms-and-conditions");
         Route::post('/store', "PageController@termsUpdate")->name("admin.terms-and-conditions.store");
     });
 
     /* routes for contact us view */
-    Route::group(["prefix" => "contact-us"], function() {
+    Route::group(["prefix" => "contact-us"], function () {
         Route::get('/', "PageController@contactUs")->name("admin.contact-us");
         Route::post('/store', "PageController@contactUsUpdate")->name("admin.contact-us.store");
         Route::get('/edit/{id}', "PageController@contactUsEdit")->name("admin.contact-us.edit");
     });
 
     /* routes for Privacy view */
-    Route::group(["prefix" => "privacy"], function() {
+    Route::group(["prefix" => "privacy"], function () {
         Route::get('/', "PageController@privacy")->name("admin.privacy");
         Route::post('/store', "PageController@privacyUpdate")->name("admin.privacy.store");
     });
 
-      /* routes for disclaimer view */
-      Route::group(["prefix" => "disclaimer"], function() {
+    /* routes for disclaimer view */
+    Route::group(["prefix" => "disclaimer"], function () {
         Route::get('/', "PageController@disclaimer")->name("admin.disclaimer");
         Route::post('/store', "PageController@disclaimerUpdate")->name("admin.disclaimer.store");
     });
 
-    
-     /* routes for social links view */
-     Route::group(["prefix" => "social-link"], function() {
+
+    /* routes for social links view */
+    Route::group(["prefix" => "social-link"], function () {
         Route::get('/', "PageController@socialLink")->name("admin.social-link");
         Route::post('/store', "PageController@socialLinkUpdate")->name("admin.social-link.store");
     });
@@ -287,9 +293,9 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'SliderController@destroy')->name("admin.slider.destroy");
     });
 
-   
 
-     /* routes for visa question view */
+
+    /* routes for visa question view */
     Route::group(["prefix" => "visa-question"], function () {
         Route::get('/', "VisaQuestionController@index")->name("admin.visa-question");
         Route::post('/', "VisaQuestionController@index")->name("admin.visa-question");
@@ -301,7 +307,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     });
 
     /* routes for contacts view */
-    Route::group(["prefix" => "contact"], function() {
+    Route::group(["prefix" => "contact"], function () {
         Route::get('/', "ContactController@index")->name("admin.contact");
         Route::post('/', "ContactController@index")->name("admin.contact");
         Route::get('/reply/{id}', "ContactController@reply")->name("admin.contact.reply");
@@ -309,8 +315,8 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'ContactController@destroy')->name("admin.contact.destroy");
     });
 
-     /* routes for feedback view */
-     Route::group(["prefix" => "feedback"], function() {
+    /* routes for feedback view */
+    Route::group(["prefix" => "feedback"], function () {
         Route::get('/', "FeedbackController@index")->name("admin.feedback");
         Route::post('/', "FeedbackController@index")->name("admin.feedback");
         Route::get('/reply/{id}', "FeedbackController@reply")->name("admin.feedback.reply");
@@ -318,7 +324,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/destroy/{id}', 'FeedbackController@destroy')->name("admin.feedback.destroy");
     });
 
-     /* routes for news view */
+    /* routes for news view */
     Route::group(["prefix" => "news"], function () {
         Route::get('/', "NewsController@index")->name("admin.news");
         Route::post('/', "NewsController@index")->name("admin.news");
@@ -330,13 +336,12 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
     });
 
     /* routes for meta tag view */
-    Route::group(["prefix" => "meta-page"], function() {
+    Route::group(["prefix" => "meta-page"], function () {
         // Route::get('/', "TermsAndConditionsController@index")->name("admin.terms-and-conditions");
-         Route::get('/', "MetaPageController@index")->name("admin.meta-page");
-         Route::post('/store', "MetaPageController@store")->name("admin.meta-page.store");
-         Route::get('/{page}/edit', "MetaPageController@edit")->name("admin.meta-page.edit");
-
-     });
+        Route::get('/', "MetaPageController@index")->name("admin.meta-page");
+        Route::post('/store', "MetaPageController@store")->name("admin.meta-page.store");
+        Route::get('/{page}/edit', "MetaPageController@edit")->name("admin.meta-page.edit");
+    });
 });
 
 //Auth Processor
