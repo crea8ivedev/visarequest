@@ -25,10 +25,8 @@ class ServiceController extends Controller
             })
             ->with('category')
             ->get();
-        $country_list = Country::orderBy('name', 'asc')
-            ->get();
         $page_title       = 'Service-' . $country->name;
-        return view('frontend.service.index', compact('service_category_list', 'service_list', 'country', 'country_list', 'page_title'));
+        return view('frontend.service.index', compact('service_category_list', 'service_list', 'country','page_title'));
     }
 
     public function service(Request $request)

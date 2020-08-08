@@ -21,7 +21,7 @@ class HeaderData
     {
         $address = ContactUs::latest()->first();
         $metaData = MetaPage::first();
-        $country_list = Country::get();
+        $country_list = Country::orderBy('name', 'asc')->get();
         View::share('metaData', $metaData);
         View::share('country_list', $country_list);
         View::share('comman_address', $address);

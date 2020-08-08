@@ -25,8 +25,7 @@ class HomeController extends Controller
         $sliders = Slider::get();
         $visaQuestion = VisaQuestion::get();
         $visaClients = VisaClient::get();
-        $country_list = Country::orderBy('name', 'asc')->get();
         $page_title       = 'Home';
-        return view('frontend.home', compact(['member_list', 'page_title', 'service_category_list', 'country_list', 'address', 'sliders', 'visaQuestion', 'visaClients']));
+        return view('frontend.home', compact(['member_list', 'page_title', 'service_category_list',  'address', 'sliders', 'visaQuestion', 'visaClients']));
     }
 }
