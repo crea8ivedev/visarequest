@@ -523,7 +523,7 @@ function format(item, state) {
     var img = $("<img>", {
       class: "img-flag",
       width: 26,
-      src: countryImage.replace(':countryId', item.element.dataset.capital.toUpperCase())
+      src: countryImage.replace(':countryId', item.element.dataset.capital)
     });
     var span = '';
     if(item.element.dataset.capital){
