@@ -25,13 +25,13 @@ class ServiceController extends Controller
             })
             ->with('category')
             ->get();
-        $page_title       = 'Service-' . $country->name;
-        return view('frontend.service.index', compact('service_category_list', 'service_list', 'country','page_title'));
+        $page_title       = 'Service for ' . $country->name;
+        return view('frontend.service.index', compact('service_category_list', 'service_list', 'country', 'page_title'));
     }
 
     public function service(Request $request)
     {
-        $page_title       = 'Service';
+        $page_title       = 'Our Services';
         $service_category_list = ServiceCategory::where('status', Config::get('constants.STATUS.ACTIVE'))->get();
         return view('frontend.service.service', compact('service_category_list', 'page_title'));
     }
