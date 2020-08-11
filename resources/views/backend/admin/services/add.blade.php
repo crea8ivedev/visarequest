@@ -17,13 +17,19 @@
       <div class="card-body">
         <div class="row">
 
-          <div class="form-group col-lg-6">
+          <div class="form-group col-lg-12">
             <label>Service Name :<code>*</code></label>
             <input class="form-control" id="name" name="name" placeholder="Service Name">
             @if ($errors->has('name'))
             <span class="invalid-feedback">{{ $errors->first('name') }}</span>
             @endif
           </div>
+
+        </div>
+
+        <div class="row">
+
+
           <div class="form-group col-lg-6">
             <label>Code :<code>*</code></label>
             <input class="form-control" id="code" name="code" placeholder="Code">
@@ -31,11 +37,6 @@
             <span class="invalid-feedback">{{ $errors->first('code') }}</span>
             @endif
           </div>
-        </div>
-
-
-        <div class="form-group row">
-
           <div class="col-lg-6">
             <label>Category :<code>*</code></label>
             <select class="form-control" id="category_id" name="category_id">
@@ -48,7 +49,8 @@
             <span class="invalid-feedback">{{ $errors->first('category_id') }}</span>
             @endif
           </div>
-
+        </div>
+        <div class="form-group row">
           <div class="col-lg-6">
             <label>Processor :<code>*</code></label>
             <select class="form-control" id="processor_id" name="processor_id">
@@ -63,20 +65,6 @@
             </span>
             @endif
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-lg-6">
-            <label>Agent :</label>
-            <select class="form-control" id="agent_id" name="agent_id">
-              <option value="">Select Agent</option>
-              @foreach($agent_list as $agent)
-              <option value="{{ $agent->id }}">{{ $agent->FullName }}</option>
-              @endforeach
-            </select>
-            @if ($errors->has('agent_id'))
-            <span class="invalid-feedback">{{ $errors->first('agent_id') }}</span>
-            @endif
-          </div>
           <div class="col-lg-6">
             <label>Normal Price :<code>*</code></label>
             <input class="form-control" id="normal_price" name="normal_price" placeholder="Normal price">
@@ -85,6 +73,7 @@
             @endif
           </div>
         </div>
+
         <div class="form-group row">
           <div class="col-lg-6">
             <label>Discount Price :<code>*</code></label>
@@ -143,44 +132,44 @@
           <strong style="color: red">{{ $errors->first('country_id') }}</strong>
           @endif
         </div>
-        <div class="form-group row">
+        {{-- <div class="form-group row">
           <label>Category icon : <code>*</code></label>
           <div class="input-group">
             <select class="form-control select2" id="icon" name="icon">
               <option value="">Select icon</option>
               @foreach($icons as $icon)
               <option value="fa {{ $icon->icon }}">{{ $icon->icon }}</option>
-              @endforeach
-            </select>
-          </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-lg-6">
-            <label>Status:</label>
-            <div class="radio">
-              <label class="radio" id="active">
-                <input type="radio" name="status" id="active" class="form-control status" value="ACTIVE" checked="" />
-                Active
-                <span></span>
-              </label>
-              <label class="radio" id="deactive">
-                <input type="radio" name="status" id="deactive" class="form-control status" value="DEACTIVE" /> Deactive
-                <span></span>
-              </label>
-            </div>
-          </div>
-        </div>
+        @endforeach
+        </select>
       </div>
-      <div class="card-footer">
-        <div class="row">
-          <div class="col-lg-6">
-            <button type="submit" class="btn btn-primary mr-2">Add</button>
-            <a href="{{route('admin.service')}}" type="button" class="btn btn-secondary">Cancel</a>
-          </div>
-        </div>
-      </div>
-    </form>
   </div>
+  <div class="form-group row">
+    <div class="col-lg-6">
+      <label>Status:</label>
+      <div class="radio">
+        <label class="radio" id="active">
+          <input type="radio" name="status" id="active" class="form-control status" value="ACTIVE" checked="" />
+          Active
+          <span></span>
+        </label>
+        <label class="radio" id="deactive">
+          <input type="radio" name="status" id="deactive" class="form-control status" value="DEACTIVE" /> Deactive
+          <span></span>
+        </label>
+      </div>
+    </div>
+  </div> --}}
+</div>
+<div class="card-footer">
+  <div class="row">
+    <div class="col-lg-6">
+      <button type="submit" class="btn btn-primary mr-2">Add</button>
+      <a href="{{route('admin.service')}}" type="button" class="btn btn-secondary">Cancel</a>
+    </div>
+  </div>
+</div>
+</form>
+</div>
 </div>
 @endsection
 @section('scripts')

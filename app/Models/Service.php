@@ -33,6 +33,10 @@ class Service extends Model
     {
         return $this->belongsTo('App\Models\ServiceCategory');
     }
+    public function serviceApplication()
+    {
+        return $this->hasMany('App\Models\ServiceApplication', 'service_id');
+    }
     public function serviceInputs()
     {
         return $this->hasMany('App\Models\ServiceInput', 'service_id');

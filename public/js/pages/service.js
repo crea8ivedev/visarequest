@@ -25,10 +25,6 @@ $(document).ready(function() {
                 name: 'Staff Name',
             },
             {
-                data: 'agentName',
-                name: 'Agent Name',
-            },
-            {
                 data: 'normal_price',
                 name: 'Normal price'
             },

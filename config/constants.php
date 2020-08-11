@@ -1,8 +1,8 @@
 <?php
 return [
-	'STATUS'=>[
-		'ACTIVE'=>'ACTIVE',
-		'INACTIVE'=>'INACTIVE'
+	'STATUS' => [
+		'ACTIVE' => 'ACTIVE',
+		'INACTIVE' => 'INACTIVE'
 	],
 	'ROLES' => [
 		'SUPERADMIN' => 'SUPERADMIN',
@@ -14,10 +14,12 @@ return [
 	'SERVICE_TYPE' => [
 		'SERVICE' => 'SERVICE',
 		'VISA' => 'VISA'
-	],	
+	],
 	'SERVICE_APPLICATION_STATUS' => [
 		'APPROVED' => 'APPROVED',
-		'PENDING' => 'PENDING'
+		'PENDING' => 'PENDING',
+		'COMPLETED' => 'COMPLETED',
+		'PROCESSING' => 'PROCESSING'
 	],
 	'toster' => [
 		"closeButton" => false,
@@ -36,16 +38,16 @@ return [
 		"showMethod" => "fadeIn",
 		"hideMethod" => "fadeOut"
 	],
-	'PAGE'=>[
-        'HOME'    => 'Home',
-        'SERVICE' => 'Service',
-        'ABOUT'   => 'About',
-        'NEWS'   => 'News',
-        'TERMS'   => 'Terms and Conditions',
-    ],
+	'PAGE' => [
+		'HOME'    => 'Home',
+		'SERVICE' => 'Service',
+		'ABOUT'   => 'About',
+		'NEWS'   => 'News',
+		'TERMS'   => 'Terms and Conditions',
+	],
 	'SLIDER_STORE'        =>  'public/slider',
 	'SLIDER_IMAGE_GET'    =>  'public/storage/slider',
-	'IMAGES'=>[
+	'IMAGES' => [
 		'COUNTRY_IMAGE'   =>  'country',
 		'COUNTRY_TOURIST_IMAGE'   =>  'country-tourist',
 		'SLIDER_IMAGE'        =>  'slider',

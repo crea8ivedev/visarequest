@@ -73,7 +73,6 @@
           <tr>
             <th>Service Name</th>
             <th>Processor</th>
-            <th>Agent</th>
             <th>Normal price</th>
             <th>Discount price</th>
             <th>Commission</th>

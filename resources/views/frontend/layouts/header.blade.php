@@ -45,13 +45,13 @@
                         <div class="header_btn">
                             @if (Auth::check())
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey"
-                                href="#">My Profile</a>
+                                href="{{route('frontend.user.profile')}}">My Account <span
+                                        class="badge badge-danger">4</span></a>
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey"
                                 href="{{route('user.logout')}}">Logout</a>
                             @else
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey btn-login"
                                 href="#">LOGIN / REGISTER</a>
-
                             @endif </div>
                     </div>
                     <div class="widget_info d-flex flex-row align-items-center justify-content-end">

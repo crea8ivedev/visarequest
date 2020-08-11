@@ -25,7 +25,7 @@ class ServiceController extends Controller
             })
             ->with('category')
             ->get();
-        $page_title       = 'Service for ' . $country->name;
+        $page_title       = $country->name . ' Service ';
         return view('frontend.service.index', compact('service_category_list', 'service_list', 'country', 'page_title'));
     }
 
@@ -72,8 +72,8 @@ class ServiceController extends Controller
             ->whereHas('countries', function ($q) use ($country) {
                 $q->where('country_id', $country->id);
             })->get();
-        $page_title       = 'Service-' . $country->name . '-' . $category->name;
-        return view('frontend.service.details', compact('service_list', 'category', 'country', 'service', 'categories'));
+        $page_title       = $country->name . ' Service ';
+        return view('frontend.service.details', compact('service_list', 'category', 'country', 'service', 'page_title', 'categories'));
     }
 
 

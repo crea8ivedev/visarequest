@@ -65,7 +65,7 @@ class ServiceController extends Controller
         $agent_list          = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
         $category_list = ServiceCategory::get();
         $icons = Icons::get();
-        return view('backend.admin.services.add', compact('page_title', 'icons','category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
+        return view('backend.admin.services.add', compact('page_title', 'icons', 'category_list', 'page_description', 'page_breadcrumbs', 'country_list', 'staff_list', 'agent_list'));
     }
 
     /**
@@ -88,24 +88,19 @@ class ServiceController extends Controller
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
-        $service->status     = $request->status;
-        $service->icon = $request->icon;
+        $service->status     = Config::get('constants.SERVICE_APPLICATION_STATUS.APPROVED');
         $service->slug =  Str::slug($request->name, '-');
-        $service->save();
-        $insertedId = $service->id;
         $countries = $request->country_id;
 
-        //Multiple insert service country
-        foreach ($countries as $country) {
-            ServiceCountry::create([
-                'country_id'    => $country,
-                'service_id'    => $insertedId,
-            ]);
-        }
-
-        if ($service) {
+        if ($service->save()) {
+            foreach ($countries as $country) {
+                ServiceCountry::create([
+                    'country_id'    => $country,
+                    'service_id'    =>  $service->id,
+                ]);
+            }
             Toastr::success('Service added successfully!', '', Config::get('constants.toster'));
-            return redirect('/admin/service');
+            return redirect('/admin/service/element/' . $service->id);
         } else {
             Toastr::error('Service  dose not added successfully!', '', Config::get('constants.toster'));
             return redirect('/admin/service/add');
@@ -131,7 +126,7 @@ class ServiceController extends Controller
         $icons = Icons::get();
         $staff_list         = User::where('role', Config::get('constants.ROLES.PROCESSOR'))->latest()->get();
         $agent_list         = User::where('role', Config::get('constants.ROLES.AGENT'))->latest()->get();
-        return view('backend.admin.services.edit', compact('data', 'icons','category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs', 'selected_country'));
+        return view('backend.admin.services.edit', compact('data', 'icons', 'category_list', 'country_list', 'staff_list', 'agent_list', 'page_title', 'page_description', 'page_breadcrumbs', 'selected_country'));
     }
 
     public function createElement(Request $request, $id)
@@ -195,7 +190,7 @@ class ServiceController extends Controller
         $service->normal_price      = $request->normal_price;
         $service->discount_price      = $request->discount_price;
         $service->commission      = $request->commission;
-        $service->icon = $request->icon;
+        // $service->icon = $request->icon;
         $service->status     = $request->status;
         $service->slug =  Str::slug($request->name, '-');
         ServiceCountry::where('service_id', $id)->delete();

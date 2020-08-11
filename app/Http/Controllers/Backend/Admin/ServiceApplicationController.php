@@ -84,8 +84,7 @@ class ServiceApplicationController extends Controller
                 $dataView[$element['type']][] = $element;
             }
             $dataView['data'] = $serviceInputeAnswer;
-            //dd($dataView);
-            $returnHTML = view('backend.admin.templete')->with('data', $dataView)->render();
+            $returnHTML = view('backend.admin.services.templete')->with('data', $dataView)->render();
             return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
         }
     }

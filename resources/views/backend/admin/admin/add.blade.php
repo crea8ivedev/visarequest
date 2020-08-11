@@ -17,7 +17,7 @@
         
         <div class="card-body" id="card-collapse"  >
           <!--begin::Form-->
-          <form class="form" method="post" id="sample_form" action="{{ route('admin.admin.store')  }}">
+          <form class="form" method="post" id="sample_form" action="{{ route('frontend.user.profile.update')  }}">
             @csrf
               
 

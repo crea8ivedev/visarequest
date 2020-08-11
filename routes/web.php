@@ -39,7 +39,11 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['header.data']], funct
     Route::get('/news/{slug}', 'NewsController@getNewsDetails')->name('frontend.news.details');
     Route::post('/feedback', 'ContactController@feedbackStore')->name('frontend.feedback');
     Route::group(['middleware' => ['auth:web']], function () {
+        Route::get('/profile', 'UserController@index')->name('frontend.user.profile');
+        Route::post('/profile', 'UserController@update')->name('frontend.user.profile.update');
         Route::get('/application/{id}', 'ServiceApplicationController@index')->name('frontend.service.application.index');
+        Route::post('/application', 'ServiceApplicationController@applyUpdate')->name('frontend.user.application.update');
+        Route::get('/services', 'UserController@services')->name('frontend.user.application.service');
     });
 });
 
