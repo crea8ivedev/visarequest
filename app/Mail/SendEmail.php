@@ -34,7 +34,7 @@ class SendEmail extends Mailable
     public function build()
     {
         return $this->subject('Forgot Password')
-            ->from('example@example.com')
+            ->from('info@visarequest.co.zw')
             ->view('emails.forgot')->with([
                 'token' => $this->token,
                 'email' => $this->email,
