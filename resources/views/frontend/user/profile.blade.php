@@ -17,10 +17,10 @@
 <section class="category-row pt-0 pb-0">
     <div class="container ">
         <div class="row row-eq-height">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 @include('frontend.layouts.user_side_menu')
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <div class="pt-10">
                     @include('frontend.common.flashMessage')
                 </div>

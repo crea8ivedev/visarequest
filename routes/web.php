@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::namespace('Frontend\Auth')->group(function () {
+Route::namespace('Frontend\Auth')->middleware('header.data')->group(function () {
     Route::post('/login', 'LoginController@login')->name('user.login');
+    Route::post('/forgot', 'ForgotPasswordController@sendPasswordResetToken')->name('user.forgot');
+    Route::get('/reset-password/{token}', 'ForgotPasswordController@showPasswordResetForm')->name('user.forgot.form');
+    Route::post('/set-password', 'ResetPasswordController@updatePassword')->name('user.reset.update');
     Route::post('/register', 'RegisterController@create')->name('user.register');
     Route::get('/logout', 'LoginController@logout')->name('user.logout');
 });
@@ -41,10 +44,24 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['header.data']], funct
     Route::group(['middleware' => ['auth:web']], function () {
         Route::get('/profile', 'UserController@index')->name('frontend.user.profile');
         Route::post('/profile', 'UserController@update')->name('frontend.user.profile.update');
+
         Route::get('/application/{id}', 'ServiceApplicationController@index')->name('frontend.service.application.index');
+        Route::post('/application/{id}', 'ServiceApplicationController@index')->name('frontend.service.application.index.list');
+
+
         Route::post('/application', 'ServiceApplicationController@applyUpdate')->name('frontend.user.application.update');
-        Route::get('/services', 'UserController@services')->name('frontend.user.application.service');
-        Route::get('/service/{id}', 'UserController@servicesDetails')->name('frontend.user.application.service.details');
+
+        Route::get('/applications', 'UserController@services')->name('frontend.user.applications');
+        Route::post('/applications', 'UserController@services')->name('frontend.user.applications');
+
+        Route::get('/application-details/{id}', 'UserController@servicesDetails')->name('frontend.user.application.details');
+        Route::post('/application-details', 'UserController@servicesDetails')->name('frontend.user.application.details.list');
+
+        Route::get('/reply/{id}', "UserController@replyApplication")->name("user.service.application.reply");
+        Route::post('/application-reply', "UserController@replyUpdateApplication")->name("user.application.reply.update");
+
+        Route::get('/messages', 'UserController@messages')->name('frontend.user.messages');
+        Route::post('/messages', 'UserController@messages')->name('frontend.user.messages.list');
     });
 });
 
@@ -201,6 +218,7 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         route::get('/add', "ServiceApplicationController@create")->name("admin.service.application.add");
         Route::get('/edit/{id}', "ServiceApplicationController@edit")->name("admin.service.application.edit");
         Route::get('/reply/{id}', "ServiceApplicationController@replyApplication")->name("admin.service.application.reply");
+        Route::post('/application-reply', "ServiceApplicationController@replyUpdateApplication")->name("admin.service.application.reply.update");
         Route::get('/view/{id}', "ServiceApplicationController@view")->name("admin.service.application.view_application");
         Route::post('/store', "ServiceApplicationController@store")->name("admin.s-assign.store");
         Route::post('/update/{id}', "ServiceApplicationController@update")->name("admin.service.application.update");

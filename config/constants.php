@@ -16,10 +16,9 @@ return [
 		'VISA' => 'VISA'
 	],
 	'SERVICE_APPLICATION_STATUS' => [
-		'APPROVED' => 'APPROVED',
-		'PENDING' => 'PENDING',
+		'PROCESSING' => 'PROCESSING',
 		'COMPLETED' => 'COMPLETED',
-		'PROCESSING' => 'PROCESSING'
+		'CANCEL' => 'CANCEL',
 	],
 	'toster' => [
 		"closeButton" => false,

@@ -64,4 +64,68 @@ $(function () {
             }
         });
     });
+    $('#forgotForm').submit(function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        if(! $form.valid()) return false;
+        var formData = $(this).serializeArray();
+        $(".alertMessage").html('');
+        $.ajax({
+            method: "POST",
+            headers: {
+                Accept: "application/json"
+            },
+            url: "/forgot",
+            data: formData,
+            beforeSend: function() {
+                $('.disableBtn').attr("disabled", true);
+            },
+            complete: function(){
+                $(".disableBtn").attr("disabled", false);
+            },
+            success: function (data, textStatus, jqXHR) {
+                if (data.status) {
+                    $(".alertMessage").html('<p class="text-success">'+data.message+'</p>');
+                    window.location.reload();
+                } else {
+                    $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
+                }
+            },
+            error: function (data, textStatus, errorThrown) {
+                $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
+            }
+        });
+    });
+    $('#resetForm').submit(function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        if(! $form.valid()) return false;
+        var formData = $(this).serializeArray();
+        $(".alertMessage").html('');
+        $.ajax({
+            method: "POST",
+            headers: {
+                Accept: "application/json"
+            },
+            url: "/set-password",
+            data: formData,
+            beforeSend: function() {
+                $('.disableBtn').attr("disabled", true);
+            },
+            complete: function(){
+                $(".disableBtn").attr("disabled", false);
+            },
+            success: function (data, textStatus, jqXHR) {
+                if (data.status) {
+                    $(".alertMessage").html('<p class="text-success">'+data.message+'</p>');
+                    window.location.href ='/';
+                } else {
+                    $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
+                }
+            },
+            error: function (data, textStatus, errorThrown) {
+                $(".alertMessage").html('<p class="text-danger">'+data.message+'</p>');
+            }
+        });
+    });
 });

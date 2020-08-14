@@ -1,0 +1,15 @@
+.filter-a{
+    padding: 10px!important;
+}
+
+.filter-a i{
+    font-size: 35px!important;
+    margin: 0 0 10px 0!important;
+}
+
+.filter-li{
+    width: 23%!important;
+    float: left!important;
+    margin: 5px!important;
+    padding-bottom: 20px!important;
+}

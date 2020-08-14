@@ -34,4 +34,8 @@ class ServiceApplication extends Model
     {
         return $this->hasMany('App\Models\ServiceInputAnswer', 'application_id');
     }
+    public function serviceApplicationConversion()
+    {
+        return $this->hasMany('App\Models\ServiceAplicationConversion', 'application_id');
+    }
 }

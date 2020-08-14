@@ -9,14 +9,18 @@ use App\Models\Service;
 use App\Models\ServiceApplication;
 use App\Models\ServiceInputAnswer;
 use App\Models\ServiceElement;
+use App\Models\ServiceAplicationConversion;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\ServiceCategory;
+use Illuminate\Support\Facades\Storage;
 use DataTables;
 use Validator;
 use Illuminate\Support\Facades\Hash;
 use Toastr;
 use Config;
+use Auth;
+use File;
 
 class ServiceApplicationController extends Controller
 {
@@ -91,9 +95,36 @@ class ServiceApplicationController extends Controller
     public function replyApplication(Request $request, $id)
     {
         if (request()->ajax()) {
-            $service = ServiceApplication::with(['service', 'user'])->findOrFail($request->id)->first();
+            $service = ServiceApplication::with(['service', 'serviceApplicationConversion', 'user'])->findOrFail($request->id)->first();
             $returnHTML = view('backend.admin.application.application-reply')->with('service', $service)->render();
             return response()->json(['success' => true, 'html' => $returnHTML]);
+        }
+    }
+
+
+
+    public function replyUpdateApplication(Request $request)
+    {
+        $appConversion = new ServiceAplicationConversion;
+        $appConversion->service_id = $request->service;
+        $appConversion->application_id = $request->application;
+        $appConversion->subject = $request->subject;
+        $appConversion->message = $request->message;
+        $appConversion->user_id = Auth::user()->id;
+        $appConversion->date = date("Y-m-d h:i:s");
+        $appConversion->type = 'SYSTEM';
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $save_name = date("Ymdhis") . rand(5, 15) . '.' . $file->getClientOriginalExtension();
+            $file->storeAs(Config::get('constants.DOCUMENTS.APPLICATION_DOCUMENT'), $save_name);
+            $appConversion->file = $save_name;
+        }
+        if ($appConversion->save()) {
+            Toastr::success('Message send successfully!', '', Config::get('constants.toster'));
+            return response()->json(['success' => true, 'message' => 'Message send successfull']);
+        } else {
+            Toastr::success('Message does not send successfully!!', '', Config::get('constants.toster'));
+            return response()->json(['success' => true, 'message' => 'Message does not send successfull']);
         }
     }
 }

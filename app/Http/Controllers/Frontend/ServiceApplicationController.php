@@ -46,7 +46,7 @@ class ServiceApplicationController extends Controller
                 $k++;
             }
             foreach ($request->file('file') as $key => $file) {
-                $save_name = $file->getClientOriginalName();
+                $save_name =  date("Y-m-d h:i:s") . rand(5, 15) . '.' . $file->getClientOriginalExtension();
                 $file->storeAs(Config::get('constants.DOCUMENTS.APPLICATION_DOCUMENT'), $save_name);
                 $type_value = explode("-**-", $key);
                 $data[$k]['service_id'] = $service->id;

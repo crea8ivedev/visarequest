@@ -30,7 +30,8 @@
 
                                 </div>
                                 <div class="text-right mt-4">
-                                    <p> <a href="#forgotPane" data-toggle="tab" role="tab" class="blue-text">Forgot
+                                    <p> <a href="#forgotPane" data-toggle="tab" role="tab"
+                                            class="blue-text forgot-login">Forgot
                                             Password?</a></p>
                                 </div>
                                 <div class="text-center mt-4">
@@ -63,6 +64,11 @@
                                     <label for="password">Password</label>
                                     <input type="password" id="password" name="password" class="form-control">
                                 </div>
+                                <div class="text-right mt-4">
+                                    <p> <a href="#forgotPane" data-toggle="tab" role="tab"
+                                            class="blue-text forgot-login">Forgot
+                                            Password?</a></p>
+                                </div>
                                 <div class="text-center mt-4">
                                     <button disabled
                                         class="disableBtn cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor w-100"
@@ -71,6 +77,42 @@
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="forgotModal" tabindex="-1" role="dialog" aria-labelledby="forgotModal" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <div class="modal-content">
+            <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal"><span
+                    aria-hidden="true">×</span></button>
+            <div class="modal-c-tabs">
+                <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#loginPane" role="tab">Forgot Password</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <form method="POST" id="forgotForm" action="#">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="alertMessage"> </div>
+                            <div class="form-group">
+                                <label for="email">email</label>
+                                <input id="email" type="email" class="form-control" name="email" autofocus>
+                            </div>
+                            <div class="text-right mt-4">
+                                <p> <a href="#" data-toggle="tab" role="tab" class="blue-text btn-login">Login?</a></p>
+                            </div>
+                            <div class="text-center mt-4">
+                                <button disabled
+                                    class="disableBtn cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-skincolor w-100"
+                                    type="submit">Forgot Password</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

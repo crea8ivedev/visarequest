@@ -558,7 +558,14 @@ function format(item, state) {
         $(".invalid-feedback").remove();
         $("#loginForm")[0].reset();
         $("#signupForm")[0].reset();
+        $('#forgotModal').modal('hide');
         $('#authModal').modal('show');
+    });
+    $(document).on('click', '.forgot-login', function () {
+        $(".alertMessage").html('');
+        $(".invalid-feedback").remove();
+        $('#authModal').modal('hide');
+        $('#forgotModal').modal('show');
     });
   });
 
