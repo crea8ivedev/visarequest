@@ -65,4 +65,21 @@ class UserController extends Controller
             ->get();;
         return view('frontend.user.service', compact('page_title', 'services'));
     }
+
+
+    /**
+     * Show the application country.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function servicesDetails(Request $request)
+    {
+        $page_title         = 'My Services';
+        $service = ServiceApplication::findOrFail($request->id)
+            ->with('service')
+            ->with('service.category')
+            ->with('service.staff')
+            ->first();
+        return view('frontend.user.service-details', compact('page_title', 'service'));
+    }
 }

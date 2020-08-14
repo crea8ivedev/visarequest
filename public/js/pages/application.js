@@ -17,6 +17,10 @@ $(document).ready(function() {
             },
         },
         columns: [{
+                data: 'service.category.name',
+                name: 'service.category.name'
+            },
+            {
                 data: 'service.name',
                 name: 'service.name'
             },
@@ -29,10 +33,6 @@ $(document).ready(function() {
                 name: 'Staff Name',
             },
             {
-                data: 'service.commission',
-                name: 'Commission'
-            },
-            {
                 data: 'action',
                 name: 'action',
                 orderable: false
@@ -42,7 +42,6 @@ $(document).ready(function() {
 
     table.on('preXhr', function(evt, settings) {
         if (settings.jqXHR) { // $button .= '<a href="/admin/service/element/' . $data->id . '"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Add Element"><i class="la la-plus"></i></a>';
-
             settings.jqXHR.abort();
         }
     })
@@ -51,10 +50,9 @@ $(document).ready(function() {
         table.draw();
     });
 
-     $(document).on('click', '.view_application', function() {
-        var id = $(this).attr('id');
-        var url = 'application/view_application/'+ id;
-       // url = url.replace(':id', id);
+     $(document).on('click', '.view_application_btn', function() {
+        var id = $(this).data('id');
+        var url = 'application/view/'+ id;
         $('#form_result').html('');
         $.ajax({
            url :url,
@@ -67,20 +65,59 @@ $(document).ready(function() {
            },
            success:function(data)
            {
-                $('#hidden_id').val(id);
-                $('.modal-title').text('Edit Record');
-                $('#action_button').val('Edit');
-                $('#action').val('Edit');
-                $('#service_name').text(data.data.service.name);
-                $('#html_render').html(data.html);
-                $('#formModal').modal('show');
+                $('.html_render').html(data.html);
+                $('.applicationModal').modal('show');
+           }
+        })
+    });
+
+
+    $(document).on('click', '.edit_application_btn', function() {
+        var id = $(this).data('id');
+        var url = 'application/edit/'+ id;
+        $('.html_render').html('');
+        $.ajax({
+           url :url,
+           dataType:"json",
+           beforeSend: function() {
+             $("#loading").show();
+           },
+            complete: function() {
+             $("#loading").hide();
+           },
+           success:function(data)
+           {
+                $('.html_render').html(data.html);
+                $('.applicationModal').modal('show');
+           }
+        })
+    });
+
+    
+    $(document).on('click', '.reply_application_btn', function() {
+        var id = $(this).data('id');
+        var url = 'application/reply/'+ id;
+        $('.html_render').html('');
+        $.ajax({
+           url :url,
+           dataType:"json",
+           beforeSend: function() {
+             $("#loading").show();
+           },
+            complete: function() {
+             $("#loading").hide();
+           },
+           success:function(data)
+           {
+                $('.html_render').html(data.html);
+                $('.applicationModal').modal('show');
            }
         })
     });
 
 
     $(document).on('click', '.delete', function() {
-        var id = $(this).attr('id');
+        var id = $(this).data('id');
         swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",

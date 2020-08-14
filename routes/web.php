@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Frontend', 'middleware' => ['header.data']], funct
         Route::get('/application/{id}', 'ServiceApplicationController@index')->name('frontend.service.application.index');
         Route::post('/application', 'ServiceApplicationController@applyUpdate')->name('frontend.user.application.update');
         Route::get('/services', 'UserController@services')->name('frontend.user.application.service');
+        Route::get('/service/{id}', 'UserController@servicesDetails')->name('frontend.user.application.service.details');
     });
 });
 
@@ -199,7 +200,8 @@ Route::group(['namespace' => 'Backend\Admin', 'middleware' => ['auth:admin'], 'p
         Route::post('/', "ServiceApplicationController@index")->name("admin.service.application");
         route::get('/add', "ServiceApplicationController@create")->name("admin.service.application.add");
         Route::get('/edit/{id}', "ServiceApplicationController@edit")->name("admin.service.application.edit");
-        Route::get('/view_application/{id}', "ServiceApplicationController@view")->name("admin.service.application.view_application");
+        Route::get('/reply/{id}', "ServiceApplicationController@replyApplication")->name("admin.service.application.reply");
+        Route::get('/view/{id}', "ServiceApplicationController@view")->name("admin.service.application.view_application");
         Route::post('/store', "ServiceApplicationController@store")->name("admin.s-assign.store");
         Route::post('/update/{id}', "ServiceApplicationController@update")->name("admin.service.application.update");
         Route::post('/destroy/{id}', 'ServiceApplicationController@destroy')->name("admin.service.application.destroy");

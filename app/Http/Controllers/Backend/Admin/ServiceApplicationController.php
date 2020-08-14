@@ -33,13 +33,14 @@ class ServiceApplicationController extends Controller
                     $q->where('name', 'LIKE', '%' . $search . '%');
                 });
             }
-            $data = $service->with(['service', 'service.staff', 'service.agent', 'user'])->latest()->get();
-            //dd($data);
+            $data = $service->with(['service', 'service.staff', 'service.category', 'service.agent', 'user'])->latest()->get();
             return DataTables::of($data)
                 ->addColumn('action', function ($data) {
+                    $button = '<a href="javascript:void(0);"   data-id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 edit_application_btn btn btn-sm btn-clean btn-icon" title="Edit Application"><i class="fa fa-edit"></i></a> ';
+                    $button .= '<a href="javascript:void(0);"    data-id="' . $data->id . '" class="btn btn-success btn-sm rounded-0 reply_application_btn btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-reply"></i></a> ';
+                    $button .= '<a href="javascript:void(0);"    data-id="' . $data->id . '" class="btn btn-info warning-sm rounded-0 mark_application_btn btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-marker"></i></a> ';
+                    $button .= '<a href="javascript:void(0);"    data-id="' . $data->id . '" class="btn btn-primary btn-sm rounded-0 view_application_btn btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-eye"></i></a> ';
 
-                    // $button = '<a href="/admin/application/edit/'.$data->id.'"  name="edit" id="'.$data->id.'" class="btn btn-primary btn-sm rounded-0 edit btn btn-sm btn-clean btn-icon" title="Edit details"><i class="la la-edit"></i></a>';
-                    $button = '<a href="javascript:void(0);"  name="element" id="' . $data->id . '" class="btn btn-info btn-sm rounded-0 view_application btn btn-sm btn-clean btn-icon" title="view application details"><i class="fa fa-eye"></i></a> ';
                     return $button;
                 })
                 ->editColumn('userName', function ($data) {
@@ -53,7 +54,6 @@ class ServiceApplicationController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-
         return view('backend.admin.application.index', compact('page_title', 'page_description', 'page_breadcrumbs'));
     }
 
@@ -70,46 +70,30 @@ class ServiceApplicationController extends Controller
     }
 
 
-    public function view(Request $request, $id)
+    public function view(Request $request)
     {
-
-        $page_title   = 'Application';
-
         if (request()->ajax()) {
-            $dataView = [];
-            $serviceInputeAnswer = ServiceInputAnswer::with(['service', 'user'])->findOrFail($id);
-            $data = ServiceInputAnswer::where('service_id', $serviceInputeAnswer->service_id)->get()->toArray();
-
-            foreach ($data as $element) {
-                $dataView[$element['type']][] = $element;
-            }
-            $dataView['data'] = $serviceInputeAnswer;
-            $returnHTML = view('backend.admin.services.templete')->with('data', $dataView)->render();
-            return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
+            $service = ServiceApplication::with(['service', 'user'])->findOrFail($request->id)->first();
+            $returnHTML = view('backend.admin.application.application-details')->with('service', $service)->render();
+            return response()->json(['success' => true, 'html' => $returnHTML]);
         }
     }
 
     public function edit(Request $request, $id)
     {
-
-        $page_title   = 'Application';
-        $page_breadcrumbs   = '';
-
-
         if (request()->ajax()) {
-            $dataView = [];
-            $serviceInputeAnswer = ServiceInputAnswer::with(['service', 'user'])->findOrFail($id);
-            $data = ServiceInputAnswer::where('service_id', $serviceInputeAnswer->service_id)->get()->toArray();
+            $service = ServiceApplication::with(['service', 'user'])->findOrFail($request->id)->first();
+            $returnHTML = view('backend.admin.application.application-form')->with('service', $service)->render();
+            return response()->json(['success' => true, 'html' => $returnHTML]);
+        }
+    }
 
-            foreach ($data as $element) {
-                $dataView[$element['type']][] = $element;
-            }
-            $dataView['data'] = $serviceInputeAnswer;
-
-            $data = $serviceInputeAnswer;
-            //dd($dataView);
-            $returnHTML = view('backend.admin.templete')->with('data', $dataView)->render();
-            return response()->json(['success' => true, 'data' => $serviceInputeAnswer, 'html' => $returnHTML]);
+    public function replyApplication(Request $request, $id)
+    {
+        if (request()->ajax()) {
+            $service = ServiceApplication::with(['service', 'user'])->findOrFail($request->id)->first();
+            $returnHTML = view('backend.admin.application.application-reply')->with('service', $service)->render();
+            return response()->json(['success' => true, 'html' => $returnHTML]);
         }
     }
 }

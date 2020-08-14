@@ -15,8 +15,8 @@
 </div>
 @include('frontend.layouts.user_side_menu')
 <section class="category-row">
-    @include('frontend.common.flashMessage')
     <div class="container">
+        @include('frontend.common.flashMessage')
         <form class="" id="profile_form" method="post" action="{{ route('frontend.user.profile.update')  }}">
             {{ csrf_field() }}
             <div class="row">

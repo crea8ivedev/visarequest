@@ -50,7 +50,9 @@
                     <td>{{$service->amount}}</td>
                     <td>{{$service->application_applied_date}}</td>
                     <td>{{$service->status}}</td>
-                    <td></td>
+                    <td><a class="btn btn-info"
+                            href="{{route('frontend.user.application.service.details',[$service->id])}}"><i
+                                class="fa fa-info-circle"></i></a></td>
                 </tr>
                 @endforeach
             </tbody>

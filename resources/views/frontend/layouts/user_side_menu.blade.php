@@ -4,7 +4,7 @@
             <ul class="menu category-list">
                 <li class="mega-menu-item service-category">
                     <a href="{{ route('frontend.user.profile') }}"
-                        class="mega-menu-link   {{ (request()->is('profile')) ? 'active' : '' }}">Profile</a>
+                        class="mega-menu-link   {{ (request()->is('profile')) ? 'active' : '' }}">My Profile</a>
                 </li>
                 <li class="mega-menu-item service-category">
                     <a href="{{ route('frontend.user.application.service') }}"
@@ -15,5 +15,5 @@
     </div>
 
 
-    
+
 </section>

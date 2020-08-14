@@ -16,44 +16,53 @@
 @include('frontend.common.flashMessage')
 <section class="category-row">
     <div class="container">
-        <form class="" id="application_form" name="application_form" method="post"
-            action="{{route('frontend.user.application.update')}}">
+        <form class="application_form" id="application_form" name="application_form" method="post"
+            action="{{route('frontend.user.application.update')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             @foreach($service->serviceInputs as $key=>$element)
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="label">{{$element->label}}</div>
-                    @if($element->type==='text' || $element->type==='date' || $element->type==="number" ||
-                    $element->type==="file")
-                    <input type="{{$element->type}}" name="element[{{$element->type}}-**-{{$element->label}}]l}}]el}}]"
-                        class="form-control">
-                    @elseif($element->type==='textarea' || $element->type==='paragraph')
-                    <textarea name="element[{{$element->type}}-**-{{$element->label}}]l}}]el}}]"
-                        class="form-control"></textarea>
-                    @elseif($element->type==='select')
-                    <select name="element[{{$element->type}}-**-{{$element->label}}]l}}]el}}]" class="form-control">
-                        @foreach (json_decode($element->value) as $item)
-                        <option value="{{$item->value}}">{{$item->label}}</option>
-                        @endforeach
-                    </select>
-                    @elseif( $element->type==='radio-group')
+            <div>
+                <div class="label">{{$element->label}}</div>
+                @if($element->type==='text')
+                <input type="text" name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]"
+                    class="form-control">
+                @elseif( $element->type==='date')
+                <input type="date" name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]"
+                    class="form-control">
+                @elseif( $element->type==="number" )
+                <input type="number" name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]"
+                    class="form-control">
+                @elseif($element->type==="file")
+                <input type="file" name="file[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]"
+                    class="form-control">
+                @elseif($element->type==='textarea' )
+                <textarea name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]"
+                    class="form-control"></textarea>
+                @elseif($element->type==='textarea')
+                <textarea name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]"
+                    class="form-control"></textarea>
+                @elseif($element->type==='select')
+                <select name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]" class="form-control">
                     @foreach (json_decode($element->value) as $item)
-                    {{$item->label}}<input class="form-control" type="radio"
-                        name="element[{{$element->type}}-**-{{$element->label}}]l}}]el}}]" value="{{$item->value}}"
-                        class="form-control">
+                    <option value="{{$item->value}}">{{$item->label}}</option>
                     @endforeach
-                    @elseif($element->type==='checkbox-group')
-                    @foreach (json_decode($element->value) as $item)
-                    {{$item->label}}<input class="form-control" type="checkbox"
-                        name="element[{{$element->type}}-**-{{$element->label}}]l}}]el}}]" value="{{$item->value}}"
-                        class="form-control">
-                    @endforeach
-                    @endif
-                </div>
+                </select>
+                @elseif( $element->type==='radio-group')
+                @foreach (json_decode($element->value) as $item)
+                {{$item->label}}<input class="form-control" type="radio"
+                    name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]" value="{{$item->value}}"
+                    class="form-control">
+                @endforeach
+                @elseif($element->type==='checkbox-group')
+                @foreach (json_decode($element->value) as $item)
+                {{$item->label}}<input class="form-control" type="checkbox"
+                    name="element[{{$element->type}}-**-{{$element->label}}-**-{{$key}}]" value="{{$item->value}}"
+                    class="form-control">
+                @endforeach
+                @endif
             </div>
             @endforeach
             {!! Form::hidden('service', $service->id, []) !!}
-            <input class="btn btn-info" type="submit" />
+            <button type="submit" class="btn btn-info">Submit</button>
     </div>
     </form>
     </div>

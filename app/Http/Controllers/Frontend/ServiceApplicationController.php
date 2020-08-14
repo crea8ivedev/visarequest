@@ -34,20 +34,30 @@ class ServiceApplicationController extends Controller
         $serviceApplication->discount_amount = $service->discount_price;
         $serviceApplication->application_applied_date = date('Y-m-d h:i:s');
         $serviceApplication->status =  Config::get('constants.SERVICE_APPLICATION_STATUS.PROCESSING');
-        $serviceApplication->save();
-
-        foreach ($request->element as $key => $value) {
-            $type_value = explode("-**-", $key);
-            $data[$k]['service_id'] = $service->id;
-            $data[$k]['client_id'] = $request->service;
-            $data[$k]['type'] =  $type_value[0];
-            $data[$k]['label'] = $type_value[1];
-            $data[$k]['value'] = $value[0];
-            $k++;
-        }
-
-        $application_answer = new ServiceInputAnswer;
-        if ($application_answer->insert($data)) {
+        if ($serviceApplication->save()) {
+            foreach ($request->element as $key => $value) {
+                $type_value = explode("-**-", $key);
+                $data[$k]['service_id'] = $service->id;
+                $data[$k]['application_id'] = $serviceApplication->id;
+                $data[$k]['client_id'] = $request->service;
+                $data[$k]['type'] =  $type_value[0];
+                $data[$k]['label'] = $type_value[1];
+                $data[$k]['value'] = $value;
+                $k++;
+            }
+            foreach ($request->file('file') as $key => $file) {
+                $save_name = $file->getClientOriginalName();
+                $file->storeAs(Config::get('constants.DOCUMENTS.APPLICATION_DOCUMENT'), $save_name);
+                $type_value = explode("-**-", $key);
+                $data[$k]['service_id'] = $service->id;
+                $data[$k]['application_id'] = $serviceApplication->id;
+                $data[$k]['client_id'] = $request->service;
+                $data[$k]['type'] =  $type_value[0];
+                $data[$k]['label'] = $type_value[1];
+                $data[$k]['value'] = $save_name;
+            }
+            $application_answer = new ServiceInputAnswer;
+            $application_answer->insert($data);
             return redirect()->back()->with('success', 'Service applied successfully.');
         } else {
             return redirect()->back()->with('error', 'Service  does not applied successfully.');
