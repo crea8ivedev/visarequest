@@ -58,9 +58,9 @@ class ServiceApplicationController extends Controller
             }
             $application_answer = new ServiceInputAnswer;
             $application_answer->insert($data);
-            return redirect()->back()->with('success', 'Service applied successfully.');
+            return redirect()->back()->with('success', 'Service Application applied successfully.');
         } else {
-            return redirect()->back()->with('error', 'Service  does not applied successfully.');
+            return redirect()->back()->with('error', 'Service Application does not applied successfully.');
         }
     }
 }

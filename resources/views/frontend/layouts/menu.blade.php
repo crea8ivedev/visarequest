@@ -40,11 +40,9 @@
                         </nav>
                         <div class="header_btn">
                             @if (Auth::check())
-                            <a>
-                                <i class="fa fa-bell"><span class="badge badge-danger">5</span></i>
-                            </a>
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey"
-                                href="{{route('frontend.user.profile')}}">Dashboard <i class="icon-envelope"></i></a>
+                            href="{{route('frontend.user.profile')}}">Dashboard <i class="fa fa-envelope" aria-hidden="true"><span
+                                    class="badge badge-danger">4</span></i></a>
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey"
                                 href="{{route('user.logout')}}">Logout</a>
                             @else

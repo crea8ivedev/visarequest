@@ -13,57 +13,63 @@
         </div>
     </div>
 </div>
-@include('frontend.layouts.user_side_menu')
-<section class="category-row">
-    <div class="container">
-        @include('frontend.common.flashMessage')
-        <form class="" id="profile_form" method="post" action="{{ route('frontend.user.profile.update')  }}">
-            {{ csrf_field() }}
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group row">
-                        <label>First Name <code>*</code></label>
-                        <input type="text" class="form-control" id="first_name" name="first_name"
-                            value="{{$user->first_name}}" />
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group row">
-                        <label>Last Name <code>*</code></label>
-                        <input type="text" class="form-control" id="last_name" name="last_name"
-                            value="{{$user->last_name}}" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group row">
-                        <label>Email <code>*</code></label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" />
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-group row">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}" />
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group row">
-                        <label>Password</label>
-                        <input type="password" class="form-control" id="password" name="password" />
-                    </div>
-                </div>
 
+<section class="category-row pt-0 pb-0">
+    <div class="container ">
+        <div class="row row-eq-height">
+            <div class="col-lg-4">
+                @include('frontend.layouts.user_side_menu')
             </div>
-    </div>
-    <div class="row">
-        <input type="hidden" id="id" name="id" value="{{$user->id}}" />
-        <input class="btn btn-info" type="submit" />
-    </div>
-    </form>
+            <div class="col-lg-8">
+                <div class="pt-10">
+                    @include('frontend.common.flashMessage')
+                </div>
+                <form id="profile_form" class="contact_form wrap-form clearfix pt-60 pb-60" method="post"
+                    action="{{ route('frontend.user.profile.update')  }}">
+                    {{ csrf_field() }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="form-group text-input">
+                                <label>First Name <code>*</code></label>
+                                <input type="text" id="first_name" name="first_name" value="{{$user->first_name}}" />
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="form-group text-input">
+                                <label>Last Name <code>*</code></label>
+                                <input type="text" id="last_name" name="last_name" value="{{$user->last_name}}" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span class="form-group text-input">
+                                <label>Email <code>*</code></label>
+                                <input type="email" id="email" name="email" value="{{$user->email}}" />
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="form-group text-input">
+                                <label>Phone</label>
+                                <input type="text" id="phone" name="phone" value="{{$user->phone}}" />
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="form-group text-input">
+                                <label>Password</label>
+                                <input type="password" id="password" name="password" />
+                            </span>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="hidden" id="id" name="id" value="{{$user->id}}" />
+                            <input
+                                class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark cmt-color"
+                                type="submit" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </section>
 @include('frontend.layouts.footer')
