@@ -83,7 +83,7 @@
     $(window).scroll(function(){
         if ( matchMedia( 'only screen and (min-width: 1200px)' ).matches ) 
         {
-            if ($(window).scrollTop() >= 50 ) {
+            if ($(window).scrollTop() >= 200 ) {
 
                 $('.cmt-stickable-header').addClass('fixed-header');
             }

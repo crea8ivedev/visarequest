@@ -41,9 +41,8 @@
                         <div class="header_btn">
                             @if (Auth::check())
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey"
-                            href="{{route('frontend.user.profile')}}">My Account <i
-                            class="icon-envelope"></i><span
-                                    class="badge badge-danger">4</span></a>
+                            href="{{route('frontend.user.profile')}}">Dashboard <i class="fa fa-envelope" aria-hidden="true"><span
+                                    class="badge badge-danger">4</span></i></a>
                             <a class="cmt-btn cmt-btn-size-sm cmt-btn-shape-round cmt-btn-style-fill cmt-btn-color-grey"
                                 href="{{route('user.logout')}}">Logout</a>
                             @else

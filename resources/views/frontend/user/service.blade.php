@@ -20,20 +20,31 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>
-                        <select>
-                            <option value="all">All</option>
-                            <option value="processing">Processing</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </th>
-                    <th>
-                        Start Date<input type="date" />
-                        End Date<input type="date" />
-                        <input class="btn btn-info" type="button" value="Search" />
-                    </th>
-
-
+                    <td class="contact_form wrap-form clearfix">
+                        <span class="form-group text-input cmt-arrow mb-0 mt-25">
+                            <select>
+                                <option value="all">All</option>
+                                <option value="processing">Processing</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </span>
+                    </td>
+                    <td class="contact_form wrap-form clearfix">
+                        <span class="form-group text-input">
+                            <label>Start Date</label>
+                            <input type="date" id="start_date" name="password" />
+                        </span>
+                    </td>
+                    <td class="contact_form wrap-form clearfix">
+                        <span class="form-group text-input">
+                            <label>End Date</label>
+                            <input type="date" id="end_date" name="password" />
+                        </span>
+                    </td>
+                    <td class="contact_form wrap-form clearfix">
+                        <input class="cmt-btn cmt-btn-size-md cmt-btn-shape-round cmt-btn-style-border cmt-btn-color-dark cmt-color pt-17 pb-17 mt-25" type="button" value="Search" />
+                    </td>
+                    <td></td>
                 </tr>
                 <tr>
                     <th scope="col">Name</th>

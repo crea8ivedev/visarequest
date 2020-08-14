@@ -411,7 +411,8 @@
     vertical-align: middle;
     text-align: inherit;
     margin-left: 10px;
-    transition: .4s;
+    transition: all 0.3s ease 0s;
+    position: relative;
 }
 .cmt-btn.cmt-icon-btn-right i { text-align: right; margin-left: 10px; margin-right: 0;}
 .cmt-btn.cmt-icon-btn-left i { text-align: left; margin-right: 10px; margin-left: 0;}
