@@ -1,6 +1,6 @@
 <p align="center"><img src="http://visarequest.co.zw/images/logo.png" width="400"></p>
 
-## Visa Request 
+## VisaRequest 
 
 We are one of South Africa’s leading visa and travel solutions provider to travel agencies, companies, and private individuals through our solid online infrastructure and staff that fully discloses and simplifies the visa application process. We offer transparency and reliability in delivering service
 
